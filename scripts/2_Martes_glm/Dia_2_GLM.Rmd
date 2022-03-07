@@ -104,6 +104,7 @@ str(h)
 h$Habitat <- as.factor(h$Habitat)
 pairs(h[, 2:5])
 round(cor(h[, c(2, 4:5)]), 2)
+plot(table(h$Srich), xlab = "Numero de especies", ylab = "Frecuencia")
 hist(h$Srich, xlab = "Numero de especies", ylab = "Frecuencia relativa", main = "", freq = FALSE)
 # Ajuste de distribucion a los datos
 sim.pois <- dpois(x = 0:max(h$Srich), lambda = mean(h$Srich))
@@ -293,25 +294,75 @@ Allen et al. (2015) analizaron el efecto de grandes carnivoros (Ursus americanus
 \
 
 ## Modelos truncados en cero
-Santos et al. (2011) estudiaron la probabilidad de persistencia de las caracasas de animales muertos en ruta (Snakes.txt). La variable respuesta es el número de días que perduraban las caracasas sin ser removidas (Ndays).
+Santos et al. (2011) estudiaron la probabilidad de persistencia de las caracasas de animales muertos en ruta (Snakes.txt). La variable respuesta es el número de dias que perduraban las caracasas sin ser removidas (N_days). Las variables explicatorias son el tamaño de cada especie (Size_cm), la proporcion de dias con lluvia (PDayRain), las precipitaciones totales (Tot_Rain), la temperatura diaria promedio (Temp_avg), la identidad de la ruta que representa la intesidad del trafico (Road; EN114 tiene alto transito, EN4 tiene trafico medio, y EN370_EN114_4 tiene bajo trafico), la ubicación en la ruta (Road_Loc; L = asfalto, V = borde), la estacion (Season), y la especie (Species).
 
 ```{r}
 # Analisis exploratorio
 serp <- read.table("../datos/Snakes.txt", header = T) 
-str(pol)
-pol$habitat <- factor(pol$type, levels = c("n", "a", "u"))
-pairs(pol[, c("habitat", "temp", "wind", "total")])
-boxplot(pol$total ~ pol$habitat)
-cor(pol$temp, pol$wind)
-hist(pol$total, xlab = "Numero de interacciones", ylab = "Frecuencia relativa", main = "", freq = FALSE, ylim = c(0, 0.05))
-# Ajuste de distribucion a los datos
-sim.pois <- dpois(x = 0:max(pol$total), lambda = mean(pol$total))
-lines(x = 0:max(pol$total), y = sim.pois, col = "blue", lwd = 2, type = "b")
-var(pol$total)/mean(pol$total)
+str(serp)
+plot(table(serp$N_days))
+mean(serp$N_days)
+pairs(serp[, c("PDayRain", "Tot_Rain", "Temp_avg")])
+round(cor(serp[, c("PDayRain", "Tot_Rain", "Temp_avg")]), 2)
+boxplot(serp$PDayRain ~ serp$Season)
+boxplot(serp$Tot_Rain ~ serp$Season)
+boxplot(serp$Temp_avg ~ serp$Season)
 ```
-plot(table(Snakes$Ndays))
+\
+
+### GLM Poisson
+
+```{r}
+m.pois <- glm(N_days ~ Size_cm + PDayRain + Tot_Rain + Road + Size_cm + Road_Loc + Size_cm:PDayRain, family = poisson, data = serp)
+summary(m.pois)
+```
+
+\
+
+### GLM Poisson truncado en cero
+```{r}
+library(VGAM)
+m.pois.trun <- vglm(N_days ~ Size_cm + PDayRain + Tot_Rain + Road + Size_cm + Road_Loc + Size_cm:PDayRain, family = pospoisson, control =  vglm.control(maxit = 100), data = serp)
+summary(m.pois.trun)
+```
+
+\
+
+### GLM binomial negativo truncado en cero
+```{r}
+m.nb.trun <- vglm(N_days ~ Size_cm + PDayRain + Tot_Rain + Road + Size_cm + Road_Loc + Size_cm:PDayRain, family = posnegbinomial, control =  vglm.control(maxit = 100), data = serp)
+summary(m.nb.trun)
+```
+
+\
+
+### Comparacion de coeficientes entre modelos
+```{r}
+data.frame(coef.Poisson = summary(m.pois)$coeff[, 1], 
+           coef.Poisson.truncado = summary(m.pois.trun)@coef3[, 1])
+```
+
 \
 
 ## Modelos inflados en ceros
+Hemmingsen et al. (2005) analizaron las infecciones por *Trypanosoma* en bacalaos (*Gadus morhua*) durante cruceros anuales en la costa norte de Noruega. La variable respuesta es la prevalencia de parasitos (Prevalence). Posibles variables explicatorias son el año (Year), area (Area) y profundidad de captura (Depth). 
+
+```{r}
+# Analisis exploratorio
+parasitos <- read.table("../datos/ParasiteCod.txt", header = T) 
+str(parasitos)
+plot(table(parasitos$Intensity))
+table(parasitos$Intensity)[1] # Numero de ceros observados
+# Ajuste de distribucion a los datos
+xIntensity <- mean(parasitos$Intensity, na.rm = TRUE)
+sim.pois <- dpois(x = 0:max(parasitos$Intensity, na.rm = TRUE), lambda = xIntensity)
+ndatos <- length(na.omit(parasitos$Intensity))
+random.sample.pois <- rpois(n = ndatos, lambda = xIntensity)
+plot(table(random.sample.pois))
+length(random.sample.pois[random.sample.pois == 0]) # Numero de ceros esperados
+```
+\
+
+
 
 
