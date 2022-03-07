@@ -1,20 +1,24 @@
 ---
 title: "DIA 2. GLM"
 author: "Facundo X. Palacio"
-date: "22/2/2022"
-output: html_document
+date: "`r Sys.Date()`"
+output: 
+  tufte::tufte_html:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+\
+
 ### PRESENCIA-AUSENCIA
 Cabral et al. (2007) estudiaron la distribución de platijas (*Solea solea*) en el estuario Tagus, Portugal. Se desea saber qué factores están relacionados con la presencia esta especie.
 
 ```{r}
 # Analisis exploratorio
-datos <- read.table("C:/RD/Solea.txt", header = T) 
+datos <- read.table("../datos/Solea.txt", header = T) 
 str(datos)
 hist(datos$Solea_solea)
 table(datos$Solea_solea)
@@ -22,11 +26,15 @@ pairs(datos[, 4:12])
 round(cor(datos[, 4:12]), 2)
 ```
 
+\
+
 ### GLM binomial
 ```{r}
 m.bin <- glm(Solea_solea ~ temperature + transparency + salinity, family = binomial, data = datos)
 summary(m.bin)
 ```
+
+\
 
 ### Bondad del ajuste
 ```{r}
@@ -36,6 +44,8 @@ library(performance)
 r2_tjur(m.bin) # Coeficiente de determinacion de Tjur
 ```
 
+\
+
 ### Grafico del  modelo
 ```{r}
 library(visreg)
@@ -44,11 +54,15 @@ visreg(fit = m.bin, xvar = "salinity", scale = "response", ylim = c(0, 1),
 points(datos$salinity, datos$Solea_solea)
 ```
 
+\
+
 ### Interpretacion de los coeficientes
 ```{r}
 exp(m.bin$coeff[2]) # Razon de odds
 ```
 Por unidad de salinidad, la relación $\frac{P(presencia)}{P(ausencia)}$ (odd) disminuye en 0.90 unidades
+
+\
 
 #### Validacion
 ```{r}
@@ -57,11 +71,15 @@ library(DHARMa)
 plot(simulateResiduals(fittedModel = m.bin))
 ```
 
+\
+
 #### Ecuacion
 ```{r}
 library(equatiomatic)
 extract_eq(m.bin, use_coefs = TRUE, fix_signs = TRUE)
 ```
+
+\
 
 ### Capacidad predictiva
 ```{r}
@@ -74,12 +92,14 @@ matriz.conf
 matriz.conf/rowSums(matriz.conf)
 ```
 
+\
+
 ### CONTEOS
 Gotelli & Ellison (2002) analizaron los determinantes biogeográficos de la riqueza de hormigas (Srich) a escala regional (hormigas.txt). Para esto se describió el tipo de hábitat (Habitat), la latitud (Latitude) y la altitud (Elevation).
 
 ```{r}
 # Analisis exploratorio
-h <- read.table("C:/RD/hormigas.txt", header = T) 
+h <- read.table("../datos/hormigas.txt", header = T) 
 str(h)
 h$Habitat <- as.factor(h$Habitat)
 pairs(h[, 2:5])
@@ -91,11 +111,15 @@ lines(x = 0:max(h$Srich), y = sim.pois, col = "blue", lwd = 2, type = "b")
 var(h$Srich)/mean(h$Srich)
 ```
 
+\
+
 ### GLM Poisson
 ```{r}
 m.pois <- glm(Srich ~ Latitude + Elevation + Habitat, family = poisson, data = h)
 summary(m.pois)
 ```
+
+\
 
 ### GLM quasi-Poisson
 ```{r}
@@ -116,6 +140,8 @@ library(DHARMa)
 testDispersion(m.pois)
 ```
 
+\
+
 ### Validacion
 ```{r}
 residP <- resid(m.qpois, type = "pearson")  # residuos de Pearson 
@@ -126,16 +152,22 @@ plot(pred, residD)
 plot(simulateResiduals(fittedModel = m.pois))
 ```
 
+\
+
 ### Bondad del ajuste
 ```{r}
 1 - (m.qpois$dev/m.qpois$null) # Pseudo-R2
 ```
+
+\
 
 #### Ecuacion
 ```{r}
 library(equatiomatic)
 extract_eq(m.qpois, use_coefs = TRUE, fix_signs = TRUE)
 ```
+
+\
 
 ### Graficos
 ```{r}
@@ -149,13 +181,15 @@ points(bg$Latitude, bg$Srich, pch=19, col = "red")
 points(ft$Latitude, ft$Srich, pch=19, col = "blue")
 ```
 
+\
+
 ## GLM binomial negativo
 Leong et al. (2014) estudiaron el efecto del paisaje (urbano, agrícola y natural) sobre el número de interacciones de polinizadores nativos en $Centaurea solstitialis$ (Asteraceae). Se quiere evaluar si existen diferencias en el número de interacciones (total) entre los 3 tipos de ambientes (type) teniendo en 
 cuenta la temperatura (temp) y la velocidad del viento (wind). 
 
 ```{r}
 # Analisis exploratorio
-pol <- read.table("C:/RD/bees_data.txt", header = T) 
+pol <- read.table("../datos/bees_data.txt", header = T) 
 str(pol)
 pol$habitat <- factor(pol$type, levels = c("n", "a", "u"))
 pairs(pol[, c("habitat", "temp", "wind", "total")])
@@ -168,6 +202,8 @@ lines(x = 0:max(pol$total), y = sim.pois, col = "blue", lwd = 2, type = "b")
 var(pol$total)/mean(pol$total)
 ```
 
+\
+
 #### Chequear sobredispersion
 ```{r}
 mqpoi.pol <- glm(total ~ habitat + temp + wind, family = quasipoisson, data = pol) 
@@ -177,10 +213,14 @@ mpoi.pol <- glm(total ~ habitat + temp + wind, family = poisson, data = pol)
 testDispersion(mpoi.pol)
 ```
 
+\
+
 #### Validacion del modelo quasipoisson
 ```{r}
 plot(simulateResiduals(fittedModel = mpoi.pol))
 ```
+
+\
 
 #### Modelo binomial negativo
 ```{r}
@@ -189,21 +229,29 @@ mbn.pol <- glm.nb(total ~ habitat + temp + wind, data = pol)
 summary(mbn.pol)
 ```
 
+\
+
 #### Validacion del modelo binomial negativo
 ```{r}
 plot(simulateResiduals(fittedModel = mbn.pol))
 ```
+
+\
 
 ### Bondad del ajuste
 ```{r}
 1 - (mbn.pol$dev/mbn.pol$null) # Pseudo-R2
 ```
 
+\
+
 #### Ecuacion
 ```{r}
 library(equatiomatic)
 extract_eq(mbn.pol, use_coefs = TRUE, fix_signs = TRUE)
 ```
+
+\
 
 #### Comparaciones multiples
 ```{r}
@@ -212,11 +260,15 @@ comp <- glht(mbn.pol, mcp(habitat = "Tukey"))
 summary(comp) 
 ```
 
+\
+
 ### Incluyendo un offset
 ```{r}
 mbn.pol.off <- glm.nb(total ~ habitat + temp + wind + offset(log(min)), data = pol)
 summary(mbn.pol.off)
 ```
+
+\
 
 #### Graficos
 ```{r}
@@ -226,14 +278,40 @@ visreg(fit = mbn.pol.off, xvar = "habitat", scale = "response", cond = list(temp
 layout(1)
 ```
 
+\
+
 ## Modelo lineal general
 ```{r}
 
 ```
 
+\
 
 ## GLM Gamma
 Allen et al. (2015) analizaron el efecto de grandes carnivoros (Ursus americanus y Puma concolor) sobre la actividad de carroñeros. Registraron la duracion media del evento de alimentacion (duration) por carroñeros en sitios con cadaveres producto de pumas y sitios control donde se colocaron cadaveres colectados en la ruta (trat). 
 
-## GLMs inflados en ceros
+\
+
+## Modelos truncados en cero
+Santos et al. (2011) estudiaron la probabilidad de persistencia de las caracasas de animales muertos en ruta (Snakes.txt). La variable respuesta es el número de días que perduraban las caracasas sin ser removidas (Ndays).
+
+```{r}
+# Analisis exploratorio
+serp <- read.table("../datos/Snakes.txt", header = T) 
+str(pol)
+pol$habitat <- factor(pol$type, levels = c("n", "a", "u"))
+pairs(pol[, c("habitat", "temp", "wind", "total")])
+boxplot(pol$total ~ pol$habitat)
+cor(pol$temp, pol$wind)
+hist(pol$total, xlab = "Numero de interacciones", ylab = "Frecuencia relativa", main = "", freq = FALSE, ylim = c(0, 0.05))
+# Ajuste de distribucion a los datos
+sim.pois <- dpois(x = 0:max(pol$total), lambda = mean(pol$total))
+lines(x = 0:max(pol$total), y = sim.pois, col = "blue", lwd = 2, type = "b")
+var(pol$total)/mean(pol$total)
+```
+plot(table(Snakes$Ndays))
+\
+
+## Modelos inflados en ceros
+
 
