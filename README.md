@@ -1,0 +1,2 @@
+# Curso_modelos_lineales_y_aditivos_en_ecologia_2022
+ 
