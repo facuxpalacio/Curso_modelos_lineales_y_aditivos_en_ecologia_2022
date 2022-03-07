@@ -1,0 +1,220 @@
+---
+title: "DIA 1. Modelos lineales"
+author: "Facundo X. Palacio"
+date: "22/2/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, echo = TRUE)
+```
+
+# DIA 1. Introduccion a los modelos lineales
+##Definicion de modelo lineal
+```{r}
+layout(matrix(1:4, 2, 2))
+x <- rnorm(100)
+y1 <- 2 + 1.5*x
+plot(x, y1)
+
+y2 <- 2 + 1.5*x - 0.2*x^2
+plot(x, y2)
+
+y3 <- exp(x)
+plot(x, y3)
+
+y4 <- log(y3)
+plot(x, y4)
+
+layout(1)
+```
+
+##Regresion lineal simple
+$$Y = \beta_0 + \beta_1 X + \epsilon$$
+$$\epsilon \sim N(0, \sigma^2)$$
+```{r}
+x <- rnorm(100)
+e <- rnorm(100, mean = 0, sd = 1)
+y <- 2 + 1.5*x + e
+plot(x, y)
+
+datos <- data.frame(x, y)
+reg.simple <- lm(y ~ x, data = datos)
+summary(reg.simple)
+# Pendiente
+cov(x, y)/var(x) 
+summary(reg.simple)$coeff
+# Coeficiente de determinacion
+summary(reg.simple)$r.squared 
+sum.cuad.exp <- sum((mean(datos$y) - reg.simple$fitted)^2)
+sum.cuad.tot <- sum((datos$y - mean(datos$y))^2)
+R2 <- sum.cuad.exp/sum.cuad.tot
+R2
+
+hist(reg.simple$residuals)
+plot(x, y)
+abline(reg.simple, lwd = 2)
+plot(reg.simple)
+```
+ 
+##Correlacion lineal simple
+```{r}
+# Correlacion producto-momento de Pearson
+cor(x, y, method = "pearson")
+cov(x, y)/(sd(x)*sd(y))
+cor.test(x, y)
+
+# Monotonia
+layout(matrix(1:4, 2, 2))
+x1 <- seq(1, 10, length = 100)
+y1 <- 0.5 + 2*x1
+plot(x1, y1, type = "l")
+y2 <- 0.5 + 2*x1 - 0.2*x1^2
+plot(x1, y2, type = "l")
+y3 <- exp(-5 + x1)
+plot(x1, y3, type = "l")
+y4 <- exp(-5 + x1)/(1 + exp(-5 + x1))
+plot(x1, y4, type = "l")
+layout(1)
+
+# Correlacion de Spearman
+cor(x1, y4, method = "spearman")
+xrango <- rank(x1) 
+yrango <- rank(y4)
+plot(xrango, yrango)
+cor(xrango, yrango, method = "spearman")
+```
+
+### Relacion entre coeficientes de regresion y correlacion
+```{r}
+beta <- summary(reg.simple)$coeff[2, 1]
+beta*sd(x)/sd(y)
+```
+
+### Matrices de correlacion
+```{r}
+library(palmerpenguins)
+str(penguins)
+cor(penguins[, 3:6], use = "complete.obs")
+pairs(penguins[, 3:6])
+Ad <- subset(penguins, species == "Adelie")
+round(cor(Ad[, 3:6], use = "complete.obs"), 2)
+
+library(Hmisc)
+matriz.corr <- rcorr(as.matrix(Ad[, 3:6]), type = "pearson")
+matriz.corr
+p.adjust(matriz.corr$P, method = "holm") 
+```
+
+### Matrices de graficos de dispersion
+```{r}
+pairs(Ad[, 3:6], pch = 19, col = "blue", lower.panel = NULL)
+pairs(penguins[, 3:6], pch = 19, col = c("red", "orange", "blue")[penguins$species], lower.panel = NULL)
+
+library(psych)
+pairs.panels(Ad[, 3:6], 
+             method = "pearson", # correlacion
+             density = FALSE,  # graficos de densidad
+             ellipses = FALSE, # elipses de confianza
+             lm = TRUE) # recta
+```
+
+## Regresion lineal multiple
+$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + ... + \beta_n X_n + \epsilon$$
+$$\epsilon \sim N(0, \sigma^2)$$
+
+```{r}
+model.Ad <- lm(bill_length_mm ~ body_mass_g + bill_depth_mm, data = Ad)
+summary(model.Ad)
+sum.cuad.exp <- sum((mean(na.omit(Ad$bill_length_mm)) - model.Ad$fitted)^2)
+sum.cuad.tot <- sum((na.omit(Ad$bill_length_mm) - mean(na.omit(Ad$bill_length_mm)))^2)
+R2 <- sum.cuad.exp/sum.cuad.tot
+R2
+
+# grafico de dispersion con plano de regresion
+library(plot3D)
+x <- Ad$body_mass_g
+y <- Ad$bill_depth_mm
+z <- Ad$bill_length_mm
+x.pred <- seq(min(x, na.rm = T), max(x, na.rm = T), length = 30)
+y.pred <- seq(min(y, na.rm = T), max(y, na.rm = T), length = 30)
+xy <- expand.grid(body_mass_g = x.pred, bill_depth_mm = y.pred)
+z.pred <- matrix(predict(model.Ad, newdata = xy), nrow = 30, ncol = 30)
+scatter3D(x, y, z, pch = 18, cex = 2, 
+          theta = 35, phi = 20, ticktype = "detailed",
+          xlab = "Masa corporal", ylab = "Alto del pico", 
+          zlab = "Longitud del pico",  
+          surf = list(x = x.pred, y = y.pred, z = z.pred, facets = NA))
+
+library(visreg)
+Ad$bill_depth_cat <- cut(Ad$bill_depth_mm, 3, 
+                         labels = c("Small", "Intermediate", "Large"))
+model.Ad_cat <- lm(bill_length_mm ~ body_mass_g + bill_depth_cat, data = Ad)
+visreg(model.Ad_cat, "body_mass_g", "bill_depth_cat", gg = TRUE)
+```
+### Supuestos y transformaciones - COMPLETAR
+### Colinealidad
+```{r}
+library(car)
+vif(model.Ad)
+```
+### Transformaciones
+```{r}
+layout(matrix(1:6, 2, 3))
+abundancia <- rpois(n = 1000, lambda = 4)
+hist(abundancia, main = "Abundancia")
+log.abun <- log(abundancia + 1)
+hist(log.abun, breaks = 6, main = "log(Abundancia + 1)")
+
+peso <- rgamma(n = 1000, shape = 5)
+hist(peso, main = "Peso")
+sqrt.peso <- sqrt(peso)
+hist(sqrt.peso, breaks = 6, main = "Raiz cuadrada del peso")
+
+prop.infectados <- rbinom(n = 1000, size = 10, p = 0.4)/10
+hist(prop.infectados, main = "Proporcion de infectados")
+logit.prop <- log(prop.infectados/(1 - prop.infectados))
+hist(logit.prop, main = "Logit proporcion de infectados", breaks = 6)
+layout(1)
+```
+
+### Variables categoricas - COMPLETAR
+```{r}
+model.penguins1 <- lm(bill_length_mm ~ body_mass_g + species, data = penguins)
+summary(model.penguins1)
+
+model.penguins2 <- lm(bill_length_mm ~ body_mass_g + species + body_mass_g:species, data = penguins)
+summary(model.penguins2)
+anova(model.penguins2)
+```
+
+### Test de t
+```{r}
+t_coag <- c(8.8, 8.4, 7.9, 8.7, 9.1, 9.6, NA, 
+            9.9, 9.0, 11.1, 9.6, 8.7, 10.4, 9.5) 
+droga <- c(rep("A", 7), rep("B", 7))
+coag <- data.frame(t_coag, droga)
+# Con varianzas iguales
+t.test(t_coag ~ droga, var.equal = TRUE, data = coag)  
+# Con varianzas diferentes
+t.test(t_coag ~ droga, var.equal = FALSE)
+# Homogeneidad de varianzas (test de F)
+var.test(t_coag[1:7], t_coag[8:14])
+```
+
+### Test de t pareado - COMPLETAR
+
+### Analisis de la varianza
+```{r}
+boxplot(penguins$bill_length_mm ~ penguins$species)
+model.spp <- aov(bill_length_mm ~ species, data = na.omit(penguins))
+resid.model.spp <- resid(model.spp)
+# Normalidad de residuos
+boxplot(resid.model.spp ~ species, data = na.omit(penguins)) 
+termplot(model.spp, se = TRUE, partial.resid = TRUE)
+# Homogeneidad de varianzas
+bartlett.test(resid.model.spp ~ species, data = na.omit(penguins)) 
+summary(model.spp)
+# Comparaciones multiples
+TukeyHSD(model.spp)
+```
