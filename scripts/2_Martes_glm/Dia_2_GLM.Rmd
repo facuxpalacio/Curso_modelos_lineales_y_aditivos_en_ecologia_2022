@@ -15,10 +15,9 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE, error = FALSE, echo = TR
 
 ### PRESENCIA-AUSENCIA
 Cabral et al. (2007) estudiaron la distribución de platijas (*Solea solea*) en el estuario Tagus, Portugal. Se desea saber qué factores están relacionados con la presencia esta especie.
-
 ```{r explo1}
 # Analisis exploratorio
-datos <- read.table("../datos/Solea.txt", header = T) 
+datos <- read.table("C:/RD/Solea.txt", header = TRUE)
 str(datos)
 hist(datos$Solea_solea)
 table(datos$Solea_solea)
@@ -28,7 +27,7 @@ round(cor(datos[, 4:12]), 2)
 
 \
 
-### GLM binomial
+#### GLM binomial
 ```{r glm binomial}
 m.bin <- glm(Solea_solea ~ temperature + transparency + salinity, family = binomial, data = datos)
 summary(m.bin)
@@ -64,7 +63,7 @@ Por unidad de salinidad, la relación $\frac{P(presencia)}{P(ausencia)}$ (odd) d
 
 \
 
-#### Validacion
+### Validacion
 ```{r validacion glm binomial}
 plot(m.bin)
 library(DHARMa)
@@ -73,7 +72,7 @@ plot(simulateResiduals(fittedModel = m.bin))
 
 \
 
-#### Ecuacion
+### Ecuacion
 ```{r ecuacion glm binomial}
 library(equatiomatic)
 extract_eq(m.bin, use_coefs = TRUE, fix_signs = TRUE)
@@ -94,12 +93,12 @@ matriz.conf/rowSums(matriz.conf)
 
 \
 
-### CONTEOS
+#### CONTEOS
 Gotelli & Ellison (2002) analizaron los determinantes biogeográficos de la riqueza de hormigas (Srich) a escala regional (hormigas.txt). Para esto se describió el tipo de hábitat (Habitat), la latitud (Latitude) y la altitud (Elevation).
 
 ```{r explo2}
 # Analisis exploratorio
-h <- read.table("../datos/hormigas.txt", header = T) 
+h <- read.table("C:/RD/hormigas.txt", header = T) 
 str(h)
 h$Habitat <- as.factor(h$Habitat)
 pairs(h[, 2:5])
@@ -162,7 +161,7 @@ plot(simulateResiduals(fittedModel = m.pois))
 
 \
 
-#### Ecuacion
+### Ecuacion
 ```{r ecuacion glm poisson}
 library(equatiomatic)
 extract_eq(m.qpois, use_coefs = TRUE, fix_signs = TRUE)
@@ -184,13 +183,13 @@ points(ft$Latitude, ft$Srich, pch=19, col = "blue")
 
 \
 
-## GLM binomial negativo
+### GLM binomial negativo
 Leong et al. (2014) estudiaron el efecto del paisaje (urbano, agrícola y natural) sobre el número de interacciones de polinizadores nativos en $Centaurea solstitialis$ (Asteraceae). Se quiere evaluar si existen diferencias en el número de interacciones (total) entre los 3 tipos de ambientes (type) teniendo en 
 cuenta la temperatura (temp) y la velocidad del viento (wind). 
 
 ```{r explo3}
 # Analisis exploratorio
-pol <- read.table("../datos/bees_data.txt", header = T) 
+pol <- read.table("C:/RD/bees_data.txt", header = T) 
 str(pol)
 pol$habitat <- factor(pol$type, levels = c("n", "a", "u"))
 pairs(pol[, c("habitat", "temp", "wind", "total")])
@@ -205,7 +204,7 @@ var(pol$total)/mean(pol$total)
 
 \
 
-#### Chequear sobredispersion
+### Chequear sobredispersion
 ```{r sobredispersion}
 mqpoi.pol <- glm(total ~ habitat + temp + wind, family = quasipoisson, data = pol) 
 summary(mqpoi.pol)
@@ -216,14 +215,14 @@ testDispersion(mpoi.pol)
 
 \
 
-#### Validacion del modelo quasipoisson
+### Validacion del modelo quasipoisson
 ```{r validacion glm quasipoisson}
 plot(simulateResiduals(fittedModel = mpoi.pol))
 ```
 
 \
 
-#### Modelo binomial negativo
+### Modelo binomial negativo
 ```{r glm BN}
 library(MASS)
 mbn.pol <- glm.nb(total ~ habitat + temp + wind, data = pol) 
@@ -232,7 +231,7 @@ summary(mbn.pol)
 
 \
 
-#### Validacion del modelo binomial negativo
+### Validacion del modelo binomial negativo
 ```{r validacion glm BN}
 plot(simulateResiduals(fittedModel = mbn.pol))
 ```
@@ -246,15 +245,14 @@ plot(simulateResiduals(fittedModel = mbn.pol))
 
 \
 
-#### Ecuacion
+### Ecuacion
 ```{r ecuacion glm BN}
-library(equatiomatic)
 extract_eq(mbn.pol, use_coefs = TRUE, fix_signs = TRUE)
 ```
 
 \
 
-#### Comparaciones multiples
+### Comparaciones multiples
 ```{r comparaciones}
 library(multcomp) 
 comp <- glht(mbn.pol, mcp(habitat = "Tukey")) 
@@ -271,7 +269,7 @@ summary(mbn.pol.off)
 
 \
 
-#### Graficos
+### Graficos
 ```{r grafico glm BN}
 layout(matrix(1:2, 1, 2))
 visreg(fit = mbn.pol, xvar = "habitat", scale = "response", cond = list(temp = mean(pol$temp), wind = mean(pol$wind)), xlab = "Habitat", ylab = "Numero de visitas", main = "GLM binomial negativo")
@@ -305,7 +303,7 @@ Santos et al. (2011) estudiaron la probabilidad de persistencia de las caracasas
 
 ```{r explo6}
 # Analisis exploratorio
-serp <- read.table("../datos/Snakes.txt", header = T) 
+serp <- read.table("C:/RD/Snakes.txt", header = T) 
 str(serp)
 plot(table(serp$N_days))
 mean(serp$N_days)
@@ -356,7 +354,7 @@ Hemmingsen et al. (2005) analizaron las infecciones por *Trypanosoma* en bacalao
 
 ```{r explo7}
 # Analisis exploratorio
-parasitos <- read.table("../datos/ParasiteCod.txt", header = T) 
+parasitos <- read.table("C:/RD/ParasiteCod.txt", header = T) 
 str(parasitos)
 plot(table(parasitos$Intensity))
 table(parasitos$Intensity)[1] # Numero de ceros observados
@@ -438,7 +436,6 @@ summary(ZANB)
 
 ### Comparacion de ZAP y ZANB
 ```{r ZAP vs ZANB}
-library(lmtest)
 lrtest(ZAP, ZANB) # Test de razon de verosimilitud
 AIC(ZAP, ZANB)
 ```
