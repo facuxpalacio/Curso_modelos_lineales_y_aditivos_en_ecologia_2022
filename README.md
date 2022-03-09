@@ -37,3 +37,23 @@ Definición de efectos fijos y efectos aleatorios. Modelo mixto para datos anida
 ## Modalidad del curso
 
 El curso será de forma presencial y se trabajará de forma íntegra con la interfaz RStudio. Todos los scripts, bases de datos, actividades, diapositivas y bibliografía sugerida se encuentra en este repositorio. Los alumnos y alumnas deberán tener instalado tanto R como Rstudio, así como los paquetes que se listan a continuación, previo al comienzo del curso:
+
+DHARMa
+
+equatiomatic
+
+lmtest
+
+MASS
+
+multcomp
+
+performance
+
+pscl
+
+VGAM
+
+visreg
+
+pscl
