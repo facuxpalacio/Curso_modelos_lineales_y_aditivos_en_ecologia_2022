@@ -469,3 +469,66 @@ count.model.pred <- exp(u) # Predicciones
 plot(parasitos$Depth, parasitos$Intensity, pch = 19, xlab = "Profundidad", ylab = "Prevalencia")
 lines(Depth, count.model.pred, col = "blue", lwd = 2)
 ```
+
+\
+
+### INFERENCIA MULTIMODELO
+Cabral et al. (2007) estudiaron la distribución de platijas (*Solea solea*) en el estuario Tagus, Portugal. Se desea saber qué factores están relacionados con la presencia esta especie.
+```{r explo8}
+# Analisis exploratorio
+datos <- read.table("C:/RD/Solea.txt", header = TRUE)
+str(datos)
+round(cor(datos[, 4:12]), 2)
+```
+
+#### Modelos candidatos
+```{r}
+# modelo nulo
+m1 <- glm(Solea_solea ~ 1, family = binomial, data = datos)
+# modelo de temperatura
+m2 <- glm(Solea_solea ~ temperature, family = binomial, data = datos)
+# modelo de salinidad
+m3 <- glm(Solea_solea ~ salinity, family = binomial, data = datos)
+# modelo de transparencia
+m4 <- glm(Solea_solea ~ transparency, family = binomial, data = datos)
+# modelo de profundidad
+m5 <- glm(Solea_solea ~ depth, family = binomial, data = datos)
+# modelo caracteristicas del agua
+m6 <- glm(Solea_solea ~ temperature + salinity + transparency, family = binomial, data = datos)
+# Modelo ubicacion en el espacio
+m7 <- glm(Solea_solea ~ Area + depth + Area:depth, family = binomial, data = datos)
+# Modelo de caracteristicas del sutrato
+m8 <- glm(Solea_solea ~ gravel + large_sand + med_fine_sand, family = binomial, data = datos)
+# Modelo de caracteristicas del sustrato grueso
+m9 <- glm(Solea_solea ~ gravel + large_sand, family = binomial, data = datos)
+# Modelo de caracteristicas del sustrato fino
+m10 <- glm(Solea_solea ~ med_fine_sand, family = binomial, data = datos)
+# Modelo de profundidad y sustrato
+m11 <- glm(Solea_solea ~ depth + gravel + large_sand + med_fine_sand, family = binomial, data = datos)
+```
+
+\
+
+### Seleccion de modelos
+```{r}
+library(MuMIn)
+modelos <- list(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11)
+ranking.modelos <- model.sel(modelos, rank = "AICc")
+ranking.modelos
+plot(1:length(modelos), ranking.modelos$delta, pch = 19, xlab = "Modelo", ylab = expression(Delta ~ "AICc"))
+abline(a = 2, b = 0, lty = 2)
+```
+
+\
+
+### Promediado de modelos
+```{r}
+modelo.promedio <- model.avg(ranking.modelos, subset = delta < 2)
+summary(modelo.promedio)
+importance(modelo.promedio)
+```
+
+
+
+
+

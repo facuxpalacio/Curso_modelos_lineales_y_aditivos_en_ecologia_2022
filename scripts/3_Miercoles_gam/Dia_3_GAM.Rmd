@@ -1,0 +1,58 @@
+---
+title: "DIA 2. GAM"
+author: 'Code author: Facundo X. Palacio'
+date: "`r Sys.Date()`"
+output: 
+  tufte::tufte_html:
+    toc: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, error = FALSE, echo = TRUE)
+```
+
+\
+
+#### Regresion polinomica
+```{r}
+# Simulamos dos variables
+set.seed(99)
+x <- seq(-2, 2, length = 500)
+y <- 2 - x + 0.2*x^2 + x^3 + rnorm(500, 0, 1)
+plot(x, y)
+
+# Ajuste del modelo
+reg.pol <- lm(y ~ x + I(x^2) + I(x^3))
+summary(reg.pol)
+```
+
+#### Funciones a trozos
+```{r}
+x.categorica <- cut(x, breaks = 5)
+fun.trozos <- lm(y ~ x.categorica)
+summary(fun.trozos)
+pred <- predict(fun.trozos)
+df <- data.frame(x, x.categorica, y, pred)
+ggplot(data = df, aes(x, pred)) + geom_step(col = "blue", size = 2) +
+  geom_point(data = df, aes(x, y))
+```
+
+#### Splines de regresion
+### Polinomios a trozos
+```{r}
+# Ejemplo de un polinomio cubico con 1 nodo
+data.split <- data.frame(x, y, x2cat = cut(x, breaks = 2))
+pol.cat1 <- lm(y ~ x + I(x^2) + I(x^3), data = subset(data.split, x2cat == "(-2,0]"))
+pol.cat2 <- lm(y ~ x + I(x^2) + I(x^3), data = subset(data.split, x2cat == "(0,2]"))
+pred.polcat1 <- predict(pol.cat1)
+pred.polcat2 <- predict(pol.cat2)
+df1 <- data.frame(subset(data.split, x2cat == "(-2,0]"), pred = pred.polcat1)
+df2 <- data.frame(subset(data.split, x2cat == "(0,2]"), pred = pred.polcat2)
+
+ggplot() + 
+  geom_line(data = df1, aes(x, pred), col = "blue", size = 2) +
+  geom_line(data = df2, aes(x, pred), col = "red", size = 2) +
+  geom_point(data = data.split, aes(x, y)) +
+  geom_vline(xintercept = 0, linetype = "dashed")
+```
+
