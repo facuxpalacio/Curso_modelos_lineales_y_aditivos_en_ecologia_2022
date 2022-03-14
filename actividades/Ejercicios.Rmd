@@ -1,0 +1,19 @@
+---
+title: "Ejercicios"
+author: 'Code author: Facundo X. Palacio'
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+Ejercicio 3. Wingfield et al. (2017) estudiaron la dinamica espaciotemporal de *Phocoena phocoena* (Pinnipedia, Mammalia) en Maryland, Estados Unidos. Se quiere establecer en que epoca del año es mas frecuente detectarla y los determinantes de su distribucion. Para esto se realizaron muestreos durante 18 meses y se recolecto informacion sobre la temperatura de la superficie del agua (SST) y la concentracion de clorofila, expresada como logaritmo (lnCHL). 
+
+1. Utilizar un modelo que describa la dinamica temporal de la proporcion de detecciones de la especie.
+
+2. Identificar que variables se relacionan con la proporcion de detecciones.
+
+3. Construya una tabla para mostrar los resultados principales.
+
+4. Grafique el modelo como considere mas conveniente para mostrar los resultados.
+
+5. ¿Que conclusiones obtiene en terminos biologicos?
+
