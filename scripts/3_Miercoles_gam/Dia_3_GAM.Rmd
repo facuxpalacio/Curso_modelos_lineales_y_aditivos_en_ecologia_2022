@@ -1,6 +1,6 @@
 ---
 title: "DIA 2. GAM"
-author: 'Code author: Facundo X. Palacio'
+author: 'Facundo X. Palacio'
 date: "`r Sys.Date()`"
 output: 
   tufte::tufte_html:

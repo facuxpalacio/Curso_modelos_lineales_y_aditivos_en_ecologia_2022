@@ -1,17 +1,22 @@
 ---
 title: "DIA 1. Modelos lineales"
 author: "Facundo X. Palacio"
-date: "22/2/2022"
-output: html_document
+date: "`r Sys.Date()`"
+output: 
+  tufte::tufte_html:
+    toc: true
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, echo = TRUE)
 ```
 
-# DIA 1. Introduccion a los modelos lineales
-##Definicion de modelo lineal
-```{r}
+\
+
+### DIA 1. Introduccion a los modelos lineales
+#### Definicion de modelo lineal
+```{r modelo lineal}
+set.seed(999)
 layout(matrix(1:4, 2, 2))
 x <- rnorm(100)
 y1 <- 2 + 1.5*x
@@ -29,39 +34,21 @@ plot(x, y4)
 layout(1)
 ```
 
-##Regresion lineal simple
-$$Y = \beta_0 + \beta_1 X + \epsilon$$
-$$\epsilon \sim N(0, \sigma^2)$$
-```{r}
+\
+ 
+#### Correlacion lineal simple
+```{r corr}
 x <- rnorm(100)
 e <- rnorm(100, mean = 0, sd = 1)
 y <- 2 + 1.5*x + e
 plot(x, y)
 
-datos <- data.frame(x, y)
-reg.simple <- lm(y ~ x, data = datos)
-summary(reg.simple)
-# Pendiente
-cov(x, y)/var(x) 
-summary(reg.simple)$coeff
-# Coeficiente de determinacion
-summary(reg.simple)$r.squared 
-sum.cuad.exp <- sum((mean(datos$y) - reg.simple$fitted)^2)
-sum.cuad.tot <- sum((datos$y - mean(datos$y))^2)
-R2 <- sum.cuad.exp/sum.cuad.tot
-R2
+# Covarianza
+cov(x, y)
 
-hist(reg.simple$residuals)
-plot(x, y)
-abline(reg.simple, lwd = 2)
-plot(reg.simple)
-```
- 
-##Correlacion lineal simple
-```{r}
 # Correlacion producto-momento de Pearson
-cor(x, y, method = "pearson")
 cov(x, y)/(sd(x)*sd(y))
+cor(x, y, method = "pearson")
 cor.test(x, y)
 
 # Monotonia
@@ -85,13 +72,10 @@ plot(xrango, yrango)
 cor(xrango, yrango, method = "spearman")
 ```
 
-### Relacion entre coeficientes de regresion y correlacion
-```{r}
-beta <- summary(reg.simple)$coeff[2, 1]
-beta*sd(x)/sd(y)
-```
+\
 
-### Matrices de correlacion
+#### Matrices de correlacion
+A continuacion se presentan las medidas del tamaño corporal en adultos de tres especies de pinguinos en islas del Archipielago Palmer, Antartida. 
 ```{r}
 library(palmerpenguins)
 str(penguins)
@@ -106,8 +90,53 @@ matriz.corr
 p.adjust(matriz.corr$P, method = "holm") 
 ```
 
-### Matrices de graficos de dispersion
+\
+
+#### Regresion lineal simple
+$$y = \beta_0 + \beta_1 x + \epsilon$$
+$$\epsilon \sim N(0, \sigma^2)$$
+
+```{r regresion simple}
+x <- rnorm(100)
+e <- rnorm(100, mean = 0, sd = 1)
+y <- 2 + 1.5*x + e
+plot(x, y)
+
+datos <- data.frame(x, y)
+reg.simple <- lm(y ~ x, data = datos)
+summary(reg.simple)
+
+# Pendiente
+cov(x, y)/var(x) 
+summary(reg.simple)$coeff
+
+# Coeficiente de determinacion
+summary(reg.simple)$r.squared 
+SCE <- sum((mean(datos$y) - reg.simple$fitted)^2) # suma de cuadrados explicada
+SCT <- sum((datos$y - mean(datos$y))^2) # suma de cuadrados total
+R2 <- sum.cuad.exp/sum.cuad.tot
+R2
+
+# grafico
+plot(x, y)
+abline(reg.simple, lwd = 2)
+```
+
+\ 
+ 
+#### Relacion entre regresion y correlacion
 ```{r}
+beta <- summary(reg.simple)$coeff[2, 1]
+beta*sd(x)/sd(y)
+
+sqrt(summary(reg.simple)$r.squared)
+cor(x, y)
+```
+
+\
+
+#### Matrices de graficos de dispersion
+```{r scatterplot matrix}
 pairs(Ad[, 3:6], pch = 19, col = "blue", lower.panel = NULL)
 pairs(penguins[, 3:6], pch = 19, col = c("red", "orange", "blue")[penguins$species], lower.panel = NULL)
 
@@ -119,11 +148,14 @@ pairs.panels(Ad[, 3:6],
              lm = TRUE) # recta
 ```
 
-## Regresion lineal multiple
-$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + ... + \beta_n X_n + \epsilon$$
+\
+
+### Regresion lineal multiple
+$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + \epsilon$$
 $$\epsilon \sim N(0, \sigma^2)$$
 
-```{r}
+Relacion entre la longitud del pico (bill_length_mm), masa corporal (body_mass_g) y alto del pico (bill_depth_mm) en pinguinos Adelia ($Pygoscelis adeliae$).
+```{r regresion multiple}
 model.Ad <- lm(bill_length_mm ~ body_mass_g + bill_depth_mm, data = Ad)
 summary(model.Ad)
 sum.cuad.exp <- sum((mean(na.omit(Ad$bill_length_mm)) - model.Ad$fitted)^2)
@@ -152,14 +184,95 @@ Ad$bill_depth_cat <- cut(Ad$bill_depth_mm, 3,
 model.Ad_cat <- lm(bill_length_mm ~ body_mass_g + bill_depth_cat, data = Ad)
 visreg(model.Ad_cat, "body_mass_g", "bill_depth_cat", gg = TRUE)
 ```
-### Supuestos y transformaciones - COMPLETAR
-### Colinealidad
-```{r}
+
+\
+
+### Variables categoricas
+```{r dummies}
+model.penguins1 <- lm(bill_length_mm ~ body_mass_g + species, data = penguins)
+summary(model.penguins1)
+
+model.penguins2 <- lm(bill_length_mm ~ body_mass_g + species + body_mass_g:species, data = penguins)
+summary(model.penguins2)
+anova(model.penguins2)
+```
+
+\
+
+### Test de t
+Se muestran los tiempos de coagulacion sanguínea (min) en conejos bajo el efecto de dos drogas (A y B).
+```{r test de t}
+t_coag <- c(8.8, 8.4, 7.9, 8.7, 9.1, 9.6, 9.5, 
+            9.9, 9.0, 11.1, 9.6, 8.7, 10.4, 9.5) 
+droga <- c(rep("A", 7), rep("B", 7))
+coag <- data.frame(t_coag, droga)
+t.test(t_coag ~ droga, var.equal = TRUE, data = coag)
+model.coag <- lm(t_coag ~ droga, data = coag)
+summary(model.coag)
+X_drogaA <- mean(t_coag[1:7])
+X_drogaB <-  mean(t_coag[8:14])
+X_drogaB - X_drogaA
+
+# Homogeneidad de varianzas (test de F)
+var.test(t_coag[1:7], t_coag[8:14])
+```
+
+\
+
+### Test de t pareado
+```{r test de t pareado}
+fotosint <- c(1.42, 1.4, 1.44, 1.44, 1.42, 1.46, 1.49, 1.5, 1.42, 1.48, 1.38, 1.36, 1.47, 1.39, 1.43, 1.41, 1.43, 1.45, 1.36, 1.46)
+nutriente <- c(rep("N1", 10), rep("N2", 10))
+plantas <- data.frame(fotosint, nutriente)
+t.test(fotosint ~ nutriente, paired = TRUE, data = plantas)
+```
+
+\
+
+### Analisis de la varianza
+Se quiere analizar si hay diferencias entre la longitud del pico en las tres especies de pinguino en el Archipielago Palmer.
+```{r anova}
+boxplot(penguins$bill_length_mm ~ penguins$species)
+model.spp <- aov(bill_length_mm ~ species, data = na.omit(penguins))
+summary(model.spp)
+summary(lm(bill_length_mm ~ species, data = na.omit(penguins)))
+
+# Comparaciones multiples
+TukeyHSD(model.spp)
+```
+
+### Supuestos y transformaciones
+#### Colinealidad
+```{r supuestos}
 library(car)
 vif(model.Ad)
 ```
-### Transformaciones
-```{r}
+
+\
+
+#### Analisis de residuos
+```{r residuos}
+# Regresion
+hist(model.Ad$residuals)
+qqPlot(model.Ad$residuals)
+layout(matrix(1:4, 2, 2))
+plot(model.Ad)
+layout(1)
+
+# test de t y ANOVA
+model.spp <- aov(bill_length_mm ~ species, data = na.omit(penguins))
+resid.model.spp <- resid(model.spp)
+boxplot(resid.model.spp ~ species, data = na.omit(penguins)) 
+termplot(model.spp, se = TRUE, partial.resid = TRUE)
+bartlett.test(resid.model.spp ~ species, data = na.omit(penguins)) 
+```
+
+\
+
+#### Transformaciones
+$$log(y) = y' = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + \epsilon$$
+
+```{r transformaciones}
 layout(matrix(1:6, 2, 3))
 abundancia <- rpois(n = 1000, lambda = 4)
 hist(abundancia, main = "Abundancia")
@@ -176,45 +289,4 @@ hist(prop.infectados, main = "Proporcion de infectados")
 logit.prop <- log(prop.infectados/(1 - prop.infectados))
 hist(logit.prop, main = "Logit proporcion de infectados", breaks = 6)
 layout(1)
-```
-
-### Variables categoricas - COMPLETAR
-```{r}
-model.penguins1 <- lm(bill_length_mm ~ body_mass_g + species, data = penguins)
-summary(model.penguins1)
-
-model.penguins2 <- lm(bill_length_mm ~ body_mass_g + species + body_mass_g:species, data = penguins)
-summary(model.penguins2)
-anova(model.penguins2)
-```
-
-### Test de t
-```{r}
-t_coag <- c(8.8, 8.4, 7.9, 8.7, 9.1, 9.6, NA, 
-            9.9, 9.0, 11.1, 9.6, 8.7, 10.4, 9.5) 
-droga <- c(rep("A", 7), rep("B", 7))
-coag <- data.frame(t_coag, droga)
-# Con varianzas iguales
-t.test(t_coag ~ droga, var.equal = TRUE, data = coag)  
-# Con varianzas diferentes
-t.test(t_coag ~ droga, var.equal = FALSE)
-# Homogeneidad de varianzas (test de F)
-var.test(t_coag[1:7], t_coag[8:14])
-```
-
-### Test de t pareado - COMPLETAR
-
-### Analisis de la varianza
-```{r}
-boxplot(penguins$bill_length_mm ~ penguins$species)
-model.spp <- aov(bill_length_mm ~ species, data = na.omit(penguins))
-resid.model.spp <- resid(model.spp)
-# Normalidad de residuos
-boxplot(resid.model.spp ~ species, data = na.omit(penguins)) 
-termplot(model.spp, se = TRUE, partial.resid = TRUE)
-# Homogeneidad de varianzas
-bartlett.test(resid.model.spp ~ species, data = na.omit(penguins)) 
-summary(model.spp)
-# Comparaciones multiples
-TukeyHSD(model.spp)
 ```
