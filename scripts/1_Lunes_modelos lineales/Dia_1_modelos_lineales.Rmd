@@ -114,7 +114,7 @@ summary(reg.simple)$coeff
 summary(reg.simple)$r.squared 
 SCE <- sum((mean(datos$y) - reg.simple$fitted)^2) # suma de cuadrados explicada
 SCT <- sum((datos$y - mean(datos$y))^2) # suma de cuadrados total
-R2 <- sum.cuad.exp/sum.cuad.tot
+R2 <- SCE/SCT
 R2
 
 # grafico
