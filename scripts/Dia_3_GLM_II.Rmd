@@ -1,5 +1,5 @@
 ---
-title: "Dia.3. GLM"
+title: "Dia 3. GLM II"
 author: 'Autor: Facundo X. Palacio'
 date: "`r Sys.Date()`"
 output: 
@@ -69,69 +69,20 @@ parasitos <- read.table("C:/RD/ParasiteCod.txt", header = T)
 str(parasitos)
 plot(table(parasitos$Intensity))
 table(parasitos$Intensity)[1] # Numero de ceros observados
+
 # Ajuste de distribucion a los datos
 xIntensity <- mean(parasitos$Intensity, na.rm = TRUE)
 sim.pois <- dpois(x = 0:max(parasitos$Intensity, na.rm = TRUE), lambda = xIntensity)
 ndatos <- length(na.omit(parasitos$Intensity))
 random.sample.pois <- rpois(n = ndatos, lambda = xIntensity)
 plot(table(random.sample.pois))
-exp(-xIntensity) # Probabilidad de observar un cero
-length(random.sample.pois[random.sample.pois == 0]) # Numero de ceros esperados
-```
-\
-
-### GLMs inflados en ceros (ZIP y ZINB)
-```{r glm inflado}
-library(pscl)
-# La primera parte de la formula contiene las covariables para el proceso de conteo, la segunda parte contiene las covariables para la probabilidad de los falsos ceros.
-ZIP <- zeroinfl(Intensity ~ Depth | Length + Depth, dist = "poisson", 
-link = "logit", data = parasitos)
-summary(ZIP)
-
-ZINB <- zeroinfl(Intensity ~ Depth | Length + Depth, dist = "negbin", 
-link = "logit", data = parasitos)
-summary(ZINB)
+dpois(x = 0, lambda = xIntensity) # Probabilidad de observar un cero
+table(random.sample.pois) # Numero de ceros esperados
 ```
 
 \
 
-### Comparacion de ZIP y ZINB
-```{r ZIP vs ZINB}
-library(lmtest)
-lrtest(ZIP, ZINB) # Test de razon de verosimilitud
-```
-
-\
-
-### Validacion
-```{r validacion ZINB}
-resid <- residuals(ZINB, type = "pearson")
-plot(resid, predict(ZINB), xlab = "Residuos", ylab = "Predichos")
-AIC(ZIP, ZINB)
-```
-
-\
-
-### Interpretacion y graficos del modelo
-```{r graficos ZINB}
-# Proceso de falsos ceros
-Depth <- seq(min(parasitos$Depth), max(parasitos$Depth), length = 500)
-Length <- mean(parasitos$Length, na.rm = TRUE)
-zero.model.coef <- ZINB$coefficients$zero # Coeficientes
-u <- zero.model.coef[1] + Length*zero.model.coef[2] + Depth*zero.model.coef[3]
-zero.model.pred <- exp(u)/(1 + exp(u)) # Predicciones
-plot(Depth, zero.model.pred, col = "blue", type = "l", lwd = 3, xlab = "Profundidad", ylab = "Probabilidad de falso cero")
-
-# Proceso de conteo
-count.model.coef <- ZINB$coefficients$count # Coeficientes
-u <- count.model.coef[1] + Depth*count.model.coef[2]
-count.model.pred <- exp(u) # Predicciones
-plot(Depth, count.model.pred, col = "blue", type = "l", lwd = 3, xlab = "Profundidad", ylab = "Numero de parasitos")
-```
-
-\
-
-### Modelos alterados en ceros (ZAP y ZANB)
+### Modelos de 2 partes o "valla" (ZAP y ZANB)
 ```{r ZAP y ZANB}
 # La primera parte de la formula contiene las covariables para el proceso de conteo, la segunda parte contiene las covariables para la probabilidad de los falsos ceros.
 ZAP <- hurdle(Intensity ~ Depth | Length + Depth, dist = "poisson", 
@@ -179,6 +130,57 @@ u <- count.model.coef[1] + Depth*count.model.coef[2]
 count.model.pred <- exp(u) # Predicciones
 plot(parasitos$Depth, parasitos$Intensity, pch = 19, xlab = "Profundidad", ylab = "Prevalencia")
 lines(Depth, count.model.pred, col = "blue", lwd = 2)
+```
+
+\
+
+### GLMs de mezcla (ZIP y ZINB)
+```{r glm inflado}
+library(pscl)
+# La primera parte de la formula contiene las covariables para el proceso de conteo, la segunda parte contiene las covariables para la probabilidad de los falsos ceros.
+ZIP <- zeroinfl(Intensity ~ Depth | Length + Depth, dist = "poisson", 
+link = "logit", data = parasitos)
+summary(ZIP)
+
+ZINB <- zeroinfl(Intensity ~ Depth | Length + Depth, dist = "negbin", 
+link = "logit", data = parasitos)
+summary(ZINB)
+```
+
+\
+
+### Comparacion de ZIP y ZINB
+```{r ZIP vs ZINB}
+library(lmtest)
+lrtest(ZIP, ZINB) # Test de razon de verosimilitud
+```
+
+\
+
+### Validacion
+```{r validacion ZINB}
+resid <- residuals(ZINB, type = "pearson")
+plot(resid, predict(ZINB), xlab = "Residuos", ylab = "Predichos")
+AIC(ZIP, ZINB)
+```
+
+\
+
+### Interpretacion y graficos del modelo
+```{r graficos ZINB}
+# Proceso de falsos ceros
+Depth <- seq(min(parasitos$Depth), max(parasitos$Depth), length = 500)
+Length <- mean(parasitos$Length, na.rm = TRUE)
+zero.model.coef <- ZINB$coefficients$zero # Coeficientes
+u <- zero.model.coef[1] + Length*zero.model.coef[2] + Depth*zero.model.coef[3]
+zero.model.pred <- exp(u)/(1 + exp(u)) # Predicciones
+plot(Depth, zero.model.pred, col = "blue", type = "l", lwd = 3, xlab = "Profundidad", ylab = "Probabilidad de falso cero")
+
+# Proceso de conteo
+count.model.coef <- ZINB$coefficients$count # Coeficientes
+u <- count.model.coef[1] + Depth*count.model.coef[2]
+count.model.pred <- exp(u) # Predicciones
+plot(Depth, count.model.pred, col = "blue", type = "l", lwd = 3, xlab = "Profundidad", ylab = "Numero de parasitos")
 ```
 
 \
