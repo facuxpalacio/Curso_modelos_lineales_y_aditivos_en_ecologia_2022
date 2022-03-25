@@ -195,7 +195,7 @@ round(cor(datos[, 4:12]), 2)
 ```
 
 #### Modelos candidatos
-```{r}
+```{r candidatos}
 # modelo nulo
 m1 <- glm(Solea_solea ~ 1, family = binomial, data = datos)
 # modelo de temperatura
@@ -223,7 +223,7 @@ m11 <- glm(Solea_solea ~ depth + gravel + large_sand + med_fine_sand, family = b
 \
 
 ### Seleccion de modelos
-```{r}
+```{r seleccion modelos}
 library(MuMIn)
 modelos <- list(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11)
 ranking.modelos <- model.sel(modelos, rank = "AICc")
@@ -235,7 +235,7 @@ abline(a = 2, b = 0, lty = 2)
 \
 
 ### Promediado de modelos
-```{r}
+```{r modelo promedio}
 modelo.promedio <- model.avg(ranking.modelos, subset = delta < 2)
 summary(modelo.promedio)
 importance(modelo.promedio)
