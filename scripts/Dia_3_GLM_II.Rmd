@@ -239,4 +239,4 @@ abline(a = 2, b = 0, lty = 2)
 modelo.promedio <- model.avg(ranking.modelos, subset = delta < 2)
 summary(modelo.promedio)
 importance(modelo.promedio)
-```eter was added to the code chunk to prevent printing of the R code that generated the plot.
+```

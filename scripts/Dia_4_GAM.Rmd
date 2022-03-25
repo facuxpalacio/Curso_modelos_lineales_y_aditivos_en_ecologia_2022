@@ -13,13 +13,30 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE, error = FALSE, echo = TR
 
 \
 
+#### Regresion no parametrica
+Se tomaron medidas del peso seco (peso.seco) y del largo (largo) de una especie de almeja (almejas.txt). Analizar la relacion entre el largo y el peso seco.
+```{r loess}
+almejas <- read.table("C:/RD/almejas.txt", header = TRUE)
+str(almejas)
+
+# opcion 1
+plot(almejas$largo, almejas$peso.seco, pch = 19, xlab = "Largo", ylab = "Peso")
+loess.model <- loess(peso.seco ~ largo, data = almejas)
+largo <- seq(min(almejas$largo), max(almejas$largo), length = 500)
+predPeso <- predict(loess.model, newdata = data.frame(largo))
+lines(largo, predPeso, col = "blue", lwd = 2)
+
+# opcion 2
+library(car)
+scatterplot(peso.seco ~ largo, data = almejas, regLine = FALSE, smooth = TRUE)
+```
+
 #### Regresion polinomica
 ```{r reg polinomica}
 # Simulamos dos variables
 set.seed(99)
 x <- rnorm(500, mean = 0, sd = 1)
 y <- 2 - x + 0.2*x^2 + x^3 + rnorm(500, 0, 2)
-y1 <- 2 - 
 plot(x, y)
 
 # Ajuste del modelo
@@ -30,12 +47,18 @@ summary(reg.pol)
 
 #### Funciones a trozos
 ```{r funciones a trozos}
-x.categorica <- cut(x, breaks = 10)
+x.categorica <- cut(x, breaks = 10) # Dividimos la variable en 10 intervalos
 fun.trozos <- lm(y ~ x.categorica)
 summary(fun.trozos)
 pred <- predict(fun.trozos)
 df <- data.frame(x, x.categorica, y, pred)
-ggplot(data = df, aes(x, pred)) + geom_step(col = "blue", size = 1) +
+# Sin lineas verticales
+ggplot(data = df, aes(x, pred, group = x.categorica)) + 
+  geom_line(col = "blue", size = 1) +
+  geom_point(data = df, aes(x, y))
+# Con lineas verticales
+ggplot(data = df, aes(x, pred)) + 
+  geom_step(col = "blue", size = 1) +
   geom_point(data = df, aes(x, y))
 ```
 
@@ -80,7 +103,7 @@ legend("topleft", legend = c("Reg polinomica", "Spline C", "Spline N"), col = c(
 
 #### Splines de suavizado
 ```{r splines de suavizado}
-splines.suav <- smooth.spline(x, y, df = 6)
+splines.suav <- smooth.spline(x, y, nknots = 10)
 splines.suav.cv <- smooth.spline(x, y, cv = TRUE) # lambda optimo
 splines.suav.cv$df
 predS <- splines.suav$y
@@ -90,31 +113,13 @@ layout(matrix(1:2, nrow = 1, ncol = 2))
 plot(x, y, col = "grey", ylim = c(-25, 30))
 lines(x.new, predC, col = "red", lwd = 3) # spline cubico
 lines(x.new, predN, col = "blue", lwd = 3) # spline natural
-legend("topleft", legend = c("Spline C", "Spline N"), col = c("red", "blue"), cex = 0.8, lty = 1)
+legend("topleft", legend = c("Spline C", "Spline N"), col = c("red", "blue"), cex = 0.8, lty = 1, bty = "n")
 
 plot(x, y, col = "grey", ylim = c(-25, 30))
-lines(x.new, splines.suav$y, col = "darkorchid", lwd = 3) # splines de suavizado
-lines(x.new, splines.suav.cv$y, col = "red", lwd = 3)
-legend("topleft", legend = c("Spline C gl = 6", "Spline C optimo"), col = c("red", "blue"), cex = 0.8, lty = 1)
+lines(sort(x), predS, col = "red", lwd = 3) # splines de suavizado
+lines(sort(x), predS.cv, col = "darkorchid", lwd = 3)
+legend("topleft", legend = c("Spline C k = 10", "Spline C optimo"), col = c("red", "blue"), cex = 0.8, lty = 1, bty = "n")
 layout(1)
-```
-
-#### Regresion no parametrica
-Se tomaron medidas del peso seco (peso.seco) y del largo (largo) de una especie de almeja (almejas.txt). Analizar la relacion entre el largo y el peso seco.
-```{r loess}
-almejas <- read.table("C:/RD/almejas.txt", header = TRUE)
-str(almejas)
-
-# opcion 1
-plot(almejas$largo, almejas$peso.seco, pch = 19, xlab = "Largo", ylab = "Peso")
-loess.model <- loess(peso.seco ~ largo, data = almejas)
-largo <- seq(min(almejas$largo), max(almejas$largo), length = 500)
-predPeso <- predict(loess.model, newdata = data.frame(largo))
-lines(largo, predPeso, col = "blue", lwd = 2)
-
-# opcion 2
-library(car)
-scatterplot(peso.seco ~ largo, data = almejas, regLine = FALSE, smooth = TRUE)
 ```
 
 #### Modelos aditivos generalizados
@@ -123,6 +128,8 @@ Gillibrand et al. (2007) analizaron la bioluminiscencia pelagica (Sources) a lo 
 library(lattice)
 library(ggplot2)
 library(mgcv)
+library(gratia)
+
 biolum <- read.table("C:/RD/ISIT.txt", header = TRUE)
 str(biolum)
 biolum$Month <- as.factor(biolum$Month)
@@ -131,9 +138,9 @@ xyplot(Sources ~ SampleDepth|Month, data = biolum)
 # GAM con spline natural
 gam1 <- lm(Sources ~ ns(SampleDepth, df = 5) + Month, data = biolum)
 # GAM con spline de suavizado (5 nodos)
-gam2 <- gam(Sources ~ s(SampleDepth, k = 5) + Month, data = biolum)
+gam2 <- gam(Sources ~ s(SampleDepth, k = 5, bs = "cr") + Month, method = "REML", data = biolum)
 # GAM con spline de suavizado (validacion cruzada)
-gam3 <- gam(Sources ~ s(SampleDepth) + Month, method = "GCV.Cp", data = biolum)
+gam3 <- gam(Sources ~ s(SampleDepth, bs = "cr") + Month, method = "REML", data = biolum)
 summary(gam1)
 summary(gam2)
 summary(gam3)
@@ -153,15 +160,16 @@ ggplot() + geom_point(data = biolum, aes(x = SampleDepth, y = Sources, color = M
 ggplot() + geom_point(data = biolum, aes(x = SampleDepth, y = Sources, color = Month)) + facet_wrap(~Month) + 
   geom_line(data = newdata, aes(x = SampleDepth, y = pred_gam3), color = "coral")
 
-plot(gam2)
-plot(gam3)
+draw(gam2)
+draw(gam3)
 ```
 
 ### GAM con otras distribuciones e interacciones
 ```{r GAM Gamma}
 biolum$Sources_0.1 <- biolum$Sources + 0.1
 # Modelo sin interaccion
-gam4 <- gam(Sources_0.1 ~ s(SampleDepth, bs = "cr") + Month, family = Gamma, method = "GCV.Cp", data = biolum)
+gam4 <- gam(Sources_0.1 ~ s(SampleDepth, bs = "cr") + Month, family = Gamma, method = "REML", data = biolum)
+summary(gam4)
 
 SampleDepth <- seq(min(biolum$SampleDepth), 4000, length = 100)
 newdata <- expand.grid(SampleDepth = SampleDepth, Month = Month)
@@ -170,8 +178,10 @@ newdata$pred_gam4 <- predict(gam4, newdata = newdata, type = "response")
 ggplot() + geom_point(data = biolum, aes(x = SampleDepth, y = Sources, color = Month)) + facet_wrap(~Month) + 
   geom_line(data = newdata, aes(x = SampleDepth, y = pred_gam4), color = "black")
 
-# Modelo con interaccion
-gam5 <- gam(Sources_0.1 ~ s(SampleDepth) + s(SampleDepth, by = Month, bs = "cr"), family = Gamma, method = "GCV.Cp", data = biolum)
+draw(gam4)
+
+# Modelo con interaccion (variable continua y categorica)
+gam5 <- gam(Sources_0.1 ~ s(SampleDepth) + s(SampleDepth, by = Month, bs = "cr"), family = Gamma, method = "REML", data = biolum)
 
 SampleDepth <- seq(min(biolum$SampleDepth), 4000, length = 100)
 newdata <- expand.grid(SampleDepth = SampleDepth, Month = Month)
@@ -179,6 +189,7 @@ newdata$pred_gam5 <- predict(gam5, newdata = newdata, type = "response")
 
 ggplot() + geom_point(data = biolum, aes(x = SampleDepth, y = Sources, color = Month)) + facet_wrap(~Month) + 
   geom_line(data = newdata, aes(x = SampleDepth, y = pred_gam5), color = "black")
+
 ```
 
 ### Comparacion de modelos
@@ -187,10 +198,31 @@ anova(gam4, gam5, test = "F")
 AIC(gam4, gam5)
 ```
 
-### Diagnosticos
+### Validación
 ```{r diagnosticos}
 gam.check(gam5)
+appraise(gam5, method = "simulate")
 ```
+
+### Modelo con variables continuas (efectos principales + interacciones)
+Palacio et al. (2017) estudiaron el consumo de frutos por aves en $Psychotria carthagenensis$ en un bosque secundario pedemontano de las Yungas (Psychotria_El_Corte_2012.txt). Se ajustó un GAM del número de infrutescencias (n.infrut) en función de las coordenadas (x = longitud, y = latitud).
+```{r 2 vars gam}
+library(fields)
+psycho <- read.table("C:/RD/Psychotria_El_Corte_2012.txt", header = TRUE)
+str(psycho)
+hist(psycho$n.infrut, xlab = "Numero de infrutescencias", ylab = "Frecuencia")
+gam6 <- gam(n.infrut ~ s(x, y), family = nb, method = "REML", data = psycho)
+summary(gam6)
+gam7 <- gam(n.infrut ~ te(x, y), family = nb, method = "REML", data = psycho) 
+summary(gam7)
+gam8 <- Tps(x = data.frame(Latitud = psycho$x, Longitud = psycho$y), Y = psycho$n.infrut)
+
+# Superficies de respuesta
+draw(gam6)
+draw(gam7)
+surface(gam8)
+```
+
 
 
 
