@@ -1,0 +1,140 @@
+---
+title: "Dia 5. Modelos mixtos"
+author: 'Facundo X. Palacio'
+date: "`r Sys.Date()`"
+output: 
+  tufte::tufte_html:
+    toc: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, error = FALSE, echo = TRUE)
+```
+
+\
+
+#### Dependencia temporal
+```{r crecimiento}
+set.seed(101)
+tiempo <- seq(1, 20, length = 30)
+a <- 20
+b <- 5
+c <- 0.3
+peso <- a - (a - b)*exp(-c*tiempo) + rnorm(n = 30, mean = 0, sd = 0.5)
+plot(tiempo, peso)
+
+# Grafico de residuos
+m.crec <- lm(log(peso) ~ log(tiempo))
+plot(log(tiempo), log(peso))
+abline(m.crec, lwd = 2, col = "blue")
+plot(log(tiempo), resid(m.crec), xlab = "log(tiempo)", ylab = "Residuos")
+
+# Funcion de autocorrelacion
+plot(acf(peso))
+```
+
+\
+
+#### Dependencia espacial
+Ubicacion (coordenadas) y concentracion de metales pesados en el rio Mosa (Europa).
+```{r meuse data}
+library(sp)
+library(ggplot2)
+data(meuse)
+coordinates(meuse) = ~x+y
+bubble(meuse, "zinc", col = "#00ff0088", main = "zinc concentrations (ppm)")
+
+m.espacial <- lm(zinc ~ x + y, data = meuse)
+plot(meuse$x, resid(m.espacial))
+abline(a = 0, b = 0, lty = 2)
+plot(meuse$y, resid(m.espacial))
+abline(a = 0, b = 0, lty = 2)
+
+data(meuse)
+meuse$residuos <- resid(m.espacial)
+ggplot(meuse, aes(x = x, y = y, col = residuos)) +
+  geom_point(size = 4) +
+  scale_color_gradient(low = "yellow", high = "red")
+
+# Semivariograma
+coordinates(meuse) = ~x+y
+zinc.variog <- variogram(zinc ~ 1, meuse)
+plot(zinc.variog)
+```
+
+#### Dependencia filogenética
+
+\
+
+### Introduccion a los modelos mixtos
+A partir de 8 plantas, se contaron el numero de flores en 3 inflorescencias por planta y se midio la longitud de los pedicelos. Analizar la relacion entre la longitud del pedicelo y el numero de flores/inflorescencia.
+```{r mixtos}
+id <- factor(sort(rep(1:8, 3)))
+long.pedicelo <- c(1, 1.3, 1.4, 2, 2.2, 2.1, 2.9, 3, 2.8, 3.5, 3.4, 3.7,
+                   4.5, 4.7, 4.7, 5.5, 5.7, 6, 7.2, 7.3, 7.5, 8.4, 8.8, 8.6)
+nflores <- c(2, 2, 3, 4, 5, 4, 5, 6, 7, 8, 7, 10, 10, 12, 11, 11, 13, 12,
+             13, 11, 14, 14, 17, 15)
+plantas <- data.frame(id, long.pedicelo, nflores)
+plantas
+
+plot(plantas$long.pedicelo, plantas$nflores, pch = 19, cex = 2, 
+     xlab = "Longitud del pedicelo", ylab = "Numero de flores")
+
+# Opcion 1: asumimos que las observaciones son independientes
+m1 <- lm(nflores ~ long.pedicelo, data = plantas)
+summary(m1)
+
+# Opcion 2: una media por unidad
+xlong.pedicelo <- tapply(long.pedicelo, id, mean)
+xnflores <- tapply(nflores, id, mean)
+plot(xlong.pedicelo, xnflores, pch = 19, cex = 2)
+m2 <- lm(xnflores ~ xlong.pedicelo)
+summary(m2)
+
+# Opcion 3: incluir el efecto de la unidad
+m3 <- lm(nflores ~ long.pedicelo + id, data = plantas)
+summary(m3)
+
+# Opcion 4: modelo mixto de intercepto aleatorio
+library(lme4)
+library(lmerTest)
+m4 <- lmer(nflores ~ long.pedicelo + (1|id), data = plantas)
+summary(m4)
+ranef(m4) 
+rand(m4) # Significancia de efectos aleatorios
+
+long.pedicelo.new <- seq(min(plantas$long.pedicelo), max(plantas$long.pedicelo), length = 100)
+newdata <- expand.grid(long.pedicelo.new, plantas$id)
+colnames(newdata) <- c("long.pedicelo", "id")
+newdata$predy.fixed <- predict(m4, newdata = newdata, re.form = NA)
+newdata$predy.rand <- predict(m4, newdata = newdata, re.form = NULL)
+
+ggplot(data = plantas, aes(x = long.pedicelo, y = nflores, col = id)) +
+  geom_point(size = 2) + 
+  geom_line(data = newdata, aes(x = long.pedicelo, y = predy.rand)) +
+  geom_line(data = newdata, aes(x = long.pedicelo, y = predy.fixed), col = "black", size = 2) + ggtitle("Modelo de intercepto aleatorio") +
+  xlab("Longitud del pedicelo") + ylab("Numero de flores") +
+  theme_bw()
+
+# Opcion 5: modelo mixto de intercepto y pendiente aleatorios
+m5 <- lmer(nflores ~ long.pedicelo + (long.pedicelo|id), data = plantas)
+summary(m5)
+ranef(m5)
+rand(m5)
+
+newdata$predy.fixed <- predict(m5, newdata = newdata, re.form = NA)
+newdata$predy.rand <- predict(m5, newdata = newdata, re.form = NULL)
+ggplot(data = plantas, aes(x = long.pedicelo, y = nflores, col = id)) +
+  geom_point(size = 2) + 
+  ggtitle("Modelo de intercepto y pendiente aleatorios") +
+  geom_line(data = newdata, aes(x = long.pedicelo, y = predy.rand)) +
+  geom_line(data = newdata, aes(x = long.pedicelo, y = predy.fixed), col = "black", size = 2) +
+  xlab("Longitud del pedicelo") + ylab("Numero de flores") +
+  theme_bw()
+```
+
+
+
+
+
+

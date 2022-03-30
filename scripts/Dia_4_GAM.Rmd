@@ -1,5 +1,5 @@
 ---
-title: "DIA 2. GAM"
+title: "DIA 4. GAM"
 author: 'Facundo X. Palacio'
 date: "`r Sys.Date()`"
 output: 
