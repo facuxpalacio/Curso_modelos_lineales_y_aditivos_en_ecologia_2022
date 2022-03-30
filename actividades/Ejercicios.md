@@ -10,13 +10,19 @@ Identifique qué tipo de distribuciones de probabilidad utilizaría para las sig
 
 a. Densidad de especies de plantas en parcelas de un bosque.
 
-b. Se contó el número de ovejas con parásitos en 30 granjas en cada una de las cuales se seleccionaron 10 ovejas.
+b. Probabilidad de detección de una especie de anfibio en charcas temporarias.
 
 c. La tasa de crecimiento en pichones de una especie de ave.
 
 d. El sexo en una especie de lagarto.
 
-#### Ejercicio 2.2 - GLM binomial
+#### Ejercicio 2.2
+
+Se estimó la prevalencia del parásito *Elaphostrongylus cervi* en ciervos colorados de granjas de España (**Tbdeer**). En cada granja (**Farm**) se muestreó un grupo  de animales (**DeerSampledCervi**) y se registró si eran positivos para la enfermedad (**DeerPosCervi**). Además, se registraron variables de hábitat, como porcentaje de áreas abiertas (**OpenLand**), arbustos (**ScrubLand**) y plantaciones de pino (**PinePlantation**), densidad de plantas y árboles de *Quercus* sp. (**QuercusPlants**, **QuercusTrees**). También se estimaron abundancias relativas de jabalí (**WildBoarIndex**) y ciervo colorado (**RedDeerIndex**), área del campo (**EstateSize**) y si el campo estaba cercado (1 = cercado, 0 = no cercado). 
+
+- Determinar, de estas variables, aquellas involucradas en la prevalencia de la enfermedad. 
+
+- Validar y graficar el modelo resultante.
 
 #### Ejercicio 2.3
 
@@ -40,7 +46,7 @@ Tomando como base el set de datos parasitos.txt y el modelo ZAP (de dos partes o
 
 #### Ejercicio 4.1. 
 
-Wingfield et al. (2017) estudiaron la dinamica espaciotemporal de *Phocoena phocoena* (Pinnipedia, Mammalia) en Maryland, Estados Unidos. Se quiere establecer en que epoca del año es mas frecuente detectarla y los determinantes de su distribución. Para esto se realizaron muestreos durante 18 meses y se recolectó información sobre la temperatura de la superficie del agua (SST) y la concentracion de clorofila, expresada como logaritmo (lnCHL). 
+Wingfield et al. (2017) estudiaron la dinámica espaciotemporal de *Phocoena phocoena* (Pinnipedia, Mammalia) en Maryland, Estados Unidos. Se quiere establecer en que época del año es mas frecuente detectarla y los determinantes de su distribución. Para esto se realizaron muestreos durante 18 meses y se recolectó información sobre la temperatura de la superficie del agua (**SST**) y la concentración de clorofila, expresada como logaritmo (**lnCHL**). 
 
 - Utilice un modelo que describa la dinámica temporal de la proporción de detecciones de la especie.
 
