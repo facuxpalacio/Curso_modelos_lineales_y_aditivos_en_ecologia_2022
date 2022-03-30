@@ -38,7 +38,7 @@ Desarrolle un script para calcular el R<sup>2</sup> de Tjur utilizando el GLM bi
 
 #### Ejercicio 3.2
 
-Tomando como base el set de datos parasitos.txt y el modelo ZAP (de dos partes o "valla") ajustado, ajuste un modelo ZAP con los mismos predictores pero de forma manual. Para esto, considere ajustar dos GLMs por separado: uno para la probabilidad de obtener un 0, y otro para la distribución de los conteos. Compare los resultados con el modelo obtenido con la función *hurdle* (paquete pscl).
+Tomando como base el set de datos **parasitos.txt** y el modelo ZAP (de dos partes o "valla") ajustado, ajuste un modelo ZAP con los mismos predictores pero de forma manual. Para esto, considere ajustar dos GLMs por separado: uno para la probabilidad de obtener un 0, y otro para la distribución de los conteos. Compare los resultados con el modelo obtenido con la función *hurdle* (paquete pscl).
 
 #### Ejercicio 3.3
 
