@@ -133,8 +133,78 @@ ggplot(data = plantas, aes(x = long.pedicelo, y = nflores, col = id)) +
   theme_bw()
 ```
 
+#### Un caso especial
+library(data.table)
+library(nlme)
+url <- "https://raw.githubusercontent.com/hauselin/rtutorialsite/master/data/simpsonsParadox.csv"
+df <- fread(url)
+head(df)
+plot(df$grades, df$iq)
+
+model.class <- lme(iq ~ grades, random = ~1|class, data = df)
+predy.fixed <- predict(model.class, level = 0)
+ 
+ggplot(df, aes(grades, iq, col = class)) + geom_point(size = 2.5) +
+ggtitle("Paradoja de Simpson") +
+geom_smooth(method = "lm", se = FALSE) +
+geom_line(data = data.frame(x = df$grades, y = predy.fixed), aes(x, y), col = "black", size = 3) +
+theme_bw()
+
+\
+
+#### Modelos lineales generalizados mixtos
+Palacio et al. (2014) estudiaron la seleccion natural mediada por aves frugivoras sobre rasgos de los frutos de *Celtis tala* (frutos Celtis 2013.txt), incluyendo el diametro (diam), peso (peso), concentracion de azucares (az), peso de pulpa (pulpa), peso de semilla (sem) y relacion peso de pulpa/peso de semilla (pulpa.sem). Analizar que factores explican el tamaño del fruto. 
+
+#### Dise?o anidado
+```{r glmm}
+library(glmmTMB)
+celtis <- read.delim("C:/RD/frutos Celtis 2013.csv", sep = ";")
+table(celtis$planta)
+
+lmm.m0 <- lm(sem ~ diam, data = celtis)
+lmm.m1 <- glmmTMB(sem ~ diam + (1|planta), family = gaussian, data = celtis)
+lmm.m2 <- glmmTMB(sem ~ diam + (1|parche/planta), family = gaussian, data = celtis)
+AIC(lmm.m0, lmm.m1, lmm.m2) # comparacion de modelos
+summary(lmm.m1)
+
+# Grafico
+diam.new <- seq(min(celtis$diam, na.rm = TRUE), max(celtis$diam, na.rm = TRUE), length = 5)
+newdata <- expand.grid(diam.new, celtis$planta, stringsAsFactors = TRUE)
+colnames(newdata) <- c("diam", "planta")
+newdata$parche <- substr(newdata$planta, 1, 2)
+
+newdata$predy.fixed <- predict(lmm.m2, newdata = newdata, re.form = NA) # poblacional
+newdata$predy.rand1 <- predict(lmm.m2, newdata = newdata, re.form = NULL) # planta
+rand2 <- ranef(lmm.m2)$cond$parche
+rand2.parche <- rand2[match(newdata$parche, rownames(rand2)), 1]
+a <- fixef(lmm.m2)$cond[1]
+b <- fixef(lmm.m2)$cond[2]
+newdata$predy.rand2 <- a + b*newdata$diam + rand2.parche
+
+# Efecto planta
+ggplot(data = celtis, aes(x = diam, y = sem, col = planta)) +
+  geom_point(size = 2) + 
+  ggtitle("Modelo con factores aleatorios anidados") +
+  geom_line(data = newdata, aes(x = diam, y = predy.rand1)) +
+  geom_line(data = newdata, aes(x = diam, y = predy.fixed), col = "black", size = 2) +
+  xlab("Diametro del fruto (mm)") + ylab("Masa de semilla (g)")
+
+# Efecto parche
+ggplot(data = celtis, aes(x = diam, y = sem, col = parche)) +
+  geom_point(size = 2) + 
+  ggtitle("Modelo con factores aleatorios anidados") +
+  geom_line(data = newdata, aes(x = diam, y = predy.rand2, col = parche)) +
+  geom_line(data = newdata, aes(x = diam, y = predy.fixed), col = "black", size = 2) +
+  xlab("Diametro del fruto (mm)") + ylab("Masa de semilla (g)")
+```
+
+#### Dise?o cruzado
 
 
+
+#### Modelos aditivos generalizados mixtos
+
+library(mgcv)
 
 
 

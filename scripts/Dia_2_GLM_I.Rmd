@@ -282,7 +282,7 @@ layout(1)
 ## Modelo lineal general
 Palacio et al. (2014) estudiaron la seleccion natural mediada por aves frugivoras sobre rasgos de los frutos de *Celtis tala* (frutos Celtis 2013.txt), incluyendo el diametro (diam), peso (peso), concentracion de azucares (az), peso de pulpa (pulpa), peso de semilla (sem) y relacion peso de pulpa/peso de semilla (pulpa.sem). Analizar qué factores explican el tamaño del fruto. 
 ```{r lm}
-celtis <- read.delim("C:/RD/frutos Celtis 2013.csv", sep = ",")
+celtis <- read.delim("C:/RD/frutos Celtis 2013.csv", sep = ";")
 str(celtis)
 pairs(celtis[, 3:7])
 round(cor(celtis[, 4:7], use = "complete.obs"), 2)
