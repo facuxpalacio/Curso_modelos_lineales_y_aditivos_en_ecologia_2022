@@ -26,7 +26,7 @@ Se estimó la prevalencia del parásito *Elaphostrongylus cervi* en ciervos colo
 
 #### Ejercicio 2.3
 
-Simule un modelo lineal general con dos variables (una con un efecto positivo y otra con un efecto negativo sobre la respuesta) y ajuste un modelo con las funciones *lm* y *glm*. Compare ambos modelos ¿Qué conclusión obtiene?
+Simule un modelo lineal general (utilice la función *rnorm*) con dos variables (una con un efecto positivo y otra con un efecto negativo sobre la respuesta) y ajuste un modelo con las funciones *lm* y *glm*. Compare ambos modelos ¿Qué conclusión obtiene?
 
 #### Ejercicio 2.4
 
