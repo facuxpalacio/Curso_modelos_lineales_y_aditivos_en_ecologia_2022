@@ -63,12 +63,14 @@ Wingfield et al. (2017) estudiaron la dinámica espaciotemporal de *Phocoena pho
 
 #### Ejercicio 5.1
 
-Palacio et al. (2014) realizaron conteos de 44 especies de aves a lo largo de un año en 10 puntos de muestreos (**id**) localizados en un bosque de ligustro y arbustales circundantes (**habitat.type**). El set de datos corresponde a **abundancia_aves.txt**. 
+Palacio et al. (2014) realizaron conteos de 44 especies de aves a lo largo de un año en 10 puntos de muestreos (**id**) localizados en un bosque de ligustro y arbustales circundantes (**habitat.type**). El set de datos corresponde a **abundancia_aves.txt**.
 
-- Analice los factores que se relacionan con la abundancia de las siguientes dos especies: Tordo músico (**agebad**) y Benteveo (**pitsul**), y con la abundancia total de individuos.
+- Analice los factores que se relacionan con la abundancia total de individuos y con las siguientes dos especies: Tordo músico (**agebad**) y Benteveo (**pitsul**).
 
 - Identifique claramente los efectos fijos y aleatorios incluidos en cada modelo.
 
 - Según el problema de estudio y el modelo especificado ¿A qué tipo de diseño corresponde?
 
 - En base a los resultados obtenidos ¿Tiene sentido incluir efectos aleatorios? Justifique.
+
+- ¿Puede hipotetizar algo sobre la distribuciones de probabilidad utilizada para cada especie?
