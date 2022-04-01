@@ -1,6 +1,6 @@
 # Actividades
 
-## Lunes
+## Lunes - Ejercicios varios de repaso (resumen, graficos)
 
 ## Martes
 
@@ -44,19 +44,21 @@ Tomando como base el set de datos **parasitos.txt** y el modelo ZAP (de dos part
 
 ## Jueves
 
-#### Ejercicio 4.1 
+#### Ejercicio 4.1 - GLM conteos
 
-Wingfield et al. (2017) estudiaron la dinámica espaciotemporal de *Phocoena phocoena* (Pinnipedia, Mammalia) en Maryland, Estados Unidos. Se quiere establecer en que época del año es mas frecuente detectarla y los determinantes de su distribución. Para esto se realizaron muestreos durante 18 meses y se recolectó información sobre la temperatura de la superficie del agua (**SST**) y la concentración de clorofila, expresada como logaritmo (**lnCHL**). 
+#### Ejercicio 4.2 
+
+Wingfield et al. (2017) estudiaron la dinámica espaciotemporal de *Phocoena phocoena* (Pinnipedia, Mammalia) en Maryland, Estados Unidos. Se quiere establecer en que época del año es más frecuente detectarla y los determinantes de su distribución. Para esto se realizaron muestreos durante 18 meses y se recolectó información sobre la temperatura de la superficie del agua (**SST**) y la concentración de clorofila, expresada como logaritmo (**lnCHL**). 
 
 - Utilice un modelo que describa la dinámica temporal de la proporción de detecciones de la especie.
 
 - Identifique qué variables se relacionan con la proporción de detecciones.
 
-- Construya una tabla para mostrar los resultados principales.
+- Construya una tabla que represente los resultados principales.
 
 - Grafique el modelo como considere más conveniente para mostrar los resultados.
 
-- ¿Qué conclusiones obtiene en terminos biológicos?
+- ¿Qué conclusiones obtiene en términos biológicos?
 
 
 ## Viernes
@@ -73,4 +75,7 @@ Palacio et al. (2014) realizaron conteos de 44 especies de aves a lo largo de un
 
 - En base a los resultados obtenidos ¿Tiene sentido incluir efectos aleatorios? Justifique.
 
-- ¿Puede hipotetizar algo sobre la distribuciones de probabilidad utilizada para cada especie?
+- ¿Puede hipotetizar algo sobre la distribuciones de probabilidad utilizada para cada especie y para la abundancia total?
+
+
+#### Ejercicio 5.2 - GAMM
