@@ -48,7 +48,7 @@ zinc.variog <- variogram(zinc ~ 1, meuse)
 plot(zinc.variog)
 ```
 
-#### Dependencia filogenética
+#### Dependencia filogenetica
 
 \
 

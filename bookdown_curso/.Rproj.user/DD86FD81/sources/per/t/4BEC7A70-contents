@@ -1,5 +1,5 @@
 # Introduccion a los modelos lineales
-## Definici�n de modelo lineal
+## Definición de modelo lineal
 ```{r modelo lineal}
 set.seed(999)
 layout(matrix(1:4, 2, 2))
@@ -185,7 +185,7 @@ anova(model.penguins2)
 \
 
 ### Test de t
-Se muestran los tiempos de coagulacion sanguínea (min) en conejos bajo el efecto de dos drogas (A y B).
+Se muestran los tiempos de coagulacion sanguÃ­nea (min) en conejos bajo el efecto de dos drogas (A y B).
 ```{r test de t}
 t_coag <- c(8.8, 8.4, 7.9, 8.7, 9.1, 9.6, 9.5, 
             9.9, 9.0, 11.1, 9.6, 8.7, 10.4, 9.5) 
