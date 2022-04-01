@@ -134,6 +134,7 @@ ggplot(data = plantas, aes(x = long.pedicelo, y = nflores, col = id)) +
 ```
 
 #### Un caso especial
+```{r simpson}
 library(data.table)
 library(nlme)
 url <- "https://raw.githubusercontent.com/hauselin/rtutorialsite/master/data/simpsonsParadox.csv"
@@ -149,22 +150,28 @@ ggtitle("Paradoja de Simpson") +
 geom_smooth(method = "lm", se = FALSE) +
 geom_line(data = data.frame(x = df$grades, y = predy.fixed), aes(x, y), col = "black", size = 3) +
 theme_bw()
+```
 
 \
 
 #### Modelos lineales generalizados mixtos
-Palacio et al. (2014) estudiaron la seleccion natural mediada por aves frugivoras sobre rasgos de los frutos de *Celtis tala* (frutos Celtis 2013.txt), incluyendo el diametro (diam), peso (peso), concentracion de azucares (az), peso de pulpa (pulpa), peso de semilla (sem) y relacion peso de pulpa/peso de semilla (pulpa.sem). Analizar que factores explican el tamaño del fruto. 
+Palacio et al. (2014) estudiaron la seleccion natural mediada por aves frugivoras sobre rasgos de los frutos de *Celtis tala* (frutos Celtis 2013.txt), incluyendo el diametro (diam), peso (peso), concentracion de azucares (az), peso de pulpa (pulpa), peso de semilla (sem) y relacion peso de pulpa/peso de semilla (pulpa.sem). Para esto se midieron 4-10 frutos por arbol en 24 arboles y 4 parches de bosque.
 
-#### Dise?o anidado
+#### Diseño anidado
 ```{r glmm}
 library(glmmTMB)
+library(lme4)
+library(MuMIn)
+library(equatiomatic)
 celtis <- read.delim("C:/RD/frutos Celtis 2013.csv", sep = ";")
 table(celtis$planta)
+table(celtis$planta, celtis$parche) # Es un diseño anidado?
 
 lmm.m0 <- lm(sem ~ diam, data = celtis)
 lmm.m1 <- glmmTMB(sem ~ diam + (1|planta), family = gaussian, data = celtis)
 lmm.m2 <- glmmTMB(sem ~ diam + (1|parche/planta), family = gaussian, data = celtis)
 AIC(lmm.m0, lmm.m1, lmm.m2) # comparacion de modelos
+r.squaredGLMM(lmm.m1)
 summary(lmm.m1)
 
 # Grafico
@@ -196,11 +203,23 @@ ggplot(data = celtis, aes(x = diam, y = sem, col = parche)) +
   geom_line(data = newdata, aes(x = diam, y = predy.rand2, col = parche)) +
   geom_line(data = newdata, aes(x = diam, y = predy.fixed), col = "black", size = 2) +
   xlab("Diametro del fruto (mm)") + ylab("Masa de semilla (g)")
+
+# Ecuaciones del modelo
+lmm.m1 <- lmer(sem ~ diam + (1|planta), data = celtis)
+lmm.m2 <- lmer(sem ~ diam + (1|parche/planta), data = celtis)
+extract_eq(lmm.m1)
+extract_eq(lmm.m2)
+
 ```
 
-#### Dise?o cruzado
+#### Diseño cruzado
 
+data(Penicillin)
+str(Penicillin)
+summary(Penicillin)
+table(Penicillin$plate, Penicillin$sample) # Es un diseño cruzado?
 
+# 
 
 #### Modelos aditivos generalizados mixtos
 
