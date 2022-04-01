@@ -1,19 +1,4 @@
----
-title: "DIA 1. Modelos lineales"
-author: "Facundo X. Palacio"
-date: "`r Sys.Date()`"
-output: 
-  tufte::tufte_html:
-    toc: true
----
-
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(message = FALSE, warning = FALSE, echo = TRUE)
-```
-
-\
-
-### DIA 1. Introduccion a los modelos lineales
+# Introduccion a los modelos lineales
 #### Definicion de modelo lineal
 ```{r modelo lineal}
 set.seed(999)

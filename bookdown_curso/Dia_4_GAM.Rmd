@@ -1,18 +1,4 @@
----
-title: "DIA 4. GAM"
-author: 'Facundo X. Palacio'
-date: "`r Sys.Date()`"
-output: 
-  tufte::tufte_html:
-    toc: true
----
-
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(message = FALSE, warning = FALSE, error = FALSE, echo = TRUE)
-```
-
-\
-
+# Modelos no lineales
 #### Regresion no parametrica
 Se tomaron medidas del peso seco (peso.seco) y del largo (largo) de una especie de almeja (almejas.txt). Analizar la relacion entre el largo y el peso seco.
 ```{r loess}

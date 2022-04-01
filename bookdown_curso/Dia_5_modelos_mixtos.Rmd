@@ -1,18 +1,4 @@
----
-title: "Dia 5. Modelos mixtos"
-author: 'Facundo X. Palacio'
-date: "`r Sys.Date()`"
-output: 
-  tufte::tufte_html:
-    toc: true
----
-
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(message = FALSE, warning = FALSE, error = FALSE, echo = TRUE)
-```
-
-\
-
+# Modelos mixtos
 #### Dependencia temporal
 ```{r crecimiento}
 set.seed(101)
@@ -162,6 +148,7 @@ Palacio et al. (2014) estudiaron la seleccion natural mediada por aves frugivora
 library(glmmTMB)
 library(lme4)
 library(MuMIn)
+library(sjPlot)
 library(equatiomatic)
 celtis <- read.delim("C:/RD/frutos Celtis 2013.csv", sep = ";")
 table(celtis$planta)
@@ -204,22 +191,32 @@ ggplot(data = celtis, aes(x = diam, y = sem, col = parche)) +
   geom_line(data = newdata, aes(x = diam, y = predy.fixed), col = "black", size = 2) +
   xlab("Diametro del fruto (mm)") + ylab("Masa de semilla (g)")
 
+# Tabla resumen
+tab_model(lmm.m2)
+
 # Ecuaciones del modelo
 lmm.m1 <- lmer(sem ~ diam + (1|planta), data = celtis)
 lmm.m2 <- lmer(sem ~ diam + (1|parche/planta), data = celtis)
 extract_eq(lmm.m1)
 extract_eq(lmm.m2)
-
 ```
 
 #### Diseño cruzado
-
+```{r cruzado}
 data(Penicillin)
 str(Penicillin)
 summary(Penicillin)
 table(Penicillin$plate, Penicillin$sample) # Es un diseño cruzado?
 
-# 
+lmm.pen <- lmer(diameter ~ 1 + (1|plate) + (1|sample), data = Penicillin)
+summary(lmm.pen)
+
+# Tabla resumen
+tab_model(lmm.pen)
+
+# Grafico de efectos aleatorios
+plot_model(lmm.pen, type = "re")
+```
 
 #### Modelos aditivos generalizados mixtos
 

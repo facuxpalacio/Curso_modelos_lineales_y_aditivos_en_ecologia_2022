@@ -1,18 +1,4 @@
----
-title: "DIA 2. GLM"
-author: "Facundo X. Palacio"
-date: "`r Sys.Date()`"
-output: 
-  tufte::tufte_html:
-    toc: true
----
-
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(message = FALSE, warning = FALSE, error = FALSE, echo = TRUE)
-```
-
-\
-
+# Modelos lineales generalizados
 ### PRESENCIA-AUSENCIA
 Cabral et al. (2007) estudiaron la distribución de platijas (*Solea solea*) en el estuario Tagus, Portugal. Se desea saber qué factores están relacionados con la presencia esta especie.
 ```{r explo1}
