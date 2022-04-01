@@ -44,7 +44,7 @@ Tomando como base el set de datos **parasitos.txt** y el modelo ZAP (de dos part
 
 ## Jueves
 
-#### Ejercicio 4.1. 
+#### Ejercicio 4.1 
 
 Wingfield et al. (2017) estudiaron la dinámica espaciotemporal de *Phocoena phocoena* (Pinnipedia, Mammalia) en Maryland, Estados Unidos. Se quiere establecer en que época del año es mas frecuente detectarla y los determinantes de su distribución. Para esto se realizaron muestreos durante 18 meses y se recolectó información sobre la temperatura de la superficie del agua (**SST**) y la concentración de clorofila, expresada como logaritmo (**lnCHL**). 
 
@@ -61,3 +61,6 @@ Wingfield et al. (2017) estudiaron la dinámica espaciotemporal de *Phocoena pho
 
 ## Viernes
 
+#### Ejercicio 5.1
+
+Palacio et al. (2014) realizaron conteos de 44 especies de aves a lo largo de un año en 10 puntos de muestreos (**id**) localizados en un bosque de ligustro y arbustales circundantes (**habitat.type**). El set de datos corresponde a **abundancia_aves.txt**. Analice los factores que se relacionan con la abundancia de las siguientes dos especies: Tordo músico (**agebad**) y Benteveo (**pitsul**), y con la abundancia total de individuos.
