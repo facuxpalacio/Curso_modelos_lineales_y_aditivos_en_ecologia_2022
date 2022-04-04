@@ -1,0 +1,343 @@
+---
+title: "Modelos lineales y aditivos en ecologÃ­a"
+author: 'Facundo X. Palacio'
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+github-repo: facuxpalacio/Curso_modelos_lineales_y_aditivos_en_ecologia_2022/bookdown_curso
+description: "Scripts del curso"
+---
+---
+title: "Modelos lineales y aditivos en ecologÃ­a"
+author: 'Facundo X. Palacio'
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+github-repo: facuxpalacio/Curso_modelos_lineales_y_aditivos_en_ecologia_2022/bookdown_curso
+description: "Scripts del curso"
+---
+
+
+<!--chapter:end:index.Rmd-->
+
+
+# IntroducciÃÂ³n a los modelos lineales
+
+Placeholder
+
+
+## DefiniciÃÂ³n de modelo lineal
+## CorrelaciÃÂ³n lineal simple
+## Matrices de correlaciÃÂ³n
+## RegresiÃÂ³n lineal simple
+## RelaciÃÂ³n entre regresiÃÂ³n y correlaciÃÂ³n
+## Matrices de grÃÂ¡ficos de dispersiÃÂ³n
+## RegresiÃÂ³n lineal multiple
+## Variables categÃÂ³ricas (= *dummies*)
+## Test de *t*
+## Test de *t* pareado
+## AnÃÂ¡lisis de la varianza
+## Supuestos
+### Colinealidad
+### AnÃÂ¡lisis de residuos
+## Transformaciones
+## Actividades
+
+<!--chapter:end:01_modelos_lineales.Rmd-->
+
+
+# Modelos lineales generalizados
+
+Placeholder
+
+
+## Datos de presencia-ausencia
+### GLM binomial
+### Bondad del ajuste
+### GrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡fico del modelo
+### InterpretaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n de los coeficientes
+### ValidaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n
+### EcuaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n
+### Capacidad predictiva
+## Conteos I
+### GLMs Poisson y quasi-Poisson
+#### GLM Poisson
+#### GLM quasi-Poisson
+#### ValidaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n
+#### Bondad del ajuste
+#### EcuaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n
+#### GrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡fico del modelo
+### GLM binomial negativo
+#### Chequear sobredispersiÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n
+#### ValidaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n del modelo quasi-Poisson
+#### Modelo binomial negativo
+#### ValidaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n del modelo binomial negativo
+#### Bondad del ajuste
+#### EcuaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n
+#### Comparaciones mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂºltiples
+#### Incluyendo un offset
+#### GrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡ficos de los modelos
+## Modelo lineal general
+## GLM Gamma
+## Actividades
+### Ejercicio 2.1
+### Ejercicio 2.2
+### Ejercicio 2.3
+#### Ejercicio 2.4
+## Conteos II
+### Modelos truncados en cero
+#### Comparacion con el GLM Poisson
+#### GLM Poisson truncado en cero
+#### GLM binomial negativo truncado en cero
+#### ComparaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n de coeficientes entre modelos
+### Modelos inflados en ceros
+#### Modelos de dos partes o "valla" (ZAP y ZANB)
+#### ComparaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n de ZAP y ZANB
+#### ValidaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n
+#### InterpretaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n y grÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡ficos del modelo
+#### GLMs de mezcla (ZIP y ZINB)
+#### Comparacion de ZIP y ZINB
+#### ValidaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n
+### InterpretaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n y grÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡ficos del modelo
+## Inferencia multimodelo
+#### Modelos candidatos
+### SelecciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n de modelos
+### Promediado de modelos
+## Actividades
+### Ejercicio 3.1 - SelecciÃÂÃÂ³n de modelos
+### Ejercicio 3.2
+### Ejercicio 3.3
+
+<!--chapter:end:02_GLMs.Rmd-->
+
+# Modelos no lineales
+## RegresiÃÂÃÂ³n no paramÃÂÃÂ©trica
+Se tomaron medidas del peso seco (peso.seco) y del largo (largo) de una especie de almeja (almejas.txt). Analizar la relaciÃÂÃÂ³n entre el largo y el peso seco.
+```{r loess}
+almejas <- read.table("C:/RD/almejas.txt", header = TRUE)
+str(almejas)
+
+# opciÃÂÃÂ³n 1
+plot(almejas$largo, almejas$peso.seco, pch = 19, xlab = "Largo", ylab = "Peso")
+loess.model <- loess(peso.seco ~ largo, data = almejas)
+largo <- seq(min(almejas$largo), max(almejas$largo), length = 500)
+predPeso <- predict(loess.model, newdata = data.frame(largo))
+lines(largo, predPeso, col = "blue", lwd = 2)
+
+# opciÃÂÃÂ³n 2
+library(car)
+scatterplot(peso.seco ~ largo, data = almejas, regLine = FALSE, smooth = TRUE)
+```
+
+## RegresiÃÂÃÂ³n polinÃÂÃÂ³mica
+```{r reg polinomica}
+# Simulamos dos variables
+set.seed(99)
+x <- rnorm(500, mean = 0, sd = 1)
+y <- 2 - x + 0.2*x^2 + x^3 + rnorm(500, 0, 2)
+plot(x, y)
+
+# Ajuste del modelo
+reg.pol <- lm(y ~ x + I(x^2) + I(x^3))
+anova(reg.pol)
+summary(reg.pol)
+```
+
+## Funciones a trozos
+```{r funciones a trozos}
+x.categorica <- cut(x, breaks = 10) # Dividimos la variable en 10 intervalos
+fun.trozos <- lm(y ~ x.categorica)
+summary(fun.trozos)
+pred <- predict(fun.trozos)
+df <- data.frame(x, x.categorica, y, pred)
+
+# Sin lÃÂÃÂ­neas verticales
+ggplot(data = df, aes(x, pred, group = x.categorica)) + 
+  geom_line(col = "blue", size = 1) +
+  geom_point(data = df, aes(x, y))
+
+# Con lÃÂÃÂ­neas verticales
+ggplot(data = df, aes(x, pred)) + 
+  geom_step(col = "blue", size = 1) +
+  geom_point(data = df, aes(x, y))
+```
+
+## Splines de regresiÃÂÃÂ³n
+### Polinomios a trozos
+```{r polinomios a trozos}
+# Ejemplo de un polinomio cÃÂÃÂºbico con 1 nodo
+data.split <- data.frame(x, y, x2cat = cut(x, breaks = 2))
+pol.cat1 <- lm(y ~ x + I(x^2) + I(x^3), data = subset(data.split, x2cat == "(-3.06,-0.247]"))
+pol.cat2 <- lm(y ~ x + I(x^2) + I(x^3), data = subset(data.split, x2cat == "(-0.247,2.57]"))
+pred.polcat1 <- predict(pol.cat1)
+pred.polcat2 <- predict(pol.cat2)
+df1 <- data.frame(subset(data.split, x2cat == "(-3.06,-0.247]"), pred = pred.polcat1)
+df2 <- data.frame(subset(data.split, x2cat == "(-0.247,2.57]"), pred = pred.polcat2)
+
+ggplot() + 
+  geom_line(data = df1, aes(x, pred), col = "blue", size = 2) +
+  geom_line(data = df2, aes(x, pred), col = "red", size = 2) +
+  geom_point(data = data.split, aes(x, y)) +
+  geom_vline(xintercept = -0.247, linetype = "dashed")
+
+# ComparaciÃÂÃÂ³n entre la regresiÃÂÃÂ³n polinÃÂÃÂ³mica y splines de regresiÃÂÃÂ³n
+library(splines)
+reg.pol <- lm(y ~ poly(x, degree = 10))
+plot(x, y, col = "grey", ylim = c(-25, 30))
+
+nodos <- seq(-3, 2.5, length = 10) # UbicaciÃÂÃÂ³n de los nodos
+spline.cub <- lm(y ~ bs(x, degree = 3, knots = nodos)) # Spline cÃÂÃÂºbico
+spline.nat <- lm(y ~ ns(x, knots = nodos)) # Spline natural
+
+# GrÃÂÃÂ¡ficos de los modelos
+x.new <- seq(min(x), max(x), length = 500)
+predP <- predict(reg.pol, newdata = data.frame(x = x.new)) # regresiÃÂÃÂ³n polinÃÂÃÂ³mica
+predC <- predict(spline.cub, newdata = data.frame(x = x.new)) # spline cÃÂÃÂºbico
+predN <- predict(spline.nat, newdata = data.frame(x = x.new)) # spline natural
+lines(x.new, predC, col = "darkgreen", lwd = 3)
+lines(x.new, predP, col = "red", lwd = 3)
+lines(x.new, predN, col = "blue", lwd = 3)
+abline(v = nodos, lty = 2, col = "darkgreen")
+legend("topleft", legend = c("Reg polinomica", "Spline C", "Spline N"), col = c("darkgreen", "red", "blue"), cex = 0.8, lty = 1)
+```
+
+## Splines de suavizado
+```{r splines de suavizado}
+splines.suav <- smooth.spline(x, y, nknots = 10)
+splines.suav.cv <- smooth.spline(x, y, cv = TRUE) # lambda ÃÂÃÂ³ptimo
+splines.suav.cv$df
+predS <- splines.suav$y
+predS.cv <- splines.suav.cv$y
+
+layout(matrix(1:2, nrow = 1, ncol = 2))
+plot(x, y, col = "grey", ylim = c(-25, 30))
+lines(x.new, predC, col = "red", lwd = 3) # spline cÃÂÃÂºbico
+lines(x.new, predN, col = "blue", lwd = 3) # spline natural
+legend("topleft", legend = c("Spline C", "Spline N"), col = c("red", "blue"), cex = 0.8, lty = 1, bty = "n")
+
+plot(x, y, col = "grey", ylim = c(-25, 30))
+lines(sort(x), predS, col = "red", lwd = 3) # spline de suavizado
+lines(sort(x), predS.cv, col = "darkorchid", lwd = 3)
+legend("topleft", legend = c("Spline C k = 10", "Spline C optimo"), col = c("red", "blue"), cex = 0.8, lty = 1, bty = "n")
+layout(1)
+```
+
+## Modelos aditivos generalizados
+Gillibrand et al. (2007) analizaron la bioluminiscencia pelÃÂÃÂ¡gica (Sources) a lo largo de un gradiente de profundidad (SampleDepth) en el NE del OcÃÂÃÂ©ano AtlÃÂÃÂ¡ntico (ISIT.txt).
+```{r GAMs}
+library(lattice)
+library(ggplot2)
+library(mgcv)
+library(gratia)
+
+biolum <- read.table("C:/RD/ISIT.txt", header = TRUE)
+str(biolum)
+biolum$Month <- as.factor(biolum$Month)
+xyplot(Sources ~ SampleDepth|Month, data = biolum)
+
+# GAM con spline natural
+gam1 <- lm(Sources ~ ns(SampleDepth, df = 5) + Month, data = biolum)
+# GAM con spline de suavizado (5 nodos)
+gam2 <- gam(Sources ~ s(SampleDepth, k = 5, bs = "cr") + Month, method = "REML", data = biolum)
+# GAM con spline de suavizado (validaciÃÂÃÂ³n cruzada)
+gam3 <- gam(Sources ~ s(SampleDepth, bs = "cr") + Month, method = "REML", data = biolum)
+summary(gam1)
+summary(gam2)
+summary(gam3)
+
+# GrÃÂÃÂ¡ficos del modelo
+SampleDepth <- seq(min(biolum$SampleDepth), max(biolum$SampleDepth), length = 100)
+Month <- as.factor(unique(biolum$Month))
+newdata <- expand.grid(SampleDepth = SampleDepth, Month = Month)
+newdata$pred_gam1 <- predict(gam1, newdata = newdata)
+newdata$pred_gam2 <- predict(gam2, newdata = newdata)
+newdata$pred_gam3 <- predict(gam3, newdata = newdata)
+
+ggplot() + geom_point(data = biolum, aes(x = SampleDepth, y = Sources, color = Month)) + facet_wrap(~Month) + 
+  geom_line(data = newdata, aes(x = SampleDepth, y = pred_gam1), color = "black") +
+  geom_line(data = newdata, aes(x = SampleDepth, y = pred_gam2), color = "blue")
+
+ggplot() + geom_point(data = biolum, aes(x = SampleDepth, y = Sources, color = Month)) + facet_wrap(~Month) + 
+  geom_line(data = newdata, aes(x = SampleDepth, y = pred_gam3), color = "coral")
+
+draw(gam2)
+draw(gam3)
+```
+
+### GAM con otras distribuciones e interacciones
+```{r GAM Gamma}
+biolum$Sources_0.1 <- biolum$Sources + 0.1
+# Modelo sin interacciÃÂÃÂ³n
+gam4 <- gam(Sources_0.1 ~ s(SampleDepth, bs = "cr") + Month, family = Gamma, method = "REML", data = biolum)
+summary(gam4)
+
+SampleDepth <- seq(min(biolum$SampleDepth), 4000, length = 100)
+newdata <- expand.grid(SampleDepth = SampleDepth, Month = Month)
+newdata$pred_gam4 <- predict(gam4, newdata = newdata, type = "response")
+
+ggplot() + geom_point(data = biolum, aes(x = SampleDepth, y = Sources, color = Month)) + facet_wrap(~Month) + 
+  geom_line(data = newdata, aes(x = SampleDepth, y = pred_gam4), color = "black")
+
+draw(gam4)
+
+# Modelo con interacciÃÂÃÂ³n (variable continua y categÃÂÃÂ³rica)
+gam5 <- gam(Sources_0.1 ~ s(SampleDepth) + s(SampleDepth, by = Month, bs = "cr"), family = Gamma, method = "REML", data = biolum)
+
+SampleDepth <- seq(min(biolum$SampleDepth), 4000, length = 100)
+newdata <- expand.grid(SampleDepth = SampleDepth, Month = Month)
+newdata$pred_gam5 <- predict(gam5, newdata = newdata, type = "response")
+
+ggplot() + geom_point(data = biolum, aes(x = SampleDepth, y = Sources, color = Month)) + facet_wrap(~Month) + 
+  geom_line(data = newdata, aes(x = SampleDepth, y = pred_gam5), color = "black")
+```
+
+### ComparaciÃÂÃÂ³n de modelos
+```{r comparacion gam}
+anova(gam4, gam5, test = "F")
+AIC(gam4, gam5)
+```
+
+### ValidaciÃÂÃÂ³n
+```{r diagnosticos}
+gam.check(gam5)
+appraise(gam5, method = "simulate")
+```
+
+### Modelo con variables continuas (efectos principales + interacciones)
+Palacio et al. (2017) estudiaron el consumo de frutos por aves en $Psychotria carthagenensis$ en un bosque secundario pedemontano de las Yungas (Psychotria_El_Corte_2012.txt). Se ajustÃÂÃÂ³ un GAM del nÃÂÃÂºmero de infrutescencias (n.infrut) en funciÃÂÃÂ³n de las coordenadas (x = longitud, y = latitud).
+```{r 2 vars gam}
+library(fields)
+psycho <- read.table("C:/RD/Psychotria_El_Corte_2012.txt", header = TRUE)
+str(psycho)
+hist(psycho$n.infrut, xlab = "Numero de infrutescencias", ylab = "Frecuencia")
+gam6 <- gam(n.infrut ~ s(x, y), family = nb, method = "REML", data = psycho)
+summary(gam6)
+gam7 <- gam(n.infrut ~ te(x, y), family = nb, method = "REML", data = psycho) 
+summary(gam7)
+gam8 <- Tps(x = data.frame(Latitud = psycho$x, Longitud = psycho$y), Y = psycho$n.infrut)
+
+# Superficies de respuesta
+draw(gam6)
+draw(gam7)
+surface(gam8)
+```
+
+## Actividades
+
+### Ejercicio 4.2 
+Wingfield et al. (2017) estudiaron la dinÃÂÃÂ¡mica espaciotemporal de *Phocoena phocoena* (Pinnipedia, Mammalia) en Maryland, Estados Unidos. Se quiere establecer en que ÃÂÃÂ©poca del aÃÂÃÂ±o es mÃÂÃÂ¡s frecuente detectarla y los determinantes de su distribuciÃÂÃÂ³n. Para esto se realizaron muestreos durante 18 meses y se recolectÃÂÃÂ³ informaciÃÂÃÂ³n sobre la temperatura de la superficie del agua (**SST**) y la concentraciÃÂÃÂ³n de clorofila, expresada como logaritmo (**lnCHL**). 
+
+- Utilice un modelo que describa la dinÃÂÃÂ¡mica temporal de la proporciÃÂÃÂ³n de detecciones de la especie.
+
+- Identifique quÃÂÃÂ© variables se relacionan con la proporciÃÂÃÂ³n de detecciones.
+
+- Construya una tabla que represente los resultados principales.
+
+- Grafique el modelo como considere mÃÂÃÂ¡s conveniente para mostrar los resultados.
+
+- ÃÂÃÂ¿QuÃÂÃÂ© conclusiones obtiene en tÃÂÃÂ©rminos biolÃÂÃÂ³gicos?
+
+<!--chapter:end:03_GAMs.Rmd-->
+

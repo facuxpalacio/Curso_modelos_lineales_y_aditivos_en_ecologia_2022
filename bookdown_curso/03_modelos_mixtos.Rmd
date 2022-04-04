@@ -1,0 +1,236 @@
+# Modelos mixtos
+## Dependencia temporal
+```{r crecimiento}
+set.seed(101)
+tiempo <- seq(1, 20, length = 30)
+a <- 20
+b <- 5
+c <- 0.3
+peso <- a - (a - b)*exp(-c*tiempo) + rnorm(n = 30, mean = 0, sd = 0.5)
+plot(tiempo, peso)
+
+# GrÃ¡fico de residuos
+m.crec <- lm(log(peso) ~ log(tiempo))
+plot(log(tiempo), log(peso))
+abline(m.crec, lwd = 2, col = "blue")
+plot(log(tiempo), resid(m.crec), xlab = "log(tiempo)", ylab = "Residuos")
+
+# FunciÃ³n de autocorrelaciÃ³n
+plot(acf(peso))
+```
+
+## Dependencia espacial
+UbicaciÃ³n (coordenadas) y concentraciÃ³n de metales pesados en el río Mosa (Europa).
+```{r meuse data}
+library(sp)
+library(gstat)
+library(ggplot2)
+data(meuse)
+coordinates(meuse) = ~x+y
+bubble(meuse, "zinc", col = "#00ff0088", main = "zinc concentrations (ppm)")
+
+m.espacial <- lm(zinc ~ x + y, data = meuse)
+plot(meuse$x, resid(m.espacial))
+abline(a = 0, b = 0, lty = 2)
+plot(meuse$y, resid(m.espacial))
+abline(a = 0, b = 0, lty = 2)
+
+data(meuse)
+meuse$residuos <- resid(m.espacial)
+ggplot(meuse, aes(x = x, y = y, col = residuos)) +
+  geom_point(size = 4) +
+  scale_color_gradient(low = "yellow", high = "red")
+
+# Semivariograma
+coordinates(meuse) = ~x+y
+zinc.variog <- variogram(zinc ~ 1, meuse)
+plot(zinc.variog)
+```
+
+## IntroducciÃ³n a los modelos mixtos
+A partir de 8 plantas, se contaron el nÃºmero de flores en 3 inflorescencias por planta y se midiÃ³ la longitud de los pedicelos. Analizar la relaciÃ³n entre la longitud del pedicelo y el nÃºmero de flores/inflorescencia.
+```{r mixtos}
+id <- factor(sort(rep(1:8, 3)))
+long.pedicelo <- c(1, 1.3, 1.4, 2, 2.2, 2.1, 2.9, 3, 2.8, 3.5, 3.4, 3.7,
+                   4.5, 4.7, 4.7, 5.5, 5.7, 6, 7.2, 7.3, 7.5, 8.4, 8.8, 8.6)
+nflores <- c(2, 2, 3, 4, 5, 4, 5, 6, 7, 8, 7, 10, 10, 12, 11, 11, 13, 12,
+             13, 11, 14, 14, 17, 15)
+plantas <- data.frame(id, long.pedicelo, nflores)
+plantas
+
+plot(plantas$long.pedicelo, plantas$nflores, pch = 19, cex = 2, 
+     xlab = "Longitud del pedicelo", ylab = "NÃºmero de flores")
+
+# OpciÃ³n 1: asumimos que las observaciones son independientes
+m1 <- lm(nflores ~ long.pedicelo, data = plantas)
+summary(m1)
+
+# OpciÃ³n 2: una media por unidad
+xlong.pedicelo <- tapply(long.pedicelo, id, mean)
+xnflores <- tapply(nflores, id, mean)
+plot(xlong.pedicelo, xnflores, pch = 19, cex = 2)
+m2 <- lm(xnflores ~ xlong.pedicelo)
+summary(m2)
+
+# OpciÃ³n 3: incluir el efecto de la unidad
+m3 <- lm(nflores ~ long.pedicelo + id, data = plantas)
+summary(m3)
+
+# OpciÃ³n 4: modelo mixto de intercepto aleatorio
+library(lme4)
+library(lmerTest)
+m4 <- lmer(nflores ~ long.pedicelo + (1|id), data = plantas)
+summary(m4)
+ranef(m4) 
+rand(m4) # Significancia de efectos aleatorios
+
+long.pedicelo.new <- seq(min(plantas$long.pedicelo), max(plantas$long.pedicelo), length = 100)
+newdata <- expand.grid(long.pedicelo.new, plantas$id)
+colnames(newdata) <- c("long.pedicelo", "id")
+newdata$predy.fixed <- predict(m4, newdata = newdata, re.form = NA)
+newdata$predy.rand <- predict(m4, newdata = newdata, re.form = NULL)
+
+ggplot(data = plantas, aes(x = long.pedicelo, y = nflores, col = id)) +
+  geom_point(size = 2) + 
+  geom_line(data = newdata, aes(x = long.pedicelo, y = predy.rand)) +
+  geom_line(data = newdata, aes(x = long.pedicelo, y = predy.fixed), col = "black", size = 2) + ggtitle("Modelo de intercepto aleatorio") +
+  xlab("Longitud del pedicelo") + ylab("Numero de flores") +
+  theme_bw()
+
+# OpciÃ³n 5: modelo mixto de intercepto y pendiente aleatorios
+m5 <- lmer(nflores ~ long.pedicelo + (long.pedicelo|id), data = plantas)
+summary(m5)
+ranef(m5)
+rand(m5)
+
+newdata$predy.fixed <- predict(m5, newdata = newdata, re.form = NA)
+newdata$predy.rand <- predict(m5, newdata = newdata, re.form = NULL)
+ggplot(data = plantas, aes(x = long.pedicelo, y = nflores, col = id)) +
+  geom_point(size = 2) + 
+  ggtitle("Modelo de intercepto y pendiente aleatorios") +
+  geom_line(data = newdata, aes(x = long.pedicelo, y = predy.rand)) +
+  geom_line(data = newdata, aes(x = long.pedicelo, y = predy.fixed), col = "black", size = 2) +
+  xlab("Longitud del pedicelo") + ylab("Numero de flores") +
+  theme_bw()
+```
+
+## Un caso especial
+```{r simpson}
+library(data.table)
+library(nlme)
+url <- "https://raw.githubusercontent.com/hauselin/rtutorialsite/master/data/simpsonsParadox.csv"
+df <- fread(url)
+head(df)
+plot(df$grades, df$iq)
+
+model.class <- lme(iq ~ grades, random = ~1|class, data = df)
+predy.fixed <- predict(model.class, level = 0)
+ 
+ggplot(df, aes(grades, iq, col = class)) + geom_point(size = 2.5) +
+ggtitle("Paradoja de Simpson") +
+geom_smooth(method = "lm", se = FALSE) +
+geom_line(data = data.frame(x = df$grades, y = predy.fixed), aes(x, y), col = "black", size = 3) +
+theme_bw()
+```
+
+## Modelos lineales generalizados mixtos
+Palacio et al. (2014) estudiaron la selecciÃ³n natural mediada por aves frugÃ­voras sobre rasgos de los frutos de *Celtis tala* (frutos Celtis 2013.txt), incluyendo el diametro (diam), peso (peso), concentraciÃ³n de azÃºcares (az), peso de pulpa (pulpa), peso de semilla (sem) y relaciÃ³n peso de pulpa/peso de semilla (pulpa.sem). Para esto se midieron 4-10 frutos por Ã¡rbol en 24 Ã¡rboles y 4 parches de bosque.
+
+#### DiseÃ±o anidado
+```{r glmm}
+library(glmmTMB)
+library(lme4)
+library(MuMIn)
+library(sjPlot)
+library(equatiomatic)
+celtis <- read.delim("C:/RD/frutos Celtis 2013.csv", sep = ";")
+table(celtis$planta)
+table(celtis$planta, celtis$parche) # Es un diseÃÂ±o anidado?
+
+lmm.m0 <- lm(sem ~ diam, data = celtis)
+lmm.m1 <- glmmTMB(sem ~ diam + (1|planta), family = gaussian, data = celtis)
+lmm.m2 <- glmmTMB(sem ~ diam + (1|parche/planta), family = gaussian, data = celtis)
+
+# ComparaciÃ³n de modelos
+AIC(lmm.m0, lmm.m1, lmm.m2)
+r.squaredGLMM(lmm.m1)
+summary(lmm.m1)
+
+# GrÃ¡fico
+diam.new <- seq(min(celtis$diam, na.rm = TRUE), max(celtis$diam, na.rm = TRUE), length = 5)
+newdata <- expand.grid(diam.new, celtis$planta, stringsAsFactors = TRUE)
+colnames(newdata) <- c("diam", "planta")
+newdata$parche <- substr(newdata$planta, 1, 2)
+
+newdata$predy.fixed <- predict(lmm.m2, newdata = newdata, re.form = NA) # poblacional
+newdata$predy.rand1 <- predict(lmm.m2, newdata = newdata, re.form = NULL) # planta
+rand2 <- ranef(lmm.m2)$cond$parche
+rand2.parche <- rand2[match(newdata$parche, rownames(rand2)), 1]
+a <- fixef(lmm.m2)$cond[1]
+b <- fixef(lmm.m2)$cond[2]
+newdata$predy.rand2 <- a + b*newdata$diam + rand2.parche
+
+# Efecto planta
+ggplot(data = celtis, aes(x = diam, y = sem, col = planta)) +
+  geom_point(size = 2) + 
+  ggtitle("Modelo con factores aleatorios anidados") +
+  geom_line(data = newdata, aes(x = diam, y = predy.rand1)) +
+  geom_line(data = newdata, aes(x = diam, y = predy.fixed), col = "black", size = 2) +
+  xlab("Diametro del fruto (mm)") + ylab("Masa de semilla (g)")
+
+# Efecto parche
+ggplot(data = celtis, aes(x = diam, y = sem, col = parche)) +
+  geom_point(size = 2) + 
+  ggtitle("Modelo con factores aleatorios anidados") +
+  geom_line(data = newdata, aes(x = diam, y = predy.rand2, col = parche)) +
+  geom_line(data = newdata, aes(x = diam, y = predy.fixed), col = "black", size = 2) +
+  xlab("Diametro del fruto (mm)") + ylab("Masa de semilla (g)")
+
+# Tabla resumen
+tab_model(lmm.m2)
+
+# Ecuaciones del modelo
+lmm.m1 <- lmer(sem ~ diam + (1|planta), data = celtis)
+lmm.m2 <- lmer(sem ~ diam + (1|parche/planta), data = celtis)
+extract_eq(lmm.m1)
+extract_eq(lmm.m2)
+```
+
+#### DiseÃÂ±o cruzado
+```{r cruzado}
+data(Penicillin)
+str(Penicillin)
+summary(Penicillin)
+table(Penicillin$plate, Penicillin$sample) # Es un diseÃÂ±o cruzado?
+
+lmm.pen <- lmer(diameter ~ 1 + (1|plate) + (1|sample), data = Penicillin)
+summary(lmm.pen)
+
+# Tabla resumen
+tab_model(lmm.pen)
+
+# GrÃ¡fico de efectos aleatorios
+plot_model(lmm.pen, type = "re")
+```
+
+## Modelos aditivos generalizados mixtos
+
+## Actividades
+
+#### Ejercicio 5.1
+Palacio et al. (2014) realizaron conteos de 44 especies de aves a lo largo de un aÃ±o en 10 puntos de muestreos (**id**) localizados en un bosque de ligustro y arbustales circundantes (**habitat.type**). El set de datos corresponde a **abundancia_aves.txt**.
+
+- Analice los factores que se relacionan con la abundancia total de individuos y con las siguientes dos especies: Tordo mÃºsico (**agebad**) y Benteveo (**pitsul**).
+
+- Identifique los efectos fijos y aleatorios incluidos en cada modelo.
+
+- SegÃºn el problema de estudio y el modelo especificado Â¿A quÃ© tipo de diseÃ±o corresponde?
+
+- En base a los resultados obtenidos Â¿Tiene sentido incluir efectos aleatorios? Justifique.
+
+- Â¿Puede hipotetizar algo sobre la distribuciones de probabilidad utilizada para cada especie y para la abundancia total?
+
+
+### Ejercicio 5.2 - GAMM
+
+
