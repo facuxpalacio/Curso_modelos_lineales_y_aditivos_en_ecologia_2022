@@ -40,7 +40,7 @@ Definición de efectos fijos y efectos aleatorios. Modelo mixto para datos anida
 
 ## Modalidad del curso
 
-El curso será de forma presencial y se trabajará de forma íntegra con la interfaz RStudio. Todos los scripts, bases de datos, actividades, diapositivas y bibliografía sugerida se encuentra en este repositorio. Los alumnos y alumnas deberán tener instalado tanto R como Rstudio (versión 4.0.2 o posterior), así como los paquetes que se listan a continuación, previo al comienzo del curso:
+El curso será de forma presencial y se trabajará de forma íntegra con la interfaz RStudio. Todos los scripts, bases de datos, actividades, diapositivas y bibliografía sugerida (sólo artículos científicos) se encuentra en este repositorio. Los alumnos y alumnas deberán tener instalado tanto R como Rstudio (versión 4.0.2 o posterior), así como los paquetes que se listan a continuación, previo al comienzo del curso:
 
 car
 
@@ -76,6 +76,45 @@ VGAM
 
 visreg
 
+
+## Bibliografía
+
+Burnham KP y DR Anderson. (2004). Model selection and multi-model inference. A practical information-theoretic approach. Springer-Verlag.
+
+Burnham KP, DR Anderson y KP Huyvaert. (2011). AIC model selection and multimodel inference in behavioral ecology: some background, observations, and comparisons.     Behavioral Ecology and Sociobiology 65: 23-35.
+
+Crawley MJ. (2012). The R book. Wiley-Blackwell.
+
+Faraway JJ. (2006). Extending the linear model with R. Generalized linear, mixed effects and non-parametric regression models. Chapman & Hall/CRC
+
+Grueber CE, S Nakagawa, RJ Laws e IG Jamieson. (2011). Multimodel inference in ecology and evolution: challenges and solutions. Journal of Evolutionary Biology 24: 
+699-711.
+
+James G, D Witten, T Hastie y R Tibshirani. (2013). An introduction to statistical learning. Springer.
+
+Harrison XA, L Donaldson, ME Correa-Cano, J Evans, DN Fisher, CE Goodwin, BS Robinson, DJ Hodgson y R Inger. (2018). A brief introduction to mixed effects modelling 
+and multi-model inference in ecology. PeerJ 6: e4794.
+
+Logan M. (2010). Biostatistical design and analysis using R. A practical guide. Wiley-Blackwell.
+
+Nakagawa S y H Schielzeth. (2013) A general and simple method for obtaining R2 from generalized linear mixed‐effects models. Methods in Ecology and Evolution 4: 133-
+142.
+
+Palacio FX. (2018). Advocating better habitat use and selection models in bird ecology. Revista Brasileira de Ornitologia 26: 90-104.
+
+Pedersen EJ, DL Miller, GL Simpson y N Ross. (2019). Hierarchical generalized additive models in ecology: an introduction with mgcv. PeerJ 7: e6876.
+
+Quinn G y M Keough. (2002). Experimental design and data analysis for biologists. Cambridge University Press.
+
+Zuur AF. (2012). A beginner's guide to generalized additive models with R. Highland Statistics Limited.
+
+Zuur AF y EN Ieno. (2016). A protocol for conducting and presenting results of regression‐type analyses. Methods in Ecology and Evolution 7: 636-645.
+
+Zuur AF, EN Ieno y CS Elphick. (2010). A protocol for data exploration to avoid common statistical problems. Methods in Ecology and Evolution 1: 3-14.
+
+Zuur A, EN Ieno y GM Smith. (2007). Analyzing ecological data. Springer.
+
+Zuur A, EN Ieno, NJ Walker, AA Saveliev y GM Smith. (2009). Mixed effects models and extensions in ecology with R. Springer.
 
 
 *Nota: si detecta algún error o problema, contactarse al siguiente correo: facundo_palacio@fcnym.unlp.edu.ar*
