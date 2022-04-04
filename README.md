@@ -76,6 +76,6 @@ VGAM
 
 visreg
 
-pscl
+
 
 *Nota: si detecta algún error o problema, contactarse al siguiente correo: facundo_palacio@fcnym.unlp.edu.ar*
