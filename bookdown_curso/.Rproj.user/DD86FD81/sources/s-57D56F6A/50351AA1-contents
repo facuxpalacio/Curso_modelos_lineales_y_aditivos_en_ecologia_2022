@@ -255,4 +255,30 @@ layout(1)
 ## Actividades
 
 ### Ejercicio 1.1
+Sokal & Rohlf (1997) analizaron el consumo de oxígeno en dos especies de lapas bajo tres concentraciones de agua de mar (*limpets.csv*).
+
+- Calcule las medias y varianzas para cada especie, concentración y combinación de especie y concentración.
+
+- Realice un gráfico que muestre las diferentes combinaciones entre especie y concentración. Grafique e interprete la interacción entre ambos factores utilizando la función `interaction.plot` del paquete `car`.
+
+- ¿Existen diferencias entre las especies y las concentraciones? Utilice un modelo adecuado que responda a esta pregunta.
+
+- Evalúe los supuestos del modelo.
+
+### Ejercicio 1.2
+Allison & Cicchetti (1976) compilaron la cantidad de horas de sueño, la morfología y el riesgo de predación (escala de 1 a 5 -menor valor, menor riesgo de predación-) en 62 especies de mamíferos (*allison.csv*).
+
+- Realice un resumen (media, desvío y coeficiente de variación) de las variables del conjunto de datos.
+
+- Grafique histogramas para cada una de las variables y diagramas de dispersión para cada par de variables.
+
+- Ajuste un modelo adecuado entre longevidad en años (*LifeSpan*), masa corporal en kg (*BodyWt*) y  predación (*Predation*).
+
+- Grafique la relación entre masa corporal y longevidad, para cada nivel de predación ¿Puede observar algún patrón que haga reconsiderar el modelo ajustado en el inciso anterior?
+
+- Evalúe los supuestos del modelo final.
+
+- Realice un gráfico que represente el modelo ajustado.
+
+- Según el modelo ¿Cuánto sería la longevidad para el ser humano, bajo los supuestos que considere? ¿Es realista la predicción que obtuvo?
 
