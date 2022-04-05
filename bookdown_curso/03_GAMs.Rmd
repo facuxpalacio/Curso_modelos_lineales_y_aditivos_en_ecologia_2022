@@ -193,7 +193,7 @@ appraise(gam5, method = "simulate")
 ```
 
 ### Modelo con variables continuas (efectos principales + interacciones)
-Palacio et al. (2017) estudiaron el consumo de frutos por aves en $Psychotria carthagenensis$ en un bosque secundario pedemontano de las Yungas (Psychotria_El_Corte_2012.txt). Se ajustÃÂ³ un GAM del nÃÂºmero de infrutescencias (n.infrut) en funciÃÂ³n de las coordenadas (x = longitud, y = latitud).
+Palacio et al. (2017) estudiaron el consumo de frutos por aves en $Psychotria  carthagenensis$ en un bosque secundario pedemontano de las Yungas (Psychotria_El_Corte_2012.txt). Se ajustÃÂ³ un GAM del nÃÂºmero de infrutescencias (n.infrut) en funciÃÂ³n de las coordenadas (x = longitud, y = latitud).
 ```{r 2 vars gam}
 library(fields)
 psycho <- read.table("C:/RD/Psychotria_El_Corte_2012.txt", header = TRUE)

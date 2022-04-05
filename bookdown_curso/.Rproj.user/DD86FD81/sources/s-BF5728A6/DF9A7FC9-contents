@@ -1,0 +1,101 @@
+#### EBIRD
+library(dplyr)
+library(ggplot2)
+library(nls)
+ar <- read.delim("C:/RD/ebd_AR_eursta_relJan-2022.txt")
+uy <- read.delim("C:/RD/ebd_UY_eursta_relJan-2022.txt")
+all <- rbind(ar, uy)
+
+ar <- ar %>% mutate(DATE = as.Date(OBSERVATION.DATE, format = "%Y-%m-%d"))
+ar <- ar %>% mutate(YEAR = format(DATE, format = "%Y"))
+
+uy <- uy %>% mutate(DATE = as.Date(OBSERVATION.DATE, format = "%Y-%m-%d"))
+uy <- uy %>% mutate(YEAR = format(DATE, format = "%Y"))
+
+# Abundancia (num de registros)
+ar.year <- ar %>% group_by(YEAR) %>% summarise(nobs = n()) %>%
+  filter(YEAR != 2022)
+uy.year <- uy %>% group_by(YEAR) %>% summarise(nobs = n()) %>% 
+  filter(YEAR != 2022)
+
+ggplot(data = ar.year, aes(x = as.numeric(YEAR), y = nobs)) +
+  geom_line(col = "blue", size = 2) + xlab("Año") + ylab("NÂº de registros")
+
+ggplot(data = uy.year, aes(x = YEAR, y = nobs, group = 1)) +
+  stat_summary(fun = sum, geom = "line", col = "blue", size = 2) +
+  xlab("Año") + ylab("NÂº de registros")
+
+ar.year$YEAR <- as.numeric(ar.year$YEAR)
+exp.ar <- nls(nobs/10000 ~ a*exp(b*YEAR/10000), data = ar.year,
+              start = list(a = 0, b = 0))
+
+# Abundancia estacional (num de registros)
+all <- all %>% mutate(MONTH = format(DATE, format = "%m"))
+all.year <- all %>% group_by(MONTH) %>% summarise(nobs = n())
+
+ggplot(data = all.year, aes(x = MONTH, y = nobs, group = 1)) +
+  stat_summary(fun = sum, geom = "line", col = "red", size = 2) +
+  xlab("Mes") + ylab("NÂº de registros")
+
+
+
+#############################################################################
+### DORMIDEROS
+library(MASS)
+library(multcomp)
+library(mgcv)
+
+# Diferencias en la abundancia entre años y spp de plantas
+abu.dorm <- read.table("C:/RD/Sturnus dormideros 2009-2014.txt", head=T)
+tapply(abu.dorm$nind, abu.dorm$año, sum) # abundancia por dormidero y año
+tapply(abu.dorm$nind, abu.dorm$año, length) # abundancia por año
+tapply(abu.dorm$id, abu.dorm$año, length)
+
+table(abu.dorm$sp.planta)/sum(table(abu.dorm$sp.planta))*100 # proporcion de dormideros x sp
+
+abu.dorm$año <- as.factor(abu.dorm$año)
+abu.dorm$sp.planta <- as.factor(abu.dorm$sp.planta)
+boxplot(abu.dorm$nind ~ abu.dorm$año)
+model.dorm <- glm.nb(nind ~ año + sp.planta, data = abu.dorm)
+summary(model.dorm)
+anova(model.dorm)
+summary(glht(model.dorm, linfct = mcp(año = "Tukey")))
+summary(glht(model.dorm, linfct = mcp(sp.planta = "Tukey")))
+
+# Relacion entre abundancia y caracteristicas de las plantas
+plantas.dorm <- read.table("C:/RD/Sturnus dormideros arboles.txt", head=T)
+round(cor(plantas.dorm[,8:14]), 2)
+plot(plantas.dorm$nind ~ plantas.dorm$diam_mayor_m)
+plot(plantas.dorm$nind ~ plantas.dorm$volumen_m3)
+
+plantas.dorm1 <- subset(plantas.dorm, nind>0)
+round(cor(plantas.dorm1[,8:14]), 2)
+plot(plantas.dorm1$nind ~ plantas.dorm1$diam_mayor_m)
+plot(plantas.dorm1$nind ~ plantas.dorm1$volumen_m3)
+cor.test(log(plantas.dorm1$nind), plantas.dorm1$volumen_m3)
+
+model.plant1 <- glm.nb(nind ~ diam_mayor_m, data = plantas.dorm1)
+summary(model.plant1)
+model.plant2 <- glm.nb(nind ~ volumen_m3, data = plantas.dorm1)
+summary(model.plant2)
+
+# DinÃ¡mica temporal dentro del mismo dormidero
+interv.dorm <- read.table("C:/RD/Sturnus dormideros intervalos.txt", head=T)
+dorm <- interv.dorm[interv.dorm$t>2, ]
+str(dorm)
+length(unique(dorm$id))
+length(unique(dorm$t))
+table(dorm$hora)
+mt<-gamm(nind_dormidero ~ s(t, k = 7), random = list(id = ~1), 
+         correlation = corAR1(form = ~t),
+         family = poisson, method = "REML", data = dorm)
+
+m<-gamm(nind_dormidero ~ s(t, k = 7), random = list(id = ~1), 
+         family = poisson, method = "REML", data = dorm)
+AIC(mt$lme, m$lme)
+
+summary(mt$gam)
+plot(mt$gam)
+gam.check(mt$gam)
+gam.check(m$gam)
+plot(m$gam)
