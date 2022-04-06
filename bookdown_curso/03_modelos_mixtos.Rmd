@@ -238,6 +238,7 @@ library(mgcv)
 library(itsadug)
 
 biolum <- read.table("C:/RD/ISIT.txt", header = TRUE)
+biolum$Station <- as.factor(biolum$Station)
 biolum$Year <- as.factor(biolum$Year)
 ggplot(data = biolum, aes(x = SampleDepth, y = Sources)) +
   geom_point() + facet_wrap(~Station) +
@@ -251,23 +252,38 @@ ggplot(data = biolum, aes(x = SampleDepth, y = Sources)) +
 ### Ajuste de modelos
 ```{r gamms}
 # Sin efectos aleatorios
-gam0 <- gam(Sources ~ Year + s(SampleDepth), family = gaussian, data = biolum)
+gam0 <- gam(Sources ~ Year + s(SampleDepth) + s(SampleDepth, by = Year), family = gaussian, data = biolum)
+plot(gam0)
 
 # Intercepto aleatorio
-gamm1 <- gamm(Sources ~ Year + s(SampleDepth), random = list(Station = ~1), family = gaussian, data = biolum)
+gamm1 <- gam(Sources ~ Year + s(SampleDepth) + s(Station, bs = "re"), family = gaussian, data = biolum)
 
-# Intercepto y "pendiente" aleatorios
-gamm2 <- gamm(Sources ~ Year + s(SampleDepth), random = list(Station = ~1 + SampleDepth|Station), family = gaussian, data = biolum)
+# Intercepto + pendiente aleatorios
+gamm2 <- gam(Sources ~ Year +  s(SampleDepth) +
+               s(Station, bs = "re") + # Intercepto aleatorio
+               s(SampleDepth, Station, bs = "re"), # Pendiente aleatoria
+             family = gaussian, data = biolum)
+
+# Intercepto + "smooth" aleatorios
+gamm3 <- gam(Sources ~ Year + s(SampleDepth, Station, bs = "fs", m = 1, k = 5), # Smooth aleatorio
+             family = gaussian, data = biolum)
 
 # Comparación de estructuras de efectos aleatorios
-AIC(gam0, gamm1$lme, gamm2$lme)
+AIC(gam0, gamm1, gamm2, gamm3)
 
-summary(gamm2$gam)
-gamtabs(gamm2$gam, type = "HTML")
-plot_smooth(gamm2$gam, view = "SampleDepth", plot_all = "Year", rm.ranef = TRUE)
+summary(gamm2)
+check_resid(gamm3, split_pred = "Station")
+acf_resid(gamm2, split_pred = "Station")
+gamtabs(gamm2, type = "HTML")
+
+# Gráficos 
+# Efectos fijos
+plot_smooth(gamm2, view = "SampleDepth", plot_all = "Year", rm.ranef = TRUE)
+plot_parametric(gamm2, pred = list(Year = c("2001", "2002")), rm.ranef = TRUE)
+# Efectos aleatorios
+plot_smooth(gamm2, view = "SampleDepth", cond = list(Year = "2001", Station = "3"), col = "red", ylim = c(-10, 50))
+plot_smooth(gamm1, view = "SampleDepth", cond = list(Year = "2001", Station = "16"), col = "blue", add = TRUE) # Agregar estación 16
 ```
-
-
 
 ## Actividades
 
