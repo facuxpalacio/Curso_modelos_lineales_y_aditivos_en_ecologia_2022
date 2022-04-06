@@ -112,7 +112,7 @@ layout(1)
 ```
 
 ## Modelos aditivos generalizados
-Gillibrand et al. (2007) analizaron la bioluminiscencia pelÃÂ¡gica (Sources) a lo largo de un gradiente de profundidad (SampleDepth) en el NE del OcÃÂ©ano AtlÃÂ¡ntico (ISIT.txt).
+Gillibrand et al. (2007) analizaron la bioluminiscencia pel�gica (*Sources*) a lo largo de un gradiente de profundidad (*SampleDepth*) en el NE del Oc�ano Atl�ntico (*ISIT.txt*).
 ```{r GAMs}
 library(lattice)
 library(ggplot2)

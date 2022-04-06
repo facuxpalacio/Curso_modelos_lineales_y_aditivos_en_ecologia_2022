@@ -1,5 +1,0 @@
-"0","newdata <- data.frame(pos = numFactor(expand.grid(n.infrut = psycho$n.infrut, x = pyscho$x, y = psycho$y)) )
-"
-"2","Error in expand.grid(n.infrut = psycho$n.infrut, x = pyscho$x, y = psycho$y) : 
-  objeto 'pyscho' no encontrado
-"

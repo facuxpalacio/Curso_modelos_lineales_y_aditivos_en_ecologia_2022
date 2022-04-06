@@ -231,28 +231,40 @@ AIC(lm.no_espacial, glmm.espacial)
 ```
 
 ## Modelos aditivos generalizados mixtos
-Price et al. (2016) estudiaron la abundancia de salamandras de cursos de agua (*count*) en 23 sitios (*Site*) muestreados 4 veces (*Sample*), junto con distintas covariables (estandarizadas), como el uso de suelo (*mined*), temperatura del agua (*Wtemp*). Para más información sobre los metadatos, puede acceder a https://datadryad.org/stash/dataset/doi:10.5061/dryad.5m8f6
+Gillibrand et al. (2007) analizaron la bioluminiscencia pelágica (*Sources*) a lo largo de un gradiente de profundidad (*SampleDepth*) en el NE del Océano Atlántico (*ISIT.txt*).
+```{r explo}
+library(ggplot2)
+library(mgcv)
+library(itsadug)
+
+biolum <- read.table("C:/RD/ISIT.txt", header = TRUE)
+biolum$Year <- as.factor(biolum$Year)
+ggplot(data = biolum, aes(x = SampleDepth, y = Sources)) +
+  geom_point() + facet_wrap(~Station) +
+  theme_bw()
+
+ggplot(data = biolum, aes(x = SampleDepth, y = Sources)) +
+  geom_point() + facet_wrap(~Year) +
+  theme_bw()
+```
+
+### Ajuste de modelos
 ```{r gamms}
-library(glmmTMB)
-data(Salamanders)
-hist(Salamanders$count)
-pairs(Salamanders[, c(3, 5:7, 9)])
-cor(Salamanders[, c(3, 5:7, 8)])
+# Sin efectos aleatorios
+gam0 <- gam(Sources ~ Year + s(SampleDepth), family = gaussian, data = biolum)
 
-gamm.pois <- gamm(count ~ s(DOP) + S(DOY) + s(Wtemp), random = list(site = ~1), family = poisson, data = Salamanders)
+# Intercepto aleatorio
+gamm1 <- gamm(Sources ~ Year + s(SampleDepth), random = list(Station = ~1), family = gaussian, data = biolum)
 
-gamm.bn <- gamm(count ~ s(DOP) + S(DOY) + s(Wtemp), family = nb, random = list(site = ~1), data = Salamanders)
+# Intercepto y "pendiente" aleatorios
+gamm2 <- gamm(Sources ~ Year + s(SampleDepth), random = list(Station = ~1 + SampleDepth|Station), family = gaussian, data = biolum)
 
-AIC(gamm.pois$lme, gamm.bn$lme)
+# Comparación de estructuras de efectos aleatorios
+AIC(gam0, gamm1$lme, gamm2$lme)
 
-summary(gamm.pois$gam)
-plot(gamm.pois$gam)
-
-summary(gamm.nb$gam)
-plot(gamm.nb$gam)
-
-
-
+summary(gamm2$gam)
+gamtabs(gamm2$gam, type = "HTML")
+plot_smooth(gamm2$gam, view = "SampleDepth", plot_all = "Year", rm.ranef = TRUE)
 ```
 
 
@@ -272,8 +284,14 @@ Palacio et al. (2014) realizaron conteos de 44 especies de aves a lo largo de un
 
 - ¿Puede hipotetizar algo sobre la distribuciones de probabilidad utilizada para cada especie y para la abundancia total?
 
+#### Ejercicio 5.2
+La base de datos *ChickWeight* (paquete *datasets*) contiene información sobre el peso (*weight*) de un grupo de pollos (*Chick*) versus el tiempo (*Time*) bajo diferentes dietas (*Diet*).
 
-### Ejercicio 5.2
+- Grafique la relación peso vs tiempo para cada individuo y dieta.
+
+- Considere un modelo adecuado en base a la exploración de datos realizada para relacionar el crecimiento bajo distintas dietas.
+
+### Ejercicio 5.3
 Johnson & Manoukis (2021) analizaron la relación entre el número de capturas de la Broca del Café (*Hypothenemus hampei*, Curculionidae) y distintas variables climáticas en cafetales de Hawai (https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0257861). El archivo corresponde a *Weather_CBB_flight.xls*. Los metadatos están en el archivo *README_JohnsonManoukisPLoSONE2021.xls*.
 
 - Ajuste un modelo que relacione el número de capturas con variables climáticas. Para esto, construya un modelo saturado y compare primero diferentes estructuras de efectos aleatorios. Luego, realice una selección de modelos considerando diferentes efectos fijos.

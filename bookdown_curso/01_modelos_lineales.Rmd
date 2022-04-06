@@ -1,5 +1,5 @@
-# IntroducciÃƒÂ³n a los modelos lineales
-## DefiniciÃƒÂ³n de modelo lineal
+# Introducción a los modelos lineales
+## Definición de modelo lineal
 ```{r modelo lineal}
 set.seed(999)
 layout(matrix(1:4, 2, 2))
@@ -19,7 +19,7 @@ plot(x, y4)
 layout(1)
 ```
 
-## CorrelaciÃƒÂ³n lineal simple
+## Correlación lineal simple
 ```{r corr}
 x <- rnorm(100)
 e <- rnorm(100, mean = 0, sd = 1)
@@ -29,12 +29,12 @@ plot(x, y)
 # Covarianza
 cov(x, y)
 
-# CorrelaciÃƒÂ³n producto-momento de Pearson
+# Correlación producto-momento de Pearson
 cov(x, y)/(sd(x)*sd(y))
 cor(x, y, method = "pearson")
 cor.test(x, y)
 
-# MonotonÃƒÂ­a
+# Monotonía
 layout(matrix(1:4, 2, 2))
 x1 <- seq(1, 10, length = 100)
 y1 <- 0.5 + 2*x1
@@ -47,7 +47,7 @@ y4 <- exp(-5 + x1)/(1 + exp(-5 + x1))
 plot(x1, y4, type = "l")
 layout(1)
 
-# CorrelaciÃƒÂ³n de Spearman
+# Correlación de Spearman
 cor(x1, y4, method = "spearman")
 xrango <- rank(x1) 
 yrango <- rank(y4)
@@ -55,8 +55,8 @@ plot(xrango, yrango)
 cor(xrango, yrango, method = "spearman")
 ```
 
-## Matrices de correlaciÃƒÂ³n
-A continuaciÃƒÂ³n se presentan las medidas del tamanio corporal en adultos de tres especies de pinguinos en islas del ArchipiÃƒÂ©lago Palmer, AntÃƒÂ¡rtida. 
+## Matrices de correlación
+A continuación se presentan las medidas del tamanio corporal en adultos de tres especies de pinguinos en islas del Archipiélago Palmer, Antártida. 
 ```{r mat corr}
 library(palmerpenguins)
 str(penguins)
@@ -71,11 +71,11 @@ matriz.corr
 p.adjust(matriz.corr$P, method = "holm") 
 ```
 
-## RegresiÃƒÂ³n lineal simple
+## Regresión lineal simple
 $$y = beta_0 + beta_1 x + epsilon$$
 $$epsilon sim N(0, sigma^2)$$
 
-```{r regresiÃƒÂ³n simple}
+```{r regresión simple}
 x <- rnorm(100)
 e <- rnorm(100, mean = 0, sd = 1)
 y <- 2 + 1.5*x + e
@@ -89,19 +89,19 @@ summary(reg.simple)
 cov(x, y)/var(x) 
 summary(reg.simple)$coeff
 
-# Coeficiente de determinaciÃƒÂ³n
+# Coeficiente de determinación
 summary(reg.simple)$r.squared 
 SCE <- sum((mean(datos$y) - reg.simple$fitted)^2) # suma de cuadrados explicada
 SCT <- sum((datos$y - mean(datos$y))^2) # suma de cuadrados total
 R2 <- SCE/SCT
 R2
 
-# GrÃƒÂ¡fico
+# Gráfico
 plot(x, y)
 abline(reg.simple, lwd = 2)
 ```
 
-## RelaciÃƒÂ³n entre regresiÃƒÂ³n y correlaciÃƒÂ³n
+## Relación entre regresión y correlación
 ```{r reg vs corr}
 beta <- summary(reg.simple)$coeff[2, 1]
 beta*sd(x)/sd(y)
@@ -110,7 +110,7 @@ sqrt(summary(reg.simple)$r.squared)
 cor(x, y)
 ```
 
-## Matrices de grÃƒÂ¡ficos de dispersiÃƒÂ³n
+## Matrices de gráficos de dispersión
 ```{r scatterplot matrix}
 pairs(Ad[, 3:6], pch = 19, col = "blue", lower.panel = NULL)
 pairs(penguins[, 3:6], pch = 19, col = c("red", "orange", "blue")[penguins$species], lower.panel = NULL)
@@ -123,11 +123,11 @@ pairs.panels(Ad[, 3:6],
              lm = TRUE) # recta
 ```
 
-## RegresiÃƒÂ³n lineal multiple
+## Regresión lineal multiple
 $$y = beta_0 + beta_1 x_1 + beta_2 x_2 + ... + beta_n x_n + epsilon$$
 $$epsilon sim N(0, sigma^2)$$
 
-Analizaremos la relaciÃƒÂ³n entre la longitud del pico (bill_length_mm), masa corporal (body_mass_g) y alto del pico (bill_depth_mm) en pinguinos Adelia ($Pygoscelis adeliae$).
+Analizaremos la relación entre la longitud del pico (bill_length_mm), masa corporal (body_mass_g) y alto del pico (bill_depth_mm) en pinguinos Adelia ($Pygoscelis adeliae$).
 ```{r regresion multiple}
 model.Ad <- lm(bill_length_mm ~ body_mass_g + bill_depth_mm, data = Ad)
 summary(model.Ad)
@@ -136,7 +136,7 @@ sum.cuad.tot <- sum((na.omit(Ad$bill_length_mm) - mean(na.omit(Ad$bill_length_mm
 R2 <- sum.cuad.exp/sum.cuad.tot
 R2
 
-# GrÃƒÂ¡fico de dispersiÃƒÂ³n con plano de regresiÃƒÂ³n
+# Gráfico de dispersión con plano de regresión
 library(plot3D)
 x <- Ad$body_mass_g
 y <- Ad$bill_depth_mm
@@ -158,7 +158,7 @@ model.Ad_cat <- lm(bill_length_mm ~ body_mass_g + bill_depth_cat, data = Ad)
 visreg(model.Ad_cat, "body_mass_g", "bill_depth_cat", gg = TRUE)
 ```
 
-## Variables categÃƒÂ³ricas (= *dummies*)
+## Variables categóricas (= *dummies*)
 ```{r dummies}
 model.penguins1 <- lm(bill_length_mm ~ body_mass_g + species, data = penguins)
 summary(model.penguins1)
@@ -169,7 +169,7 @@ anova(model.penguins2)
 ```
 
 ## Test de *t*
-Se muestran los tiempos de coagulaciÃƒÂ³n sanguÃƒÂƒÃ‚Â­nea (min) en conejos bajo el efecto de dos drogas (A y B).
+Se muestran los tiempos de coagulación sanguÃƒÂƒÃ‚Â­nea (min) en conejos bajo el efecto de dos drogas (A y B).
 ```{r test de t}
 t_coag <- c(8.8, 8.4, 7.9, 8.7, 9.1, 9.6, 9.5, 
             9.9, 9.0, 11.1, 9.6, 8.7, 10.4, 9.5) 
@@ -194,8 +194,8 @@ plantas <- data.frame(fotosint, nutriente)
 t.test(fotosint ~ nutriente, paired = TRUE, data = plantas)
 ```
 
-## AnÃƒÂ¡lisis de la varianza
-Se quiere evaluar si hay diferencias entre la longitud del pico en las tres especies de pingÃƒÂ¼ino del ArchipiÃƒÂ©lago Palmer.
+## Análisis de la varianza
+Se quiere evaluar si hay diferencias entre la longitud del pico en las tres especies de pingÃƒÂ¼ino del Archipiélago Palmer.
 ```{r anova}
 boxplot(penguins$bill_length_mm ~ penguins$species)
 model.spp <- aov(bill_length_mm ~ species, data = na.omit(penguins))
@@ -213,9 +213,9 @@ library(car)
 vif(model.Ad)
 ```
 
-### AnÃƒÂ¡lisis de residuos
+### Análisis de residuos
 ```{r residuos}
-# Regresion
+# Regresión
 hist(model.Ad$residuals)
 qqPlot(model.Ad$residuals)
 layout(matrix(1:4, 2, 2))
@@ -243,21 +243,71 @@ hist(log.abun, breaks = 6, main = "log(Abundancia + 1)")
 peso <- rgamma(n = 1000, shape = 5)
 hist(peso, main = "Peso")
 sqrt.peso <- sqrt(peso)
-hist(sqrt.peso, breaks = 6, main = "Raiz cuadrada del peso")
+hist(sqrt.peso, breaks = 6, main = "Raíz cuadrada del peso")
 
 prop.infectados <- rbinom(n = 1000, size = 10, p = 0.4)/10
-hist(prop.infectados, main = "Proporcion de infectados")
+hist(prop.infectados, main = "Proporción de infectados")
 logit.prop <- log(prop.infectados/(1 - prop.infectados))
-hist(logit.prop, main = "Logit proporcion de infectados", breaks = 6)
+hist(logit.prop, main = "Logit proporción de infectados", breaks = 6)
 layout(1)
 ```
 
 ## Actividades
 
-### Ejercicio 1.1
+### Ejercicios de repaso
+1.1. Calcule:
+  - El logaritmo en base e y en base 10 de 9.
+  - La raíz cuadrada y quinta de 10.
+
+1.2. Generar los siguientes vectores x e y, respectivamente:
+
+1 4 7 11 5 2
+1 2 3 4 5 6
+
+Luego, identifique las operaciones para obtener:
+
+2 6 10 15 10 8
+2 8 14 22 10 4
+3 6 9 12 15 18
+
+1.3. Generar las siguientes secuencias:
+
+1 2 3 4 5 6 7 8 9 10 11
+5 6 7 8 9 10
+5.0 5.5 6.0 6.5 7.0 7.5 8.0 8.5 9.0 9.5 10.0
+10.0 10.1 10.2 10.3 10.4 10.5 10.6 10.7 10.8 10.9 11.0 11.1 11.2 11.3
+1 3 5 7 9
+9 7 5 3 1
+3 3 3 3 3
+1 2 1 2 1 2 1 2 1 2
+"FCNyM" "R" "FCNyM" "R" "FCNyM" "R" "FCNyM" "R"
+ 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5
+
+1.4. Cree un vector que represente una variable aleatoria de 1000 valores con distribución normal estándar.
+  - Grafique un histograma (color naranja), teniendo en cuenta 10 y 15 celdas.
+  - Calcule su media y desvío estándar. 
+
+1.5. Cree un vector que represente una variable aleatoria de 500 valores con distribución de Poisson y diferentes medias (1, 5 y 100).
+  - Para cada distribución, calcule su media y varianza.
+  - Grafique los tres histogramas en el mismo panel ¿Qué observa?
+  - Haga una tabla que muestre la frecuencia para cada conteo y luego realice un gráfico de barras.
+  
+1.6. Utilizando la variable aleatoria del Ejercicio 1.2, construya un marco de datos que incluya además, un factor de 4 niveles con el mismo número de observaciones en cada nivel, de tal forma que los primeros valores pertenezcan al primer nivel, los siguientes al segundo nivel y así sucesivamente.
+  - Calcule la media y desvío estándar para los valores de cada nivel, y luego grfique un histograma para cada uno de ellos.
+  
+1.7. A partir de información de la web, construya un marco de datos que incluya como variables 5 ciudades del mundo, con su área y número de habitantes.
+  - Obtenga cuál es la ciudad con el mayor número de habitantes de su marco de datos y en qué fila se encuentra.
+  - Filtre aquellas ciudades con más de 500 mil habitantes.
+  - Filtre aquellas ciudades con menos de 300 mil habitantes y un área menor a 250 mil ha.
+  - Cree una columna adicional binaria, en la cual para aquellas ciudades con más de 500 mil habitantes se le asigne un 1, o de lo contrario, un 0.
+
+### Ejercicio 1.2
+Se analizó la diversidad de diatomeas (*div*) en cursos de agua (*curso*) con distintos niveles de concentración de zinc (*zinc*). Los datos se  encuentran en el archivo *diatom.xls*. Grafique la distribución de frecuencias de la diversidad de diatomeas y la diversidad como función de la concentración de zinc. Calcule la media, mediana, varianza, desvío estándar y coeficiente de variación de la diversidad para cada concentración de zinc ¿Qué patrón le sugieren los datos?
+
+### Ejercicio 1.3
 Sokal & Rohlf (1997) analizaron el consumo de oxígeno en dos especies de lapas bajo tres concentraciones de agua de mar (*limpets.csv*).
 
-- Calcule las medias y varianzas para cada especie, concentración y combinación de especie y concentración.
+- Calcule la media y varianza para cada especie, concentración y combinación de especie y concentración.
 
 - Realice un gráfico que muestre las diferentes combinaciones entre especie y concentración. Grafique e interprete la interacción entre ambos factores utilizando la función `interaction.plot` del paquete `car`.
 
@@ -265,7 +315,7 @@ Sokal & Rohlf (1997) analizaron el consumo de oxígeno en dos especies de lapas b
 
 - Evalúe los supuestos del modelo.
 
-### Ejercicio 1.2
+### Ejercicio 1.4
 Allison & Cicchetti (1976) compilaron la cantidad de horas de sueño, la morfología y el riesgo de predación (escala de 1 a 5 -menor valor, menor riesgo de predación-) en 62 especies de mamíferos (*allison.csv*).
 
 - Realice un resumen (media, desvío y coeficiente de variación) de las variables del conjunto de datos.

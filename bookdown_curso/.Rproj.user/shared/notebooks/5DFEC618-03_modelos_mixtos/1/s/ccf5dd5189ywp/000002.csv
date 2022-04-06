@@ -1,0 +1,14 @@
+"0","gamtabs(gamm2$gam, type = ""HTML"")
+"
+"1","<!-- html table generated in R 4.0.2 by xtable 1.8-4 package -->
+<!-- Wed Apr 06 11:42:11 2022 -->
+<table border=1>
+<caption align=""bottom"">   </caption>
+  <tr> <td> A. parametric coefficients </td> <td align=""right""> Estimate </td> <td align=""right""> Std. Error </td> <td align=""right""> t-value </td> <td align=""right""> p-value </td> </tr>
+  <tr> <td> (Intercept) </td> <td align=""right""> 404.5061 </td> <td align=""right""> 3430.6824 </td> <td align=""right""> 0.1179 </td> <td align=""right""> 0.9062 </td> </tr>
+  <tr> <td> Year </td> <td align=""right""> -0.1969 </td> <td align=""right""> 1.7141 </td> <td align=""right""> -0.1149 </td> <td align=""right""> 0.9086 </td> </tr>
+   <tr> <td> B. smooth terms </td> <td align=""right""> edf </td> <td align=""right""> Ref.df </td> <td align=""right""> F-value </td> <td align=""right""> p-value </td> </tr>
+  <tr> <td> s(SampleDepth) </td> <td align=""right""> 8.7693 </td> <td align=""right""> 8.7693 </td> <td align=""right""> 54.6450 </td> <td align=""right""> &lt; 0.0001 </td> </tr>
+   <a name=tab.gam></a>
+</table>
+"
