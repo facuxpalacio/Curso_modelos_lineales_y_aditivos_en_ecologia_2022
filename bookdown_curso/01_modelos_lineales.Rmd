@@ -259,7 +259,7 @@ layout(1)
   - El logaritmo en base e y en base 10 de 9.
   - La raíz cuadrada y quinta de 10.
 
-1.2. Generar los siguientes vectores x e y, respectivamente:
+1.2. Genere los siguientes vectores x e y, respectivamente:
 
 1 4 7 11 5 2
 1 2 3 4 5 6
@@ -270,7 +270,7 @@ Luego, identifique las operaciones para obtener:
 2 8 14 22 10 4
 3 6 9 12 15 18
 
-1.3. Generar las siguientes secuencias:
+1.3. Genere las siguientes secuencias:
 
 1 2 3 4 5 6 7 8 9 10 11
 5 6 7 8 9 10
