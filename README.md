@@ -50,11 +50,21 @@ equatiomatic
 
 fields
 
+glmmTMB
+
 gratia
 
 ggplot2
 
+gstat
+
+Hmisc
+
+itsadug
+
 lattice
+
+lme4
 
 lmtest
 
@@ -66,9 +76,21 @@ multcomp
 
 MuMIn (se lee "mumin")
 
+nlme
+
+palmerpenguins
+
 performance
 
+plot3D
+
 pscl
+
+psych
+
+sjPlot
+
+sp
 
 splines
 
