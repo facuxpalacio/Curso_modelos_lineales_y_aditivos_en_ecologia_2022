@@ -286,6 +286,7 @@ Luego, identifique las operaciones para obtener:
 1.4. Cree un vector que represente una variable aleatoria de 1000 valores con distribución normal estándar.
   - Grafique un histograma (color naranja), teniendo en cuenta 10 y 15 celdas.
   - Calcule su media y desvío estándar. 
+  - Calcule qué porcentaje de los datos se encuentra entre 2 desvíos estándar.
 
 1.5. Cree un vector que represente una variable aleatoria de 500 valores con distribución de Poisson y diferentes medias (1, 5 y 100).
   - Para cada distribución, calcule su media y varianza.
