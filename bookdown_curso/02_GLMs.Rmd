@@ -17,6 +17,13 @@ m.bin <- glm(Solea_solea ~ temperature + transparency + salinity, family = binom
 summary(m.bin)
 ```
 
+### Diagnósticos
+```{r validacion glm binomial}
+plot(m.bin)
+library(DHARMa)
+plot(simulateResiduals(fittedModel = m.bin))
+```
+
 ### Bondad del ajuste
 ```{r bondad binomial}
 summary(m.bin)
@@ -43,12 +50,7 @@ exp(m.bin$coeff[2]) # Razon de odds
 ```
 Esto quiere decir que, por unidad de salinidad, la relacion $\frac{P(presencia)}{P(ausencia)}$ (odd) disminuye en 0.90 unidades
 
-### Validación
-```{r validacion glm binomial}
-plot(m.bin)
-library(DHARMa)
-plot(simulateResiduals(fittedModel = m.bin))
-```
+
 
 ### Ecuación
 ```{r ecuacion glm binomial}
@@ -113,7 +115,7 @@ library(DHARMa)
 testDispersion(m.pois)
 ```
 
-#### Validación
+#### Diagnósticos
 ```{r validacion glm poisson}
 residP <- resid(m.qpois, type = "pearson")  # residuos de Pearson 
 residD <- resid(m.qpois, type = "deviance") # residuos de devianza 
@@ -514,7 +516,7 @@ ggplot(data = model.coeff[2:5, ], aes(x = coef, y = estimate)) +
 ## Actividades
 
 ### Ejercicio 3.1
-Los datos del archivo **gala.xls** corresponden a un estudio donde se relevó la diversidad de especies de tortugas de las Islas Galápagos. En cada isla se midieron la riqueza de especies (**Species**), el área (**Area**), la altitud (**Elevation**), distancia a la isla más cercana (**Nearest**), distancia a la isla Santa Cruz (**Scruz**) y el área de la isla adyacente (**Adjacent**). 
+Los datos del archivo **gala.xls** corresponden a un estudio donde se relevó la diversidad de especies de tortugas de las Islas Galápagos. De cada isla se obtuvo la riqueza de especies (**Species**), el área (**Area**), la altitud (**Elevation**), la distancia a la isla más cercana (**Nearest**), la distancia a la isla Santa Cruz (**Scruz**) y el área de la isla más cercana (**Adjacent**). 
 
 - Construya un modelo adecuado que relacione el número de especies endémicas (**Endemics**) con las variables medidas y analice su poder explicativo.
 
@@ -523,7 +525,7 @@ Los datos del archivo **gala.xls** corresponden a un estudio donde se relevó la 
 - Debido a disponibilidad presupuestaria, sólo se podrán concentrar esfuerzos de conservación en islas con un alto número de especies endémicas (>80). ¿A partir de qué valor de elevación el modelo predice más de 25 especies endémicas? Para esto considere valores constantes en el resto de las covariables incluidas en su modelo.
 
 ### Ejercicio 3.2
-Radim et al. (2015) analizaron la ocurrencia de muérdagos (*Loranthus europaeus*) en robles de República Checa, teniendo en cuenta el área basal (**basal_area**), el número de tallos (**Number_of_stems**), el área basal promedio de los tallos (**mean_stem_basal_area**), la competencia con árboles infectados basada en el índice de Hegyi (**CI_stem**) y el rango de los policormones en ciertas direcciones (**Xrange**, **Yrange** y **RangeAvg**) (https://doi.org/10.1371/journal.pone.0127055). El conjunto de datos corresponde al archivo **Matula_mistletoes_csv**.
+Radim et al. (2015) analizaron la ocurrencia de muérdagos (*Loranthus europaeus*) en robles de República Checa, teniendo en cuenta el área basal (**basal_area**), el número de tallos (**Number_of_stems**), el área basal promedio de los tallos (**mean_stem_basal_area**), la competencia con árboles infectados basada en el índice de Hegyi (**CI_stem**) y el rango de los multicaules en ciertas direcciones (**Xrange**, **Yrange** y **RangeAvg**) (https://doi.org/10.1371/journal.pone.0127055). El conjunto de datos corresponde al archivo **Matula_mistletoes_csv**.
 
 - Encontrar un modelo que mejor explique la probabilidad de infección por muérdagos (**infected**) en robles.
 
@@ -535,8 +537,7 @@ Radim et al. (2015) analizaron la ocurrencia de muérdagos (*Loranthus europaeus*
 Tomando como base el conjunto de datos **parasitos.txt** y el modelo ZAP (de dos partes o "valla") ajustado, ajuste un modelo ZAP con los mismos predictores pero de forma manual. Para esto, considere utilizar dos GLMs por separado: uno para la probabilidad de obtener un cero, y otro para la distribución de los conteos. Compare los resultados con el modelo obtenido con la función `hurdle` (paquete `pscl`).
 
 ### Ejercicio 3.4
-Raventos et al. (2019) evaluaron la respuesta de rasgos de historia de vida en varias especies de peces utilizando técnicas reconstructivas de otolitos a diferentes variables ambientales (https://doi.org/10.1111/1365-2656.13435). Para esto, se estimaron varios caracteres de historia de vida, incluyendo la duración larval pelágica (**PLD**), la tasa de crecimiento (**Pre-settlement_growth**), el tamaño de asentamiento (**Size_of_settlement**) y la fecha de puesta (**Hatching_day_date**). El conjunto de datos se encuentra en el archivo **Raventos_etal_2021_JAE_data**. 
-
+Raventos et al. (2019) evaluaron la respuesta de rasgos de historia de vida a diferentes variables ambientales (mediante técnicas reconstructivas de otolitos) en varias especies de peces (https://doi.org/10.1111/1365-2656.13435). Para esto, se estimaron caracteres de historia de vida, incluyendo la duración larval pelágica (**PLD**), la tasa de crecimiento (**Pre-settlement_growth**), el tamaño de asentamiento (**Size_of_settlement**) y la fecha de puesta (**Hatching_day_date**). El conjunto de datos se encuentra en el archivo **Raventos_etal_2021_JAE_data**. 
 - Analice qué factores determinan la respuesta de las tasas de crecimiento de dos especies considerando la temperatura de la superficie del agua (**SST**), la clorofila A mensual promedio en mg/m (**ChLA**) y la estación (**Season**).
 
 - Compare los predictores de los modelos de cada especie ¿Cuál es más importante para cada una y en qué magnitud?

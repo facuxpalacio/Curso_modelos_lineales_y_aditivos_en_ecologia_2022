@@ -256,7 +256,9 @@ layout(1)
 
 ### Ejercicios de repaso
 1.1. Calcule:
+
   - El logaritmo en base e y en base 10 de 9.
+  
   - La raíz cuadrada y quinta de 10.
 
 1.2. Genere los siguientes vectores x e y, respectivamente:
@@ -280,27 +282,50 @@ Luego, identifique las operaciones para obtener:
 9 7 5 3 1
 3 3 3 3 3
 1 2 1 2 1 2 1 2 1 2
-"FCNyM" "R" "FCNyM" "R" "FCNyM" "R" "FCNyM" "R"
+"IML" "R" "IML" "R" "IML" "R" "IML" "R"
  1 1 1 2 2 2 3 3 3 4 4 4 5 5 5
 
 1.4. Cree un vector que represente una variable aleatoria de 1000 valores con distribución normal estándar.
+
   - Grafique un histograma (color naranja), teniendo en cuenta 10 y 15 celdas.
+  
   - Calcule su media y desvío estándar. 
-  - Calcule qué porcentaje de los datos se encuentra entre 2 desvíos estándar.
+  
+  - Calcule qué porcentaje de los datos se encuentra entre 2 desvíos estándares.
 
 1.5. Cree un vector que represente una variable aleatoria de 500 valores con distribución de Poisson y diferentes medias (1, 5 y 100).
+
   - Para cada distribución, calcule su media y varianza.
+  
   - Grafique los tres histogramas en el mismo panel ¿Qué observa?
+  
   - Haga una tabla que muestre la frecuencia para cada conteo y luego realice un gráfico de barras.
   
 1.6. Utilizando la variable aleatoria del Ejercicio 1.2, construya un marco de datos que incluya además, un factor de 4 niveles con el mismo número de observaciones en cada nivel, de tal forma que los primeros valores pertenezcan al primer nivel, los siguientes al segundo nivel y así sucesivamente.
-  - Calcule la media y desvío estándar para los valores de cada nivel, y luego grfique un histograma para cada uno de ellos.
+
+  - Calcule la media y desvío estándar para los valores de cada nivel, y luego grafique un histograma para cada uno de ellos.
   
 1.7. A partir de información de la web, construya un marco de datos que incluya como variables 5 ciudades del mundo, con su área y número de habitantes.
+
   - Obtenga cuál es la ciudad con el mayor número de habitantes de su marco de datos y en qué fila se encuentra.
+  
   - Filtre aquellas ciudades con más de 500 mil habitantes.
+  
   - Filtre aquellas ciudades con menos de 300 mil habitantes y un área menor a 250 mil ha.
-  - Cree una columna adicional binaria, en la cual para aquellas ciudades con más de 500 mil habitantes se le asigne un 1, o de lo contrario, un 0.
+  
+  - Cree una columna adicional binaria, en la cual a aquellas ciudades con más de 500 mil habitantes se le asigne un 1, o de lo contrario, un 0.
+  
+1.8. Simule 1000 valores de una distribución normal (media = 10, desvío = 3) y utilicela como predictor en un modelo de regresión lineal, de forma tal que la variable respuesta cambie 0.2 unidades por unidad del predictor. 
+
+  - Calcule la covarianza y la correlación de Pearson entre ambas variables.
+  
+  - Grafique un diagrama de dispersión junto con el modelo ajustado.
+  
+  - Realice un resumen del modelo y compare las estimaciones de los parámetros obtenidos (intercepto, pendiente y varianza de los residuos) con los poblacionales.
+  
+  - Estandarice ambas variables y calcule la correlación de Pearson ¿Qué observa y por qué?
+  
+  - Con los mismos parámetros, simule ahora 50 valores y obtenga el resumen del modelo ¿Qué sucede con la pendiente y la significancia, y por qué?
 
 ### Ejercicio 1.2
 Se analizó la diversidad de diatomeas (*div*) en cursos de agua (*curso*) con distintos niveles de concentración de zinc (*zinc*). Los datos se  encuentran en el archivo *diatom.xls*. Grafique la distribución de frecuencias de la diversidad de diatomeas y la diversidad como función de la concentración de zinc. Calcule la media, mediana, varianza, desvío estándar y coeficiente de variación de la diversidad para cada concentración de zinc ¿Qué patrón le sugieren los datos?

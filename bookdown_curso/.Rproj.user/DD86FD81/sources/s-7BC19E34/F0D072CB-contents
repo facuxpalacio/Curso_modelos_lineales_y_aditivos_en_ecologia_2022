@@ -1,0 +1,320 @@
+### Teoría PPT
+# Distribuciones del error en una dimensión
+# Residuos normales
+z<-rnorm(100)
+hist(z,xlab="Residuo",ylab="Frecuencia",main="")
+
+# Residuos con distribución de Poisson
+set.seed(101)
+x<-rnorm(100,mean=10,sd=4)
+y<-rpois(100,exp(0.3*x-3))
+plot(x,y,cex=1.2)
+m<-lm(y~x)
+abline(m,lwd=2)
+
+hist(resid(m),xlab="Residuo",ylab="Frecuencia",main="")
+
+# Modelos Poisson
+m<-glm(y~x,family=poisson)
+X<-seq(min(x),max(x),length=500)
+pred<-predict(m,data.frame(x=X),type="response",se=T)
+plot(x,y,cex=1.2)
+lines(X,pred$fit,lwd=2)
+lines(X,pred$fit+1.96*pred$se,lwd=1.8,lty=2,col="blue")
+lines(X,pred$fit-1.96*pred$se,lwd=1.8,lty=2,col="blue")
+
+# sobredispersión
+m1<-glm(y~x,family=quasipoisson)
+plot(x,y,type="n")
+lines(X,pred$fit,lwd=2)
+lines(X,pred$fit+1.96*pred$se,lwd=1.5,col="blue")
+lines(X,pred$fit-1.96*pred$se,lwd=1.5,col="blue")
+lines(X,pred$fit+5*pred$se,lwd=1.5,col="red")
+lines(X,pred$fit-5*pred$se,lwd=1.5,col="red")
+
+# Distribución de Bernoulli - GLM binomial presencia-ausencia
+set.seed(101)
+rbinom(n=100,size=1,p=0.5)
+p<-seq(0,1,length=30)
+q<-1-p
+pq<-p*q
+plot(p,pq,cex=1.2,xlab="Probabilidad de éxito",ylab="Varianza") # Relación media-varianza
+
+x<-rnorm(100,mean=10,sd=4)
+prob<-rbinom(n=100,size=1,p=exp(-5+0.4*x)/(1+exp(-5+0.4*x)))
+hist(prob,xlab="y",ylab="Frecuencia",main="")
+
+plot(x,prob,cex=1.5,ylim=c(0,1),ylab="Probabilidad de ocurrencia")
+lin<-lm(prob~x)
+abline(lin,lwd=2)
+
+plot(x,prob,cex=1.5,ylim=c(0,1),ylab="Probabilidad de ocurrencia")
+X<-seq(min(x),max(x),length=500)
+pred<-exp(-5+0.4*X)/(1+exp(-5+0.4*X))
+lines(X,pred,lwd=2)
+
+# GLM binomial proporciones
+set.seed(101)
+prop<-rbinom(n=100,size=10,p=0.3)/10
+hist(prop,xlab="Proporción",ylab="Frecuencia",main="")
+
+x<-rnorm(100,mean=10,sd=4)
+exitos<-rbinom(n=100,size=10,p=exp(-5+0.4*x)/(1+exp(-5+0.4*x)))
+sample<-10
+prob<-exitos/sample
+
+X<-seq(min(x),max(x),length=500)
+pred<-exp(-5+0.4*X)/(1+exp(-5+0.4*X))
+plot(x,prob,cex=1.5,ylim=c(0,1),ylab="Probabilidad de ocurrencia")
+lines(X,pred,lwd=2)
+
+#### GLM gamma
+set.seed(101)
+x<-seq(0,20,length=500)
+
+y1<-dgamma(x,shape=1,scale=2)
+y2<-dgamma(x,shape=2,scale=2)
+y3<-dgamma(x,shape=3,scale=2)
+y4<-dgamma(x,shape=5,scale=1)
+y5<-dgamma(x,shape=11,scale=0.5)
+
+plot(x,y1,type="l",lwd=2,ylab="Probabilidad")
+lines(x,y2,type="l",lwd=2,col="red")
+lines(x,y3,type="l",lwd=2,col="blue")
+lines(x,y4,type="l",lwd=2,col="green")
+lines(x,y5,type="l",lwd=2,col="violet")
+
+set.seed(101)
+x<-rnorm(100,10,5)
+mu<-1/(0.5+1.2*x)     # función hiperbólica (función de enlace inversa)
+mu<-exp(-0.5+0.2*x)    # función exponencial (función de enlace log)
+k<-2
+theta<-mu/k
+y<-rgamma(n=100,shape=k,scale=theta)
+m<-glm(y~x,family=Gamma(link="inverse"))
+m<-glm(y~x,family=Gamma(link="log"))
+summary(m)
+
+X<-seq(min(x),max(x),length=500)
+pred<-predict(m,data.frame(x=X),type="response")
+plot(x,y,cex=1.5)
+lines(X,pred,lwd=2)
+
+#### Modeos log-lineales
+ambiente<-sort(rep(c("Bosque","Pastizal"),2))
+sp<-rep(c("Cerca del agua","Lejos del agua"),2)
+conteo<-c(32,18,15,40)
+df<-data.frame(sp,ambiente,conteo)
+m1<-glm(conteo~ambiente*sp,family=poisson)
+m2<-glm(conteo~ambiente+sp,family=poisson)
+anova(m1,m2)
+1-pchisq(deviance(m2),m2$df.residual)
+
+AIC(m1,m2)
+
+   ### Tabla de 3x3
+ambiente<-sort(rep(c("Bosque","Pastizal"),4))
+agua<-rep(c("Cerca del agua","Cerca del agua","Lejos del agua","Lejos del agua"),2)
+depredador<-rep(c("Baja","Alta"),4)
+conteo<-c(18,23,15,20,55,10,47,8)
+df<-data.frame(agua,ambiente,depredador,conteo)
+m<-glm(conteo~ambiente*agua*depredador,family=poisson)
+library(MuMIn)
+options(na.action=na.fail)
+dredge(m,rank="AIC")
+
+   # Residuos
+m<-glm(conteo~ambiente*agua*depredador-ambiente:agua:depredador,family=poisson,data=df) # se quita la triple interacción
+residuos<-resid(m,type="pearson")
+
+esperados<-predict(m,type="response")
+tabla<-xtabs(esperados~ambiente+depredador+agua,data=df)
+tabla.resid<-xtabs(residuos~ambiente+depredador+agua,data=df)
+tabla.resid
+
+  # Residuos mejor modelo
+ambiente<-sort(rep(c("Bosque","Pastizal"),2))
+depredador<-rep(c("Baja","Alta"),2)
+conteo<-c(43,33,18,102)
+df<-data.frame(ambiente,depredador,conteo)
+m<-glm(conteo~ambiente+depredador,family=poisson,data=df) # se quita la triple interacción
+residuos<-resid(m,type="pearson")
+
+
+esperados<-predict(m,type="response")
+tabla<-xtabs(esperados~ambiente+depredador,data=df)
+tabla.resid<-xtabs(residuos~ambiente+depredador,data=df)
+tabla
+tabla.resid
+
+
+# Distribuciones del error en 3d (normal)
+attach(cars)
+n=2
+X= cars$speed 
+Y=cars$dist
+df=data.frame(X,Y)
+vX=seq(min(X)-2,max(X)+2,length=n)
+vY=seq(min(Y)-15,max(Y)+15,length=n)
+mat=persp(vX,vY,matrix(0,n,n),zlim=c(0,.1),theta=-30,ticktype ="detailed", box = FALSE)
+reggig=glm(Y~X,data=df,family=gaussian)
+x=seq(min(X),max(X),length=501)
+C=trans3d(x,predict(reggig,newdata=data.frame(X=x),type="response"),rep(0,length(x)),mat)
+lines(C,lwd=2)
+sdgig=sqrt(summary(reggig)$dispersion)
+x=seq(min(X),max(X),length=501)
+y1=qnorm(.95,predict(reggig,newdata=data.frame(X=x),type="response"), sdgig)
+C=trans3d(x,y1,rep(0,length(x)),mat)
+lines(C,lty=2)
+y2=qnorm(.05,predict(reggig,newdata=data.frame(X=x),type="response"), sdgig)
+C=trans3d(x,y2,rep(0,length(x)),mat)
+lines(C,lty=2)
+C=trans3d(X,Y,rep(0,length(X)),mat)
+points(C,pch=19,col="red")
+n=8
+vX=seq(min(X),max(X),length=n)
+mgig=predict(reggig,newdata=data.frame(X=vX))
+sdgig=sqrt(summary(reggig)$dispersion)
+for(j in n:1){
+  stp=251
+  x=rep(vX[j],stp)
+  y=seq(min(min(Y)-15,qnorm(.05,predict(reggig,newdata=data.frame(X=vX[j]),type="response"), sdgig)),max(Y)+15,length=stp)
+  z0=rep(0,stp)
+  z=dnorm(y, mgig[j], sdgig)
+  C=trans3d(c(x,x),c(y,rev(y)),c(z,z0),mat)
+  polygon(C,border=NA,col="light blue",density=40)
+  C=trans3d(x,y,z0,mat)
+  lines(C,lty=2)
+  C=trans3d(x,y,z,mat)
+  lines(C,col="blue")}
+
+
+### Distribución del error en 3d Poisson
+set.seed(101)
+n=2
+X=rnorm(100,10,2)
+Y=rpois(100,exp(-5+0.5*X))
+df=data.frame(X,Y)
+vX=seq(min(X),max(X),length=n)
+vY=seq(min(Y),max(Y),length=n)
+mat=persp(vX,vY,matrix(0,n,n),zlim=c(0,.1),theta=-30,ticktype ="detailed", box = FALSE)
+reggig=glm(Y~X,data=df,family=poisson)
+x=seq(min(X),max(X),length=501)
+C=trans3d(x,predict(reggig,newdata=data.frame(X=x),type="response"),rep(0,length(x)),mat)
+lines(C,lwd=2)
+C=trans3d(X,Y,rep(0,length(X)),mat)
+points(C,pch=19,col="red")
+n=8
+vX=seq(min(X),max(X),length=n)
+mgig=predict(reggig,newdata=data.frame(X=vX),type="response")
+for(j in n:1){
+  stp=251
+  x=rep(vX[j],stp)
+  y=seq(min(min(Y),qpois(.05,predict(reggig,newdata=data.frame(X=vX[j]),type="response"), sdgig)),max(Y)+15,length=stp)
+  z0=rep(0,stp)
+  z=dpois(y, mgig[j])
+  C=trans3d(c(x,x),c(y,rev(y)),c(z,z0),mat)
+  polygon(C,border=NA,col="light blue",density=40)
+  C=trans3d(x,y,z0,mat)
+  segments(C,lty=2)
+  C=trans3d(x,y,z,mat)
+  segments(C,col="blue")}
+
+for(j in n:1){
+  stp=251
+  x=rep(vX[j],stp)
+  y=seq(min(min(Y),qpois(.05,predict(reggig,newdata=data.frame(X=vX[j]),type="response"), sdgig)),max(Y)+15,length=stp)
+  z0=rep(0,stp)
+  z=dpois(y, mgig[j])
+  
+  C=trans3d(x,y,z0,mat)
+  segments(C,lty=2)
+  C=trans3d(x,y,z,mat)
+  segments(C,col="blue")}
+
+#### Máxima verosimilitud 
+# Ejemplo 1 se desea saber la proporción poblacional (56 caras y 44 secas)
+y<-c(rep(c(0,1),c(2,8)))
+n<-length(y)
+cara<-length(y[y>0])
+seca<-n-cara
+param<-seq(0.1,1,length=50)
+fact<-(factorial(n)/(factorial(cara)*factorial(seca)))
+L<-fact*(param^cara)*((1-param)^seca)
+logL<-log(L)
+plot(param,L,xlab="Proporción",ylab="Verosimilitud",cex=1.5)
+plot(param,logL,xlab="Proporción",ylab="Log-verosimilitud",cex=1.5)
+maxL<-param[which.max(logL)]
+maxL
+abline(v=round(maxL,1),lty=2)
+
+# Ejemplo 2 se desea saber la media poblacional
+y<-c(2,0,5,3,1,3,0,4,5,4)
+param<-seq(0,4,length=50)
+mu<-mean(y)
+sigma2<-1
+theta<-c(mu,sigma2)
+
+# Verosimilitud para un solo valor de parámetro (distribución normal)
+normal.L<-function(theta,y){
+  mu<-theta[1]
+  sigma2<-theta[2]
+  n<-length(y)
+  logL<- -0.5*n*log(2*pi) - 0.5*n*log(sigma2) - (1/(2*sigma2))*sum((y-mu)^2)
+  return(logL)
+}
+
+theta<-data.frame(mu=param,sigma2)
+MLE<-numeric()
+for(i in 1:nrow(theta)){
+  th<-as.numeric(theta[i,])
+  MLE[i]<-normal.L(th,y)
+}
+
+plot(param,exp(MLE),xlab="Media",ylab="Verosimilitud",cex=1.5)
+plot(param,-MLE,xlab="Media",ylab="-Log-verosimilitud",cex=1.5)
+maxL<-param[which.max(MLE)]
+maxL
+abline(v=round(maxL,1),lty=2)
+
+#### Devianzas
+set.seed(101)
+x<-rnorm(10,5,2)
+y<-3+5*x+rnorm(10,0,2)
+
+# modelo candidato
+m1<-lm(y~x)
+
+# modelo nulo
+null<-lm(y~1)
+
+# modelo saturado
+sat<-lm(y~I(x^9)+I(x^8)+I(x^7)+I(x^6)+I(x^5)+I(x^4)+I(x^3)+I(x^2)+x)
+X<-data.frame(x=seq(min(x),max(x),length=500))
+pred<-predict(sat,X)
+
+plot(x,y,xlab="X",ylab="Y",cex=1.5,pch=19,col="blue")
+abline(m1,lwd=2)
+abline(h=mean(y),lwd=2,lty=2)
+lines(X$x,pred,lwd=2,col="red")
+
+# Devianza residual
+null<-glm(y~1,family=gaussian)
+m1<-glm(y~x,family=gaussian)
+sat<-glm(y~I(x^9)+I(x^8)+I(x^7)+I(x^6)+I(x^5)+I(x^4)+I(x^3)+I(x^2)+x,family=gaussian)
+
+logL.sat<-0
+deviance(null)
+2*(logL.sat-logLik(null))
+
+deviance(m1)
+2*(logL.sat-logLik(m1))
+
+# Análisis de devianza
+1-pchisq(deviance(m1),df=1)
+
+#### Modelo lineal general
+y<-rnorm(500,10,2)
+hist(y,freq=F,ylab="Frecuencia",main="",ylim=c(0,0.25))
+curve(dnorm(x,mean=mean(y),sd=sd(y)), 
+      col="darkblue",lwd=2,add=T,yaxt="n")

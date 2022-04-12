@@ -9,18 +9,18 @@ c <- 0.3
 peso <- a - (a - b)*exp(-c*tiempo) + rnorm(n = 30, mean = 0, sd = 0.5)
 plot(tiempo, peso)
 
-# Gráfico de residuos
+# GrÃ¡fico de residuos
 m.crec <- lm(log(peso) ~ log(tiempo))
 plot(log(tiempo), log(peso))
 abline(m.crec, lwd = 2, col = "blue")
 plot(log(tiempo), resid(m.crec), xlab = "log(tiempo)", ylab = "Residuos")
 
-# Función de autocorrelación
+# FunciÃ³n de autocorrelaciÃ³n
 plot(acf(peso))
 ```
 
 ## Dependencia espacial
-Ubicación (coordenadas) y concentración de metales pesados en el río Mosa (Europa).
+UbicaciÃ³n (coordenadas) y concentraciÃ³n de metales pesados en el rÃ­o Mosa (Europa).
 ```{r meuse data}
 library(sp)
 library(gstat)
@@ -47,8 +47,8 @@ zinc.variog <- variogram(zinc ~ 1, meuse)
 plot(zinc.variog)
 ```
 
-## Introducción a los modelos mixtos
-A partir de 8 plantas, se contaron el número de flores en 3 inflorescencias por planta y se midió la longitud de los pedicelos. Analizar la relación entre la longitud del pedicelo y el número de flores/inflorescencia.
+## IntroducciÃ³n a los modelos mixtos
+A partir de 8 plantas, se contaron el nÃºmero de flores en 3 inflorescencias por planta y se midiÃ³ la longitud de los pedicelos. Analizar la relaciÃ³n entre la longitud del pedicelo y el nÃºmero de flores/inflorescencia.
 ```{r mixtos}
 id <- factor(sort(rep(1:8, 3)))
 long.pedicelo <- c(1, 1.3, 1.4, 2, 2.2, 2.1, 2.9, 3, 2.8, 3.5, 3.4, 3.7,
@@ -59,24 +59,24 @@ plantas <- data.frame(id, long.pedicelo, nflores)
 plantas
 
 plot(plantas$long.pedicelo, plantas$nflores, pch = 19, cex = 2, 
-     xlab = "Longitud del pedicelo", ylab = "Número de flores")
+     xlab = "Longitud del pedicelo", ylab = "NÃºmero de flores")
 
-# Opción 1: asumimos que las observaciones son independientes
+# OpciÃ³n 1: asumimos que las observaciones son independientes
 m1 <- lm(nflores ~ long.pedicelo, data = plantas)
 summary(m1)
 
-# Opción 2: una media por unidad
+# OpciÃ³n 2: una media por unidad
 xlong.pedicelo <- tapply(long.pedicelo, id, mean)
 xnflores <- tapply(nflores, id, mean)
 plot(xlong.pedicelo, xnflores, pch = 19, cex = 2)
 m2 <- lm(xnflores ~ xlong.pedicelo)
 summary(m2)
 
-# Opción 3: incluir el efecto de la unidad
+# OpciÃ³n 3: incluir el efecto de la unidad
 m3 <- lm(nflores ~ long.pedicelo + id, data = plantas)
 summary(m3)
 
-# Opción 4: modelo mixto de intercepto aleatorio
+# OpciÃ³n 4: modelo mixto de intercepto aleatorio
 library(lme4)
 library(lmerTest)
 m4 <- lmer(nflores ~ long.pedicelo + (1|id), data = plantas)
@@ -97,7 +97,7 @@ ggplot(data = plantas, aes(x = long.pedicelo, y = nflores, col = id)) +
   xlab("Longitud del pedicelo") + ylab("Numero de flores") +
   theme_bw()
 
-# Opción 5: modelo mixto de intercepto y pendiente aleatorios
+# OpciÃ³n 5: modelo mixto de intercepto y pendiente aleatorios
 m5 <- lmer(nflores ~ long.pedicelo + (long.pedicelo|id), data = plantas)
 summary(m5)
 ranef(m5)
@@ -134,9 +134,9 @@ theme_bw()
 ```
 
 ## Modelos lineales generalizados mixtos
-Palacio et al. (2014) estudiaron la selección natural mediada por aves frugÃƒÂ­voras sobre rasgos de los frutos de *Celtis tala* (frutos Celtis 2013.txt), incluyendo el diametro (diam), peso (peso), concentración de azúcares (az), peso de pulpa (pulpa), peso de semilla (sem) y relación peso de pulpa/peso de semilla (pulpa.sem). Para esto se midieron 4-10 frutos por árbol en 24 árboles y 4 parches de bosque.
+Palacio et al. (2014) estudiaron la selecciÃ³n natural mediada por aves frugÃƒÂƒÃ‚Â­voras sobre rasgos de los frutos de *Celtis tala* (frutos Celtis 2013.txt), incluyendo el diametro (diam), peso (peso), concentraciÃ³n de azÃºcares (az), peso de pulpa (pulpa), peso de semilla (sem) y relaciÃ³n peso de pulpa/peso de semilla (pulpa.sem). Para esto se midieron 4-10 frutos por Ã¡rbol en 24 Ã¡rboles y 4 parches de bosque.
 
-#### DiseÃƒÂ±o anidado
+#### DiseÃƒÂƒÃ‚Â±o anidado
 ```{r glmm}
 library(glmmTMB)
 library(lme4)
@@ -145,18 +145,18 @@ library(sjPlot)
 library(equatiomatic)
 celtis <- read.delim("C:/RD/frutos Celtis 2013.csv", sep = ";")
 table(celtis$planta)
-table(celtis$planta, celtis$parche) # Es un diseño anidado?
+table(celtis$planta, celtis$parche) # Es un diseÃ±o anidado?
 
 lmm.m0 <- lm(sem ~ diam, data = celtis)
 lmm.m1 <- glmmTMB(sem ~ diam + (1|planta), family = gaussian, data = celtis)
 lmm.m2 <- glmmTMB(sem ~ diam + (1|parche/planta), family = gaussian, data = celtis)
 
-# Comparación de modelos
+# ComparaciÃ³n de modelos
 AIC(lmm.m0, lmm.m1, lmm.m2)
 r.squaredGLMM(lmm.m1)
 summary(lmm.m1)
 
-# Gráfico
+# GrÃ¡fico
 diam.new <- seq(min(celtis$diam, na.rm = TRUE), max(celtis$diam, na.rm = TRUE), length = 5)
 newdata <- expand.grid(diam.new, celtis$planta, stringsAsFactors = TRUE)
 colnames(newdata) <- c("diam", "planta")
@@ -196,12 +196,12 @@ extract_eq(lmm.m1)
 extract_eq(lmm.m2)
 ```
 
-#### DiseÃƒÂƒÃ‚Â±o cruzado
+#### DiseÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â±o cruzado
 ```{r cruzado}
 data(Penicillin)
 str(Penicillin)
 summary(Penicillin)
-table(Penicillin$plate, Penicillin$sample) # Es un diseÃƒÂƒÃ‚Â±o cruzado?
+table(Penicillin$plate, Penicillin$sample) # Es un diseÃƒÂƒÃ‚ÂƒÃƒÂ‚Ã‚Â±o cruzado?
 
 lmm.pen <- lmer(diameter ~ 1 + (1|plate) + (1|sample), data = Penicillin)
 summary(lmm.pen)
@@ -209,16 +209,16 @@ summary(lmm.pen)
 # Tabla resumen
 tab_model(lmm.pen)
 
-# Gráfico de efectos aleatorios
+# GrÃ¡fico de efectos aleatorios
 plot_model(lmm.pen, type = "re")
 ```
 
 ## Modelos mixtos con estructura espacial
-Palacio et al. (2017) estudiaron el consumo de frutos por aves en $Psychotria  carthagenensis$ en un bosque secundario pedemontano de las Yungas (Psychotria_El_Corte_2012.txt). Se quiere analizar si el peso del fruto (*x.peso*) se relaciona con el número de infrutescencias (*n.infrut*).
+Palacio et al. (2017) estudiaron el consumo de frutos por aves en $Psychotria  carthagenensis$ en un bosque secundario pedemontano de las Yungas (Psychotria_El_Corte_2012.txt). Se quiere analizar si el peso del fruto (*x.peso*) se relaciona con el nÃºmero de infrutescencias (*n.infrut*).
 ```{r glmm espacial}
 library(glmmTMB)
 psycho <- read.table("C:/RD/Psychotria_El_Corte_2012.txt", header = TRUE)
-hist(psycho$x.diam, xlab = "Diámetro promedio del fruto", ylab = "Frecuencia")
+hist(psycho$x.diam, xlab = "DiÃ¡metro promedio del fruto", ylab = "Frecuencia")
 plot(psycho$x, psycho$y, pch = 19)
 
 psycho$pos <- numFactor(psycho$x, psycho$y)
@@ -231,7 +231,7 @@ AIC(lm.no_espacial, glmm.espacial)
 ```
 
 ## Modelos aditivos generalizados mixtos
-Gillibrand et al. (2007) analizaron la bioluminiscencia pelágica (*Sources*) a lo largo de un gradiente de profundidad (*SampleDepth*) en el NE del Océano Atlántico (*ISIT.txt*).
+Gillibrand et al. (2007) analizaron la bioluminiscencia pelÃ¡gica (*Sources*) a lo largo de un gradiente de profundidad (*SampleDepth*) en el NE del OcÃ©ano AtlÃ¡ntico (*ISIT.txt*).
 ```{r explo}
 library(ggplot2)
 library(mgcv)
@@ -268,7 +268,7 @@ gamm2 <- gam(Sources ~ Year +  s(SampleDepth) +
 gamm3 <- gam(Sources ~ Year + s(SampleDepth, Station, bs = "fs", m = 1, k = 5), # Smooth aleatorio
              family = gaussian, data = biolum)
 
-# Comparación de estructuras de efectos aleatorios
+# ComparaciÃ³n de estructuras de efectos aleatorios
 AIC(gam0, gamm1, gamm2, gamm3)
 
 summary(gamm2)
@@ -277,7 +277,7 @@ acf_resid(gamm2, split_pred = "Station")
 gamtabs(gamm2, type = "HTML")
 ```
 
-### Gráficos 
+### GrÃ¡ficos 
 ```{r graficos gamms}
 
 # Efectos fijos
@@ -285,59 +285,59 @@ plot_smooth(gamm2, view = "SampleDepth", plot_all = "Year", rm.ranef = TRUE)
 plot_parametric(gamm2, pred = list(Year = c("2001", "2002")), rm.ranef = TRUE)
 # Efectos aleatorios
 plot_smooth(gamm2, view = "SampleDepth", cond = list(Year = "2001", Station = "3"), col = "red", ylim = c(-10, 50))
-plot_smooth(gamm1, view = "SampleDepth", cond = list(Year = "2001", Station = "16"), col = "blue", add = TRUE) # Agregar estación 16
+plot_smooth(gamm1, view = "SampleDepth", cond = list(Year = "2001", Station = "16"), col = "blue", add = TRUE) # Agregar estaciÃ³n 16
 ```
 
 ## Actividades
 
 #### Ejercicio 5.1
-Las siguientes variables corresponden a de datos de actividad fotosintética bajo dos concentraciones de nutrientes aplicados a las mismas 10 plantas (la planta 1 se encuentra primera en ambos vectores, la planta 2 se encuentra segunda y así sucesivamente):
+Las siguientes variables corresponden a de datos de actividad fotosintÃ©tica bajo dos concentraciones de nutrientes aplicados a las mismas 10 plantas (la planta 1 se encuentra primera en ambos vectores, la planta 2 se encuentra segunda y asÃ­ sucesivamente):
 
 fotosint_N1 <- c(1.42, 1.4, 1.44, 1.44, 1.42, 1.46, 1.49, 1.5, 1.42, 1.48)
 fotosint_N2 <- c(1.38, 1.36, 1.47, 1.39, 1.43, 1.41, 1.43, 1.45, 1.36, 1.46)
 
-- En base al diseño experimental, identifique posibles efectos fijos y aleatorios. Justifique.
+- En base al diseÃ±o experimental, identifique posibles efectos fijos y aleatorios. Justifique.
 
-- Considere un modelo adecuado para relacionar el efecto de los tratamientos sobre la actividad fotosintética.
+- Considere un modelo adecuado para relacionar el efecto de los tratamientos sobre la actividad fotosintÃ©tica.
 
-- Realice un gráfico que muestre los efectos aleatorios, e interprete la varianza del efecto aleatorio y la residual.
+- Realice un grÃ¡fico que muestre los efectos aleatorios, e interprete la varianza del efecto aleatorio y la residual.
 
-- Utilice un test de *t* pareado para analizar este conjunto de datos. Compare los parámetros de los efectos fijos estimados de ambos análisis ¿Qué puede concluir?
+- Utilice un test de *t* pareado para analizar este conjunto de datos. Compare los parÃ¡metros de los efectos fijos estimados de ambos anÃ¡lisis Â¿QuÃ© puede concluir?
 
-- Grafique los individuos vs la tasa fotosintética y distinga cada tratamiento con un color diferente. Conceptualmente y teniendo en cuenta este gráfico, así como el de efectos aleatorios ¿Qué piensa que pasaría si ajustara un modelo mixto de intercepto y pendiente aleatorios a este conjunto de datos? Compruebelo.
+- Grafique los individuos vs la tasa fotosintÃ©tica y distinga cada tratamiento con un color diferente. Conceptualmente y teniendo en cuenta este grÃ¡fico, asÃ­ como el de efectos aleatorios Â¿QuÃ© piensa que pasarÃ­a si ajustara un modelo mixto de intercepto y pendiente aleatorios a este conjunto de datos? Compruebelo.
 
 #### Ejercicio 5.1
-Palacio et al. (2014) realizaron conteos de 44 especies de aves a lo largo de un año en 10 puntos de muestreos (**id**) localizados en un bosque de ligustro y arbustales circundantes (**habitat.type**). El set de datos corresponde a **abundancia_aves.txt**.
+Palacio et al. (2014) realizaron conteos de 44 especies de aves a lo largo de un aÃ±o en 10 puntos de muestreos (**id**) localizados en un bosque de ligustro y arbustales circundantes (**habitat.type**). El set de datos corresponde a **abundancia_aves.txt**.
 
-- Analice los factores que se relacionan con la abundancia total de individuos y con las siguientes dos especies: Tordo músico (**agebad**) y Benteveo (**pitsul**).
+- Analice los factores que se relacionan con la abundancia total de individuos y con las siguientes dos especies: Tordo mÃºsico (**agebad**) y Benteveo (**pitsul**).
 
 - Identifique los efectos fijos y aleatorios incluidos en cada modelo.
 
-- Según el problema de estudio y el modelo especificado ¿A qué tipo de diseño corresponde?
+- SegÃºn el problema de estudio y el modelo especificado Â¿A quÃ© tipo de diseÃ±o corresponde?
 
-- En base a los resultados obtenidos ¿Tiene sentido incluir efectos aleatorios? Justifique.
+- En base a los resultados obtenidos Â¿Tiene sentido incluir efectos aleatorios? Justifique.
 
-- ¿Puede hipotetizar algo sobre la distribuciones de probabilidad utilizada para cada especie y para la abundancia total?
+- Â¿Puede hipotetizar algo sobre la distribuciones de probabilidad utilizada para cada especie y para la abundancia total?
 
 #### Ejercicio 5.2
-La base de datos *ChickWeight* (paquete *datasets*) contiene información sobre el peso (*weight*) de un grupo de pollos (*Chick*) versus el tiempo (*Time*) bajo diferentes dietas (*Diet*).
+La base de datos *ChickWeight* (paquete *datasets*) contiene informaciÃ³n sobre el peso (*weight*) de un grupo de pollos (*Chick*) versus el tiempo (*Time*) bajo diferentes dietas (*Diet*).
 
-- Grafique la relación peso vs tiempo para cada individuo y dieta.
+- Grafique la relaciÃ³n peso vs tiempo para cada individuo y dieta.
 
-- Considere un modelo adecuado en base a la exploración de datos realizada para relacionar el crecimiento bajo distintas dietas.
+- Considere un modelo adecuado en base a la exploraciÃ³n de datos realizada para relacionar el crecimiento bajo distintas dietas.
 
-- Muestre uno o más gráficos que represente el modelo ajustado.
+- Muestre uno o mÃ¡s grÃ¡ficos que represente el modelo ajustado.
 
 ### Ejercicio 5.3
-Johnson & Manoukis (2021) analizaron la relación entre el número de capturas de la Broca del Café (*Hypothenemus hampei*, Curculionidae) y distintas variables climáticas en cafetales de Hawai (https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0257861). El archivo corresponde a *Weather_CBB_flight.xls*. Los metadatos están en el archivo *README_JohnsonManoukisPLoSONE2021.xls*.
+Johnson & Manoukis (2021) analizaron la relaciÃ³n entre el nÃºmero de capturas de la Broca del CafÃ© (*Hypothenemus hampei*, Curculionidae) y distintas variables climÃ¡ticas en cafetales de Hawai (https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0257861). El archivo corresponde a *Weather_CBB_flight.xls*. Los metadatos estÃ¡n en el archivo *README_JohnsonManoukisPLoSONE2021.xls*.
 
-- Ajuste un modelo que relacione el número de capturas con variables climáticas. Para esto, construya un modelo saturado y compare primero diferentes estructuras de efectos aleatorios. Luego, realice una selección de modelos considerando diferentes efectos fijos.
+- Ajuste un modelo que relacione el nÃºmero de capturas con variables climÃ¡ticas. Para esto, construya un modelo saturado y compare primero diferentes estructuras de efectos aleatorios. Luego, realice una selecciÃ³n de modelos considerando diferentes efectos fijos.
 
 ### Ejercicio 5.4
-Price et al. (2015) realizaron conteos de salamandras (**count**) en cursos de agua en 23 sitios (**site**) muestreados 4 veces cada uno (**sample**). En cada curso tomaron las siguientes variables (estandarizadas): minería (**mined**), cobertura (**cover**), días desde la última precipitación (**DOP**), temperatura del agua (**Wtemp**) y día del año (**DOY**).
+Price et al. (2015) realizaron conteos de salamandras (**count**) en cursos de agua en 23 sitios (**site**) muestreados 4 veces cada uno (**sample**). En cada curso tomaron las siguientes variables (estandarizadas): minerÃ­a (**mined**), cobertura (**cover**), dÃ­as desde la Ãºltima precipitaciÃ³n (**DOP**), temperatura del agua (**Wtemp**) y dÃ­a del aÃ±o (**DOY**).
 
-La base de datos está disponible en el objeto `Salamander` del paquete `glmmTMB`.
+La base de datos estÃ¡ disponible en el objeto `Salamander` del paquete `glmmTMB`.
 
-- En base a hipótesis biológicas, construya un modelo que explique la abundancia de salamandras en sitios minados y no minados.
+- En base a hipÃ³tesis biolÃ³gicas, construya un modelo que explique la abundancia de salamandras en sitios minados y no minados.
 
 
