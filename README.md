@@ -2,7 +2,7 @@
 
 Docente a cargo: Dr. Facundo Xavier Palacio, Universidad Nacional de La Plata.
 
-Colaborador docente:  Dr. Mariano Ordano, Instituto de Ecología Regional y Universidad Nacional de Tucumán.
+Colaborador docente:  Dr. Mariano Ordano, Instituto de Ecología Regional, Universidad Nacional de Tucumán, y Fundación Miguel Lillo.
 
 Coordinadora académica: Dr. Romina D. Fernández, Instituto de Ecología Regional y Universidad Nacional de Tucumán.
 
