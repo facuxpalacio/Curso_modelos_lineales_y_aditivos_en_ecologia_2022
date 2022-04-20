@@ -1,0 +1,580 @@
+library(dplyr)
+plants <- read.table("C:/RD/Data Passiflora AOS_2020_plants.txt", head=T)
+plants$crop <- plants$crop + plants$fruver
+az <- read.table("C:/RD/full_azucar_Passi_AOS.txt", head = T)
+Pu <- az %>% filter(sample_type=="pulp") %>% 
+       group_by(idplant) %>% 
+       summarise(X=mean(sugar_bx_obs,na.rm=T))
+write.csv(Pu,"pulp.csv")
+Pe <- az %>% filter(sample_type=="peel") %>% 
+       group_by(idplant) %>% 
+       summarise(X=mean(true_sugar_bx,na.rm=T))
+write.csv(Pe,"peel.csv")
+fruits <- read.table("C:/RD/Data Passiflora AOS_2020_fruits.txt", head = T)
+
+### Correlations among fruit traits
+library(corrr)
+library(ggraph)
+library(igraph)
+round(cor(fruits[, c("mass_g", "seedn", "diam", "pulp_sugar_bx", "peel_sugar_bx")],
+      use = "complete.obs"), 2)
+
+cors <- fruits %>% 
+  filter(idpopulation == "La_Plata") %>%
+  select(mass_g, length, diam, seedn, pulp_sugar_bx, peel_sugar_bx) %>%
+  correlate() %>% 
+  stretch() %>%
+  graph_from_data_frame(directed = FALSE)
+
+ggraph(cors) + #5x4in
+  geom_edge_link(aes(edge_alpha = abs(r), edge_width = abs(r), color = r)) +
+  guides(edge_alpha = "none", edge_width = "none") +
+  scale_edge_colour_gradientn(limits = c(-1, 1), 
+                              colors = c("firebrick2", "dodgerblue2")) +
+  geom_node_point(color = "black", size = 8) +
+  geom_node_text(aes(label = c("FM", "FL", "FD", "SN", "PuC", "PeC")), 
+                 repel = TRUE) 
+
+#fruits %>% 
+#  filter(idpopulation == "La_Plata") %>%
+#  select(mass_g, length, diam, seedn, pulp_sugar_bx, peel_sugar_bx) %>%
+#  correlate() %>% 
+#  network_plot(min_cor = 0, repel = TRUE)
+
+#### Fruit traits comparison between urbanization levels
+library(lme4)
+library(lmerTest)
+library(multcomp)
+library(MASS)
+
+mcrop <- glm.nb(crop ~ idpopulation, data = plants)
+anova(mcrop)
+boxplot(plants$crop ~ plants$idpopulation)
+multcrop <- glht(mcrop, linfct = mcp(idpopulation = "Tukey"))
+summary(multcrop)
+
+mrem <- glm.nb(frupic ~ idpopulation, data = plants)
+anova(mrem)
+boxplot(plants$frupic ~ plants$idpopulation)
+multrem <- glht(mrem, linfct = mcp(idpopulation = "Tukey"))
+summary(multrem)
+
+mvis <- glm(visits ~ idpopulation, family = poisson, data = plants)
+anova(mvis, test = "Chisq")
+boxplot(plants$visits ~ plants$idpopulation)
+multvis <- glht(mvis, linfct = mcp(idpopulation = "Tukey"))
+summary(multvis)
+
+mdiam <- lmer(diam ~ habitat + (1|idplant), data = fruits)
+anova(mdiam)
+boxplot(fruits$diam ~ fruits$habitat)
+multdiam <- glht(mdiam, linfct = mcp(habitat = "Tukey"))
+summary(multdiam)
+
+mseed <- lmer(seedn ~ habitat + (1|idplant), data = fruits)
+anova(mseed)
+boxplot(fruits$seedn ~ fruits$habitat)
+multseed <- glht(mseed, linfct = mcp(habitat = "Tukey"))
+summary(multseed)
+
+pulp <- subset(az, sample_type == "pulp")
+mbx_pulp <- lmer(sugar_bx_obs ~ idpopulation + (1|idplant), data = pulp)
+anova(mbx_pulp)
+boxplot(pulp$sugar_bx_obs ~ pulp$idpopulation)
+multpulp <- glht(mbx_pulp, linfct = mcp(idpopulation = "Tukey"))
+summary(multpulp)
+
+peel <- subset(az, sample_type == "peel")
+mbx_peel <- lmer(true_sugar_bx ~ idpopulation + (1|idplant), data = peel)
+anova(mbx_peel)
+boxplot(peel$true_sugar_bx ~ peel$idpopulation)
+multpeel<- glht(mbx_peel, linfct = mcp(idpopulation = "Tukey"))
+summary(multpeel)
+
+##### PLOTS
+library(ggplot2)
+library(ggpubr)
+
+plants$idpopulation <- factor(plants$idpopulation, 
+                            levels = c("Magdalena", "Ranchos", "La_Plata"),
+                            labels = c("rural", "semiurban", "urban"))
+crop <- ggplot(data = plants, aes(x = idpopulation, y = crop)) +
+  geom_boxplot(color = "black", outlier.shape = NA, width = 0.5)+
+  geom_jitter(position = position_jitter(0.2), color = "orange", 
+              alpha = 0.6, size = 2) +
+  xlab("Urbanization level") + ylab("Fruit crop size") +
+  geom_text(data = data.frame(x = 1:3, y = c(30, 130, 110)), 
+            aes(x = x, y = y, label = c("a", "b", "b")))
+
+rem <- ggplot(data = plants, aes(x = idpopulation, y = frupic)) +
+  geom_boxplot(color = "black", outlier.shape = NA, width = 0.5)+
+  geom_jitter(position = position_jitter(0.2), color = "orange", 
+              alpha = 0.6, size = 2) +
+  xlab("Urbanization level") + ylab("Number of fruits pecked") +
+  geom_text(data = data.frame(x = 1:3, y = c(14, 72, 25)), 
+            aes(x = x, y = y, label = c("a", "b", "c")))
+
+vis <- ggplot(data = plants, aes(x = idpopulation, y = visits)) +
+  geom_boxplot(color = "black", outlier.shape = NA, width = 0.5)+
+  geom_jitter(position = position_jitter(0.2), color = "orange", 
+              alpha = 0.6, size = 2) +
+  xlab("Urbanization level") + ylab("Number of visits (individuals/0.5 h)") +
+  geom_text(data = data.frame(x = 1:3, y = c(0.3, 1.2, 0.3)), 
+            aes(x = x, y = y, label = c("a", "b", "ab")))
+
+diam <- ggplot(data = fruits, aes(x = habitat, y = diam)) +
+  geom_boxplot(color = "black", outlier.shape = NA, width = 0.5) +
+  geom_jitter(position = position_jitter(0.2), color = "orange", 
+              alpha = 0.6, size = 2) +
+  xlab("Urbanization level") + ylab("Fruit diameter (mm)") +
+  geom_text(data = data.frame(x = 1:3, y = c(44, 52, 47)), 
+            aes(x = x, y = y, label = c("a", "b", "a")))
+
+seedn <- ggplot(data = fruits, aes(x = habitat, y = seedn)) +
+  geom_boxplot(color = "black", outlier.shape = NA, width = 0.5)+
+  geom_jitter(position = position_jitter(0.2), color = "orange", 
+              alpha = 0.6, size = 2) +
+  xlab("Urbanization level") + ylab("Seed number") +
+  geom_text(data = data.frame(x = 1:3, y = c(315, 350, 360)), 
+            aes(x = x, y = y, label = c("ns", "ns", "ns")))
+
+pulp$idpopulation <- factor(pulp$idpopulation, 
+                            levels = c("Magdalena", "Ranchos", "La_Plata"),
+                            labels = c("rural", "semiurban", "urban"))
+pulp_bx <- ggplot(data = pulp, aes(x = idpopulation, y = sugar_bx_obs)) +
+  geom_boxplot(color = "black", outlier.shape = NA, width = 0.5)+
+  geom_jitter(position = position_jitter(0.2), color = "orange", 
+              alpha = 0.6, size = 2) +
+  xlab("Urbanization level") + ylab("Pulp soluble carbohydrate content (?Bx)") +
+  geom_text(data = data.frame(x = 1:3, y = c(22, 30, 29)), 
+            aes(x = x, y = y, label = c("a", "b", "c")))
+
+peel$idpopulation <- factor(peel$idpopulation, 
+                            levels = c("Magdalena", "Ranchos", "La_Plata"),
+                            labels = c("rural", "semiurban", "urban"))
+peel_bx <- ggplot(data = peel, aes(x = idpopulation, y = true_sugar_bx)) +
+  geom_boxplot(color = "black", outlier.shape = NA, width = 0.5)+
+  geom_jitter(position = position_jitter(0.2), color = "orange", 
+              alpha = 0.6, size = 2) +
+  xlab("Urbanization level") + ylab("Peel soluble carbohydrate content (?Bx)") +
+  geom_text(data = data.frame(x = 1:3, y = c(5, 8.7, 8)), 
+            aes(x = x, y = y, label = c("a", "b", "b")))
+  
+ggarrange(crop, diam, seedn, pulp_bx, peel_bx, 
+          nrow = 3, ncol = 2)
+
+###########################################################
+### NATURAL SELECTION ANALYSIS
+library(dplyr)
+library(broom)
+library(boot)
+library(gsg)
+plants <- read.table("C:/RD/Data Passiflora AOS_2020_plants.txt", head=T)
+lp <- plants %>% filter(idpopulation == "La_Plata")
+ra <- plants %>% filter(idpopulation == "Ranchos")
+mg <- plants %>% filter(idpopulation == "Magdalena")
+
+# Absolute fitness
+plants %>% group_by(idpopulation) %>% summarise(Wf = mean(fruit_rem),
+                                                Wv = mean(visits),
+                                                opp_f = var(fruit_rem/mean(fruit_rem)),
+                                                opp_v = var(visits/mean(visits)))
+
+moments.differentials(z = lp[, c("crop", "x.diam", "x.pulp.sugar", "x.peel.sugar")],
+                      W = lp$visits, n.boot = 1000, standardized = T)
+moments.differentials(z = ra[, c("crop", "x.diam", "x.pulp.sugar", "x.peel.sugar")],
+                      W = ra$visits, n.boot = 1000, standardized = T)
+moments.differentials(z = mg[, c("crop", "x.diam", "x.pulp.sugar", "x.peel.sugar")],
+                      W = mg$visits, n.boot = 1000, standardized = T)
+
+# 1st column: population identifier
+# 2nd column: fitness
+# Rest of columns: traits
+grad <- function(data, original = c(1:nrow(data))){
+  data <- data[original, ] # for boot function
+  traits  <- colnames(data)[-c(1:2)]
+  z <- scale(data[, traits]) # standardize traits
+  Wrel <- data[, 2]/mean(data[, 2]) # relative fitness
+  df <- data.frame(z, Wrel)
+  # linear gradients
+  model.lin <- as.formula(paste("Wrel", paste(traits, collapse = " + "), sep = " ~ "))
+  m1 <- lm(formula = model.lin, data = df)
+  # nonlinear gradients
+  part1 <- paste("(", paste(traits, collapse = " + "), ")^2", sep = "")
+  part2 <- paste("I(0.5*(", traits, "^2))", sep = "", collapse = " + ")
+  model.qua <- as.formula <- paste("Wrel", paste(part1, part2, sep = " + "), sep = " ~ ")
+  m2 <- lm(formula = model.qua, data = df)
+  
+  sel.grad <- c(m1$coefficients[-1], m2$coefficients[-c(1:ncol(df))])
+  return(sel.grad)
+}
+
+# gradients per population
+# 1st column: population identifier
+# 2nd column: fitness
+# Rest of columns: traits
+df <- plants[, c("idpopulation", "fruit_rem", 
+                 "crop", "x.diam", "x.pulp.sugar", "x.peel.sugar")]
+idpop <- unique(df[, 1])
+pops <- split(df, df[, 1])
+npops <- length(pops)
+sel.grad.pops <- list()
+
+for(i in 1:npops){
+  data_pop <- subset(df, df[, 1] == idpop[i])
+  sel.grad.pops[[i]] <- grad(data = data_pop)
+}
+
+names(sel.grad.pops) <- idpopulation
+as.data.frame(sel.grad.pops)  # gradients
+
+set.seed(999)
+nsamples <- 1000
+boot.grad <- list()
+
+for(i in 1:npops){
+  data_pop <- subset(df, df[, 1] == idpop[i])
+  boot.replicates <- boot(data = data_pop, statistic = grad, R = nsamples)
+  
+  # confidence intervals
+  CI <- list()
+  ngrad <- length(boot.replicates$t0)
+  for(j in 1:ngrad){
+    CI[[j]] <- boot.ci(boot.replicates, conf = 0.95, 
+                       type = "bca", index = j)$bca[4:5]
+  }
+ 
+names(CI) <- names(boot.replicates$t0)
+  
+  # Gradientes, SEs, CIs and p-values
+  boot.grad[[i]] <- data.frame(grad = boot.replicates$t0, 
+                               se = apply(boot.replicates$t, 2, sd, na.rm = TRUE),
+                               low.CI = t(as.data.frame(CI)[1, ]),
+                               upp.CI = t(as.data.frame(CI)[2, ]),
+                               p = apply(boot.replicates$t, 2, 
+                                         function(x) length(x[x<0])/nsamples))
+}
+
+names(boot.grad) <- idpop
+boot.grad
+
+boot_results <- do.call("rbind", boot.grad)
+ngrad <- nrow(boot.grad[[1]])
+boot_results$idpopulation <- factor(sort(rep(idpopulation, ngrad)))
+boot_results$habitat <- factor(boot_results$idpopulation, 
+                               levels = c("Magdalena", "Ranchos", "La_Plata"),
+                               labels = c("Rural", "Semiurban", "Urban"))
+boot_results$grad_type <- rep(c(rep("linear", 4), rep("nonlinear", 10)), npops)
+traits  <- colnames(df)[-c(1:2)]
+boot_results$trait <- rep(c(rep(traits, 2), 
+                            paste(traits[1], traits[2]),
+                            paste(traits[1], traits[3]),
+                            paste(traits[1], traits[4]),
+                            paste(traits[2], traits[3]),
+                            paste(traits[2], traits[4]),
+                            paste(traits[3], traits[4])), npops)
+
+linear_results <- subset(boot_results, grad_type == "linear")
+nonlinear_results <- subset(boot_results, grad_type == "nonlinear")
+
+# Linear gradients
+ggplot(data = linear_results, aes(x = habitat, y = grad, col = trait)) +
+  geom_point(position = position_dodge(0.5), size = 3) +
+  geom_errorbar(aes(ymin = X1, ymax = X2), 
+                width = 0, position = position_dodge(0.5)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  xlab("Habitat type") + ylab("Linear gradient")
+
+# Nonlinear gradients
+ggplot(data = nonlinear_results, aes(x = habitat, y = grad, col = trait)) +
+  geom_point(position = position_dodge(0.5), size = 3) +
+  geom_errorbar(aes(ymin = X1, ymax = X2), 
+                width = 0, position = position_dodge(0.5)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  xlab("Habitat type") + ylab("Nonlinear gradient") + ylim(-3, 3)
+
+###########################################################
+### PIECEWISE SEMs
+library(piecewiseSEM)
+library(MASS)
+plants <- read.table("C:/RD/Data Passiflora AOS_2020_plants.txt", head=T)
+f_urb <- factor(plants$idpopulation, 
+       levels = c("La_Plata", "Magdalena", "Ranchos"),
+       labels = c("3", "1", "2"))
+plants$urb_level <- as.numeric(levels(f_urb)[f_urb])
+plants$urb_level2 <- plants$urb_level^2
+plants <- na.omit(plants[, c(7:8, 11, 13, 17, 20:22)])
+
+
+#### Raw estimates assuming different error distributions
+## M1. Influence of urbanization on bird visitation
+M1 <- psem(
+  # Influence of urbanization on fruit traits
+  glm.nb(crop ~ urb_level + urb_level2, data = plants), 
+  lm(x.diam ~ urb_level + urb_level2, data = plants), 
+  lm(x.nseeds ~ urb_level + urb_level2, data = plants),
+  lm(x.peel.sugar ~ urb_level + urb_level2 + crop, data = plants), 
+  
+  # Fruit traits and fitness
+  glm(visits ~ urb_level + urb_level2 + crop + x.diam + x.nseeds + x.peel.sugar,
+         family = poisson, data = plants),
+  
+  # Correlation between fitness measures
+  fruit_rem %~~% visits,
+  
+  # Fruit trait correlations
+  x.nseeds %~~% x.diam,
+  
+  # Urbanization term correlations
+  urb_level2 %~~% urb_level
+)
+
+resM1 <- summary(M1, direction = c("x.nseeds <- crop"))
+resM1$Cstat
+resM1
+
+# M2. Influence of urbanization on fruit removal
+M2 <- psem(
+  # Influence of urbanization on fruit traits
+  glm.nb(crop ~ urb_level + urb_level2, data = plants), 
+  lm(x.diam ~ urb_level + urb_level2, data = plants), 
+  lm(x.nseeds ~ urb_level + urb_level2, data = plants),
+  lm(x.peel.sugar ~ urb_level + urb_level2 + crop, data = plants), 
+  
+  # Fruit traits and fitness
+  glm(visits ~ urb_level + urb_level2 + crop + x.diam + x.nseeds + x.peel.sugar, 
+      family = poisson, data = plants),
+  
+  # New paths: influence of fruit traits and urbanization on fruit removal
+  glm.nb(fruit_rem ~ urb_level + urb_level2 + crop + x.diam + x.nseeds + x.peel.sugar, 
+         data = plants),
+  
+  # Correlation between fitness measures
+  fruit_rem %~~% visits,
+  
+  # Fruit trait correlations
+  x.nseeds %~~% x.diam,
+  
+  # Urbanization term correlations
+  urb_level2 %~~% urb_level
+)
+  
+
+resM2 <- summary(M2, direction = c("x.nseeds <- crop"))
+resM2
+
+
+# M3. Urbanization has an interactive effect with fruit traits on selection
+M3 <- psem(
+  # Influence of urbanization on fruit traits
+  glm.nb(crop ~ urb_level + urb_level2, data = plants), 
+  lm(x.diam ~ urb_level + urb_level2 , data = plants), 
+  lm(x.nseeds ~ urb_level + urb_level2, data = plants),
+  lm(x.peel.sugar ~ urb_level + urb_level2 + crop, data = plants),
+  
+  # New paths: Fruit traits and fitness interaction with urbanization
+  glm(visits ~ urb_level*crop + urb_level*x.diam + urb_level*x.nseeds + 
+      urb_level*x.peel.sugar, family = poisson, 
+      data = plants),
+  
+  # Correlation between fitness measures
+  fruit_rem %~~% visits,
+  
+  # Fruit trait correlations
+  x.nseeds %~~% x.diam,
+  
+  # Urbanization term correlations
+  urb_level2 %~~% urb_level
+) 
+  
+resM3 <- summary(M3, direction = c("x.nseeds <- crop"))
+resM3
+
+# M4. Visits are influenced by fruit traits rather than by urbanization,
+# fruit removal is not influenced by urbanization
+M4 <- psem(
+  # Influence of urbanization on fruit traits
+  glm.nb(crop ~ urb_level + urb_level2, data = plants), 
+  lm(x.diam ~ urb_level + urb_level2, data = plants), 
+  lm(x.nseeds ~ urb_level + urb_level2, data = plants),
+  lm(x.peel.sugar ~ urb_level + urb_level2 + crop, data = plants), 
+  
+  # Fruit traits and fitness
+  glm(visits ~ crop + x.diam + x.nseeds + x.peel.sugar, 
+      family = poisson, data = plants),
+  
+  # Correlation between fitness measures
+  fruit_rem %~~% visits,
+  
+  # Fruit trait correlations
+  x.nseeds %~~% x.diam,
+  
+  # Urbanization term correlations
+  urb_level2 %~~% urb_level
+)
+
+resM4 <- summary(M4, direction = c("x.nseeds <- crop"))
+
+resM1$IC
+resM2$IC
+resM3$IC
+resM4$IC
+resM4$IC[2] - resM1$IC[2]
+resM4
+
+write.csv(coefs(M1),"coefs_M1.csv")
+write.csv(resM1$dTable,"dTable_M1.csv")
+write.csv(resM1$Cstat,"Cstat_M1.csv")
+write.csv(resM1$IC,"IC_M1.csv")
+write.csv(resM1$R2,"R2_M1.csv")
+
+write.csv(coefs(M2),"coefs_M2.csv")
+write.csv(resM2$dTable,"dTable_M2.csv")
+write.csv(resM2$Cstat,"Cstat_M2.csv")
+write.csv(resM2$IC,"IC_M2.csv")
+write.csv(resM2$R2,"R2_M2.csv")
+
+write.csv(coefs(M3),"coefs_M3.csv")
+write.csv(resM3$dTable,"dTable_M3.csv")
+write.csv(resM3$Cstat,"Cstat_M3.csv")
+write.csv(resM3$IC,"IC_M3.csv")
+write.csv(resM3$R2,"R2_M3.csv")
+
+write.csv(coefs(M4),"coefs_M4.csv")
+write.csv(resM4$dTable,"dTable_M4.csv")
+write.csv(resM4$Cstat,"Cstat_M4.csv")
+write.csv(resM4$IC,"IC_M4.csv")
+write.csv(resM4$R2,"R2_M4.csv")
+
+
+####################################################################################
+#### Selection gradients
+plants <- read.table("C:/RD/Data Passiflora AOS_2020_plants.txt", head=T)
+f_urb <- factor(plants$idpopulation, 
+                levels = c("La_Plata", "Magdalena", "Ranchos"),
+                labels = c("3", "1", "2"))
+plants$urb_level <- as.numeric(levels(f_urb)[f_urb])
+plants$urb_level2 <- plants$urb_level^2
+zdata <- na.omit(data.frame(urb_level = plants$urb_level,
+                            urb_level2 = plants$urb_level2,
+                            zcrop = scale(plants$crop),
+                            zdiam = scale(plants$x.diam),
+                            znseeds = scale(plants$x.nseeds),
+                            zpeel.sugar = scale(plants$x.peel.sugar),
+                            wvisits = plants$visits/mean(plants$fruit_rem),
+                            wfruit_rem = plants$fruit_rem/mean(plants$fruit_rem)))
+
+## M1. Influence of urbanization on bird visitation
+M1 <- psem(
+  # Influence of urbanization on fruit traits
+  lm(zcrop ~ urb_level + urb_level2, data = zdata), 
+  lm(zdiam ~ urb_level + urb_level2, data = zdata), 
+  lm(znseeds ~ urb_level + urb_level2, data = zdata),
+  lm(zpeel.sugar ~ urb_level + urb_level2 + zcrop, data = zdata), 
+  
+  # Fruit traits and fitness
+  lm(wvisits ~ urb_level + urb_level2 + zcrop + zdiam + znseeds + zpeel.sugar,
+      data = zdata),
+  
+  # Correlation between fitness measures
+  wfruit_rem %~~% wvisits,
+  
+  # Fruit trait correlations
+  znseeds %~~% zdiam,
+  
+  # Urbanization term correlations
+  urb_level2 %~~% urb_level
+)
+
+resM1 <- summary(M1)
+resM1$Cstat
+resM1
+
+# M2. Influence of urbanization on fruit removal
+M2 <- psem(
+  # Influence of urbanization on fruit traits
+  lm(zcrop ~ urb_level + urb_level2, data = zdata), 
+  lm(zdiam ~ urb_level + urb_level2, data = zdata), 
+  lm(znseeds ~ urb_level + urb_level2, data = zdata),
+  lm(zpeel.sugar ~ urb_level + urb_level2 + zcrop, data = zdata), 
+  
+  # Fruit traits and fitness
+  lm(wvisits ~ urb_level + urb_level2 + zcrop + zdiam + znseeds + zpeel.sugar, 
+    data = zdata),
+  
+  # New paths: influence of fruit traits and urbanization on fruit removal
+  lm(wfruit_rem ~ urb_level + urb_level2 + zcrop + zdiam + znseeds + zpeel.sugar, 
+         data = zdata),
+  
+  # Correlation between fitness measures
+  wfruit_rem %~~% wvisits,
+  
+  # Fruit trait correlations
+  znseeds %~~% zdiam,
+  
+  # Urbanization term correlations
+  urb_level2 %~~% urb_level
+)
+
+
+resM2 <- summary(M2)
+resM2
+
+
+# M3. Urbanization has an interactive effect with fruit traits on selection
+M3 <- psem(
+  # Influence of urbanization on fruit traits
+  lm(zcrop ~ urb_level + urb_level2, data = zdata), 
+  lm(zdiam ~ urb_level + urb_level2, data = zdata), 
+  lm(znseeds ~ urb_level + urb_level2, data = zdata),
+  lm(zpeel.sugar ~ urb_level + urb_level2, data = zdata),
+  
+  # New paths: Fruit traits and fitness interaction with urbanization
+  lm(wvisits ~ urb_level*zcrop + urb_level*zdiam + urb_level*znseeds + 
+        urb_level*zpeel.sugar, data = zdata),
+  
+  # Correlation between fitness measures
+  wfruit_rem %~~% wvisits,
+  
+  # Fruit trait correlations
+  znseeds %~~% zdiam,
+  
+  # Urbanization term correlations
+  urb_level2 %~~% urb_level
+) 
+
+resM3 <- summary(M3)
+resM3
+
+# M4. Visits are influenced by fruit traits rather than by urbanization,
+# fruit removal is not influenced by urbanization
+M4 <- psem(
+  # Influence of urbanization on fruit traits
+  lm(zcrop ~ urb_level + urb_level2, data = zdata), 
+  lm(zdiam ~ urb_level + urb_level2, data = zdata), 
+  lm(znseeds ~ urb_level + urb_level2, data = zdata),
+  lm(zpeel.sugar ~ urb_level + urb_level2 + zcrop, data = zdata), 
+  
+  # Fruit traits and fitness
+  lm(wvisits ~ zcrop + zdiam + znseeds + zpeel.sugar, data = zdata),
+  
+  # Correlation between fitness measures
+  wfruit_rem %~~% wvisits,
+  
+  # Fruit trait correlations
+  znseeds %~~% zdiam,
+  
+  # Urbanization term correlations
+  urb_level2 %~~% urb_level
+)
+
+resM4 <- summary(M4)
+
+resM1$IC
+resM2$IC
+resM3$IC
+resM4$IC
+resM4$IC[2] - resM1$IC[2]
+resM4
+
+write.csv(resM4$coefficients, "zcoeff.M4.csv")
