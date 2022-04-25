@@ -1,0 +1,10 @@
+"0","library(caper)"
+"2","Loading required package: ape
+"
+"2","Loading required package: MASS
+"
+"2","Loading required package: mvtnorm
+"
+"0","shorebird <- comparative.data(phy = shorebird.tree, data = shorebird.data, names.col = Species, vcv = TRUE)"
+"2","Error in is.data.frame(data) : objeto 'shorebird.data' no encontrado
+"

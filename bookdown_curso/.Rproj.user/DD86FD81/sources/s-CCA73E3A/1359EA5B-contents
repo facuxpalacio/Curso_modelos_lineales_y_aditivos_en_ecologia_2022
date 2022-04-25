@@ -134,9 +134,9 @@ theme_bw()
 ```
 
 ## Modelos lineales generalizados mixtos
-Palacio et al. (2014) estudiaron la selección natural mediada por aves frugÃÂ­voras sobre rasgos de los frutos de *Celtis tala* (frutos Celtis 2013.txt), incluyendo el diametro (diam), peso (peso), concentración de azúcares (az), peso de pulpa (pulpa), peso de semilla (sem) y relación peso de pulpa/peso de semilla (pulpa.sem). Para esto se midieron 4-10 frutos por árbol en 24 árboles y 4 parches de bosque.
+Palacio et al. (2014) estudiaron la selección natural mediada por aves frugívoras sobre rasgos de los frutos de *Celtis tala* (frutos Celtis 2013.txt), incluyendo el diametro (diam), peso (peso), concentración de azúcares (az), peso de pulpa (pulpa), peso de semilla (sem) y relación peso de pulpa/peso de semilla (pulpa.sem). Para esto se midieron 4-10 frutos por árbol en 24 árboles y 4 parches de bosque.
 
-#### DiseÃÂ±o anidado
+#### Diseño anidado
 ```{r glmm}
 library(glmmTMB)
 library(lme4)
@@ -196,12 +196,12 @@ extract_eq(lmm.m1)
 extract_eq(lmm.m2)
 ```
 
-#### DiseÃÂÃÂ±o cruzado
+#### Diseño cruzado
 ```{r cruzado}
 data(Penicillin)
 str(Penicillin)
 summary(Penicillin)
-table(Penicillin$plate, Penicillin$sample) # Es un diseÃÂÃÂ±o cruzado?
+table(Penicillin$plate, Penicillin$sample) # Es un diseño cruzado?
 
 lmm.pen <- lmer(diameter ~ 1 + (1|plate) + (1|sample), data = Penicillin)
 summary(lmm.pen)
@@ -228,6 +228,32 @@ lm.no_espacial <- lm(x.diam ~ n.infrut, data = psycho)
 glmm.espacial <- glmmTMB(x.diam ~ n.infrut + exp(pos + 0|group), family = gaussian, data = psycho)
 summary(glmm.espacial)
 AIC(lm.no_espacial, glmm.espacial)
+```
+
+## Modelos mixtos con filogenia
+Lislevand & Thomas (2006) estudiaron la evolución del tamaño del huevo en aves playeras (`data(shorebirds)`). En particular, nos interesa analizar la relación entre la masa del huevo (*Egg.mass*) y la masa corporal de la hembra (*F.Mass*).
+```{r filo glmm}
+library(caper)
+data(shorebird)
+plot(shorebird.tree)
+shorebird <- comparative.data(phy = shorebird.tree, data = shorebird.data, names.col = Species, vcv = TRUE)
+hist(shorebird.data$Egg.Mass)
+plot(shorebird.data$F.Mass, shorebird.data$Egg.Mass)
+
+normal.phyloglmm <- pgls(log(Egg.Mass) ~ F.Mass, data = shorebird)
+summary(normal.phyloglmm)
+
+normal.glm <- glm(log(Egg.Mass) ~ F.Mass, data = shorebird.data)
+summary(normal.glm)
+
+AIC(normal.phyloglmm, normal.glm)
+
+library(phylolm)
+shorebird.data$Egg.Mass.binary <- ifelse(shorebird.data$Egg.Mass > 30, 1, 0)
+plot(shorebird.data$F.Mass, shorebird.data$Egg.Mass.binary)
+binomial.glm <- phyloglm(Egg.Mass.binary ~ F.Mass, phy = shorebird.tree, data = shorebird.data, method = "logistic_MPLE", boot = 100, btol = 30)
+summary(binomial.glm)
+
 ```
 
 ## Modelos aditivos generalizados mixtos
