@@ -56,7 +56,7 @@ cor(xrango, yrango, method = "spearman")
 ```
 
 ## Matrices de correlación
-A continuación se presentan las medidas del tamanio corporal en adultos de tres especies de pinguinos en islas del Archipiélago Palmer, Antártida. 
+A continuación se presentan las medidas del tamaño corporal en adultos de tres especies de pinguinos en islas del Archipiélago Palmer, Antártida. 
 ```{r mat corr}
 library(palmerpenguins)
 str(penguins)
@@ -72,8 +72,8 @@ p.adjust(matriz.corr$P, method = "holm")
 ```
 
 ## Regresión lineal simple
-$$y = beta_0 + beta_1 x + epsilon$$
-$$epsilon sim N(0, sigma^2)$$
+$$y = \beta_0 + \beta_1 x + \epsilon$$
+$$\epsilon \sim N(0, \sigma^2)$$
 
 ```{r regresión simple}
 x <- rnorm(100)
@@ -90,11 +90,11 @@ cov(x, y)/var(x)
 summary(reg.simple)$coeff
 
 # Coeficiente de determinación
-summary(reg.simple)$r.squared 
 SCE <- sum((mean(datos$y) - reg.simple$fitted)^2) # suma de cuadrados explicada
 SCT <- sum((datos$y - mean(datos$y))^2) # suma de cuadrados total
 R2 <- SCE/SCT
 R2
+summary(reg.simple)$r.squared 
 
 # Gráfico
 plot(x, y)
@@ -117,17 +117,17 @@ pairs(penguins[, 3:6], pch = 19, col = c("red", "orange", "blue")[penguins$speci
 
 library(psych)
 pairs.panels(Ad[, 3:6], 
-             method = "pearson", # correlacion
-             density = FALSE,  # graficos de densidad
+             method = "pearson", # correlación
+             density = FALSE,  # gráficos de densidad
              ellipses = FALSE, # elipses de confianza
              lm = TRUE) # recta
 ```
 
 ## Regresión lineal multiple
-$$y = beta_0 + beta_1 x_1 + beta_2 x_2 + ... + beta_n x_n + epsilon$$
-$$epsilon sim N(0, sigma^2)$$
+$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + \epsilon$$
+$$\epsilon \sim N(0, \sigma^2)$$
 
-Analizaremos la relación entre la longitud del pico (bill_length_mm), masa corporal (body_mass_g) y alto del pico (bill_depth_mm) en pinguinos Adelia ($Pygoscelis adeliae$).
+Analizaremos la relación entre la longitud del pico (´bill_length_mm´), masa corporal (`body_mass_g`) y alto del pico (`bill_depth_mm`) en pinguinos Adelia ($Pygoscelis adeliae$).
 ```{r regresion multiple}
 model.Ad <- lm(bill_length_mm ~ body_mass_g + bill_depth_mm, data = Ad)
 summary(model.Ad)
@@ -153,7 +153,7 @@ scatter3D(x, y, z, pch = 18, cex = 2,
 
 library(visreg)
 Ad$bill_depth_cat <- cut(Ad$bill_depth_mm, 3, 
-                         labels = c("Small", "Intermediate", "Large"))
+                         labels = c("Pequeño", "Mediano", "Grande"))
 model.Ad_cat <- lm(bill_length_mm ~ body_mass_g + bill_depth_cat, data = Ad)
 visreg(model.Ad_cat, "body_mass_g", "bill_depth_cat", gg = TRUE)
 ```
@@ -169,7 +169,7 @@ anova(model.penguins2)
 ```
 
 ## Test de *t*
-Se muestran los tiempos de coagulación sanguÃƒÂƒÃ‚Â­nea (min) en conejos bajo el efecto de dos drogas (A y B).
+Se muestran los tiempos de coagulación sanguínea (min) en conejos bajo el efecto de dos drogas (A y B).
 ```{r test de t}
 t_coag <- c(8.8, 8.4, 7.9, 8.7, 9.1, 9.6, 9.5, 
             9.9, 9.0, 11.1, 9.6, 8.7, 10.4, 9.5) 
@@ -179,7 +179,7 @@ t.test(t_coag ~ droga, var.equal = TRUE, data = coag)
 model.coag <- lm(t_coag ~ droga, data = coag)
 summary(model.coag)
 X_drogaA <- mean(t_coag[1:7])
-X_drogaB <-  mean(t_coag[8:14])
+X_drogaB <- mean(t_coag[8:14])
 X_drogaB - X_drogaA
 
 # Homogeneidad de varianzas (test de F)
@@ -195,7 +195,7 @@ t.test(fotosint ~ nutriente, paired = TRUE, data = plantas)
 ```
 
 ## Análisis de la varianza
-Se quiere evaluar si hay diferencias entre la longitud del pico en las tres especies de pingÃƒÂ¼ino del Archipiélago Palmer.
+Se quiere evaluar si hay diferencias entre la longitud del pico en las tres especies de pingüino del Archipiélago Palmer.
 ```{r anova}
 boxplot(penguins$bill_length_mm ~ penguins$species)
 model.spp <- aov(bill_length_mm ~ species, data = na.omit(penguins))
@@ -231,8 +231,7 @@ bartlett.test(resid.model.spp ~ species, data = na.omit(penguins))
 ```
 
 ## Transformaciones
-$$log(y) = y' = beta_0 + beta_1 x_1 + beta_2 x_2 + ... + beta_n x_n + epsilon$$
-
+$$log(y) = y' = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + \epsilon$$
 ```{r transformaciones}
 layout(matrix(1:6, 2, 3))
 abundancia <- rpois(n = 1000, lambda = 4)
@@ -328,10 +327,10 @@ Luego, identifique las operaciones para obtener:
   - Con los mismos parámetros, simule ahora 50 valores y obtenga el resumen del modelo ¿Qué sucede con la pendiente y la significancia, y por qué?
 
 ### Ejercicio 1.2
-Se analizó la diversidad de diatomeas (*div*) en cursos de agua (*curso*) con distintos niveles de concentración de zinc (*zinc*). Los datos se  encuentran en el archivo *diatom.xls*. Grafique la distribución de frecuencias de la diversidad de diatomeas y la diversidad como función de la concentración de zinc. Calcule la media, mediana, varianza, desvío estándar y coeficiente de variación de la diversidad para cada concentración de zinc ¿Qué patrón le sugieren los datos?
+Se analizó la diversidad de diatomeas (`div`) en cursos de agua (`curso`) con distintos niveles de concentración de zinc (`zinc`). Los datos se  encuentran en el archivo `diatom.xls`. Grafique la distribución de frecuencias de la diversidad de diatomeas y la diversidad como función de la concentración de zinc. Calcule la media, mediana, varianza, desvío estándar y coeficiente de variación de la diversidad para cada concentración de zinc ¿Qué patrón le sugieren los datos?
 
 ### Ejercicio 1.3
-Sokal & Rohlf (1997) analizaron el consumo de oxígeno en dos especies de lapas bajo tres concentraciones de agua de mar (*limpets.csv*).
+Sokal & Rohlf (1997) analizaron el consumo de oxígeno en dos especies de lapas bajo tres concentraciones de agua de mar (`limpets.csv`).
 
 - Calcule la media y varianza para cada especie, concentración y combinación de especie y concentración.
 
@@ -342,13 +341,13 @@ Sokal & Rohlf (1997) analizaron el consumo de oxígeno en dos especies de lapas b
 - Evalúe los supuestos del modelo.
 
 ### Ejercicio 1.4
-Allison & Cicchetti (1976) compilaron la cantidad de horas de sueño, la morfología y el riesgo de predación (escala de 1 a 5 -menor valor, menor riesgo de predación-) en 62 especies de mamíferos (*allison.csv*).
+Allison & Cicchetti (1976) compilaron la cantidad de horas de sueño, la morfología y el riesgo de predación (escala de 1 a 5 -menor valor, menor riesgo de predación-) en 62 especies de mamíferos (`allison.csv`).
 
 - Realice un resumen (media, desvío y coeficiente de variación) de las variables del conjunto de datos.
 
 - Grafique histogramas para cada una de las variables y diagramas de dispersión para cada par de variables.
 
-- Ajuste un modelo adecuado entre longevidad en años (*LifeSpan*), masa corporal en kg (*BodyWt*) y  predación (*Predation*).
+- Ajuste un modelo adecuado entre longevidad en años (`LifeSpan`), masa corporal en kg (`BodyWt`) y  predación (`Predation`).
 
 - Grafique la relación entre masa corporal y longevidad, para cada nivel de predación ¿Puede observar algún patrón que haga reconsiderar el modelo ajustado en el inciso anterior?
 

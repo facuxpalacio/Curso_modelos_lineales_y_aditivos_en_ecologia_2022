@@ -1,23 +1,23 @@
 # Modelos no lineales
-## Regresión no paramétrica
-Se tomaron medidas del peso seco (`peso.seco`) y del largo (`largo`) de una especie de almeja (`almejas.txt`). Analizar la relación entre el largo y el peso seco.
+## RegresiÃ³n no paramÃ©trica
+Se tomaron medidas del peso seco (`peso.seco`) y del largo (`largo`) de una especie de almeja (`almejas.txt`). Analizar la relaciÃ³n entre el largo y el peso seco.
 ```{r loess}
 almejas <- read.table("C:/RD/almejas.txt", header = TRUE)
 str(almejas)
 
-# opción 1
+# opciÃ³n 1
 plot(almejas$largo, almejas$peso.seco, pch = 19, xlab = "Largo", ylab = "Peso")
 loess.model <- loess(peso.seco ~ largo, data = almejas)
 largo <- seq(min(almejas$largo), max(almejas$largo), length = 500)
 predPeso <- predict(loess.model, newdata = data.frame(largo))
 lines(largo, predPeso, col = "blue", lwd = 2)
 
-# opción 2
+# opciÃ³n 2
 library(car)
 scatterplot(peso.seco ~ largo, data = almejas, regLine = FALSE, smooth = TRUE)
 ```
 
-## Regresión polinómica
+## RegresiÃ³n polinÃ³mica
 ```{r reg polinomica}
 # Simulamos dos variables
 set.seed(99)
@@ -39,22 +39,22 @@ summary(fun.trozos)
 pred <- predict(fun.trozos)
 df <- data.frame(x, x.categorica, y, pred)
 
-# Sin líneas verticales
+# Sin lÃ­neas verticales
 library(ggplot2)
 ggplot(data = df, aes(x, pred, group = x.categorica)) + 
   geom_line(col = "blue", size = 1) +
   geom_point(data = df, aes(x, y))
 
-# Con líneas verticales
+# Con lÃ­neas verticales
 ggplot(data = df, aes(x, pred)) + 
   geom_step(col = "blue", size = 1) +
   geom_point(data = df, aes(x, y))
 ```
 
-## Splines de regresión
+## Splines de regresiÃ³n
 ### Polinomios a trozos
 ```{r polinomios a trozos}
-# Ejemplo de un polinomio cúbico con 1 nodo
+# Ejemplo de un polinomio cÃºbico con 1 nodo
 data.split <- data.frame(x, y, x2cat = cut(x, breaks = 2))
 pol.cat1 <- lm(y ~ x + I(x^2) + I(x^3), data = subset(data.split, x2cat == "(-3.06,-0.247]"))
 pol.cat2 <- lm(y ~ x + I(x^2) + I(x^3), data = subset(data.split, x2cat == "(-0.247,2.57]"))
@@ -69,19 +69,19 @@ ggplot() +
   geom_point(data = data.split, aes(x, y)) +
   geom_vline(xintercept = -0.247, linetype = "dashed")
 
-# Comparación entre la regresión polinómica y splines de regresión
+# ComparaciÃ³n entre la regresiÃ³n polinÃ³mica y splines de regresiÃ³n
 library(splines)
 reg.pol <- lm(y ~ poly(x, degree = 10))
 plot(x, y, col = "grey", ylim = c(-25, 30))
 
-nodos <- seq(-3, 2.5, length = 10) # Ubicación de los nodos
-spline.cub <- lm(y ~ bs(x, degree = 3, knots = nodos)) # Spline cúbico
+nodos <- seq(-3, 2.5, length = 10) # UbicaciÃ³n de los nodos
+spline.cub <- lm(y ~ bs(x, degree = 3, knots = nodos)) # Spline cÃºbico
 spline.nat <- lm(y ~ ns(x, knots = nodos)) # Spline natural
 
-# Gráficos de los modelos
+# GrÃ¡ficos de los modelos
 x.new <- seq(min(x), max(x), length = 500)
-predP <- predict(reg.pol, newdata = data.frame(x = x.new)) # regresión polinómica
-predC <- predict(spline.cub, newdata = data.frame(x = x.new)) # spline cúbico
+predP <- predict(reg.pol, newdata = data.frame(x = x.new)) # regresiÃ³n polinÃ³mica
+predC <- predict(spline.cub, newdata = data.frame(x = x.new)) # spline cÃºbico
 predN <- predict(spline.nat, newdata = data.frame(x = x.new)) # spline natural
 lines(x.new, predC, col = "darkgreen", lwd = 3)
 lines(x.new, predP, col = "red", lwd = 3)
@@ -93,14 +93,14 @@ legend("topleft", legend = c("Reg polinomica", "Spline C", "Spline N"), col = c(
 ## Splines de suavizado
 ```{r splines de suavizado}
 splines.suav <- smooth.spline(x, y, nknots = 10)
-splines.suav.cv <- smooth.spline(x, y, cv = TRUE) # lambda óptimo
+splines.suav.cv <- smooth.spline(x, y, cv = TRUE) # lambda Ã³ptimo
 splines.suav.cv$df
 predS <- splines.suav$y
 predS.cv <- splines.suav.cv$y
 
 layout(matrix(1:2, nrow = 1, ncol = 2))
 plot(x, y, col = "grey", ylim = c(-25, 30))
-lines(x.new, predC, col = "red", lwd = 3) # spline cúbico
+lines(x.new, predC, col = "red", lwd = 3) # spline cÃºbico
 lines(x.new, predN, col = "blue", lwd = 3) # spline natural
 legend("topleft", legend = c("Spline C", "Spline N"), col = c("red", "blue"), cex = 0.8, lty = 1, bty = "n")
 
@@ -112,7 +112,7 @@ layout(1)
 ```
 
 ## Modelos aditivos generalizados
-Gillibrand et al. (2007) analizaron la bioluminiscencia pelágica (`Sources`) a lo largo de un gradiente de profundidad (`SampleDepth`) en el NE del Océano Atlántico (`ISIT.txt`).
+Gillibrand et al. (2007) analizaron la bioluminiscencia pelÃ¡gica (`Sources`) a lo largo de un gradiente de profundidad (`SampleDepth`) en el NE del OcÃ©ano AtlÃ¡ntico (`ISIT.txt`).
 ```{r GAMs}
 library(lattice)
 library(ggplot2)
@@ -128,13 +128,13 @@ xyplot(Sources ~ SampleDepth|Month, data = biolum)
 gam1 <- lm(Sources ~ ns(SampleDepth, df = 5) + Month, data = biolum)
 # GAM con spline de suavizado (5 nodos)
 gam2 <- gam(Sources ~ s(SampleDepth, k = 5, bs = "cr") + Month, method = "REML", data = biolum)
-# GAM con spline de suavizado (validación cruzada)
+# GAM con spline de suavizado (validaciÃ³n cruzada)
 gam3 <- gam(Sources ~ s(SampleDepth, bs = "cr") + Month, method = "REML", data = biolum)
 summary(gam1)
 summary(gam2)
 summary(gam3)
 
-# Gráficos del modelo
+# GrÃ¡ficos del modelo
 SampleDepth <- seq(min(biolum$SampleDepth), max(biolum$SampleDepth), length = 100)
 Month <- as.factor(unique(biolum$Month))
 newdata <- expand.grid(SampleDepth = SampleDepth, Month = Month)
@@ -156,7 +156,7 @@ draw(gam3)
 ### GAM con otras distribuciones e interacciones
 ```{r GAM Gamma}
 biolum$Sources_0.1 <- biolum$Sources + 0.1
-# Modelo sin interacción
+# Modelo sin interacciÃ³n
 gam4 <- gam(Sources_0.1 ~ s(SampleDepth, bs = "cr") + Month, family = Gamma, method = "REML", data = biolum)
 summary(gam4)
 
@@ -169,7 +169,7 @@ ggplot() + geom_point(data = biolum, aes(x = SampleDepth, y = Sources, color = M
 
 draw(gam4)
 
-# Modelo con interacción (variable continua y categórica)
+# Modelo con interacciÃ³n (variable continua y categÃ³rica)
 gam5 <- gam(Sources_0.1 ~ s(SampleDepth) + s(SampleDepth, by = Month, bs = "cr"), family = Gamma, method = "REML", data = biolum)
 
 SampleDepth <- seq(min(biolum$SampleDepth), 4000, length = 100)
@@ -180,20 +180,20 @@ ggplot() + geom_point(data = biolum, aes(x = SampleDepth, y = Sources, color = M
   geom_line(data = newdata, aes(x = SampleDepth, y = pred_gam5), color = "black")
 ```
 
-### Comparación de modelos
+### ComparaciÃ³n de modelos
 ```{r comparacion gam}
 anova(gam4, gam5, test = "F")
 AIC(gam4, gam5)
 ```
 
-### Validación
+### ValidaciÃ³n
 ```{r diagnosticos}
 gam.check(gam5)
 appraise(gam5, method = "simulate")
 ```
 
 ### Modelo con variables continuas (efectos principales + interacciones)
-Palacio et al. (2017) estudiaron el consumo de frutos por aves en *Psychotria  carthagenensis* en un bosque secundario pedemontano de las Yungas (`Psychotria_El_Corte_2012.txt`). Se ajustó un GAM del número de infrutescencias (`n.infrut`) en función de las coordenadas (`x` = longitud, `y` = latitud).
+Palacio et al. (2017) estudiaron el consumo de frutos por aves en *Psychotria  carthagenensis* en un bosque secundario pedemontano de las Yungas (`Psychotria_El_Corte_2012.txt`). Se ajustÃ³ un GAM del nÃºmero de infrutescencias (`n.infrut`) en funciÃ³n de las coordenadas (`x` = longitud, `y` = latitud).
 ```{r 2 vars gam}
 library(fields)
 psycho <- read.table("C:/RD/Psychotria_El_Corte_2012.txt", header = TRUE)
@@ -217,19 +217,19 @@ surface(gam8)
 
 
 ### Ejercicio 4.2 
-Wingfield et al. (2017) estudiaron la dinámica espaciotemporal de *Phocoena phocoena* (Pinnipedia, Mammalia) en Maryland, Estados Unidos (https://doi.org/10.5061/dryad.25256). Se quiere establecer en que época del año es más frecuente detectarla. Para esto se realizaron muestreos durante 18 meses y se recolectó información sobre presencia-ausencia (`DPH_Porp`), hora (`Hour_EST`), día (`Day_EST`), mes (`Month_EST`) y año (`Year`).  
+Wingfield et al. (2017) estudiaron la dinÃ¡mica espaciotemporal de *Phocoena phocoena* (Pinnipedia, Mammalia) en Maryland, Estados Unidos (https://doi.org/10.5061/dryad.25256). Se quiere establecer en que Ã©poca del aÃ±o es mÃ¡s frecuente detectarla. Para esto se realizaron muestreos durante 18 meses y se recolectÃ³ informaciÃ³n sobre presencia-ausencia (`DPH_Porp`), hora (`Hour_EST`), dÃ­a (`Day_EST`), mes (`Month_EST`) y aÃ±o (`Year`).  
 
-- Utilice un modelo que describa la dinámica temporal anual de detecciones de la especie.
+- Utilice un modelo que describa la dinÃ¡mica temporal anual de detecciones de la especie.
 
-- Grafique el modelo como considere más conveniente para mostrar los resultados, e interprete en términos biológicos.
+- Grafique el modelo como considere mÃ¡s conveniente para mostrar los resultados, e interprete en tÃ©rminos biolÃ³gicos.
 
-- Construya y grafique otro modelo que tenga en cuenta la proporción de detecciones por día en lugar de la presencia-ausencia. 
+- Construya y grafique otro modelo que tenga en cuenta la proporciÃ³n de detecciones por dÃ­a en lugar de la presencia-ausencia. 
 
 ### Ejercicio 4.3
-- Identifique qué variables se relacionan con la proporción de detecciones.
+- Identifique quÃ© variables se relacionan con la proporciÃ³n de detecciones.
 
 - Construya una tabla que represente los resultados principales.
 
-- Grafique el modelo como considere más conveniente para mostrar los resultados.
+- Grafique el modelo como considere mÃ¡s conveniente para mostrar los resultados.
 
-- ¿Qué conclusiones obtiene en términos biológicos?
+- Â¿QuÃ© conclusiones obtiene en tÃ©rminos biolÃ³gicos?
