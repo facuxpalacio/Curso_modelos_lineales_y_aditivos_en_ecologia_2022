@@ -4,11 +4,11 @@ Docente a cargo: Dr. Facundo X. Palacio, División Zoología Vertebrados, Museo 
 
 Colaborador docente:  Dr. Mariano Ordano, Instituto de Ecología Regional-CONICET, Universidad Nacional de Tucumán, y Fundación Miguel Lillo.
 
-Coordinadora académica: Dr. Romina D. Fernández, Instituto de Ecología Regional y Universidad Nacional de Tucumán.
+Coordinadora académica: Dr. Romina D. Fernández, Instituto de Ecología Regional-CONICET y Universidad Nacional de Tucumán.
 
 Fecha: del 2-5-22 al 6-5-22
 
-Facultad de Ciencias Naturales e Instituto Miguel Lillo, Universidad Nacional de Tucumán.
+Dictado: Facultad de Ciencias Naturales e Instituto Miguel Lillo, Universidad Nacional de Tucumán, Tucumán, Argentina.
 
 
 ## Destinatarios
