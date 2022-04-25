@@ -36,67 +36,71 @@ Más allá de la linealidad: modelos no lineales. Regresión polinómica. Funcio
 
 #### 4. Modelos mixtos
 
-Definición de efectos fijos y efectos aleatorios. Modelo mixto para datos anidados: método de los dos pasos. Modelo lineal general mixto. Modelo de intercepto aleatorio. Modelo de intercepto y pendientes aleatorios. Máxima verosimilitud restringida. Modelo lineal generalizado mixto (GLMM) y modelo aditivo generalizado mixto (GAMM). Bondad del ajuste y R2. Significancia de coeficientes y selección de modelos. Bootstrapping. Diseños experimentales en bloques aleatorizados, anidados, parcelas divididas (split-plot) y medidas repetidas. Estructuras de correlación espacial, temporal y filogenética. Interpretación de efectos fijos y aleatorios. Análisis de residuos y validación. Utilidad y limitaciones de los modelos mixtos. Reporte de tabla de resultados y gráficos.
+Definición de efectos fijos y efectos aleatorios. Modelo mixto para datos anidados: método de los dos pasos. Modelo lineal general mixto. Modelo de intercepto aleatorio. Modelo de intercepto y pendientes aleatorios. Máxima verosimilitud restringida. Modelo lineal generalizado mixto (GLMM) y modelo aditivo generalizado mixto (GAMM). Bondad del ajuste y R2. Significancia de coeficientes y selección de modelos. Diseños experimentales en bloques aleatorizados, anidados, parcelas divididas (split-plot) y medidas repetidas. Estructuras de correlación espacial, temporal y filogenética. Interpretación de efectos fijos y aleatorios. Análisis de residuos y validación. Utilidad y limitaciones de los modelos mixtos. Reporte de tabla de resultados y gráficos.
 
 ## Modalidad del curso
 
-El curso será de forma presencial y se trabajará de forma íntegra con la interfaz RStudio. Todos los scripts, bases de datos, actividades, diapositivas y bibliografía sugerida (sólo artículos científicos) se encuentra en este repositorio. Los alumnos y alumnas deberán tener instalado tanto R como Rstudio (versión 4.0.2 o posterior), así como los paquetes que se listan a continuación, previo al comienzo del curso:
+El curso será de forma presencial y se trabajará de forma íntegra con el lenguaje R y la interfaz RStudio. Todos los scripts, bases de datos, actividades, diapositivas y bibliografía sugerida (sólo artículos científicos) se encuentra en este repositorio. Los alumnos y alumnas deberán tener instalado tanto R como Rstudio (versión 4.0.2 o posterior), así como los paquetes que se listan a continuación, previo al comienzo del curso:
 
-car
+`caper`
 
-DHARMa
+`car`
 
-equatiomatic
+`DHARMa`
 
-fields
+`equatiomatic`
 
-glmmTMB
+`fields`
 
-gratia
+`glmmTMB`
 
-ggplot2
+`gratia`
 
-gstat
+`ggplot2`
 
-Hmisc
+`gstat`
 
-itsadug
+`Hmisc`
 
-lattice
+`itsadug`
 
-lme4
+`lattice`
 
-lmtest
+`lme4`
 
-MASS
+`lmtest`
 
-mgcv
+`MASS`
 
-multcomp
+`mgcv`
 
-MuMIn (se lee "mumin")
+`multcomp`
 
-nlme
+`MuMIn` (se lee "mumin")
 
-palmerpenguins
+`nlme`
 
-performance
+`palmerpenguins`
 
-plot3D
+`performance`
 
-pscl
+`phylolm`
 
-psych
+`plot3D`
 
-sjPlot
+`pscl`
 
-sp
+`psych`
 
-splines
+`sjPlot`
 
-VGAM
+`sp`
 
-visreg
+`splines`
+
+`VGAM`
+
+`visreg`
 
 
 ## Bibliografía
