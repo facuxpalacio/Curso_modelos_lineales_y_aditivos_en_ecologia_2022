@@ -1,5 +1,5 @@
 ---
-title: "Modelos lineales y aditivos en ecología"
+title: "Modelos lineales y aditivos en ecologÃ­a"
 author: 'Facundo X. Palacio'
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site

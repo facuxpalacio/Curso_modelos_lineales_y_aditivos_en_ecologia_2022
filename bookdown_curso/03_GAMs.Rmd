@@ -89,7 +89,6 @@ lines(x.new, predN, col = "blue", lwd = 3)
 abline(v = nodos, lty = 2, col = "darkgreen")
 legend("topleft", legend = c("Reg polinomica", "Spline C", "Spline N"), col = c("darkgreen", "red", "blue"), cex = 0.8, lty = 1)
 ```
-
 ## Splines de suavizado
 ```{r splines de suavizado}
 splines.suav <- smooth.spline(x, y, nknots = 10)
@@ -178,6 +177,10 @@ newdata$pred_gam5 <- predict(gam5, newdata = newdata, type = "response")
 
 ggplot() + geom_point(data = biolum, aes(x = SampleDepth, y = Sources, color = Month)) + facet_wrap(~Month) + 
   geom_line(data = newdata, aes(x = SampleDepth, y = pred_gam5), color = "black")
+
+# Modelo con interacción (2 variables continuas y una categórica)
+gam6 <- gam(Sources_0.1 ~ s(SampleDepth) + s(BottomDepth) + s(SampleDepth, by = Month, bs = "cr") + s(BottomDepth, by = Month), family = Gamma, method = "REML", data = biolum)
+vis.gam(gam6, view = c("SampleDepth", "BottomDepth"), theta = 40, n.grid = 500, border = NA)
 ```
 
 ### Comparación de modelos
@@ -195,6 +198,7 @@ appraise(gam5, method = "simulate")
 ### Modelo con variables continuas (efectos principales + interacciones)
 Palacio et al. (2017) estudiaron el consumo de frutos por aves en *Psychotria  carthagenensis* en un bosque secundario pedemontano de las Yungas (`Psychotria_El_Corte_2012.txt`). Se ajustó un GAM del número de infrutescencias (`n.infrut`) en función de las coordenadas (`x` = longitud, `y` = latitud).
 ```{r 2 vars gam}
+library(gratia)
 library(fields)
 psycho <- read.table("C:/RD/Psychotria_El_Corte_2012.txt", header = TRUE)
 str(psycho)
@@ -208,15 +212,41 @@ gam8 <- Tps(x = data.frame(Latitud = psycho$x, Longitud = psycho$y), Y = psycho$
 # Superficies de respuesta
 draw(gam6)
 draw(gam7)
+vis.gam(gam6, color = "terrain", type = "response", plot.type = "persp", theta = 40)
 surface(gam8)
 ```
 
 ## Actividades
 
 ### Ejercicio 4.1
+Aluja et al. (2012) estudiaron los factores que determinan la dinámica poblacional de especies de moscas de la fruta (Tephritidae) durante 11 años en Veracruz, México (`Aluja_et_al_Tephritidae.txt`). Las variables utilizadas son el (log) número de capturas diarias (`FTD`) de distintas especies del género *Anastrepha* y los índices de oscilación del Atlántico Norte (`NAOI`) y Sur (`SOI`). 
 
+- Grafique el tiempo vs las capturas para una de las especies de moscas y ajuste tres modelos LOESS (uno utilizando los argumentos por defecto, y otros dos variando la magnitud del ancho de ventana).
 
-### Ejercicio 4.2 
+- Ajuste un GAM que relacione las capturas de la misma especie como función suave del tiempo y realice un gráfico de este modelo ¿Qué conclusión obtiene al compararlo con el LOESS?
+
+- Identifique qué variables se relacionan con las capturas (considere también la posibilidad de incluir interacciones). Revise si el número de nodos es adecuado para el modelo ajustado (función `gam.check`).
+
+- Construya una tabla que represente los resultados principales.
+
+- Grafique el modelo como considere más conveniente para mostrar los resultados.
+
+- ¿Qué conclusiones obtiene en términos biológicos? ¿Considera que este modelo cumple con los supuestos de un GAM?
+
+### Ejercicio 4.2
+Palacio et al. (2017) estudiaron la selección mediada por aves sobre rasgos de los frutos en *Psychotria  carthagenensis* en un bosque secundario pedemontano de las Yungas (`Psychotria_El_Corte_2012.txt`).
+
+- Grafique la relación entre el número de frutos consumidos (`frut.cons`) y el número de infrutescencias (`n.infrut`).
+
+- Ajuste un polinomio de grado *n* (que considere adecuado) y una función paso para capturar la relación entre ambas variables. Grafique ambos modelos.
+
+- Ajuste un GAM para dicha relación y realice un gráfico del modelo.
+
+- ¿Qué interpreta en términos biológicos?
+
+- Si tuviera que elegir entre los tres modelos ¿Cuál utilizaría y por qué?
+
+### Ejercicio 4.3 
 Wingfield et al. (2017) estudiaron la dinámica espaciotemporal de *Phocoena phocoena* (Pinnipedia, Mammalia) en Maryland, Estados Unidos (https://doi.org/10.5061/dryad.25256). Se quiere establecer en que época del año es más frecuente detectarla. Para esto se realizaron muestreos durante 18 meses y se recolectó información sobre presencia-ausencia (`DPH_Porp`), hora (`Hour_EST`), día (`Day_EST`), mes (`Month_EST`) y año (`Year`).  
 
 - Utilice un modelo que describa la dinámica temporal anual de detecciones de la especie.
@@ -224,12 +254,3 @@ Wingfield et al. (2017) estudiaron la dinámica espaciotemporal de *Phocoena phoc
 - Grafique el modelo como considere más conveniente para mostrar los resultados, e interprete en términos biológicos.
 
 - Construya y grafique otro modelo que tenga en cuenta la proporción de detecciones por día en lugar de la presencia-ausencia. 
-
-### Ejercicio 4.3
-- Identifique qué variables se relacionan con la proporción de detecciones.
-
-- Construya una tabla que represente los resultados principales.
-
-- Grafique el modelo como considere más conveniente para mostrar los resultados.
-
-- ¿Qué conclusiones obtiene en términos biológicos?
