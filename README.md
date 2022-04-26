@@ -46,6 +46,8 @@ El curso será de forma presencial y se trabajará de forma íntegra con el leng
 
 `car`
 
+`data.table`
+
 `DHARMa`
 
 `equatiomatic`
