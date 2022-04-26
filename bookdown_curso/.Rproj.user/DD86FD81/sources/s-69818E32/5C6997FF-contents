@@ -313,12 +313,25 @@ plot_smooth(gamm1, view = "SampleDepth", cond = list(Year = "2001", Station = "1
 ```
 
 ### Autocorrelación temporal
-Aluja et al. (2012) estudiaron los factores que determinan la dinámica poblacional de especies de moscas de la fruta (Tephritidae) durante 11 años en Veracruz, México (`Aluja_et_al_Tephritidae.txt`). Las variables utilizadas son el (log) número de capturas diarias (`FTD`) de distintas especies del género *Anastrepha* y los índices de oscilación del Atlántico Norte (`NAOI`) y Sur (`SOI`). 
+Aluja et al. (2012) estudiaron los factores que determinan la dinámica poblacional de especies de moscas de la fruta (Tephritidae) durante 11 años en Veracruz, México (`Aluja_et_al_Tephritidae.txt`). Las variables utilizadas son el (log) número de capturas diarias (`FTD`) y el sesgo sexual de captura (`SBC`) de distintas especies del género *Anastrepha* y los índices de oscilación del Atlántico Norte (`NAOI`) y Sur (`SOI`). 
 ```{r arima}
+library(visreg)
 moscas <- read.table("C:/RD/Aluja_et_al_Tephritidae.txt", header = TRUE)
+str(moscas)
+moscas$t <- 1:nrow(moscas)
+plot(moscas$t, moscas$FTD_A_ludens)
+gam1 <- gam(FTD_A_ludens ~ s(t, k = 60), family = gaussian, data = moscas)
+summary(gam1)
+gam.check(gam1)
+visreg(fit = gam1, xvar = "t")
+acf(resid(gam1))
 
+gamm.ar1 <- gamm(FTD_A_ludens ~ s(t, k = 60), family = gaussian, correlation = corAR1(form = ~ t), data = moscas)
+summary(gamm.ar1$gam)
+plot(gamm.ar1$gam)
+
+AIC(gam1, gamm.ar1$lme)
 ```
-
 
 ## Actividades
 

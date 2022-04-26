@@ -219,7 +219,7 @@ surface(gam8)
 ## Actividades
 
 ### Ejercicio 4.1
-Aluja et al. (2012) estudiaron los factores que determinan la dinámica poblacional de especies de moscas de la fruta (Tephritidae) durante 11 años en Veracruz, México (`Aluja_et_al_Tephritidae.txt`). Las variables utilizadas son el (log) número de capturas diarias (`FTD`) de distintas especies del género *Anastrepha* y los índices de oscilación del Atlántico Norte (`NAOI`) y Sur (`SOI`). 
+Aluja et al. (2012) estudiaron los factores que determinan la dinámica poblacional de especies de moscas de la fruta (Tephritidae) durante 11 años en Veracruz, México (`Aluja_et_al_Tephritidae.txt`). Las variables utilizadas son el (log) número de capturas diarias (`FTD`) y el sesgo sexual de captura (`SBC`) de distintas especies del género *Anastrepha* y los índices de oscilación del Atlántico Norte (`NAOI`) y Sur (`SOI`). 
 
 - Grafique el tiempo vs las capturas para una de las especies de moscas y ajuste tres modelos LOESS (uno utilizando los argumentos por defecto, y otros dos variando la magnitud del ancho de ventana).
 
