@@ -143,7 +143,7 @@ library(lme4)
 library(MuMIn)
 library(sjPlot)
 library(equatiomatic)
-celtis <- read.delim("C:/RD/frutos Celtis 2013.csv", sep = ";")
+celtis <- read.delim("frutos Celtis 2013.csv", sep = ";")
 table(celtis$planta)
 table(celtis$planta, celtis$parche) # Es un diseño anidado?
 
@@ -217,7 +217,7 @@ plot_model(lmm.pen, type = "re")
 Palacio et al. (2017) estudiaron el consumo de frutos por aves en $Psychotria  carthagenensis$ en un bosque secundario pedemontano de las Yungas (`Psychotria_El_Corte_2012.txt`). Se quiere analizar si el peso del fruto (`x.peso`) se relaciona con el número de infrutescencias (`n.infrut`).
 ```{r glmm espacial}
 library(glmmTMB)
-psycho <- read.table("C:/RD/Psychotria_El_Corte_2012.txt", header = TRUE)
+psycho <- read.table("Psychotria_El_Corte_2012.txt", header = TRUE)
 hist(psycho$x.diam, xlab = "Diámetro promedio del fruto", ylab = "Frecuencia")
 plot(psycho$x, psycho$y, pch = 19)
 
@@ -262,7 +262,7 @@ library(ggplot2)
 library(mgcv)
 library(itsadug)
 
-biolum <- read.table("C:/RD/ISIT.txt", header = TRUE)
+biolum <- read.table("ISIT.txt", header = TRUE)
 biolum$Station <- as.factor(biolum$Station)
 biolum$Year <- as.factor(biolum$Year)
 ggplot(data = biolum, aes(x = SampleDepth, y = Sources)) +
@@ -316,7 +316,7 @@ plot_smooth(gamm1, view = "SampleDepth", cond = list(Year = "2001", Station = "1
 Aluja et al. (2012) estudiaron los factores que determinan la dinámica poblacional de especies de moscas de la fruta (Tephritidae) durante 11 años en Veracruz, México (`Aluja_et_al_Tephritidae.txt`). Las variables utilizadas son el (log) número de capturas diarias (`FTD`) y el sesgo sexual de captura (`SBC`) de distintas especies del género *Anastrepha* y los índices de oscilación del Atlántico Norte (`NAOI`) y Sur (`SOI`). 
 ```{r arima}
 library(visreg)
-moscas <- read.table("C:/RD/Aluja_et_al_Tephritidae.txt", header = TRUE)
+moscas <- read.table("Aluja_et_al_Tephritidae.txt", header = TRUE)
 str(moscas)
 moscas$t <- 1:nrow(moscas)
 plot(moscas$t, moscas$FTD_A_ludens)
