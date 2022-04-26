@@ -48,6 +48,8 @@ El curso será de forma presencial y se trabajará de forma íntegra con el leng
 
 `data.table`
 
+`datasets`
+
 `DHARMa`
 
 `equatiomatic`
