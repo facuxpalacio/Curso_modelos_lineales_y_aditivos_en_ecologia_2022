@@ -1,0 +1,5 @@
+"0","# Sin efectos aleatorios"
+"0","gam0 <- gam(Sources ~ Year + s(SampleDepth) + s(SampleDepth, by = Year), family = gaussian, data = biolum)"
+"0","plot(gam0)"
+"0",""
+"0",""

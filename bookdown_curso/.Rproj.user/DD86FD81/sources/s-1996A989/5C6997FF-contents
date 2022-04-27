@@ -278,7 +278,9 @@ ggplot(data = biolum, aes(x = SampleDepth, y = Sources)) +
 ```{r gamms}
 # Sin efectos aleatorios
 gam0 <- gam(Sources ~ Year + s(SampleDepth) + s(SampleDepth, by = Year), family = gaussian, data = biolum)
+layout(matrix(1:3, 1, 3))
 plot(gam0)
+layout(1)
 
 # Intercepto aleatorio
 gamm1 <- gam(Sources ~ Year + s(SampleDepth) + s(Station, bs = "re"), family = gaussian, data = biolum)
@@ -297,7 +299,9 @@ gamm3 <- gam(Sources ~ Year + s(SampleDepth, Station, bs = "fs", m = 1, k = 5), 
 AIC(gam0, gamm1, gamm2, gamm3)
 
 summary(gamm2)
-check_resid(gamm3, split_pred = "Station")
+layout(matrix(1:2, 1, 2))
+check_resid(gamm2, split_pred = "Station", select = 1:2)
+layout(1)
 acf_resid(gamm2, split_pred = "Station")
 gamtabs(gamm2, type = "HTML")
 ```
@@ -318,7 +322,7 @@ Aluja et al. (2012) estudiaron los factores que determinan la dinámica poblacio
 library(visreg)
 moscas <- read.table("Aluja_et_al_Tephritidae.txt", header = TRUE)
 str(moscas)
-moscas$t <- as.numeric(1:nrow(moscas))
+moscas$t <- 1:nrow(moscas)
 plot(moscas$t, moscas$FTD_A_ludens)
 gam1 <- gam(FTD_A_ludens ~ s(t, k = 60), family = gaussian, data = moscas)
 summary(gam1)
