@@ -351,7 +351,7 @@ fotosint_N2 <- c(1.38, 1.36, 1.47, 1.39, 1.43, 1.41, 1.43, 1.45, 1.36, 1.46)
 
 - Grafique los individuos vs la tasa fotosintética y distinga cada tratamiento con un color diferente. Conceptualmente y teniendo en cuenta este gráfico, así como el de efectos aleatorios ¿Qué piensa que pasaría si ajustara un modelo mixto de intercepto y pendiente aleatorios a este conjunto de datos? Compruebelo.
 
-#### Ejercicio 5.1
+#### Ejercicio 5.2
 Palacio et al. (2014) realizaron conteos de 44 especies de aves a lo largo de un año en 10 puntos de muestreos (`id`) localizados en un bosque de ligustro y arbustales circundantes (`habitat.type`). El set de datos corresponde a `abundancia_aves.txt`.
 
 - Analice los factores que se relacionan con la abundancia total de individuos y con las siguientes dos especies: Tordo músico (`agebad`) y Benteveo (`pitsul`).
@@ -364,7 +364,7 @@ Palacio et al. (2014) realizaron conteos de 44 especies de aves a lo largo de un
 
 - ¿Puede hipotetizar algo sobre la distribuciones de probabilidad utilizada para cada especie y para la abundancia total?
 
-#### Ejercicio 5.2
+#### Ejercicio 5.3
 La base de datos `ChickWeight` (paquete `datasets`) contiene información sobre el peso (`weight`) de un grupo de pollos (`Chick`) versus el tiempo (`Time`) bajo diferentes dietas (`Diet`).
 
 - Grafique la relación peso vs tiempo para cada individuo y dieta.
@@ -373,12 +373,12 @@ La base de datos `ChickWeight` (paquete `datasets`) contiene información sobre 
 
 - Muestre uno o más gráficos que represente el modelo ajustado.
 
-### Ejercicio 5.3
+### Ejercicio 5.4
 Johnson & Manoukis (2021) analizaron la relación entre el número de capturas de la Broca del Café (*Hypothenemus hampei*, Curculionidae) y distintas variables climáticas en cafetales de Hawai (https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0257861). El archivo corresponde a `Weather_CBB_flight.xls`. Los metadatos están en el archivo `README_JohnsonManoukisPLoSONE2021.xls`.
 
 - Ajuste un modelo que relacione el número de capturas con variables climáticas. Para esto, construya un modelo saturado y compare primero diferentes estructuras de efectos aleatorios. Luego, realice una selección de modelos considerando diferentes efectos fijos.
 
-### Ejercicio 5.4
+### Ejercicio 5.5
 Price et al. (2015) realizaron conteos de salamandras (`count`) en cursos de agua en 23 sitios (`site`) muestreados 4 veces cada uno (`sample`). En cada curso tomaron las siguientes variables (estandarizadas): minería (`mined`), cobertura (`cover`), días desde la última precipitación (`DOP`), temperatura del agua (`Wtemp`) y día del año (`DOY`).
 
 La base de datos está disponible en el objeto `Salamander` del paquete `glmmTMB`.

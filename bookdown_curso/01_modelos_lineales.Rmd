@@ -1,5 +1,5 @@
-# Introducción a los modelos lineales
-## Definición de modelo lineal
+# IntroducciÃ³n a los modelos lineales
+## DefiniciÃ³n de modelo lineal
 ```{r modelo lineal}
 set.seed(999)
 layout(matrix(1:4, 2, 2))
@@ -19,7 +19,7 @@ plot(x, y4)
 layout(1)
 ```
 
-## Correlación lineal simple
+## CorrelaciÃ³n lineal simple
 ```{r corr}
 x <- rnorm(100)
 e <- rnorm(100, mean = 0, sd = 1)
@@ -29,12 +29,12 @@ plot(x, y)
 # Covarianza
 cov(x, y)
 
-# Correlación producto-momento de Pearson
+# CorrelaciÃ³n producto-momento de Pearson
 cov(x, y)/(sd(x)*sd(y))
 cor(x, y, method = "pearson")
 cor.test(x, y)
 
-# Monotonía
+# MonotonÃ­a
 layout(matrix(1:4, 2, 2))
 x1 <- seq(1, 10, length = 100)
 y1 <- 0.5 + 2*x1
@@ -47,7 +47,7 @@ y4 <- exp(-5 + x1)/(1 + exp(-5 + x1))
 plot(x1, y4, type = "l")
 layout(1)
 
-# Correlación de Spearman
+# CorrelaciÃ³n de Spearman
 cor(x1, y4, method = "spearman")
 xrango <- rank(x1) 
 yrango <- rank(y4)
@@ -55,8 +55,8 @@ plot(xrango, yrango)
 cor(xrango, yrango, method = "spearman")
 ```
 
-## Matrices de correlación
-A continuación se presentan las medidas del tamaño corporal en adultos de tres especies de pinguinos en islas del Archipiélago Palmer, Antártida. 
+## Matrices de correlaciÃ³n
+A continuaciÃ³n se presentan las medidas del tamaÃ±o corporal en adultos de tres especies de pinguinos en islas del ArchipiÃ©lago Palmer, AntÃ¡rtida. 
 ```{r mat corr}
 library(palmerpenguins)
 str(penguins)
@@ -71,11 +71,11 @@ matriz.corr
 p.adjust(matriz.corr$P, method = "holm") 
 ```
 
-## Regresión lineal simple
+## RegresiÃ³n lineal simple
 $$y = \beta_0 + \beta_1 x + \epsilon$$
 $$\epsilon \sim N(0, \sigma^2)$$
 
-```{r regresión simple}
+```{r regresiÃ³n simple}
 x <- rnorm(100)
 e <- rnorm(100, mean = 0, sd = 1)
 y <- 2 + 1.5*x + e
@@ -89,19 +89,19 @@ summary(reg.simple)
 cov(x, y)/var(x) 
 summary(reg.simple)$coeff
 
-# Coeficiente de determinación
+# Coeficiente de determinaciÃ³n
 SCE <- sum((mean(datos$y) - reg.simple$fitted)^2) # suma de cuadrados explicada
 SCT <- sum((datos$y - mean(datos$y))^2) # suma de cuadrados total
 R2 <- SCE/SCT
 R2
 summary(reg.simple)$r.squared 
 
-# Gráfico
+# GrÃ¡fico
 plot(x, y)
 abline(reg.simple, lwd = 2)
 ```
 
-## Relación entre regresión y correlación
+## RelaciÃ³n entre regresiÃ³n y correlaciÃ³n
 ```{r reg vs corr}
 beta <- summary(reg.simple)$coeff[2, 1]
 beta*sd(x)/sd(y)
@@ -110,24 +110,24 @@ sqrt(summary(reg.simple)$r.squared)
 cor(x, y)
 ```
 
-## Matrices de gráficos de dispersión
+## Matrices de grÃ¡ficos de dispersiÃ³n
 ```{r scatterplot matrix}
 pairs(Ad[, 3:6], pch = 19, col = "blue", lower.panel = NULL)
 pairs(penguins[, 3:6], pch = 19, col = c("red", "orange", "blue")[penguins$species], lower.panel = NULL)
 
 library(psych)
 pairs.panels(Ad[, 3:6], 
-             method = "pearson", # correlación
-             density = FALSE,  # gráficos de densidad
+             method = "pearson", # correlaciÃ³n
+             density = FALSE,  # grÃ¡ficos de densidad
              ellipses = FALSE, # elipses de confianza
              lm = TRUE) # recta
 ```
 
-## Regresión lineal multiple
+## RegresiÃ³n lineal multiple
 $$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + \epsilon$$
 $$\epsilon \sim N(0, \sigma^2)$$
 
-Analizaremos la relación entre la longitud del pico (´bill_length_mm´), masa corporal (`body_mass_g`) y alto del pico (`bill_depth_mm`) en pinguinos Adelia ($Pygoscelis adeliae$).
+Analizaremos la relaciÃ³n entre la longitud del pico (Â´bill_length_mmÂ´), masa corporal (`body_mass_g`) y alto del pico (`bill_depth_mm`) en pinguinos Adelia ($Pygoscelis adeliae$).
 ```{r regresion multiple}
 model.Ad <- lm(bill_length_mm ~ body_mass_g + bill_depth_mm, data = Ad)
 summary(model.Ad)
@@ -136,7 +136,7 @@ sum.cuad.tot <- sum((na.omit(Ad$bill_length_mm) - mean(na.omit(Ad$bill_length_mm
 R2 <- sum.cuad.exp/sum.cuad.tot
 R2
 
-# Gráfico de dispersión con plano de regresión
+# GrÃ¡fico de dispersiÃ³n con plano de regresiÃ³n
 library(plot3D)
 x <- Ad$body_mass_g
 y <- Ad$bill_depth_mm
@@ -153,12 +153,12 @@ scatter3D(x, y, z, pch = 18, cex = 2,
 
 library(visreg)
 Ad$bill_depth_cat <- cut(Ad$bill_depth_mm, 3, 
-                         labels = c("Pequeño", "Mediano", "Grande"))
+                         labels = c("PequeÃ±o", "Mediano", "Grande"))
 model.Ad_cat <- lm(bill_length_mm ~ body_mass_g + bill_depth_cat, data = Ad)
 visreg(model.Ad_cat, "body_mass_g", "bill_depth_cat", gg = TRUE)
 ```
 
-## Variables categóricas (= *dummies*)
+## Variables categÃ³ricas (= *dummies*)
 ```{r dummies}
 model.penguins1 <- lm(bill_length_mm ~ body_mass_g + species, data = penguins)
 summary(model.penguins1)
@@ -169,7 +169,7 @@ anova(model.penguins2)
 ```
 
 ## Test de *t*
-Se muestran los tiempos de coagulación sanguínea (min) en conejos bajo el efecto de dos drogas (A y B).
+Se muestran los tiempos de coagulaciÃ³n sanguÃ­nea (min) en conejos bajo el efecto de dos drogas (A y B).
 ```{r test de t}
 t_coag <- c(8.8, 8.4, 7.9, 8.7, 9.1, 9.6, 9.5, 
             9.9, 9.0, 11.1, 9.6, 8.7, 10.4, 9.5) 
@@ -194,8 +194,8 @@ plantas <- data.frame(fotosint, nutriente)
 t.test(fotosint ~ nutriente, paired = TRUE, data = plantas)
 ```
 
-## Análisis de la varianza
-Se quiere evaluar si hay diferencias entre la longitud del pico en las tres especies de pingüino del Archipiélago Palmer.
+## AnÃ¡lisis de la varianza
+Se quiere evaluar si hay diferencias entre la longitud del pico en las tres especies de pingÃ¼ino del ArchipiÃ©lago Palmer.
 ```{r anova}
 boxplot(penguins$bill_length_mm ~ penguins$species)
 model.spp <- aov(bill_length_mm ~ species, data = na.omit(penguins))
@@ -213,9 +213,9 @@ library(car)
 vif(model.Ad)
 ```
 
-### Análisis de residuos
+### AnÃ¡lisis de residuos
 ```{r residuos}
-# Regresión
+# RegresiÃ³n
 hist(model.Ad$residuals)
 qqPlot(model.Ad$residuals)
 layout(matrix(1:4, 2, 2))
@@ -242,12 +242,12 @@ hist(log.abun, breaks = 6, main = "log(Abundancia + 1)")
 peso <- rgamma(n = 1000, shape = 5)
 hist(peso, main = "Peso")
 sqrt.peso <- sqrt(peso)
-hist(sqrt.peso, breaks = 6, main = "Raíz cuadrada del peso")
+hist(sqrt.peso, breaks = 6, main = "RaÃ­z cuadrada del peso")
 
 prop.infectados <- rbinom(n = 1000, size = 10, p = 0.4)/10
-hist(prop.infectados, main = "Proporción de infectados")
+hist(prop.infectados, main = "ProporciÃ³n de infectados")
 logit.prop <- log(prop.infectados/(1 - prop.infectados))
-hist(logit.prop, main = "Logit proporción de infectados", breaks = 6)
+hist(logit.prop, main = "Logit proporciÃ³n de infectados", breaks = 6)
 layout(1)
 ```
 
@@ -258,7 +258,7 @@ layout(1)
 
   - El logaritmo en base e y en base 10 de 9.
   
-  - La raíz cuadrada y quinta de 10.
+  - La raÃ­z cuadrada y quinta de 10.
 
 1.2. Genere los siguientes vectores x e y, respectivamente:
 
@@ -284,76 +284,76 @@ Luego, identifique las operaciones para obtener:
 "IML" "R" "IML" "R" "IML" "R" "IML" "R"
  1 1 1 2 2 2 3 3 3 4 4 4 5 5 5
 
-1.4. Cree un vector que represente una variable aleatoria de 1000 valores con distribución normal estándar.
+1.4. Cree un vector que represente una variable aleatoria de 1000 valores con distribuciÃ³n normal estÃ¡ndar.
 
   - Grafique un histograma (color naranja), teniendo en cuenta 10 y 15 celdas.
   
-  - Calcule su media y desvío estándar. 
+  - Calcule su media y desvÃ­o estÃ¡ndar. 
   
-  - Calcule qué porcentaje de los datos se encuentra entre 2 desvíos estándares.
+  - Calcule quÃ© porcentaje de los datos se encuentra entre 2 desvÃ­os estÃ¡ndares.
 
-1.5. Cree un vector que represente una variable aleatoria de 500 valores con distribución de Poisson y diferentes medias (1, 5 y 100).
+1.5. Cree un vector que represente una variable aleatoria de 500 valores con distribuciÃ³n de Poisson y diferentes medias (1, 5 y 100).
 
-  - Para cada distribución, calcule su media y varianza.
+  - Para cada distribuciÃ³n, calcule su media y varianza.
   
-  - Grafique los tres histogramas en el mismo panel ¿Qué observa?
+  - Grafique los tres histogramas en el mismo panel Â¿QuÃ© observa?
   
-  - Haga una tabla que muestre la frecuencia para cada conteo y luego realice un gráfico de barras.
+  - Haga una tabla que muestre la frecuencia para cada conteo y luego realice un grÃ¡fico de barras.
   
-1.6. Utilizando la variable aleatoria del Ejercicio 1.2, construya un marco de datos que incluya además, un factor de 4 niveles con el mismo número de observaciones en cada nivel, de tal forma que los primeros valores pertenezcan al primer nivel, los siguientes al segundo nivel y así sucesivamente.
+1.6. Utilizando la variable aleatoria del Ejercicio 1.2, construya un marco de datos que incluya ademÃ¡s, un factor de 4 niveles con el mismo nÃºmero de observaciones en cada nivel, de tal forma que los primeros valores pertenezcan al primer nivel, los siguientes al segundo nivel y asÃ­ sucesivamente.
 
-  - Calcule la media y desvío estándar para los valores de cada nivel, y luego grafique un histograma para cada uno de ellos.
+  - Calcule la media y desvÃ­o estÃ¡ndar para los valores de cada nivel, y luego grafique un histograma para cada uno de ellos.
   
-1.7. A partir de información de la web, construya un marco de datos que incluya como variables 5 ciudades del mundo, con su área y número de habitantes.
+1.7. A partir de informaciÃ³n de la web, construya un marco de datos que incluya como variables 5 ciudades del mundo, con su Ã¡rea y nÃºmero de habitantes.
 
-  - Obtenga cuál es la ciudad con el mayor número de habitantes de su marco de datos y en qué fila se encuentra.
+  - Obtenga cuÃ¡l es la ciudad con el mayor nÃºmero de habitantes de su marco de datos y en quÃ© fila se encuentra.
   
-  - Filtre aquellas ciudades con más de 500 mil habitantes.
+  - Filtre aquellas ciudades con mÃ¡s de 500 mil habitantes.
   
-  - Filtre aquellas ciudades con menos de 300 mil habitantes y un área menor a 250 mil ha.
+  - Filtre aquellas ciudades con menos de 300 mil habitantes y un Ã¡rea menor a 250 mil ha.
   
-  - Cree una columna adicional binaria, en la cual a aquellas ciudades con más de 500 mil habitantes se le asigne un 1, o de lo contrario, un 0.
+  - Cree una columna adicional binaria, en la cual a aquellas ciudades con mÃ¡s de 500 mil habitantes se le asigne un 1, o de lo contrario, un 0.
   
-1.8. Simule 1000 valores de una distribución normal (media = 10, desvío = 3) y utilicela como predictor en un modelo de regresión lineal, de forma tal que la variable respuesta cambie 0.2 unidades por unidad del predictor. 
+1.8. Simule 1000 valores de una distribuciÃ³n normal (media = 10, desvÃ­o = 3) y utilicela como predictor en un modelo de regresiÃ³n lineal, de forma tal que la variable respuesta cambie 0.2 unidades por unidad del predictor. 
 
-  - Calcule la covarianza y la correlación de Pearson entre ambas variables.
+  - Calcule la covarianza y la correlaciÃ³n de Pearson entre ambas variables.
   
-  - Grafique un diagrama de dispersión junto con el modelo ajustado.
+  - Grafique un diagrama de dispersiÃ³n junto con el modelo ajustado.
   
-  - Realice un resumen del modelo y compare las estimaciones de los parámetros obtenidos (intercepto, pendiente y varianza de los residuos) con los poblacionales.
+  - Realice un resumen del modelo y compare las estimaciones de los parÃ¡metros obtenidos (intercepto, pendiente y varianza de los residuos) con los poblacionales.
   
-  - Estandarice ambas variables y calcule la correlación de Pearson ¿Qué observa y por qué?
+  - Estandarice ambas variables y calcule la correlaciÃ³n de Pearson Â¿QuÃ© observa y por quÃ©?
   
-  - Con los mismos parámetros, simule ahora 50 valores y obtenga el resumen del modelo ¿Qué sucede con la pendiente y la significancia, y por qué?
+  - Con los mismos parÃ¡metros, simule ahora 50 valores y obtenga el resumen del modelo Â¿QuÃ© sucede con la pendiente y la significancia, y por quÃ©?
 
 ### Ejercicio 1.2
-Se analizó la diversidad de diatomeas (`div`) en cursos de agua (`curso`) con distintos niveles de concentración de zinc (`zinc`). Los datos se  encuentran en el archivo `diatom.xls`. Grafique la distribución de frecuencias de la diversidad de diatomeas y la diversidad como función de la concentración de zinc. Calcule la media, mediana, varianza, desvío estándar y coeficiente de variación de la diversidad para cada concentración de zinc ¿Qué patrón le sugieren los datos?
+Se analizÃ³ la diversidad de diatomeas (`div`) en cursos de agua (`curso`) con distintos niveles de concentraciÃ³n de zinc (`zinc`). Los datos se  encuentran en el archivo `diatom.xls`. Grafique la distribuciÃ³n de frecuencias de la diversidad de diatomeas y la diversidad como funciÃ³n de la concentraciÃ³n de zinc. Calcule la media, mediana, varianza, desvÃ­o estÃ¡ndar y coeficiente de variaciÃ³n de la diversidad para cada concentraciÃ³n de zinc Â¿QuÃ© patrÃ³n le sugieren los datos?
 
 ### Ejercicio 1.3
-Sokal & Rohlf (1997) analizaron el consumo de oxígeno en dos especies de lapas bajo tres concentraciones de agua de mar (`limpets.csv`).
+Sokal & Rohlf (1997) analizaron el consumo de oxÃ­geno en dos especies de lapas bajo tres concentraciones de agua de mar (`limpets.csv`).
 
-- Calcule la media y varianza para cada especie, concentración y combinación de especie y concentración.
+- Calcule la media y varianza para cada especie, concentraciÃ³n y combinaciÃ³n de especie y concentraciÃ³n.
 
-- Realice un gráfico que muestre las diferentes combinaciones entre especie y concentración. Grafique e interprete la interacción entre ambos factores utilizando la función `interaction.plot` del paquete `car`.
+- Realice un grÃ¡fico que muestre las diferentes combinaciones entre especie y concentraciÃ³n. Grafique e interprete la interacciÃ³n entre ambos factores utilizando la funciÃ³n `interaction.plot` del paquete `car`.
 
-- ¿Existen diferencias entre las especies y las concentraciones? Utilice un modelo adecuado que responda a esta pregunta.
+- Â¿Existen diferencias entre las especies y las concentraciones? Utilice un modelo adecuado que responda a esta pregunta.
 
-- Evalúe los supuestos del modelo.
+- EvalÃºe los supuestos del modelo.
 
 ### Ejercicio 1.4
-Allison & Cicchetti (1976) compilaron la cantidad de horas de sueño, la morfología y el riesgo de predación (escala de 1 a 5 -menor valor, menor riesgo de predación-) en 62 especies de mamíferos (`allison.csv`).
+Allison & Cicchetti (1976) compilaron la cantidad de horas de sueÃ±o, la morfologÃ­a y el riesgo de predaciÃ³n (escala de 1 a 5 -menor valor, menor riesgo de predaciÃ³n-) en 62 especies de mamÃ­feros (`allison.csv`).
 
-- Realice un resumen (media, desvío y coeficiente de variación) de las variables del conjunto de datos.
+- Realice un resumen (media, desvÃ­o y coeficiente de variaciÃ³n) de las variables del conjunto de datos.
 
-- Grafique histogramas para cada una de las variables y diagramas de dispersión para cada par de variables.
+- Grafique histogramas para cada una de las variables y diagramas de dispersiÃ³n para cada par de variables.
 
-- Ajuste un modelo adecuado entre longevidad en años (`LifeSpan`), masa corporal en kg (`BodyWt`) y  predación (`Predation`).
+- Ajuste un modelo adecuado entre longevidad en aÃ±os (`LifeSpan`), masa corporal en kg (`BodyWt`) y  predaciÃ³n (`Predation`).
 
-- Grafique la relación entre masa corporal y longevidad, para cada nivel de predación ¿Puede observar algún patrón que haga reconsiderar el modelo ajustado en el inciso anterior?
+- Grafique la relaciÃ³n entre masa corporal y longevidad, para cada nivel de predaciÃ³n Â¿Puede observar algÃºn patrÃ³n que haga reconsiderar el modelo ajustado en el inciso anterior?
 
-- Evalúe los supuestos del modelo final.
+- EvalÃºe los supuestos del modelo final.
 
-- Realice un gráfico que represente el modelo ajustado.
+- Realice un grÃ¡fico que represente el modelo ajustado.
 
-- Según el modelo ¿Cuánto sería la longevidad para el ser humano, bajo los supuestos que considere? ¿Es realista la predicción que obtuvo?
+- SegÃºn el modelo Â¿CuÃ¡nto serÃ­a la longevidad para el ser humano, bajo los supuestos que considere? Â¿Es realista la predicciÃ³n que obtuvo?
 
