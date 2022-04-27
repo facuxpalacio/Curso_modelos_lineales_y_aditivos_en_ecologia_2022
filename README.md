@@ -46,6 +46,8 @@ El curso será de forma presencial y se trabajará de forma íntegra con el leng
 
 `car`
 
+`curl`
+
 `data.table`
 
 `datasets` 
@@ -103,6 +105,8 @@ El curso será de forma presencial y se trabajará de forma íntegra con el leng
 `reprex`
 
 `Rmarkdown` (recomendado para compilar documentos)
+
+`servr`
 
 `sjPlot`
 
