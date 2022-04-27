@@ -72,6 +72,8 @@ El curso será de forma presencial y se trabajará de forma íntegra con el leng
 
 `lme4`
 
+`lmerTest`
+
 `lmtest`
 
 `markdown` (recomendado para compilar documentos)
