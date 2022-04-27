@@ -318,7 +318,7 @@ Aluja et al. (2012) estudiaron los factores que determinan la dinámica poblacio
 library(visreg)
 moscas <- read.table("Aluja_et_al_Tephritidae.txt", header = TRUE)
 str(moscas)
-moscas$t <- 1:nrow(moscas)
+moscas$t <- as.numeric(1:nrow(moscas))
 plot(moscas$t, moscas$FTD_A_ludens)
 gam1 <- gam(FTD_A_ludens ~ s(t, k = 60), family = gaussian, data = moscas)
 summary(gam1)
