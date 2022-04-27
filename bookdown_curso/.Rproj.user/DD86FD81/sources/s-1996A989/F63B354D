@@ -3,7 +3,7 @@
     "path": "C:/Users/54221/Dropbox/GitHub/Curso_modelos_lineales_y_aditivos_en_ecologia_2022/bookdown_curso/03_GAMs.Rmd",
     "project_path": "03_GAMs.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "3847479569",
     "contents": "",
     "dirty": false,
     "created": 1651015970318.0,
@@ -14,11 +14,11 @@
         "scrollLine": "87"
     },
     "folds": "",
-    "lastKnownWriteTime": 1651066850,
+    "lastKnownWriteTime": 1651077356,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1651066851335,
+    "last_content_update": 1651077356363,
     "read_only": false,
     "read_only_alternatives": []
 }
