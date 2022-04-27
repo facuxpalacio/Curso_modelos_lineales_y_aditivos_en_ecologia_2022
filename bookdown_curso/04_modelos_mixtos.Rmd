@@ -65,7 +65,7 @@ plantas <- data.frame(id, long.pedicelo, nflores)
 plantas
 
 plot(plantas$long.pedicelo, plantas$nflores, pch = 19, cex = 2, 
-     xlab = "Longitud del pedicelo", ylab = "Número de flores")
+     xlab = "Longitud del pedicelo", ylab = "Numero de flores")
 
 # Opción 1: asumimos que las observaciones son independientes
 m1 <- lm(nflores ~ long.pedicelo, data = plantas)
@@ -224,7 +224,7 @@ Palacio et al. (2017) estudiaron el consumo de frutos por aves en $Psychotria  c
 ```{r glmm espacial}
 library(glmmTMB)
 psycho <- read.table("Psychotria_El_Corte_2012.txt", header = TRUE)
-hist(psycho$x.diam, xlab = "Diámetro promedio del fruto", ylab = "Frecuencia")
+hist(psycho$x.diam, xlab = "Diametro promedio del fruto", ylab = "Frecuencia")
 plot(psycho$x, psycho$y, pch = 19)
 
 psycho$pos <- numFactor(psycho$x, psycho$y)
@@ -306,7 +306,7 @@ AIC(gam0, gamm1, gamm2, gamm3)
 
 summary(gamm2)
 layout(matrix(1:2, 1, 2))
-check_resid(gamm2, split_pred = "Station", select = 1:2)
+check_resid(gamm2, split_pred = "Station", select = 1:2, ask = FALSE)
 layout(1)
 acf_resid(gamm2, split_pred = "Station")
 gamtabs(gamm2, type = "HTML")
