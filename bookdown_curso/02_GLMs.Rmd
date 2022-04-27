@@ -492,7 +492,7 @@ abline(a = 2, b = 0, lty = 2)
 ```{r modelo promedio}
 modelo.promedio <- model.avg(ranking.modelos, subset = delta < 2)
 summary(modelo.promedio)
-importance(modelo.promedio)
+sw(modelo.promedio)
 ```
 
 ### Gráfico del modelo promedio
@@ -503,6 +503,7 @@ model.coeff$CI.min <- CI$`2.5 %`
 model.coeff$CI.max <- CI$`97.5 %`
 model.coeff$coef <- rownames(model.coeff)
 
+library(ggplot2)
 ggplot(data = model.coeff[2:5, ], aes(x = coef, y = estimate)) + 
   theme_classic(base_size = 20) +
   geom_pointrange(aes(ymin = CI.min, ymax = CI.max), size = 1, color = "coral") +
