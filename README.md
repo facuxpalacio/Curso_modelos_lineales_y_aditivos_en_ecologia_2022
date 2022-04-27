@@ -48,7 +48,7 @@ El curso será de forma presencial y se trabajará de forma íntegra con el leng
 
 `data.table`
 
-`datasets`
+`datasets` 
 
 `DHARMa`
 
@@ -74,6 +74,8 @@ El curso será de forma presencial y se trabajará de forma íntegra con el leng
 
 `lmtest`
 
+`markdown` (recomendado para compilar documentos)
+
 `MASS`
 
 `mgcv`
@@ -96,11 +98,17 @@ El curso será de forma presencial y se trabajará de forma íntegra con el leng
 
 `psych`
 
+`reprex`
+
+`Rmarkdown` (recomendado para compilar documentos)
+
 `sjPlot`
 
 `sp`
 
-`splines`
+`splines` (versiones de R anteriores)
+
+`tinytex` (recomendado para compilar documentos)
 
 `VGAM`
 
