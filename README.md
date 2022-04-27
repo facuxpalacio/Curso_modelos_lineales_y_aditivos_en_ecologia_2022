@@ -40,7 +40,7 @@ Definición de efectos fijos y efectos aleatorios. Modelo mixto para datos anida
 
 ## Modalidad del curso
 
-El curso será de forma presencial y se trabajará de forma íntegra con el lenguaje R y la interfaz RStudio. Todos los scripts, bases de datos, actividades, diapositivas y bibliografía sugerida (sólo artículos científicos) se encuentra en este repositorio. Los alumnos y alumnas deberán tener instalado tanto R como Rstudio (versión 4.0.2 o posterior), así como los paquetes que se listan a continuación, previo al comienzo del curso:
+El curso será de forma presencial y se trabajará de forma íntegra con el lenguaje R y la interfaz RStudio. Todos los scripts, bases de datos, actividades, diapositivas y bibliografía sugerida (sólo artículos científicos) se encuentra en este repositorio. El libro con las rutinas del curso se encuentra también disponible en https://bookdown.org/fxpalacio/bookdown_curso/. Los alumnos y alumnas deberán tener instalado tanto R como Rstudio (versión 4.0.2 o posterior), así como los paquetes que se listan a continuación, previo al comienzo del curso:
 
 `caper`
 
