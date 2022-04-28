@@ -1,6 +1,6 @@
 # Modelos lineales generalizados
 ## Datos de presencia-ausencia
-Cabral et al. (2007) estudiaron la distribuciÛn de platijas (*Solea solea*) en el estuario Tagus, Portugal (`Solea.txt`). Se desea saber quÈ factores (temperatura, transparencia, salinidad) est·n relacionados con la presencia esta especie.
+Cabral et al. (2007) estudiaron la distribuci√≥n de platijas (*Solea solea*) en el estuario Tagus, Portugal (`Solea.txt`). Se desea saber qu√© factores (temperatura, transparencia, salinidad) est√°n relacionados con la presencia esta especie.
 ```{r explo1}
 # Analisis exploratorio
 datos <- read.table("Solea.txt", header = TRUE)
@@ -17,7 +17,7 @@ m.bin <- glm(Solea_solea ~ temperature + transparency + salinity, family = binom
 summary(m.bin)
 ```
 
-### DiagnÛsticos
+### Diagn√≥sticos
 ```{r validacion glm binomial}
 plot(m.bin)
 library(DHARMa)
@@ -32,11 +32,11 @@ summary(m.bin)
 1 - (m.bin$dev/m.bin$null)
 library(performance)
 
-# Coeficiente de determinaciÛn de Tjur
+# Coeficiente de determinaci√≥n de Tjur
 r2_tjur(m.bin) 
 ```
 
-### Gr·fico del modelo
+### Gr√°fico del modelo
 ```{r grafico binomial}
 library(visreg)
 visreg(fit = m.bin, xvar = "salinity", scale = "response", ylim = c(0, 1), 
@@ -44,13 +44,13 @@ visreg(fit = m.bin, xvar = "salinity", scale = "response", ylim = c(0, 1),
 points(datos$salinity, datos$Solea_solea)
 ```
 
-### InterpretaciÛn de los coeficientes
+### Interpretaci√≥n de los coeficientes
 ```{r interpretacion coef}
 exp(m.bin$coeff[2]) # Razon de odds
 ```
 Esto quiere decir que, por unidad de salinidad, la relacion $\frac{P(presencia)}{P(ausencia)}$ (odd) disminuye en 0.90 unidades
 
-### EcuaciÛn
+### Ecuaci√≥n
 ```{r ecuacion glm binomial}
 library(equatiomatic)
 extract_eq(m.bin, use_coefs = TRUE, fix_signs = TRUE)
@@ -58,30 +58,30 @@ extract_eq(m.bin, use_coefs = TRUE, fix_signs = TRUE)
 
 ### Capacidad predictiva
 ```{r matriz confusion}
-# Matriz de confusiÛn
+# Matriz de confusi√≥n
 obs <- datos$Solea_solea
 pred <- ifelse(predict(m.bin, type = "response")>0.5, 1, 0)
 matriz.conf <- table(obs, pred) 
 matriz.conf
 
-# Porcentajes de clasificaciÛn
+# Porcentajes de clasificaci√≥n
 matriz.conf/rowSums(matriz.conf)
 ```
 
 ## Conteos I
-Gotelli & Ellison (2002) analizaron los determinantes biogeogr·ficos de la riqueza de hormigas (`Srich`) a escala regional (`hormigas.txt`). Para esto se describieron el tipo de h·bitat (`Habitat`), la latitud (`Latitude`) y la altitud (`Elevation`).
+Gotelli & Ellison (2002) analizaron los determinantes biogeogr√°ficos de la riqueza de hormigas (`Srich`) a escala regional (`hormigas.txt`). Para esto se describieron el tipo de h√°bitat (`Habitat`), la latitud (`Latitude`) y la altitud (`Elevation`).
 
 ```{r explo2}
-# An·lisis exploratorio
+# An√°lisis exploratorio
 h <- read.table("hormigas.txt", header = T) 
 str(h)
 h$Habitat <- as.factor(h$Habitat)
 pairs(h[, 2:5])
 round(cor(h[, c(2, 4:5)]), 2)
-plot(table(h$Srich), xlab = "N˙mero de especies", ylab = "Frecuencia")
-hist(h$Srich, xlab = "N˙mero de especies", ylab = "Frecuencia relativa", main = "", freq = FALSE)
+plot(table(h$Srich), xlab = "N√∫mero de especies", ylab = "Frecuencia")
+hist(h$Srich, xlab = "N√∫mero de especies", ylab = "Frecuencia relativa", main = "", freq = FALSE)
 
-# Ajuste de distribuciÛn a los datos
+# Ajuste de distribuci√≥n a los datos
 sim.pois <- dpois(x = 0:max(h$Srich), lambda = mean(h$Srich))
 lines(x = 0:max(h$Srich), y = sim.pois, col = "blue", lwd = 2, type = "b")
 var(h$Srich)/mean(h$Srich)
@@ -99,7 +99,7 @@ summary(m.pois)
 m.qpois <- glm(Srich ~ Latitude + Elevation + Habitat, family = quasipoisson, data = h)
 summary(m.qpois)
 
-# Par·metro de sobredispersiÛn
+# Par√°metro de sobredispersi√≥n
 resid <- residuals(m.qpois, type = "pearson")
 nparam <- length(m.qpois$coeff)
 ndatos <- nrow(h)
@@ -113,7 +113,7 @@ library(DHARMa)
 testDispersion(m.pois)
 ```
 
-#### DiagnÛsticos
+#### Diagn√≥sticos
 ```{r validacion glm poisson}
 residP <- resid(m.qpois, type = "pearson")  # residuos de Pearson 
 residD <- resid(m.qpois, type = "deviance") # residuos de devianza 
@@ -128,17 +128,17 @@ plot(simulateResiduals(fittedModel = m.pois))
 1 - (m.qpois$dev/m.qpois$null) # Pseudo-R2
 ```
 
-#### EcuaciÛn
+#### Ecuaci√≥n
 ```{r ecuacion glm poisson}
 library(equatiomatic)
 extract_eq(m.qpois, use_coefs = TRUE, fix_signs = TRUE)
 ```
 
-#### Gr·fico del modelo
+#### Gr√°fico del modelo
 ```{r grafico glm poisson}
 library(visreg)
 visreg(fit = m.qpois, xvar = "Latitude", by = "Habitat", overlay = TRUE, 
-       scale = "response", xlab = "Latitud", ylab = "N˙mero de especies",
+       scale = "response", xlab = "Latitud", ylab = "N√∫mero de especies",
        type = "conditional", cond = list(Latitude = mean(h$Latitude), Elevation = mean(h$Elevation))) 
 bg <- h[h$Habitat == "Bog", ] 
 ft <- h[h$Habitat == "Forest", ] 
@@ -147,25 +147,25 @@ points(ft$Latitude, ft$Srich, pch=19, col = "blue")
 ```
 
 ### GLM binomial negativo
-Leong et al. (2014) estudiaron el efecto del paisaje (urbano, agrÌcola y natural) sobre el n˙mero de interacciones de polinizadores nativos en $Centaurea solstitialis$ (Asteraceae). Se quiere evaluar si existen diferencias en el n˙mero de interacciones (`total`) entre los 3 tipos de ambientes (`type`) teniendo en cuenta la temperatura (`temp`) y la velocidad del viento (`wind`). 
+Leong et al. (2014) estudiaron el efecto del paisaje (urbano, agr√≠cola y natural) sobre el n√∫mero de interacciones de polinizadores nativos en $Centaurea solstitialis$ (Asteraceae). Se quiere evaluar si existen diferencias en el n√∫mero de interacciones (`total`) entre los 3 tipos de ambientes (`type`) teniendo en cuenta la temperatura (`temp`) y la velocidad del viento (`wind`). 
 
 ```{r explo3}
-# An·lisis exploratorio
+# An√°lisis exploratorio
 pol <- read.table("bees_data.txt", header = T) 
 str(pol)
 pol$habitat <- factor(pol$type, levels = c("n", "a", "u"))
 pairs(pol[, c("habitat", "temp", "wind", "total")])
 boxplot(pol$total ~ pol$habitat)
 cor(pol$temp, pol$wind)
-hist(pol$total, xlab = "N˙mero de interacciones", ylab = "Frecuencia relativa", main = "", freq = FALSE, ylim = c(0, 0.05))
+hist(pol$total, xlab = "N√∫mero de interacciones", ylab = "Frecuencia relativa", main = "", freq = FALSE, ylim = c(0, 0.05))
 
-# Ajuste de distribuciÛn a los datos
+# Ajuste de distribuci√≥n a los datos
 sim.pois <- dpois(x = 0:max(pol$total), lambda = mean(pol$total))
 lines(x = 0:max(pol$total), y = sim.pois, col = "blue", lwd = 2, type = "b")
 var(pol$total)/mean(pol$total)
 ```
 
-#### Chequear sobredispersiÛn
+#### Chequear sobredispersi√≥n
 ```{r sobredispersion}
 mqpoi.pol <- glm(total ~ habitat + temp + wind, family = quasipoisson, data = pol) 
 summary(mqpoi.pol)
@@ -174,7 +174,7 @@ mpoi.pol <- glm(total ~ habitat + temp + wind, family = poisson, data = pol)
 testDispersion(mpoi.pol)
 ```
 
-#### ValidaciÛn del modelo quasi-Poisson
+#### Validaci√≥n del modelo quasi-Poisson
 ```{r validacion glm quasipoisson}
 plot(simulateResiduals(fittedModel = mpoi.pol))
 ```
@@ -186,7 +186,7 @@ mbn.pol <- glm.nb(total ~ habitat + temp + wind, data = pol)
 summary(mbn.pol)
 ```
 
-#### ValidaciÛn del modelo binomial negativo
+#### Validaci√≥n del modelo binomial negativo
 ```{r validacion glm BN}
 plot(simulateResiduals(fittedModel = mbn.pol))
 ```
@@ -196,12 +196,12 @@ plot(simulateResiduals(fittedModel = mbn.pol))
 1 - (mbn.pol$dev/mbn.pol$null) # Pseudo-R2
 ```
 
-#### EcuaciÛn
+#### Ecuaci√≥n
 ```{r ecuacion glm BN}
 extract_eq(mbn.pol, use_coefs = TRUE, fix_signs = TRUE)
 ```
 
-#### Comparaciones m˙ltiples
+#### Comparaciones m√∫ltiples
 ```{r comparaciones}
 library(multcomp) 
 comp <- glht(mbn.pol, mcp(habitat = "Tukey")) 
@@ -214,7 +214,7 @@ mbn.pol.off <- glm.nb(total ~ habitat + temp + wind + offset(log(min)), data = p
 summary(mbn.pol.off)
 ```
 
-#### Gr·ficos de los modelos
+#### Gr√°ficos de los modelos
 ```{r grafico glm BN}
 layout(matrix(1:2, 1, 2))
 visreg(fit = mbn.pol, xvar = "habitat", scale = "response", cond = list(temp = mean(pol$temp), wind = mean(pol$wind)), xlab = "Habitat", ylab = "Numero de visitas", main = "GLM binomial negativo")
@@ -223,7 +223,7 @@ layout(1)
 ```
 
 ## Modelo lineal general
-Palacio et al. (2014) estudiaron la selecciÛn natural mediada por aves frugÌvoras sobre rasgos de los frutos de *Celtis tala* (`frutos Celtis 2013.txt`), incluyendo el di·metro (`diam`), peso (`peso`), concentraciÛn de az˙cares (`az`), peso de pulpa (`pulpa`), peso de semilla (`sem`) y relaciÛn peso de pulpa/peso de semilla (`pulpa.sem`). Analizar quÈ factores explican el tama√±o del fruto. 
+Palacio et al. (2014) estudiaron la selecci√≥n natural mediada por aves frug√≠voras sobre rasgos de los frutos de *Celtis tala* (`frutos Celtis 2013.txt`), incluyendo el di√°metro (`diam`), peso (`peso`), concentraci√≥n de az√∫cares (`az`), peso de pulpa (`pulpa`), peso de semilla (`sem`) y relaci√≥n peso de pulpa/peso de semilla (`pulpa.sem`). Analizar qu√© factores explican el tama√É¬±o del fruto. 
 ```{r lm}
 celtis <- read.delim("frutos Celtis 2013.csv", sep = ";")
 str(celtis)
@@ -235,9 +235,9 @@ summary(mlg)
 ```
 
 ## GLM Gamma
-Allen et al. (2015) analizaron el efecto de grandes carnÌvoros ($Ursus americanus$ y $Puma concolor$) sobre la actividad de carro√±eros. Registraron la duraciÛn media del evento de alimentaciÛn (`duration`) por carro√±eros en sitios con cad·veres producto de pumas y sitios control donde se colocaron cad·veres colectados en la ruta (`trat`).
+Allen et al. (2015) analizaron el efecto de grandes carn√≠voros ($Ursus americanus$ y $Puma concolor$) sobre la actividad de carro√É¬±eros. Registraron la duraci√≥n media del evento de alimentaci√≥n (`duration`) por carro√É¬±eros en sitios con cad√°veres producto de pumas y sitios control donde se colocaron cad√°veres colectados en la ruta (`trat`).
 ```{r glm gamma}
-# Gr·ficos exploratorios 
+# Gr√°ficos exploratorios 
 datos <- read.table("puma.txt", header = TRUE)
 datos$trat <- as.factor(datos$trat)
 P <- subset(datos, trat == "Puma_Kill") 
@@ -252,7 +252,7 @@ boxplot(datos$duration ~ datos$trat)
 m.Gamma <- glm(duration ~ trat, family = Gamma, data = datos) 
 summary(m.Gamma)
  
-# Comparaciones m˙ltiples 
+# Comparaciones m√∫ltiples 
 library(multcomp)
 comp <- glht(m.Gamma, mcp(trat = "Tukey")) 
 summary(comp)
@@ -262,11 +262,11 @@ summary(comp)
 
 ### Ejercicio 2.1
 
-Identifique quÈ tipo de distribuciones de probabilidad utilizarÌa para las siguientes variables de respuesta. Justifique en cada caso.
+Identifique qu√© tipo de distribuciones de probabilidad utilizar√≠a para las siguientes variables de respuesta. Justifique en cada caso.
 
 a. Densidad de especies de plantas en parcelas de un bosque.
 
-b. Probabilidad de detecciÛn de una especie de anfibio en charcas temporarias.
+b. Probabilidad de detecci√≥n de una especie de anfibio en charcas temporarias.
 
 c. La tasa de crecimiento en pichones de una especie de ave.
 
@@ -274,15 +274,15 @@ d. El sexo en una especie de lagarto.
 
 ### Ejercicio 2.2
 
-Se estimÛ la prevalencia del par·sito *Elaphostrongylus cervi* en ciervos colorados de granjas de Espa√±a (`Tbdeer`). En cada granja (`Farm`) se muestreÛ un grupo de animales (`DeerSampledCervi`) y se registrÛ si eran positivos para la enfermedad (`DeerPosCervi`). Adem·s, se registraron variables de h·bitat, como porcentaje de ·reas abiertas (`OpenLand`), arbustos (`ScrubLand`) y plantaciones de pino (`PinePlantation`), densidad de plantas y ·rboles de *Quercus* sp. (`QuercusPlants`, `QuercusTrees`). TambiÈn se estimaron abundancias relativas de jabalÌ (`WildBoarIndex`) y ciervo colorado (`RedDeerIndex`), ·rea del campo (`EstateSize`) y si el campo estaba cercado (1 = cercado, 0 = no cercado). 
+Se estim√≥ la prevalencia del par√°sito *Elaphostrongylus cervi* en ciervos colorados de granjas de Espa√É¬±a (`Tbdeer`). En cada granja (`Farm`) se muestre√≥ un grupo de animales (`DeerSampledCervi`) y se registr√≥ si eran positivos para la enfermedad (`DeerPosCervi`). Adem√°s, se registraron variables de h√°bitat, como porcentaje de √°reas abiertas (`OpenLand`), arbustos (`ScrubLand`) y plantaciones de pino (`PinePlantation`), densidad de plantas y √°rboles de *Quercus* sp. (`QuercusPlants`, `QuercusTrees`). Tambi√©n se estimaron abundancias relativas de jabal√≠ (`WildBoarIndex`) y ciervo colorado (`RedDeerIndex`), √°rea del campo (`EstateSize`) y si el campo estaba cercado (1 = cercado, 0 = no cercado). 
 
-- Determine, cu·les de estas variables est·n involucradas en la prevalencia de la enfermedad. 
+- Determine, cu√°les de estas variables est√°n involucradas en la prevalencia de la enfermedad. 
 
 - Valide y grafique el modelo resultante.
 
 ### Ejercicio 2.3
 
-Simule un modelo lineal general (utilice la funciÛn `rnorm`) con dos variables (una con un efecto positivo y otra con un efecto negativo sobre la respuesta) y ajuste un modelo con las funciones `lm` y `glm`. Compare ambos modelos ¬øQuÈ conclusiÛn obtiene?
+Simule un modelo lineal general (utilice la funci√≥n `rnorm`) con dos variables (una con un efecto positivo y otra con un efecto negativo sobre la respuesta) y ajuste un modelo con las funciones `lm` y `glm`. Compare ambos modelos √Ç¬øQu√© conclusi√≥n obtiene?
 
 #### Ejercicio 2.4
 
@@ -290,11 +290,11 @@ Desarrolle un script para calcular el R^2^ de Tjur utilizando el GLM binomial de
 
 $$R^{2}_{Tjur} = \frac{\sum \hat{p}(y = 1)}{n_1}\ + \frac{\sum \hat{p}(y = 0)}{n_0}$$
 
-Corrobore el resultado con la funciÛn `r2_tjur` del paquete `performance` ¬øEn quÈ situaciÛn hipotÈtica el $R^2$ vale 0?
+Corrobore el resultado con la funci√≥n `r2_tjur` del paquete `performance` √Ç¬øEn qu√© situaci√≥n hipot√©tica el $R^2$ vale 0?
 
 ## Conteos II
 ### Modelos truncados en cero
-Santos et al. (2011) estudiaron la probabilidad de persistencia de las carcasas de animales muertos en ruta (`Snakes.txt`). La variable respuesta es la cantidad de dÌas que perduraban las carcasas sin ser removidas (`N_days`). Las variables explicatorias son la longitud de cada especie (`Size_cm`), la proporciÛn de dÌas con lluvia (`PDayRain`), las precipitaciones totales (`Tot_Rain`), la temperatura diaria promedio (`Temp_avg`), la identidad de la ruta que representa la intesidad del tr·fico (`Road`; EN114 tiene alto tr·nsito, EN4 tiene tr·fico medio, y EN370_EN114_4 tiene bajo tr·fico), la ubicaciÛn en la ruta (`Road_Loc`; L = asfalto, V = borde), la estaciÛn (`Season`), y la especie (`Species`).
+Santos et al. (2011) estudiaron la probabilidad de persistencia de las carcasas de animales muertos en ruta (`Snakes.txt`). La variable respuesta es la cantidad de d√≠as que perduraban las carcasas sin ser removidas (`N_days`). Las variables explicatorias son la longitud de cada especie (`Size_cm`), la proporci√≥n de d√≠as con lluvia (`PDayRain`), las precipitaciones totales (`Tot_Rain`), la temperatura diaria promedio (`Temp_avg`), la identidad de la ruta que representa la intesidad del tr√°fico (`Road`; EN114 tiene alto tr√°nsito, EN4 tiene tr√°fico medio, y EN370_EN114_4 tiene bajo tr√°fico), la ubicaci√≥n en la ruta (`Road_Loc`; L = asfalto, V = borde), la estaci√≥n (`Season`), y la especie (`Species`).
 
 ```{r explo6}
 # Analisis exploratorio
@@ -309,7 +309,7 @@ boxplot(serp$Tot_Rain ~ serp$Season)
 boxplot(serp$Temp_avg ~ serp$Season)
 ```
 
-#### ComparaciÛn con el GLM Poisson
+#### Comparaci√≥n con el GLM Poisson
 ```{r glm poisson 2}
 m.pois <- glm(N_days ~ Size_cm + PDayRain + Tot_Rain + Road + Size_cm + Road_Loc + Size_cm:PDayRain, family = poisson, data = serp)
 summary(m.pois)
@@ -328,23 +328,23 @@ m.nb.trun <- vglm(N_days ~ Size_cm + PDayRain + Tot_Rain + Road + Size_cm + Road
 summary(m.nb.trun)
 ```
 
-#### ComparaciÛn de coeficientes entre modelos
+#### Comparaci√≥n de coeficientes entre modelos
 ```{r coef GLM}
 data.frame(coef.Poisson = summary(m.pois)$coeff[, 1], 
            coef.Poisson.truncado = summary(m.pois.trun)@coef3[, 1])
 ```
 
 ### Modelos inflados en ceros
-Hemmingsen et al. (2005) analizaron las infecciones por *Trypanosoma* en bacalaos (*Gadus morhua*) durante cruceros anuales en la costa norte de Noruega (`ParasiteCod.txt`). La variable respuesta es la prevalencia de par·sitos (`Prevalence`). Posibles variables explicatorias son el a√±o (`Year`), el ·rea (`Area`) y la profundidad de captura (`Depth`). 
+Hemmingsen et al. (2005) analizaron las infecciones por *Trypanosoma* en bacalaos (*Gadus morhua*) durante cruceros anuales en la costa norte de Noruega (`ParasiteCod.txt`). La variable respuesta es la prevalencia de par√°sitos (`Prevalence`). Posibles variables explicatorias son el a√É¬±o (`Year`), el √°rea (`Area`) y la profundidad de captura (`Depth`). 
 
 ```{r explo7}
-# An·lisis exploratorio
+# An√°lisis exploratorio
 parasitos <- read.table("ParasiteCod.txt", header = T) 
 str(parasitos)
 plot(table(parasitos$Intensity))
-table(parasitos$Intensity)[1] # N˙mero de ceros observados
+table(parasitos$Intensity)[1] # N√∫mero de ceros observados
 
-# Ajuste de distribuciÛn a los datos
+# Ajuste de distribuci√≥n a los datos
 xIntensity <- mean(parasitos$Intensity, na.rm = TRUE)
 sim.pois <- dpois(x = 0:max(parasitos$Intensity, na.rm = TRUE), lambda = xIntensity)
 ndatos <- length(na.omit(parasitos$Intensity))
@@ -367,20 +367,20 @@ link = "logit", data = parasitos)
 summary(ZANB)
 ```
 
-#### ComparaciÛn de ZAP y ZANB
+#### Comparaci√≥n de ZAP y ZANB
 ```{r ZAP vs ZANB}
 library(lmtest)
-lrtest(ZAP, ZANB) # Test de razÛn de verosimilitud
+lrtest(ZAP, ZANB) # Test de raz√≥n de verosimilitud
 AIC(ZAP, ZANB)
 ```
 
-#### ValidaciÛn
+#### Validaci√≥n
 ```{r validacion ZANB}
 resid <- residuals(ZANB, type = "pearson")
 plot(resid, predict(ZANB), xlab = "Residuos", ylab = "Predichos")
 ```
 
-#### InterpretaciÛn y gr·ficos del modelo
+#### Interpretaci√≥n y gr√°ficos del modelo
 ```{r graficos ZANB}
 # Proceso de falsos ceros
 Depth <- seq(min(parasitos$Depth), max(parasitos$Depth), length = 500)
@@ -403,7 +403,7 @@ lines(Depth, count.model.pred, col = "blue", lwd = 2)
 #### GLMs de mezcla (ZIP y ZINB)
 ```{r glm inflado}
 library(pscl)
-# La primera parte de la fÛrmula contiene las covariables para el proceso de conteo, la segunda parte contiene las covariables para la probabilidad de los falsos ceros.
+# La primera parte de la f√≥rmula contiene las covariables para el proceso de conteo, la segunda parte contiene las covariables para la probabilidad de los falsos ceros.
 ZIP <- zeroinfl(Intensity ~ Depth | Length + Depth, dist = "poisson", 
 link = "logit", data = parasitos)
 summary(ZIP)
@@ -416,17 +416,17 @@ summary(ZINB)
 #### Comparacion de ZIP y ZINB
 ```{r ZIP vs ZINB}
 library(lmtest)
-lrtest(ZIP, ZINB) # Test de razÛn de verosimilitud
+lrtest(ZIP, ZINB) # Test de raz√≥n de verosimilitud
 ```
 
-#### ValidaciÛn
+#### Validaci√≥n
 ```{r validacion ZINB}
 resid <- residuals(ZINB, type = "pearson")
 plot(resid, predict(ZINB), xlab = "Residuos", ylab = "Predichos")
 AIC(ZIP, ZINB)
 ```
 
-### InterpretaciÛn y gr·ficos del modelo
+### Interpretaci√≥n y gr√°ficos del modelo
 ```{r graficos ZINB}
 # Proceso de falsos ceros
 Depth <- seq(min(parasitos$Depth), max(parasitos$Depth), length = 500)
@@ -444,9 +444,9 @@ plot(Depth, count.model.pred, col = "blue", type = "l", lwd = 3, xlab = "Profund
 ```
 
 ## Inferencia multimodelo
-Cabral et al. (2007) estudiaron la distribuciÛn de platijas (*Solea solea*) en el estuario Tagus, Portugal (`Solea.txt`). Se desea saber quÈ factores del agua y sustrato est·n relacionados con la presencia esta especie.
+Cabral et al. (2007) estudiaron la distribuci√≥n de platijas (*Solea solea*) en el estuario Tagus, Portugal (`Solea.txt`). Se desea saber qu√© factores del agua y sustrato est√°n relacionados con la presencia esta especie.
 ```{r explo8}
-# An·lisis exploratorio
+# An√°lisis exploratorio
 datos <- read.table("Solea.txt", header = TRUE)
 str(datos)
 round(cor(datos[, 4:12]), 2)
@@ -478,7 +478,7 @@ m10 <- glm(Solea_solea ~ med_fine_sand, family = binomial, data = datos)
 m11 <- glm(Solea_solea ~ depth + gravel + large_sand + med_fine_sand, family = binomial, data = datos)
 ```
 
-### SelecciÛn de modelos
+### Selecci√≥n de modelos
 ```{r seleccion modelos}
 library(MuMIn)
 modelos <- list(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11)
@@ -495,7 +495,7 @@ summary(modelo.promedio)
 sw(modelo.promedio)
 ```
 
-### Gr·fico del modelo promedio
+### Gr√°fico del modelo promedio
 ```{r}
 model.coeff <- data.frame(estimate = modelo.promedio$coefficients[1,])
 CI <- as.data.frame(confint(modelo.promedio, full = TRUE))
@@ -515,29 +515,29 @@ ggplot(data = model.coeff[2:5, ], aes(x = coef, y = estimate)) +
 ## Actividades
 
 ### Ejercicio 3.1
-Los datos del archivo `gala.xls` corresponden a un estudio donde se relevÛ la diversidad de especies de tortugas de las Islas Gal·pagos. De cada isla se obtuvo la riqueza de especies (`Species`), el ·rea (`Area`), la altitud (`Elevation`), la distancia a la isla m·s cercana (`Nearest`), la distancia a la isla Santa Cruz (`Scruz`) y el ·rea de la isla m·s cercana (`Adjacent`). 
+Los datos del archivo `gala.xls` corresponden a un estudio donde se relev√≥ la diversidad de especies de tortugas de las Islas Gal√°pagos. De cada isla se obtuvo la riqueza de especies (`Species`), el √°rea (`Area`), la altitud (`Elevation`), la distancia a la isla m√°s cercana (`Nearest`), la distancia a la isla Santa Cruz (`Scruz`) y el √°rea de la isla m√°s cercana (`Adjacent`). 
 
-- Construya un modelo adecuado que relacione el n˙mero de especies endÈmicas (`Endemics`) con las variables medidas y analice su poder explicativo.
+- Construya un modelo adecuado que relacione el n√∫mero de especies end√©micas (`Endemics`) con las variables medidas y analice su poder explicativo.
 
-- Realice uno o m·s gr·ficos que representen el modelo ajustado.
+- Realice uno o m√°s gr√°ficos que representen el modelo ajustado.
 
-- Debido a disponibilidad presupuestaria, sÛlo se podr·n concentrar esfuerzos de conservaciÛn en islas con un alto n˙mero de especies endÈmicas (>80). ¬øA partir de quÈ valor de elevaciÛn el modelo predice m·s de 25 especies endÈmicas? Para esto considere valores constantes en el resto de las covariables incluidas en su modelo.
+- Debido a disponibilidad presupuestaria, s√≥lo se podr√°n concentrar esfuerzos de conservaci√≥n en islas con un alto n√∫mero de especies end√©micas (>80). √Ç¬øA partir de qu√© valor de elevaci√≥n el modelo predice m√°s de 25 especies end√©micas? Para esto considere valores constantes en el resto de las covariables incluidas en su modelo.
 
 ### Ejercicio 3.2
-Radim et al. (2015) analizaron la ocurrencia de muÈrdagos (*Loranthus europaeus*) en robles de Rep˙blica Checa, teniendo en cuenta el ·rea basal (`basal_area`), el n˙mero de tallos (`Number_of_stems`), el ·rea basal promedio de los tallos (`mean_stem_basal_area`), la competencia con ·rboles infectados basada en el Ìndice de Hegyi (`CI_stem`) y el rango de los multicaules en ciertas direcciones (`Xrange`, `Yrange` y `RangeAvg`) (https://doi.org/10.1371/journal.pone.0127055). El conjunto de datos corresponde al archivo `Matula_mistletoes_csv`.
+Radim et al. (2015) analizaron la ocurrencia de mu√©rdagos (*Loranthus europaeus*) en robles de Rep√∫blica Checa, teniendo en cuenta el √°rea basal (`basal_area`), el n√∫mero de tallos (`Number_of_stems`), el √°rea basal promedio de los tallos (`mean_stem_basal_area`), la competencia con √°rboles infectados basada en el √≠ndice de Hegyi (`CI_stem`) y el rango de los multicaules en ciertas direcciones (`Xrange`, `Yrange` y `RangeAvg`) (https://doi.org/10.1371/journal.pone.0127055). El conjunto de datos corresponde al archivo `Matula_mistletoes_csv`.
 
-- Encontrar un modelo que mejor explique la probabilidad de infecciÛn por muÈrdagos (`infected`) en robles.
+- Encontrar un modelo que mejor explique la probabilidad de infecci√≥n por mu√©rdagos (`infected`) en robles.
 
-- Construya una o m·s tablas que muestren los resultados principales.
+- Construya una o m√°s tablas que muestren los resultados principales.
 
-- Realice uno o m·s gr·ficos que represente el modelo ajustado.
+- Realice uno o m√°s gr√°ficos que represente el modelo ajustado.
 
 ### Ejercicio 3.3
-Tomando como base el conjunto de datos `parasitos.txt` y el modelo ZAP (de dos partes o "valla") ajustado, ajuste un modelo ZAP con los mismos predictores pero de forma manual. Para esto, considere utilizar dos GLMs por separado: uno para la probabilidad de obtener un cero, y otro para la distribuciÛn de los conteos. Compare los resultados con el modelo obtenido con la funciÛn `hurdle` (paquete `pscl`).
+Tomando como base el conjunto de datos `parasitos.txt` y el modelo ZAP (de dos partes o "valla") ajustado, ajuste un modelo ZAP con los mismos predictores pero de forma manual. Para esto, considere utilizar dos GLMs por separado: uno para la probabilidad de obtener un cero, y otro para la distribuci√≥n de los conteos. Compare los resultados con el modelo obtenido con la funci√≥n `hurdle` (paquete `pscl`).
 
 ### Ejercicio 3.4
-Raventos et al. (2019) evaluaron la respuesta de rasgos de historia de vida a diferentes variables ambientales (mediante tÈcnicas reconstructivas de otolitos) en varias especies de peces (https://doi.org/10.1111/1365-2656.13435). Para esto, se estimaron caracteres de historia de vida, incluyendo la duraciÛn larval pel·gica (`PLD`), la tasa de crecimiento (`Pre-settlement_growth`), el tama√±o de asentamiento (`Size_of_settlement`) y la fecha de puesta (`Hatching_day_date`). El conjunto de datos se encuentra en el archivo `Raventos_etal_2021_JAE_data.txt`.
+Raventos et al. (2019) evaluaron la respuesta de rasgos de historia de vida a diferentes variables ambientales (mediante t√©cnicas reconstructivas de otolitos) en varias especies de peces (https://doi.org/10.1111/1365-2656.13435). Para esto, se estimaron caracteres de historia de vida, incluyendo la duraci√≥n larval pel√°gica (`PLD`), la tasa de crecimiento (`Pre-settlement_growth`), el tama√É¬±o de asentamiento (`Size_of_settlement`) y la fecha de puesta (`Hatching_day_date`). El conjunto de datos se encuentra en el archivo `Raventos_etal_2021_JAE_data.txt`.
 
-- Analice quÈ factores determinan la respuesta de las tasas de crecimiento de dos especies considerando la temperatura de la superficie del agua (`SST`), la clorofila A mensual promedio en mg/m (`ChLA`) y la estaciÛn (`Season`).
+- Analice qu√© factores determinan la respuesta de las tasas de crecimiento de dos especies considerando la temperatura de la superficie del agua (`SST`), la clorofila A mensual promedio en mg/m (`ChLA`) y la estaci√≥n (`Season`).
 
-- Compare los predictores de los modelos de cada especie ¬øCu·l es m·s importante para cada una y en quÈ magnitud?
+- Compare los predictores de los modelos de cada especie √Ç¬øCu√°l es m√°s importante para cada una y en qu√© magnitud?
