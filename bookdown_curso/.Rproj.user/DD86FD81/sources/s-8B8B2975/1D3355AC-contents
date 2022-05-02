@@ -138,8 +138,8 @@ pairs.panels(Ad[, 3:6],
 $$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + \epsilon$$
 $$\epsilon \sim N(0, \sigma^2)$$
 
-Analizaremos la relación entre la longitud del pico (`bill_length_mm`), masa corporal (`body_mass_g`) y alto del pico (`bill_depth_mm`) en pingüinos Adelia ($Pygoscelis 
-adeliae$).
+Analizaremos la relación entre la longitud del pico (`bill_length_mm`), masa corporal (`body_mass_g`) y alto del pico (`bill_depth_mm`) en pingüinos Adelia (*Pygoscelis 
+adeliae*).
 ```{r regresion multiple}
 model.Ad <- lm(bill_length_mm ~ body_mass_g + bill_depth_mm, data = Ad)
 summary(model.Ad)
@@ -310,7 +310,7 @@ Luego, identifique las operaciones para obtener:
 
 1.4. Cree un vector que represente una variable aleatoria de 1000 valores con distribución normal estándar.
 
-  - Grafique un histograma (color naranja), teniendo en cuenta 10 y 15 celdas.
+  - Grafique un histograma (color naranja), teniendo en cuenta 10 y 30 celdas (barras).
   
   - Calcule su media y desvío estándar. 
   
@@ -322,9 +322,9 @@ Luego, identifique las operaciones para obtener:
   
   - Grafique los tres histogramas en el mismo panel ¿Qué observa?
   
-  - Haga una tabla que muestre la frecuencia para cada conteo y luego realice un gráfico de barras.
+  - Haga una tabla que muestre la frecuencia para cada conteo (cuántos valores de 0, cuántos valores de 1, etc.) y luego realice un gráfico de barras.
   
-1.6. Utilizando la variable aleatoria del Ejercicio 1.2, construya un marco de datos que incluya además, un factor de 4 niveles con el mismo número de observaciones en cada nivel, de tal forma que los primeros valores pertenezcan al primer nivel, los siguientes al segundo nivel y así sucesivamente.
+1.6. Utilizando la variable aleatoria del Ejercicio 1.4, construya un marco de datos que incluya además, un factor de 4 niveles con el mismo número de observaciones en cada nivel, de tal forma que los primeros valores pertenezcan al primer nivel, los siguientes al segundo nivel y así sucesivamente.
 
   - Calcule la media y desvío estándar para los valores de cada nivel, y luego grafique un histograma para cada uno de ellos.
   
@@ -360,7 +360,7 @@ Sokal & Rohlf (1997) analizaron el consumo de oxígeno en dos especies de lapas 
 
 - Realice un gráfico que muestre las diferentes combinaciones entre especie y concentración. Grafique e interprete la interacción entre ambos factores utilizando la función `interaction.plot` del paquete `car`.
 
-- ¿Existen diferencias entre las especies y las concentraciones? Utilice un modelo adecuado que responda a esta pregunta.
+- ¿Existen diferencias entre las especies en cuanto a las concentraciones? Utilice un modelo adecuado que responda a esta pregunta.
 
 - Evalúe los supuestos del modelo.
 
