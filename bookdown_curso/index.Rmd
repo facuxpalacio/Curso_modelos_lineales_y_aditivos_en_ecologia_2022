@@ -138,7 +138,8 @@ pairs.panels(Ad[, 3:6],
 $$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + \epsilon$$
 $$\epsilon \sim N(0, \sigma^2)$$
 
-Analizaremos la relación entre la longitud del pico (´bill_length_mm´), masa corporal (`body_mass_g`) y alto del pico (`bill_depth_mm`) en pingüinos Adelia ($Pygoscelis adeliae$).
+Analizaremos la relación entre la longitud del pico (`bill_length_mm`), masa corporal (`body_mass_g`) y alto del pico (`bill_depth_mm`) en pingüinos Adelia ($Pygoscelis 
+adeliae$).
 ```{r regresion multiple}
 model.Ad <- lm(bill_length_mm ~ body_mass_g + bill_depth_mm, data = Ad)
 summary(model.Ad)
@@ -274,25 +275,37 @@ layout(1)
 1.2. Genere los siguientes vectores x e y, respectivamente:
 
 1 4 7 11 5 2
+
 1 2 3 4 5 6
 
 Luego, identifique las operaciones para obtener:
 
 2 6 10 15 10 8
+
 2 8 14 22 10 4
+
 3 6 9 12 15 18
 
 1.3. Genere las siguientes secuencias:
 
 1 2 3 4 5 6 7 8 9 10 11
+
 5 6 7 8 9 10
+
 5.0 5.5 6.0 6.5 7.0 7.5 8.0 8.5 9.0 9.5 10.0
+
 10.0 10.1 10.2 10.3 10.4 10.5 10.6 10.7 10.8 10.9 11.0 11.1 11.2 11.3
+
 1 3 5 7 9
+
 9 7 5 3 1
+
 3 3 3 3 3
+
 1 2 1 2 1 2 1 2 1 2
+
 "IML" "R" "IML" "R" "IML" "R" "IML" "R"
+
  1 1 1 2 2 2 3 3 3 4 4 4 5 5 5
 
 1.4. Cree un vector que represente una variable aleatoria de 1000 valores con distribución normal estándar.

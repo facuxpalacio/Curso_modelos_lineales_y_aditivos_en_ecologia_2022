@@ -1,0 +1,4 @@
+"0","loess.model <- loess(peso.seco ~ largo, data = almejas)"
+"0","largo <- seq(min(almejas$largo), max(almejas$largo), length = 500)"
+"0","predPeso <- predict(loess.model, newdata = data.frame(largo))"
+"0","lines(largo, predPeso, col = ""blue"", lwd = 2)"
