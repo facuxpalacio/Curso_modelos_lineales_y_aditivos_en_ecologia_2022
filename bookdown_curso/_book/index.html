@@ -23,7 +23,7 @@
 <meta name="author" content="Facundo X. Palacio" />
 
 
-<meta name="date" content="2022-04-28" />
+<meta name="date" content="2022-05-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -252,7 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Modelos lineales y aditivos en ecología</h1>
 <p class="author"><em>Facundo X. Palacio</em></p>
-<p class="date"><em>2022-04-28</em></p>
+<p class="date"><em>2022-05-01</em></p>
 </div>
 <div id="introducción-a-los-modelos-lineales" class="section level1 hasAnchor">
 <h1><span class="header-section-number">1</span> Introducción a los modelos lineales<a href="index.html#introducción-a-los-modelos-lineales" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -476,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">1.7</span> Regresión lineal multiple<a href="index.html#regresión-lineal-multiple" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><span class="math display">\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + \epsilon\]</span>
 <span class="math display">\[\epsilon \sim N(0, \sigma^2)\]</span></p>
-<p>Analizaremos la relación entre la longitud del pico (´bill_length_mm´), masa corporal (<code>body_mass_g</code>) y alto del pico (<code>bill_depth_mm</code>) en pingüinos Adelia (<span class="math inline">\(Pygoscelis adeliae\)</span>).</p>
+<p>Analizaremos la relación entre la longitud del pico (<code>bill_length_mm</code>), masa corporal (<code>body_mass_g</code>) y alto del pico (<code>bill_depth_mm</code>) en pingüinos Adelia (<span class="math inline">\(Pygoscelis adeliae\)</span>).</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="index.html#cb62-1"></a>model.Ad &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_length_mm <span class="op">~</span><span class="st"> </span>body_mass_g <span class="op">+</span><span class="st"> </span>bill_depth_mm, <span class="dt">data =</span> Ad)</span>
 <span id="cb62-2"><a href="index.html#cb62-2"></a><span class="kw">summary</span>(model.Ad)</span></code></pre></div>
 <pre><code>## 
@@ -784,23 +784,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>La raíz cuadrada y quinta de 10.</p></li>
 </ul>
 <p>1.2. Genere los siguientes vectores x e y, respectivamente:</p>
-<p>1 4 7 11 5 2
-1 2 3 4 5 6</p>
+<p>1 4 7 11 5 2</p>
+<p>1 2 3 4 5 6</p>
 <p>Luego, identifique las operaciones para obtener:</p>
-<p>2 6 10 15 10 8
-2 8 14 22 10 4
-3 6 9 12 15 18</p>
+<p>2 6 10 15 10 8</p>
+<p>2 8 14 22 10 4</p>
+<p>3 6 9 12 15 18</p>
 <p>1.3. Genere las siguientes secuencias:</p>
-<p>1 2 3 4 5 6 7 8 9 10 11
-5 6 7 8 9 10
-5.0 5.5 6.0 6.5 7.0 7.5 8.0 8.5 9.0 9.5 10.0
-10.0 10.1 10.2 10.3 10.4 10.5 10.6 10.7 10.8 10.9 11.0 11.1 11.2 11.3
-1 3 5 7 9
-9 7 5 3 1
-3 3 3 3 3
-1 2 1 2 1 2 1 2 1 2
-“IML” “R” “IML” “R” “IML” “R” “IML” “R”
-1 1 1 2 2 2 3 3 3 4 4 4 5 5 5</p>
+<p>1 2 3 4 5 6 7 8 9 10 11</p>
+<p>5 6 7 8 9 10</p>
+<p>5.0 5.5 6.0 6.5 7.0 7.5 8.0 8.5 9.0 9.5 10.0</p>
+<p>10.0 10.1 10.2 10.3 10.4 10.5 10.6 10.7 10.8 10.9 11.0 11.1 11.2 11.3</p>
+<p>1 3 5 7 9</p>
+<p>9 7 5 3 1</p>
+<p>3 3 3 3 3</p>
+<p>1 2 1 2 1 2 1 2 1 2</p>
+<p>“IML” “R” “IML” “R” “IML” “R” “IML” “R”</p>
+<p>1 1 1 2 2 2 3 3 3 4 4 4 5 5 5</p>
 <p>1.4. Cree un vector que represente una variable aleatoria de 1000 valores con distribución normal estándar.</p>
 <ul>
 <li><p>Grafique un histograma (color naranja), teniendo en cuenta 10 y 15 celdas.</p></li>
