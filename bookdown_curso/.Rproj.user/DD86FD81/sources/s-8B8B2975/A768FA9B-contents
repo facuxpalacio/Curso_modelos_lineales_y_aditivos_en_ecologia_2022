@@ -389,7 +389,7 @@ zero.model.coef <- ZANB$coefficients$zero # Coeficientes
 u <- zero.model.coef[1] + Length*zero.model.coef[2] + Depth*zero.model.coef[3]
 zero.model.pred <- exp(u)/(1 + exp(u)) # Predicciones
 parasitos$ceros <- ifelse(parasitos$Intensity == 0, 0, 1) # Ceros vs no ceros
-plot(parasitos$Depth, parasitos$ceros, pch = 19, xlab = "Profundidad", ylab = "Probabilidad de obtener un cero")
+plot(parasitos$Depth, parasitos$ceros, pch = 19, xlab = "Profundidad", ylab = "Probabilidad de obtener un parásito")
 lines(Depth, zero.model.pred, col = "blue", lwd = 2.5, main = "ZANB")
 
 # Proceso de conteo

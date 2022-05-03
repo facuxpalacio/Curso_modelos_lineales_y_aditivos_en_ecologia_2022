@@ -23,7 +23,7 @@
 <meta name="author" content="Facundo X. Palacio" />
 
 
-<meta name="date" content="2022-05-01" />
+<meta name="date" content="2022-05-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -177,6 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.1" data-path="GLM.html"><a href="GLM.html#ejercicio-2.1"><i class="fa fa-check"></i><b>2.5.1</b> Ejercicio 2.1<span></span></a></li>
 <li class="chapter" data-level="2.5.2" data-path="GLM.html"><a href="GLM.html#ejercicio-2.2"><i class="fa fa-check"></i><b>2.5.2</b> Ejercicio 2.2<span></span></a></li>
 <li class="chapter" data-level="2.5.3" data-path="GLM.html"><a href="GLM.html#ejercicio-2.3"><i class="fa fa-check"></i><b>2.5.3</b> Ejercicio 2.3<span></span></a></li>
+<li class="chapter" data-level="2.5.4" data-path="GLM.html"><a href="GLM.html#ejercicio-2.4"><i class="fa fa-check"></i><b>2.5.4</b> Ejercicio 2.4<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="GLM.html"><a href="GLM.html#conteos-ii"><i class="fa fa-check"></i><b>2.6</b> Conteos II<span></span></a><ul>
 <li class="chapter" data-level="2.6.1" data-path="GLM.html"><a href="GLM.html#modelos-truncados-en-cero"><i class="fa fa-check"></i><b>2.6.1</b> Modelos truncados en cero<span></span></a></li>
@@ -1721,14 +1722,14 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ## R-sq.(adj) =  0.796   Deviance explained = 80.6%
 ## GCV = 29.692  Scale est. = 28.112    n = 789</code></pre>
 <div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="mixtos.html#cb512-1"></a><span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb512-2"><a href="mixtos.html#cb512-2"></a><span class="kw">check_resid</span>(gamm2, <span class="dt">split_pred =</span> <span class="st">&quot;Station&quot;</span>, <span class="dt">select =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</span></code></pre></div>
+<span id="cb512-2"><a href="mixtos.html#cb512-2"></a><span class="kw">check_resid</span>(gamm2, <span class="dt">split_pred =</span> <span class="st">&quot;Station&quot;</span>, <span class="dt">select =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">ask =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/gamms-2.png" width="672" /></p>
 <div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="mixtos.html#cb513-1"></a><span class="kw">layout</span>(<span class="dv">1</span>)</span>
 <span id="cb513-2"><a href="mixtos.html#cb513-2"></a><span class="kw">acf_resid</span>(gamm2, <span class="dt">split_pred =</span> <span class="st">&quot;Station&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/gamms-3.png" width="672" /></p>
 <div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="mixtos.html#cb514-1"></a><span class="kw">gamtabs</span>(gamm2, <span class="dt">type =</span> <span class="st">&quot;HTML&quot;</span>)</span></code></pre></div>
 <pre><code>## &lt;!-- html table generated in R 4.0.2 by xtable 1.8-4 package --&gt;
-## &lt;!-- Sun May 01 23:05:50 2022 --&gt;
+## &lt;!-- Tue May 03 19:26:17 2022 --&gt;
 ## &lt;table border=1&gt;
 ## &lt;caption align=&quot;bottom&quot;&gt;   &lt;/caption&gt;
 ##   &lt;tr&gt; &lt;td&gt; A. parametric coefficients &lt;/td&gt; &lt;td align=&quot;right&quot;&gt; Estimate &lt;/td&gt; &lt;td align=&quot;right&quot;&gt; Std. Error &lt;/td&gt; &lt;td align=&quot;right&quot;&gt; t-value &lt;/td&gt; &lt;td align=&quot;right&quot;&gt; p-value &lt;/td&gt; &lt;/tr&gt;

@@ -23,7 +23,7 @@
 <meta name="author" content="Facundo X. Palacio" />
 
 
-<meta name="date" content="2022-05-01" />
+<meta name="date" content="2022-05-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -177,6 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.1" data-path="GLM.html"><a href="GLM.html#ejercicio-2.1"><i class="fa fa-check"></i><b>2.5.1</b> Ejercicio 2.1<span></span></a></li>
 <li class="chapter" data-level="2.5.2" data-path="GLM.html"><a href="GLM.html#ejercicio-2.2"><i class="fa fa-check"></i><b>2.5.2</b> Ejercicio 2.2<span></span></a></li>
 <li class="chapter" data-level="2.5.3" data-path="GLM.html"><a href="GLM.html#ejercicio-2.3"><i class="fa fa-check"></i><b>2.5.3</b> Ejercicio 2.3<span></span></a></li>
+<li class="chapter" data-level="2.5.4" data-path="GLM.html"><a href="GLM.html#ejercicio-2.4"><i class="fa fa-check"></i><b>2.5.4</b> Ejercicio 2.4<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="GLM.html"><a href="GLM.html#conteos-ii"><i class="fa fa-check"></i><b>2.6</b> Conteos II<span></span></a><ul>
 <li class="chapter" data-level="2.6.1" data-path="GLM.html"><a href="GLM.html#modelos-truncados-en-cero"><i class="fa fa-check"></i><b>2.6.1</b> Modelos truncados en cero<span></span></a></li>
@@ -885,7 +886,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="glm-gamma" class="section level2 hasAnchor">
 <h2><span class="header-section-number">2.4</span> GLM Gamma<a href="GLM.html#glm-gamma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Allen et al. (2015) analizaron el efecto de grandes carnívoros (<span class="math inline">\(Ursus americanus\)</span> y <span class="math inline">\(Puma concolor\)</span>) sobre la actividad de carroñeros. Registraron la duración media del evento de alimentación (<code>duration</code>) por carroñeros en sitios con cadáveres producto de pumas y sitios control donde se colocaron cadáveres colectados en la ruta (<code>trat</code>).</p>
+<p>Allen et al. (2015) analizaron el efecto de grandes carnívoros (<em>Ursus americanus</em> y <em>Puma concolor</em>) sobre la actividad de carroñeros. Registraron la duración media del evento de alimentación (<code>duration</code>) por carroñeros en sitios con cadáveres producto de pumas y sitios control donde se colocaron cadáveres colectados en la ruta (<code>trat</code>).</p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="GLM.html#cb206-1"></a><span class="co"># Gráficos exploratorios </span></span>
 <span id="cb206-2"><a href="GLM.html#cb206-2"></a>datos &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;puma.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb206-3"><a href="GLM.html#cb206-3"></a>datos<span class="op">$</span>trat &lt;-<span class="st"> </span><span class="kw">as.factor</span>(datos<span class="op">$</span>trat)</span>
@@ -956,7 +957,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="ejercicio-2.2" class="section level3 hasAnchor">
 <h3><span class="header-section-number">2.5.2</span> Ejercicio 2.2<a href="GLM.html#ejercicio-2.2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Se estimó la prevalencia del parásito <em>Elaphostrongylus cervi</em> en ciervos colorados de granjas de España (<code>Tbdeer</code>). En cada granja (<code>Farm</code>) se muestreó un grupo de animales (<code>DeerSampledCervi</code>) y se registró si eran positivos para la enfermedad (<code>DeerPosCervi</code>). Además, se registraron variables de hábitat, como porcentaje de áreas abiertas (<code>OpenLand</code>), arbustos (<code>ScrubLand</code>) y plantaciones de pino (<code>PinePlantation</code>), densidad de plantas y árboles de <em>Quercus</em> sp. (<code>QuercusPlants</code>, <code>QuercusTrees</code>). También se estimaron abundancias relativas de jabalí (<code>WildBoarIndex</code>) y ciervo colorado (<code>RedDeerIndex</code>), área del campo (<code>EstateSize</code>) y si el campo estaba cercado (1 = cercado, 0 = no cercado).</p>
+<p>Se estimó la prevalencia del parásito <em>Elaphostrongylus cervi</em> en ciervos colorados de granjas de España (<code>Tbdeer.txt</code>). En cada granja (<code>Farm</code>) se muestreó un grupo de animales (<code>DeerSampledCervi</code>) y se registró si eran positivos para la enfermedad (<code>DeerPosCervi</code>). Además, se registraron variables de hábitat, como porcentaje de áreas abiertas (<code>OpenLand</code>), arbustos (<code>ScrubLand</code>) y plantaciones de pino (<code>PinePlantation</code>), densidad de plantas y árboles de <em>Quercus</em> sp. (<code>QuercusPlants</code>, <code>QuercusTrees</code>). También se estimaron abundancias relativas de jabalí (<code>WildBoarIndex</code>) y ciervo colorado (<code>RedDeerIndex</code>), área del campo (<code>EstateSize</code>) y si el campo estaba cercado (1 = cercado, 0 = no cercado).</p>
 <ul>
 <li><p>Determine, cuáles de estas variables están involucradas en la prevalencia de la enfermedad.</p></li>
 <li><p>Valide y grafique el modelo resultante.</p></li>
@@ -965,12 +966,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ejercicio-2.3" class="section level3 hasAnchor">
 <h3><span class="header-section-number">2.5.3</span> Ejercicio 2.3<a href="GLM.html#ejercicio-2.3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Simule un modelo lineal general (utilice la función <code>rnorm</code>) con dos variables (una con un efecto positivo y otra con un efecto negativo sobre la respuesta) y ajuste un modelo con las funciones <code>lm</code> y <code>glm</code>. Compare ambos modelos ¿Qué conclusión obtiene?</p>
-<div id="ejercicio-2.4" class="section level4 hasAnchor">
-<h4><span class="header-section-number">2.5.3.1</span> Ejercicio 2.4<a href="GLM.html#ejercicio-2.4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Desarrolle un script para calcular el R<sup>2</sup> de Tjur utilizando el GLM binomial de Solea.txt, donde:</p>
-<p><span class="math display">\[R^{2}_{Tjur} = \frac{\sum \hat{p}(y = 1)}{n_1}\ + \frac{\sum \hat{p}(y = 0)}{n_0}\]</span></p>
-<p>Corrobore el resultado con la función <code>r2_tjur</code> del paquete <code>performance</code> ¿En qué situación hipotética el <span class="math inline">\(R^2\)</span> vale 0?</p>
 </div>
+<div id="ejercicio-2.4" class="section level3 hasAnchor">
+<h3><span class="header-section-number">2.5.4</span> Ejercicio 2.4<a href="GLM.html#ejercicio-2.4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Desarrolle un script para calcular el R<sup>2</sup> de Tjur utilizando el GLM binomial de Solea.txt, donde:</p>
+<p><span class="math display">\[R^{2}_{Tjur} = \frac{\sum \hat{p}(y = 1)}{n_1}\ - \frac{\sum \hat{p}(y = 0)}{n_0}\]</span></p>
+<p>Corrobore el resultado con la función <code>r2_tjur</code> del paquete <code>performance</code> ¿En qué situación hipotética el <span class="math inline">\(R^2\)</span> vale 0?</p>
 </div>
 </div>
 <div id="conteos-ii" class="section level2 hasAnchor">
@@ -1352,7 +1353,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb275-5"><a href="GLM.html#cb275-5"></a>u &lt;-<span class="st"> </span>zero.model.coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>Length<span class="op">*</span>zero.model.coef[<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span>Depth<span class="op">*</span>zero.model.coef[<span class="dv">3</span>]</span>
 <span id="cb275-6"><a href="GLM.html#cb275-6"></a>zero.model.pred &lt;-<span class="st"> </span><span class="kw">exp</span>(u)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(u)) <span class="co"># Predicciones</span></span>
 <span id="cb275-7"><a href="GLM.html#cb275-7"></a>parasitos<span class="op">$</span>ceros &lt;-<span class="st"> </span><span class="kw">ifelse</span>(parasitos<span class="op">$</span>Intensity <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>) <span class="co"># Ceros vs no ceros</span></span>
-<span id="cb275-8"><a href="GLM.html#cb275-8"></a><span class="kw">plot</span>(parasitos<span class="op">$</span>Depth, parasitos<span class="op">$</span>ceros, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">xlab =</span> <span class="st">&quot;Profundidad&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Probabilidad de obtener un cero&quot;</span>)</span>
+<span id="cb275-8"><a href="GLM.html#cb275-8"></a><span class="kw">plot</span>(parasitos<span class="op">$</span>Depth, parasitos<span class="op">$</span>ceros, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">xlab =</span> <span class="st">&quot;Profundidad&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Probabilidad de obtener un parásito&quot;</span>)</span>
 <span id="cb275-9"><a href="GLM.html#cb275-9"></a><span class="kw">lines</span>(Depth, zero.model.pred, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lwd =</span> <span class="fl">2.5</span>, <span class="dt">main =</span> <span class="st">&quot;ZANB&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/graficos%20ZANB-1.png" width="672" /></p>
 <div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="GLM.html#cb276-1"></a><span class="co"># Proceso de conteo</span></span>
