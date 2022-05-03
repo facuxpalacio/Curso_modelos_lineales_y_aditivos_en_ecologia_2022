@@ -235,7 +235,7 @@ summary(mlg)
 ```
 
 ## GLM Gamma
-Allen et al. (2015) analizaron el efecto de grandes carnívoros ($Ursus americanus$ y $Puma concolor$) sobre la actividad de carroñeros. Registraron la duración media del evento de alimentación (`duration`) por carroñeros en sitios con cadáveres producto de pumas y sitios control donde se colocaron cadáveres colectados en la ruta (`trat`).
+Allen et al. (2015) analizaron el efecto de grandes carnívoros (*Ursus americanus* y *Puma concolor*) sobre la actividad de carroñeros. Registraron la duración media del evento de alimentación (`duration`) por carroñeros en sitios con cadáveres producto de pumas y sitios control donde se colocaron cadáveres colectados en la ruta (`trat`).
 ```{r glm gamma}
 # Gráficos exploratorios 
 datos <- read.table("puma.txt", header = TRUE)
@@ -274,7 +274,7 @@ d. El sexo en una especie de lagarto.
 
 ### Ejercicio 2.2
 
-Se estimó la prevalencia del parásito *Elaphostrongylus cervi* en ciervos colorados de granjas de España (`Tbdeer`). En cada granja (`Farm`) se muestreó un grupo de animales (`DeerSampledCervi`) y se registró si eran positivos para la enfermedad (`DeerPosCervi`). Además, se registraron variables de hábitat, como porcentaje de áreas abiertas (`OpenLand`), arbustos (`ScrubLand`) y plantaciones de pino (`PinePlantation`), densidad de plantas y árboles de *Quercus* sp. (`QuercusPlants`, `QuercusTrees`). También se estimaron abundancias relativas de jabalí (`WildBoarIndex`) y ciervo colorado (`RedDeerIndex`), área del campo (`EstateSize`) y si el campo estaba cercado (1 = cercado, 0 = no cercado). 
+Se estimó la prevalencia del parásito *Elaphostrongylus cervi* en ciervos colorados de granjas de España (`Tbdeer.txt`). En cada granja (`Farm`) se muestreó un grupo de animales (`DeerSampledCervi`) y se registró si eran positivos para la enfermedad (`DeerPosCervi`). Además, se registraron variables de hábitat, como porcentaje de áreas abiertas (`OpenLand`), arbustos (`ScrubLand`) y plantaciones de pino (`PinePlantation`), densidad de plantas y árboles de *Quercus* sp. (`QuercusPlants`, `QuercusTrees`). También se estimaron abundancias relativas de jabalí (`WildBoarIndex`) y ciervo colorado (`RedDeerIndex`), área del campo (`EstateSize`) y si el campo estaba cercado (1 = cercado, 0 = no cercado). 
 
 - Determine, cuáles de estas variables están involucradas en la prevalencia de la enfermedad. 
 
@@ -284,7 +284,7 @@ Se estimó la prevalencia del parásito *Elaphostrongylus cervi* en ciervos colo
 
 Simule un modelo lineal general (utilice la función `rnorm`) con dos variables (una con un efecto positivo y otra con un efecto negativo sobre la respuesta) y ajuste un modelo con las funciones `lm` y `glm`. Compare ambos modelos ¿Qué conclusión obtiene?
 
-#### Ejercicio 2.4
+### Ejercicio 2.4
 
 Desarrolle un script para calcular el R^2^ de Tjur utilizando el GLM binomial de Solea.txt, donde:
 

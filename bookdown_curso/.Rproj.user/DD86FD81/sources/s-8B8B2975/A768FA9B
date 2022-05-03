@@ -3,22 +3,22 @@
     "path": "C:/Users/54221/Dropbox/GitHub/Curso_modelos_lineales_y_aditivos_en_ecologia_2022/bookdown_curso/01_GLMs.Rmd",
     "project_path": "01_GLMs.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "3851811670",
     "contents": "",
     "dirty": false,
     "created": 1651155915238.0,
     "source_on_save": false,
     "relative_order": 2,
     "properties": {
-        "cursorPosition": "543,0",
-        "scrollLine": "0"
+        "cursorPosition": "276,117",
+        "scrollLine": "269"
     },
     "folds": "",
-    "lastKnownWriteTime": 1651160567,
+    "lastKnownWriteTime": 1651599990,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1651160568048,
+    "last_content_update": 1651599991705,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -306,7 +306,7 @@ AIC(gam0, gamm1, gamm2, gamm3)
 
 summary(gamm2)
 layout(matrix(1:2, 1, 2))
-check_resid(gamm2, split_pred = "Station", select = 1:2)
+check_resid(gamm2, split_pred = "Station", select = 1:2, ask = FALSE)
 layout(1)
 acf_resid(gamm2, split_pred = "Station")
 gamtabs(gamm2, type = "HTML")
