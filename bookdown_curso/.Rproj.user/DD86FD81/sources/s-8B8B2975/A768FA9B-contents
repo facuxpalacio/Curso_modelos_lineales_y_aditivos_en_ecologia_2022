@@ -288,7 +288,7 @@ Simule un modelo lineal general (utilice la función `rnorm`) con dos variables 
 
 Desarrolle un script para calcular el R^2^ de Tjur utilizando el GLM binomial de Solea.txt, donde:
 
-$$R^{2}_{Tjur} = \frac{\sum \hat{p}(y = 1)}{n_1}\ + \frac{\sum \hat{p}(y = 0)}{n_0}$$
+$$R^{2}_{Tjur} = \frac{\sum \hat{p}(y = 1)}{n_1}\ - \frac{\sum \hat{p}(y = 0)}{n_0}$$
 
 Corrobore el resultado con la función `r2_tjur` del paquete `performance` ¿En qué situación hipotética el $R^2$ vale 0?
 
