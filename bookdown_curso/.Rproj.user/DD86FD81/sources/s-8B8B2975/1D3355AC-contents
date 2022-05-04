@@ -9,6 +9,10 @@ github-repo: facuxpalacio/Curso_modelos_lineales_y_aditivos_en_ecologia_2022/boo
 description: "Scripts del curso"
 ---
 
+```{r}
+knitr::opts_chunk$set(message = FALSE)
+```
+
 # Introducción a los modelos lineales
 ## Definición de modelo lineal
 ```{r modelo lineal}
