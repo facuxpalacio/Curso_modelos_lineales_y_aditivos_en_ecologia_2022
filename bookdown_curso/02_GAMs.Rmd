@@ -223,7 +223,7 @@ Aluja et al. (2012) estudiaron los factores que determinan la dinámica poblacio
 
 - Grafique el tiempo vs las capturas para una de las especies de moscas y ajuste tres modelos LOESS (uno utilizando los argumentos por defecto, y otros dos variando la magnitud del ancho de ventana).
 
-- Ajuste un GAM que relacione las capturas de la misma especie como función suave del tiempo y realice un gráfico de este modelo ñ¿Qué conclusión obtiene al compararlo con el LOESS?
+- Ajuste un GAM que relacione las capturas de la misma especie como función suave del tiempo y realice un gráfico de este modelo ¿Qué conclusión obtiene al compararlo con el LOESS?
 
 - Identifique qué variables se relacionan con las capturas (considere también la posibilidad de incluir interacciones). Revise si el número de nodos es adecuado para el modelo ajustado (función `gam.check`).
 
@@ -231,7 +231,7 @@ Aluja et al. (2012) estudiaron los factores que determinan la dinámica poblacio
 
 - Grafique el modelo como considere más conveniente para mostrar los resultados.
 
-- ñ¿Qué conclusiones obtiene en términos biológicos? ñ¿Considera que este modelo cumple con los supuestos de un GAM?
+- ¿Qué conclusiones obtiene en términos biológicos? ¿Considera que este modelo cumple con los supuestos de un GAM?
 
 ### Ejercicio 4.2
 Palacio et al. (2017) estudiaron la selección mediada por aves sobre rasgos de los frutos en *Psychotria  carthagenensis* en un bosque secundario pedemontano de las Yungas (`Psychotria_El_Corte_2012.txt`).
@@ -242,7 +242,7 @@ Palacio et al. (2017) estudiaron la selección mediada por aves sobre rasgos de 
 
 - Ajuste un GAM para dicha relación y realice un gráfico del modelo.
 
-- ñ¿Qué interpreta en términos biológicos?
+- ¿Qué interpreta en términos biológicos?
 
 - Si tuviera que elegir entre los tres modelos ¿Cuál utilizaría y por qué?
 
