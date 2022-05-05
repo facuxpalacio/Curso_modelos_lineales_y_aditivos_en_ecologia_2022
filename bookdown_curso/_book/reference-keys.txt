@@ -84,6 +84,7 @@ regresión-polinómica
 funciones-a-trozos
 splines-de-regresión
 polinomios-a-trozos
+splines-de-suavizado
 modelos-aditivos-generalizados
 gam-con-otras-distribuciones-e-interacciones
 comparación-de-modelos

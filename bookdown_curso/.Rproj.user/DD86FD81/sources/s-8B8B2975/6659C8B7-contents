@@ -27,7 +27,6 @@ plot(x, y)
 
 # Ajuste del modelo
 reg.pol <- lm(y ~ x + I(x^2) + I(x^3))
-anova(reg.pol)
 summary(reg.pol)
 ```
 
@@ -87,8 +86,9 @@ lines(x.new, predC, col = "darkgreen", lwd = 3)
 lines(x.new, predP, col = "red", lwd = 3)
 lines(x.new, predN, col = "blue", lwd = 3)
 abline(v = nodos, lty = 2, col = "darkgreen")
-legend("topleft", legend = c("Reg polinomica", "Spline C", "Spline N"), col = c("darkgreen", "red", "blue"), cex = 0.8, lty = 1)
+legend("topleft", legend = c("Spline C", "Reg polinomica", "Spline N"), col = c("darkgreen", "red", "blue"), cex = 0.8, lty = 1)
 ```
+
 ## Splines de suavizado
 ```{r splines de suavizado}
 splines.suav <- smooth.spline(x, y, nknots = 10)
@@ -126,8 +126,8 @@ xyplot(Sources ~ SampleDepth|Month, data = biolum)
 # GAM con spline natural
 gam1 <- lm(Sources ~ ns(SampleDepth, df = 5) + Month, data = biolum)
 # GAM con spline de suavizado (5 nodos)
-gam2 <- gam(Sources ~ s(SampleDepth, k = 5, bs = "cr") + Month, method = "REML", data = biolum)
-# GAM con spline de suavizado (validación cruzada)
+gam2 <- gam(Sources ~ s(SampleDepth, k = 5, bs = "cr") + Month, data = biolum)
+# GAM con spline de suavizado (REML)
 gam3 <- gam(Sources ~ s(SampleDepth, bs = "cr") + Month, method = "REML", data = biolum)
 summary(gam1)
 summary(gam2)
@@ -202,7 +202,7 @@ library(gratia)
 library(fields)
 psycho <- read.table("C:/RD/Psychotria_El_Corte_2012.txt", header = TRUE)
 str(psycho)
-hist(psycho$n.infrut, xlab = "Numero de infrutescencias", ylab = "Frecuencia")
+hist(psycho$n.infrut, xlab = "Número de infrutescencias", ylab = "Frecuencia")
 gam6 <- gam(n.infrut ~ s(x, y), family = nb, method = "REML", data = psycho)
 summary(gam6)
 gam7 <- gam(n.infrut ~ te(x, y), family = nb, method = "REML", data = psycho) 

@@ -389,7 +389,7 @@ zero.model.coef <- ZANB$coefficients$zero # Coeficientes
 u <- zero.model.coef[1] + Length*zero.model.coef[2] + Depth*zero.model.coef[3]
 zero.model.pred <- exp(u)/(1 + exp(u)) # Predicciones
 parasitos$ceros <- ifelse(parasitos$Intensity == 0, 0, 1) # Ceros vs no ceros
-plot(parasitos$Depth, parasitos$ceros, pch = 19, xlab = "Profundidad", ylab = "Probabilidad de obtener un parásito")
+plot(parasitos$Depth, parasitos$ceros, pch = 19, xlab = "Profundidad", ylab = "Probabilidad de detectar un parásito")
 lines(Depth, zero.model.pred, col = "blue", lwd = 2.5, main = "ZANB")
 
 # Proceso de conteo
@@ -524,7 +524,7 @@ Los datos del archivo `gala.xls` corresponden a un estudio donde se relevó la d
 - Debido a disponibilidad presupuestaria, sólo se podrán concentrar esfuerzos de conservación en islas con un alto número de especies endémicas (>80). ¿A partir de qué valor de elevación el modelo predice más de 25 especies endémicas? Para esto considere valores constantes en el resto de las covariables incluidas en su modelo.
 
 ### Ejercicio 3.2
-Radim et al. (2015) analizaron la ocurrencia de muérdagos (*Loranthus europaeus*) en robles de República Checa, teniendo en cuenta el área basal (`basal_area`), el número de tallos (`Number_of_stems`), el área basal promedio de los tallos (`mean_stem_basal_area`), la competencia con árboles infectados basada en el índice de Hegyi (`CI_stem`) y el rango de los multicaules en ciertas direcciones (`Xrange`, `Yrange` y `RangeAvg`) (https://doi.org/10.1371/journal.pone.0127055). El conjunto de datos corresponde al archivo `Matula_mistletoes_csv`.
+Radim et al. (2015) analizaron la ocurrencia de muérdagos (*Loranthus europaeus*) en robles de República Checa, teniendo en cuenta el área basal (`basal_area`), el número de tallos (`Number_of_stems`), el área basal promedio de los tallos (`mean_stem_basal_area`), la competencia con árboles infectados basada en el índice de Hegyi (`CI_stem`) y el diámetro de los multicaules en ciertas direcciones (`Xrange`, `Yrange` y `RangeAvg`) (https://doi.org/10.1371/journal.pone.0127055). El conjunto de datos corresponde al archivo `Matula_mistletoes.csv`.
 
 - Encontrar un modelo que mejor explique la probabilidad de infección por muérdagos (`infected`) en robles.
 

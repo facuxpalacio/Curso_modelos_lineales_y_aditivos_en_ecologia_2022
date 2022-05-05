@@ -23,7 +23,7 @@
 <meta name="author" content="Facundo X. Palacio" />
 
 
-<meta name="date" content="2022-05-03" />
+<meta name="date" content="2022-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -203,16 +203,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="GAM.html"><a href="GAM.html#splines-de-regresión"><i class="fa fa-check"></i><b>3.4</b> Splines de regresión<span></span></a><ul>
 <li class="chapter" data-level="3.4.1" data-path="GAM.html"><a href="GAM.html#polinomios-a-trozos"><i class="fa fa-check"></i><b>3.4.1</b> Polinomios a trozos<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="GAM.html"><a href="GAM.html#modelos-aditivos-generalizados"><i class="fa fa-check"></i><b>3.5</b> Modelos aditivos generalizados<span></span></a><ul>
-<li class="chapter" data-level="3.5.1" data-path="GAM.html"><a href="GAM.html#gam-con-otras-distribuciones-e-interacciones"><i class="fa fa-check"></i><b>3.5.1</b> GAM con otras distribuciones e interacciones<span></span></a></li>
-<li class="chapter" data-level="3.5.2" data-path="GAM.html"><a href="GAM.html#comparación-de-modelos"><i class="fa fa-check"></i><b>3.5.2</b> Comparación de modelos<span></span></a></li>
-<li class="chapter" data-level="3.5.3" data-path="GAM.html"><a href="GAM.html#validación-2"><i class="fa fa-check"></i><b>3.5.3</b> Validación<span></span></a></li>
-<li class="chapter" data-level="3.5.4" data-path="GAM.html"><a href="GAM.html#modelo-con-variables-continuas-efectos-principales-interacciones"><i class="fa fa-check"></i><b>3.5.4</b> Modelo con variables continuas (efectos principales + interacciones)<span></span></a></li>
+<li class="chapter" data-level="3.5" data-path="GAM.html"><a href="GAM.html#splines-de-suavizado"><i class="fa fa-check"></i><b>3.5</b> Splines de suavizado<span></span></a></li>
+<li class="chapter" data-level="3.6" data-path="GAM.html"><a href="GAM.html#modelos-aditivos-generalizados"><i class="fa fa-check"></i><b>3.6</b> Modelos aditivos generalizados<span></span></a><ul>
+<li class="chapter" data-level="3.6.1" data-path="GAM.html"><a href="GAM.html#gam-con-otras-distribuciones-e-interacciones"><i class="fa fa-check"></i><b>3.6.1</b> GAM con otras distribuciones e interacciones<span></span></a></li>
+<li class="chapter" data-level="3.6.2" data-path="GAM.html"><a href="GAM.html#comparación-de-modelos"><i class="fa fa-check"></i><b>3.6.2</b> Comparación de modelos<span></span></a></li>
+<li class="chapter" data-level="3.6.3" data-path="GAM.html"><a href="GAM.html#validación-2"><i class="fa fa-check"></i><b>3.6.3</b> Validación<span></span></a></li>
+<li class="chapter" data-level="3.6.4" data-path="GAM.html"><a href="GAM.html#modelo-con-variables-continuas-efectos-principales-interacciones"><i class="fa fa-check"></i><b>3.6.4</b> Modelo con variables continuas (efectos principales + interacciones)<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="GAM.html"><a href="GAM.html#actividades-3"><i class="fa fa-check"></i><b>3.6</b> Actividades<span></span></a><ul>
-<li class="chapter" data-level="3.6.1" data-path="GAM.html"><a href="GAM.html#ejercicio-4.1"><i class="fa fa-check"></i><b>3.6.1</b> Ejercicio 4.1<span></span></a></li>
-<li class="chapter" data-level="3.6.2" data-path="GAM.html"><a href="GAM.html#ejercicio-4.2"><i class="fa fa-check"></i><b>3.6.2</b> Ejercicio 4.2<span></span></a></li>
-<li class="chapter" data-level="3.6.3" data-path="GAM.html"><a href="GAM.html#ejercicio-4.3"><i class="fa fa-check"></i><b>3.6.3</b> Ejercicio 4.3<span></span></a></li>
+<li class="chapter" data-level="3.7" data-path="GAM.html"><a href="GAM.html#actividades-3"><i class="fa fa-check"></i><b>3.7</b> Actividades<span></span></a><ul>
+<li class="chapter" data-level="3.7.1" data-path="GAM.html"><a href="GAM.html#ejercicio-4.1"><i class="fa fa-check"></i><b>3.7.1</b> Ejercicio 4.1<span></span></a></li>
+<li class="chapter" data-level="3.7.2" data-path="GAM.html"><a href="GAM.html#ejercicio-4.2"><i class="fa fa-check"></i><b>3.7.2</b> Ejercicio 4.2<span></span></a></li>
+<li class="chapter" data-level="3.7.3" data-path="GAM.html"><a href="GAM.html#ejercicio-4.3"><i class="fa fa-check"></i><b>3.7.3</b> Ejercicio 4.3<span></span></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="mixtos.html"><a href="mixtos.html"><i class="fa fa-check"></i><b>4</b> Modelos mixtos<span></span></a><ul>
@@ -254,65 +255,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">4</span> Modelos mixtos<a href="mixtos.html#mixtos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="dependencia-temporal" class="section level2 hasAnchor">
 <h2><span class="header-section-number">4.1</span> Dependencia temporal<a href="mixtos.html#dependencia-temporal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="mixtos.html#cb381-1"></a><span class="kw">set.seed</span>(<span class="dv">101</span>)</span>
-<span id="cb381-2"><a href="mixtos.html#cb381-2"></a>tiempo &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="dt">length =</span> <span class="dv">30</span>)</span>
-<span id="cb381-3"><a href="mixtos.html#cb381-3"></a>a &lt;-<span class="st"> </span><span class="dv">20</span></span>
-<span id="cb381-4"><a href="mixtos.html#cb381-4"></a>b &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb381-5"><a href="mixtos.html#cb381-5"></a>c &lt;-<span class="st"> </span><span class="fl">0.3</span></span>
-<span id="cb381-6"><a href="mixtos.html#cb381-6"></a>peso &lt;-<span class="st"> </span>a <span class="op">-</span><span class="st"> </span>(a <span class="op">-</span><span class="st"> </span>b)<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>c<span class="op">*</span>tiempo) <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">30</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="fl">0.5</span>)</span>
-<span id="cb381-7"><a href="mixtos.html#cb381-7"></a><span class="kw">plot</span>(tiempo, peso)</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="mixtos.html#cb325-1"></a><span class="kw">set.seed</span>(<span class="dv">101</span>)</span>
+<span id="cb325-2"><a href="mixtos.html#cb325-2"></a>tiempo &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="dt">length =</span> <span class="dv">30</span>)</span>
+<span id="cb325-3"><a href="mixtos.html#cb325-3"></a>a &lt;-<span class="st"> </span><span class="dv">20</span></span>
+<span id="cb325-4"><a href="mixtos.html#cb325-4"></a>b &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb325-5"><a href="mixtos.html#cb325-5"></a>c &lt;-<span class="st"> </span><span class="fl">0.3</span></span>
+<span id="cb325-6"><a href="mixtos.html#cb325-6"></a>peso &lt;-<span class="st"> </span>a <span class="op">-</span><span class="st"> </span>(a <span class="op">-</span><span class="st"> </span>b)<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>c<span class="op">*</span>tiempo) <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">30</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="fl">0.5</span>)</span>
+<span id="cb325-7"><a href="mixtos.html#cb325-7"></a><span class="kw">plot</span>(tiempo, peso)</span></code></pre></div>
 <p><img src="_main_files/figure-html/crecimiento-1.png" width="672" /></p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="mixtos.html#cb382-1"></a><span class="co"># Gráfico de residuos</span></span>
-<span id="cb382-2"><a href="mixtos.html#cb382-2"></a>m.crec &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(peso) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(tiempo))</span>
-<span id="cb382-3"><a href="mixtos.html#cb382-3"></a><span class="kw">plot</span>(<span class="kw">log</span>(tiempo), <span class="kw">log</span>(peso))</span>
-<span id="cb382-4"><a href="mixtos.html#cb382-4"></a><span class="kw">abline</span>(m.crec, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="mixtos.html#cb326-1"></a><span class="co"># Gráfico de residuos</span></span>
+<span id="cb326-2"><a href="mixtos.html#cb326-2"></a>m.crec &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(peso) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(tiempo))</span>
+<span id="cb326-3"><a href="mixtos.html#cb326-3"></a><span class="kw">plot</span>(<span class="kw">log</span>(tiempo), <span class="kw">log</span>(peso))</span>
+<span id="cb326-4"><a href="mixtos.html#cb326-4"></a><span class="kw">abline</span>(m.crec, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/crecimiento-2.png" width="672" /></p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="mixtos.html#cb383-1"></a><span class="kw">plot</span>(<span class="kw">log</span>(tiempo), <span class="kw">resid</span>(m.crec), <span class="dt">xlab =</span> <span class="st">&quot;log(tiempo)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Residuos&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="mixtos.html#cb327-1"></a><span class="kw">plot</span>(<span class="kw">log</span>(tiempo), <span class="kw">resid</span>(m.crec), <span class="dt">xlab =</span> <span class="st">&quot;log(tiempo)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Residuos&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/crecimiento-3.png" width="672" /></p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="mixtos.html#cb384-1"></a><span class="co"># Función de autocorrelación</span></span>
-<span id="cb384-2"><a href="mixtos.html#cb384-2"></a><span class="kw">plot</span>(<span class="kw">acf</span>(peso))</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="mixtos.html#cb328-1"></a><span class="co"># Función de autocorrelación</span></span>
+<span id="cb328-2"><a href="mixtos.html#cb328-2"></a><span class="kw">plot</span>(<span class="kw">acf</span>(peso))</span></code></pre></div>
 <p><img src="_main_files/figure-html/crecimiento-4.png" width="672" /></p>
 </div>
 <div id="dependencia-espacial" class="section level2 hasAnchor">
 <h2><span class="header-section-number">4.2</span> Dependencia espacial<a href="mixtos.html#dependencia-espacial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Ubicación (coordenadas) y concentración de metales pesados en el río Mosa (Europa).</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="mixtos.html#cb385-1"></a><span class="kw">library</span>(sp)</span>
-<span id="cb385-2"><a href="mixtos.html#cb385-2"></a><span class="kw">library</span>(gstat)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="mixtos.html#cb329-1"></a><span class="kw">library</span>(sp)</span>
+<span id="cb329-2"><a href="mixtos.html#cb329-2"></a><span class="kw">library</span>(gstat)</span></code></pre></div>
 <pre><code>## Warning: package &#39;gstat&#39; was built under R version 4.0.5</code></pre>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="mixtos.html#cb387-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb387-2"><a href="mixtos.html#cb387-2"></a><span class="kw">data</span>(meuse)</span>
-<span id="cb387-3"><a href="mixtos.html#cb387-3"></a><span class="kw">coordinates</span>(meuse) =<span class="st"> </span><span class="er">~</span>x<span class="op">+</span>y</span>
-<span id="cb387-4"><a href="mixtos.html#cb387-4"></a><span class="kw">bubble</span>(meuse, <span class="st">&quot;zinc&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;#00ff0088&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;zinc concentrations (ppm)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="mixtos.html#cb331-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb331-2"><a href="mixtos.html#cb331-2"></a><span class="kw">data</span>(meuse)</span>
+<span id="cb331-3"><a href="mixtos.html#cb331-3"></a><span class="kw">coordinates</span>(meuse) =<span class="st"> </span><span class="er">~</span>x<span class="op">+</span>y</span>
+<span id="cb331-4"><a href="mixtos.html#cb331-4"></a><span class="kw">bubble</span>(meuse, <span class="st">&quot;zinc&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;#00ff0088&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;zinc concentrations (ppm)&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/meuse%20data-1.png" width="672" /></p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="mixtos.html#cb388-1"></a>m.espacial &lt;-<span class="st"> </span><span class="kw">lm</span>(zinc <span class="op">~</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y, <span class="dt">data =</span> meuse)</span>
-<span id="cb388-2"><a href="mixtos.html#cb388-2"></a><span class="kw">plot</span>(meuse<span class="op">$</span>x, <span class="kw">resid</span>(m.espacial))</span>
-<span id="cb388-3"><a href="mixtos.html#cb388-3"></a><span class="kw">abline</span>(<span class="dt">a =</span> <span class="dv">0</span>, <span class="dt">b =</span> <span class="dv">0</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="mixtos.html#cb332-1"></a>m.espacial &lt;-<span class="st"> </span><span class="kw">lm</span>(zinc <span class="op">~</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y, <span class="dt">data =</span> meuse)</span>
+<span id="cb332-2"><a href="mixtos.html#cb332-2"></a><span class="kw">plot</span>(meuse<span class="op">$</span>x, <span class="kw">resid</span>(m.espacial))</span>
+<span id="cb332-3"><a href="mixtos.html#cb332-3"></a><span class="kw">abline</span>(<span class="dt">a =</span> <span class="dv">0</span>, <span class="dt">b =</span> <span class="dv">0</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/meuse%20data-2.png" width="672" /></p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="mixtos.html#cb389-1"></a><span class="kw">plot</span>(meuse<span class="op">$</span>y, <span class="kw">resid</span>(m.espacial))</span>
-<span id="cb389-2"><a href="mixtos.html#cb389-2"></a><span class="kw">abline</span>(<span class="dt">a =</span> <span class="dv">0</span>, <span class="dt">b =</span> <span class="dv">0</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="mixtos.html#cb333-1"></a><span class="kw">plot</span>(meuse<span class="op">$</span>y, <span class="kw">resid</span>(m.espacial))</span>
+<span id="cb333-2"><a href="mixtos.html#cb333-2"></a><span class="kw">abline</span>(<span class="dt">a =</span> <span class="dv">0</span>, <span class="dt">b =</span> <span class="dv">0</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/meuse%20data-3.png" width="672" /></p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="mixtos.html#cb390-1"></a><span class="kw">data</span>(meuse)</span>
-<span id="cb390-2"><a href="mixtos.html#cb390-2"></a>meuse<span class="op">$</span>residuos &lt;-<span class="st"> </span><span class="kw">resid</span>(m.espacial)</span>
-<span id="cb390-3"><a href="mixtos.html#cb390-3"></a><span class="kw">ggplot</span>(meuse, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">col =</span> residuos)) <span class="op">+</span></span>
-<span id="cb390-4"><a href="mixtos.html#cb390-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></span>
-<span id="cb390-5"><a href="mixtos.html#cb390-5"></a><span class="st">  </span><span class="kw">scale_color_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;yellow&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="mixtos.html#cb334-1"></a><span class="kw">data</span>(meuse)</span>
+<span id="cb334-2"><a href="mixtos.html#cb334-2"></a>meuse<span class="op">$</span>residuos &lt;-<span class="st"> </span><span class="kw">resid</span>(m.espacial)</span>
+<span id="cb334-3"><a href="mixtos.html#cb334-3"></a><span class="kw">ggplot</span>(meuse, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">col =</span> residuos)) <span class="op">+</span></span>
+<span id="cb334-4"><a href="mixtos.html#cb334-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></span>
+<span id="cb334-5"><a href="mixtos.html#cb334-5"></a><span class="st">  </span><span class="kw">scale_color_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;yellow&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/meuse%20data-4.png" width="672" /></p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="mixtos.html#cb391-1"></a><span class="co"># Semivariograma</span></span>
-<span id="cb391-2"><a href="mixtos.html#cb391-2"></a><span class="kw">coordinates</span>(meuse) =<span class="st"> </span><span class="er">~</span>x<span class="op">+</span>y</span>
-<span id="cb391-3"><a href="mixtos.html#cb391-3"></a>zinc.variog &lt;-<span class="st"> </span><span class="kw">variogram</span>(zinc <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, meuse)</span>
-<span id="cb391-4"><a href="mixtos.html#cb391-4"></a><span class="kw">plot</span>(zinc.variog)</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="mixtos.html#cb335-1"></a><span class="co"># Semivariograma</span></span>
+<span id="cb335-2"><a href="mixtos.html#cb335-2"></a><span class="kw">coordinates</span>(meuse) =<span class="st"> </span><span class="er">~</span>x<span class="op">+</span>y</span>
+<span id="cb335-3"><a href="mixtos.html#cb335-3"></a>zinc.variog &lt;-<span class="st"> </span><span class="kw">variogram</span>(zinc <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, meuse)</span>
+<span id="cb335-4"><a href="mixtos.html#cb335-4"></a><span class="kw">plot</span>(zinc.variog)</span></code></pre></div>
 <p><img src="_main_files/figure-html/meuse%20data-5.png" width="672" /></p>
 </div>
 <div id="introducción-a-los-modelos-mixtos" class="section level2 hasAnchor">
 <h2><span class="header-section-number">4.3</span> Introducción a los modelos mixtos<a href="mixtos.html#introducción-a-los-modelos-mixtos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A partir de 8 plantas, se contaron el número de flores en 3 inflorescencias por planta y se midió la longitud de los pedicelos. Analizar la relación entre la longitud del pedicelo y el número de flores/inflorescencia.</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="mixtos.html#cb392-1"></a>id &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sort</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dv">3</span>)))</span>
-<span id="cb392-2"><a href="mixtos.html#cb392-2"></a>long.pedicelo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.3</span>, <span class="fl">1.4</span>, <span class="dv">2</span>, <span class="fl">2.2</span>, <span class="fl">2.1</span>, <span class="fl">2.9</span>, <span class="dv">3</span>, <span class="fl">2.8</span>, <span class="fl">3.5</span>, <span class="fl">3.4</span>, <span class="fl">3.7</span>,</span>
-<span id="cb392-3"><a href="mixtos.html#cb392-3"></a>                   <span class="fl">4.5</span>, <span class="fl">4.7</span>, <span class="fl">4.7</span>, <span class="fl">5.5</span>, <span class="fl">5.7</span>, <span class="dv">6</span>, <span class="fl">7.2</span>, <span class="fl">7.3</span>, <span class="fl">7.5</span>, <span class="fl">8.4</span>, <span class="fl">8.8</span>, <span class="fl">8.6</span>)</span>
-<span id="cb392-4"><a href="mixtos.html#cb392-4"></a>nflores &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">12</span>,</span>
-<span id="cb392-5"><a href="mixtos.html#cb392-5"></a>             <span class="dv">13</span>, <span class="dv">11</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">17</span>, <span class="dv">15</span>)</span>
-<span id="cb392-6"><a href="mixtos.html#cb392-6"></a>plantas &lt;-<span class="st"> </span><span class="kw">data.frame</span>(id, long.pedicelo, nflores)</span>
-<span id="cb392-7"><a href="mixtos.html#cb392-7"></a>plantas</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="mixtos.html#cb336-1"></a>id &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">sort</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dv">3</span>)))</span>
+<span id="cb336-2"><a href="mixtos.html#cb336-2"></a>long.pedicelo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.3</span>, <span class="fl">1.4</span>, <span class="dv">2</span>, <span class="fl">2.2</span>, <span class="fl">2.1</span>, <span class="fl">2.9</span>, <span class="dv">3</span>, <span class="fl">2.8</span>, <span class="fl">3.5</span>, <span class="fl">3.4</span>, <span class="fl">3.7</span>,</span>
+<span id="cb336-3"><a href="mixtos.html#cb336-3"></a>                   <span class="fl">4.5</span>, <span class="fl">4.7</span>, <span class="fl">4.7</span>, <span class="fl">5.5</span>, <span class="fl">5.7</span>, <span class="dv">6</span>, <span class="fl">7.2</span>, <span class="fl">7.3</span>, <span class="fl">7.5</span>, <span class="fl">8.4</span>, <span class="fl">8.8</span>, <span class="fl">8.6</span>)</span>
+<span id="cb336-4"><a href="mixtos.html#cb336-4"></a>nflores &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">12</span>,</span>
+<span id="cb336-5"><a href="mixtos.html#cb336-5"></a>             <span class="dv">13</span>, <span class="dv">11</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">17</span>, <span class="dv">15</span>)</span>
+<span id="cb336-6"><a href="mixtos.html#cb336-6"></a>plantas &lt;-<span class="st"> </span><span class="kw">data.frame</span>(id, long.pedicelo, nflores)</span>
+<span id="cb336-7"><a href="mixtos.html#cb336-7"></a>plantas</span></code></pre></div>
 <pre><code>##    id long.pedicelo nflores
 ## 1   1           1.0       2
 ## 2   1           1.3       2
@@ -338,12 +339,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 22  8           8.4      14
 ## 23  8           8.8      17
 ## 24  8           8.6      15</code></pre>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="mixtos.html#cb394-1"></a><span class="kw">plot</span>(plantas<span class="op">$</span>long.pedicelo, plantas<span class="op">$</span>nflores, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">cex =</span> <span class="dv">2</span>, </span>
-<span id="cb394-2"><a href="mixtos.html#cb394-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Longitud del pedicelo&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Número de flores&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="mixtos.html#cb338-1"></a><span class="kw">plot</span>(plantas<span class="op">$</span>long.pedicelo, plantas<span class="op">$</span>nflores, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">cex =</span> <span class="dv">2</span>, </span>
+<span id="cb338-2"><a href="mixtos.html#cb338-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Longitud del pedicelo&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Número de flores&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/mixtos-1.png" width="672" /></p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="mixtos.html#cb395-1"></a><span class="co"># Opción 1: asumimos que las observaciones son independientes</span></span>
-<span id="cb395-2"><a href="mixtos.html#cb395-2"></a>m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(nflores <span class="op">~</span><span class="st"> </span>long.pedicelo, <span class="dt">data =</span> plantas)</span>
-<span id="cb395-3"><a href="mixtos.html#cb395-3"></a><span class="kw">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="mixtos.html#cb339-1"></a><span class="co"># Opción 1: asumimos que las observaciones son independientes</span></span>
+<span id="cb339-2"><a href="mixtos.html#cb339-2"></a>m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(nflores <span class="op">~</span><span class="st"> </span>long.pedicelo, <span class="dt">data =</span> plantas)</span>
+<span id="cb339-3"><a href="mixtos.html#cb339-3"></a><span class="kw">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = nflores ~ long.pedicelo, data = plantas)
@@ -362,13 +363,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 1.368 on 22 degrees of freedom
 ## Multiple R-squared:  0.908,  Adjusted R-squared:  0.9039 
 ## F-statistic: 217.2 on 1 and 22 DF,  p-value: 6.986e-13</code></pre>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="mixtos.html#cb397-1"></a><span class="co"># Opción 2: una media por unidad</span></span>
-<span id="cb397-2"><a href="mixtos.html#cb397-2"></a>xlong.pedicelo &lt;-<span class="st"> </span><span class="kw">tapply</span>(long.pedicelo, id, mean)</span>
-<span id="cb397-3"><a href="mixtos.html#cb397-3"></a>xnflores &lt;-<span class="st"> </span><span class="kw">tapply</span>(nflores, id, mean)</span>
-<span id="cb397-4"><a href="mixtos.html#cb397-4"></a><span class="kw">plot</span>(xlong.pedicelo, xnflores, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">cex =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="mixtos.html#cb341-1"></a><span class="co"># Opción 2: una media por unidad</span></span>
+<span id="cb341-2"><a href="mixtos.html#cb341-2"></a>xlong.pedicelo &lt;-<span class="st"> </span><span class="kw">tapply</span>(long.pedicelo, id, mean)</span>
+<span id="cb341-3"><a href="mixtos.html#cb341-3"></a>xnflores &lt;-<span class="st"> </span><span class="kw">tapply</span>(nflores, id, mean)</span>
+<span id="cb341-4"><a href="mixtos.html#cb341-4"></a><span class="kw">plot</span>(xlong.pedicelo, xnflores, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">cex =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/mixtos-2.png" width="672" /></p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="mixtos.html#cb398-1"></a>m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(xnflores <span class="op">~</span><span class="st"> </span>xlong.pedicelo)</span>
-<span id="cb398-2"><a href="mixtos.html#cb398-2"></a><span class="kw">summary</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="mixtos.html#cb342-1"></a>m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(xnflores <span class="op">~</span><span class="st"> </span>xlong.pedicelo)</span>
+<span id="cb342-2"><a href="mixtos.html#cb342-2"></a><span class="kw">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = xnflores ~ xlong.pedicelo)
@@ -387,9 +388,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 1.176 on 6 degrees of freedom
 ## Multiple R-squared:  0.9416, Adjusted R-squared:  0.9319 
 ## F-statistic: 96.78 on 1 and 6 DF,  p-value: 6.359e-05</code></pre>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="mixtos.html#cb400-1"></a><span class="co"># Opción 3: incluir el efecto de la unidad</span></span>
-<span id="cb400-2"><a href="mixtos.html#cb400-2"></a>m3 &lt;-<span class="st"> </span><span class="kw">lm</span>(nflores <span class="op">~</span><span class="st"> </span>long.pedicelo <span class="op">+</span><span class="st"> </span>id, <span class="dt">data =</span> plantas)</span>
-<span id="cb400-3"><a href="mixtos.html#cb400-3"></a><span class="kw">summary</span>(m3)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="mixtos.html#cb344-1"></a><span class="co"># Opción 3: incluir el efecto de la unidad</span></span>
+<span id="cb344-2"><a href="mixtos.html#cb344-2"></a>m3 &lt;-<span class="st"> </span><span class="kw">lm</span>(nflores <span class="op">~</span><span class="st"> </span>long.pedicelo <span class="op">+</span><span class="st"> </span>id, <span class="dt">data =</span> plantas)</span>
+<span id="cb344-3"><a href="mixtos.html#cb344-3"></a><span class="kw">summary</span>(m3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = nflores ~ long.pedicelo + id, data = plantas)
@@ -415,30 +416,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 0.9538 on 15 degrees of freedom
 ## Multiple R-squared:  0.9695, Adjusted R-squared:  0.9533 
 ## F-statistic: 59.68 on 8 and 15 DF,  p-value: 5.532e-10</code></pre>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="mixtos.html#cb402-1"></a><span class="co"># Opción 4: modelo mixto de intercepto aleatorio</span></span>
-<span id="cb402-2"><a href="mixtos.html#cb402-2"></a><span class="kw">library</span>(lme4)</span></code></pre></div>
-<pre><code>## Loading required package: Matrix</code></pre>
-<pre><code>## 
-## Attaching package: &#39;Matrix&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:spam&#39;:
-## 
-##     det</code></pre>
-<pre><code>## 
-## Attaching package: &#39;lme4&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:nlme&#39;:
-## 
-##     lmList</code></pre>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="mixtos.html#cb408-1"></a><span class="kw">library</span>(lmerTest)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;lmerTest&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:lme4&#39;:
-## 
-##     lmer</code></pre>
-<pre><code>## The following object is masked from &#39;package:stats&#39;:
-## 
-##     step</code></pre>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="mixtos.html#cb412-1"></a>m4 &lt;-<span class="st"> </span><span class="kw">lmer</span>(nflores <span class="op">~</span><span class="st"> </span>long.pedicelo <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>id), <span class="dt">data =</span> plantas)</span>
-<span id="cb412-2"><a href="mixtos.html#cb412-2"></a><span class="kw">summary</span>(m4)</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="mixtos.html#cb346-1"></a><span class="co"># Opción 4: modelo mixto de intercepto aleatorio</span></span>
+<span id="cb346-2"><a href="mixtos.html#cb346-2"></a><span class="kw">library</span>(lme4)</span>
+<span id="cb346-3"><a href="mixtos.html#cb346-3"></a><span class="kw">library</span>(lmerTest)</span>
+<span id="cb346-4"><a href="mixtos.html#cb346-4"></a>m4 &lt;-<span class="st"> </span><span class="kw">lmer</span>(nflores <span class="op">~</span><span class="st"> </span>long.pedicelo <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>id), <span class="dt">data =</span> plantas)</span>
+<span id="cb346-5"><a href="mixtos.html#cb346-5"></a><span class="kw">summary</span>(m4)</span></code></pre></div>
 <pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
 ## lmerModLmerTest]
 ## Formula: nflores ~ long.pedicelo + (1 | id)
@@ -466,7 +448,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Correlation of Fixed Effects:
 ##             (Intr)
 ## long.pedicl -0.881</code></pre>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="mixtos.html#cb414-1"></a><span class="kw">ranef</span>(m4) </span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="mixtos.html#cb348-1"></a><span class="kw">ranef</span>(m4) </span></code></pre></div>
 <pre><code>## $id
 ##   (Intercept)
 ## 1  -0.7505424
@@ -479,7 +461,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 8  -0.5718278
 ## 
 ## with conditional variances for &quot;id&quot;</code></pre>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="mixtos.html#cb416-1"></a><span class="kw">rand</span>(m4) <span class="co"># Significancia de efectos aleatorios</span></span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="mixtos.html#cb350-1"></a><span class="kw">rand</span>(m4) <span class="co"># Significancia de efectos aleatorios</span></span></code></pre></div>
 <pre><code>## ANOVA-like table for random-effects: Single term deletions
 ## 
 ## Model:
@@ -489,23 +471,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## (1 | id)    3 -42.174 90.349 4.9912  1    0.02548 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="mixtos.html#cb418-1"></a>long.pedicelo.new &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(plantas<span class="op">$</span>long.pedicelo), <span class="kw">max</span>(plantas<span class="op">$</span>long.pedicelo), <span class="dt">length =</span> <span class="dv">100</span>)</span>
-<span id="cb418-2"><a href="mixtos.html#cb418-2"></a>newdata &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(long.pedicelo.new, plantas<span class="op">$</span>id)</span>
-<span id="cb418-3"><a href="mixtos.html#cb418-3"></a><span class="kw">colnames</span>(newdata) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;long.pedicelo&quot;</span>, <span class="st">&quot;id&quot;</span>)</span>
-<span id="cb418-4"><a href="mixtos.html#cb418-4"></a>newdata<span class="op">$</span>predy.fixed &lt;-<span class="st"> </span><span class="kw">predict</span>(m4, <span class="dt">newdata =</span> newdata, <span class="dt">re.form =</span> <span class="ot">NA</span>)</span>
-<span id="cb418-5"><a href="mixtos.html#cb418-5"></a>newdata<span class="op">$</span>predy.rand &lt;-<span class="st"> </span><span class="kw">predict</span>(m4, <span class="dt">newdata =</span> newdata, <span class="dt">re.form =</span> <span class="ot">NULL</span>)</span>
-<span id="cb418-6"><a href="mixtos.html#cb418-6"></a></span>
-<span id="cb418-7"><a href="mixtos.html#cb418-7"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> plantas, <span class="kw">aes</span>(<span class="dt">x =</span> long.pedicelo, <span class="dt">y =</span> nflores, <span class="dt">col =</span> id)) <span class="op">+</span></span>
-<span id="cb418-8"><a href="mixtos.html#cb418-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb418-9"><a href="mixtos.html#cb418-9"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> long.pedicelo, <span class="dt">y =</span> predy.rand)) <span class="op">+</span></span>
-<span id="cb418-10"><a href="mixtos.html#cb418-10"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> long.pedicelo, <span class="dt">y =</span> predy.fixed), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Modelo de intercepto aleatorio&quot;</span>) <span class="op">+</span></span>
-<span id="cb418-11"><a href="mixtos.html#cb418-11"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Longitud del pedicelo&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Numero de flores&quot;</span>) <span class="op">+</span></span>
-<span id="cb418-12"><a href="mixtos.html#cb418-12"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="mixtos.html#cb352-1"></a>long.pedicelo.new &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(plantas<span class="op">$</span>long.pedicelo), <span class="kw">max</span>(plantas<span class="op">$</span>long.pedicelo), <span class="dt">length =</span> <span class="dv">100</span>)</span>
+<span id="cb352-2"><a href="mixtos.html#cb352-2"></a>newdata &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(long.pedicelo.new, plantas<span class="op">$</span>id)</span>
+<span id="cb352-3"><a href="mixtos.html#cb352-3"></a><span class="kw">colnames</span>(newdata) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;long.pedicelo&quot;</span>, <span class="st">&quot;id&quot;</span>)</span>
+<span id="cb352-4"><a href="mixtos.html#cb352-4"></a>newdata<span class="op">$</span>predy.fixed &lt;-<span class="st"> </span><span class="kw">predict</span>(m4, <span class="dt">newdata =</span> newdata, <span class="dt">re.form =</span> <span class="ot">NA</span>)</span>
+<span id="cb352-5"><a href="mixtos.html#cb352-5"></a>newdata<span class="op">$</span>predy.rand &lt;-<span class="st"> </span><span class="kw">predict</span>(m4, <span class="dt">newdata =</span> newdata, <span class="dt">re.form =</span> <span class="ot">NULL</span>)</span>
+<span id="cb352-6"><a href="mixtos.html#cb352-6"></a></span>
+<span id="cb352-7"><a href="mixtos.html#cb352-7"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> plantas, <span class="kw">aes</span>(<span class="dt">x =</span> long.pedicelo, <span class="dt">y =</span> nflores, <span class="dt">col =</span> id)) <span class="op">+</span></span>
+<span id="cb352-8"><a href="mixtos.html#cb352-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb352-9"><a href="mixtos.html#cb352-9"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> long.pedicelo, <span class="dt">y =</span> predy.rand)) <span class="op">+</span></span>
+<span id="cb352-10"><a href="mixtos.html#cb352-10"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> long.pedicelo, <span class="dt">y =</span> predy.fixed), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Modelo de intercepto aleatorio&quot;</span>) <span class="op">+</span></span>
+<span id="cb352-11"><a href="mixtos.html#cb352-11"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Longitud del pedicelo&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Numero de flores&quot;</span>) <span class="op">+</span></span>
+<span id="cb352-12"><a href="mixtos.html#cb352-12"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/mixtos-3.png" width="672" /></p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="mixtos.html#cb419-1"></a><span class="co"># Opción 5: modelo mixto de intercepto y pendiente aleatorios</span></span>
-<span id="cb419-2"><a href="mixtos.html#cb419-2"></a>m5 &lt;-<span class="st"> </span><span class="kw">lmer</span>(nflores <span class="op">~</span><span class="st"> </span>long.pedicelo <span class="op">+</span><span class="st"> </span>(long.pedicelo<span class="op">|</span>id), <span class="dt">data =</span> plantas)</span></code></pre></div>
-<pre><code>## boundary (singular) fit: see ?isSingular</code></pre>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="mixtos.html#cb421-1"></a><span class="kw">summary</span>(m5)</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="mixtos.html#cb353-1"></a><span class="co"># Opción 5: modelo mixto de intercepto y pendiente aleatorios</span></span>
+<span id="cb353-2"><a href="mixtos.html#cb353-2"></a>m5 &lt;-<span class="st"> </span><span class="kw">lmer</span>(nflores <span class="op">~</span><span class="st"> </span>long.pedicelo <span class="op">+</span><span class="st"> </span>(long.pedicelo<span class="op">|</span>id), <span class="dt">data =</span> plantas)</span>
+<span id="cb353-3"><a href="mixtos.html#cb353-3"></a><span class="kw">summary</span>(m5)</span></code></pre></div>
 <pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
 ## lmerModLmerTest]
 ## Formula: nflores ~ long.pedicelo + (long.pedicelo | id)
@@ -536,7 +517,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## long.pedicl -0.889
 ## convergence code: 0
 ## boundary (singular) fit: see ?isSingular</code></pre>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="mixtos.html#cb423-1"></a><span class="kw">ranef</span>(m5)</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="mixtos.html#cb355-1"></a><span class="kw">ranef</span>(m5)</span></code></pre></div>
 <pre><code>## $id
 ##   (Intercept) long.pedicelo
 ## 1 -0.20606623   0.098969626
@@ -549,7 +530,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 8  0.80700335  -0.387588101
 ## 
 ## with conditional variances for &quot;id&quot;</code></pre>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="mixtos.html#cb425-1"></a><span class="kw">rand</span>(m5)</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="mixtos.html#cb357-1"></a><span class="kw">rand</span>(m5)</span></code></pre></div>
 <pre><code>## ANOVA-like table for random-effects: Single term deletions
 ## 
 ## Model:
@@ -557,24 +538,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                                       npar  logLik    AIC   LRT Df Pr(&gt;Chisq)
 ## &lt;none&gt;                                   6 -38.527 89.054                    
 ## long.pedicelo in (long.pedicelo | id)    4 -39.679 87.357 2.303  2     0.3162</code></pre>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="mixtos.html#cb427-1"></a>newdata<span class="op">$</span>predy.fixed &lt;-<span class="st"> </span><span class="kw">predict</span>(m5, <span class="dt">newdata =</span> newdata, <span class="dt">re.form =</span> <span class="ot">NA</span>)</span>
-<span id="cb427-2"><a href="mixtos.html#cb427-2"></a>newdata<span class="op">$</span>predy.rand &lt;-<span class="st"> </span><span class="kw">predict</span>(m5, <span class="dt">newdata =</span> newdata, <span class="dt">re.form =</span> <span class="ot">NULL</span>)</span>
-<span id="cb427-3"><a href="mixtos.html#cb427-3"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> plantas, <span class="kw">aes</span>(<span class="dt">x =</span> long.pedicelo, <span class="dt">y =</span> nflores, <span class="dt">col =</span> id)) <span class="op">+</span></span>
-<span id="cb427-4"><a href="mixtos.html#cb427-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb427-5"><a href="mixtos.html#cb427-5"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Modelo de intercepto y pendiente aleatorios&quot;</span>) <span class="op">+</span></span>
-<span id="cb427-6"><a href="mixtos.html#cb427-6"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> long.pedicelo, <span class="dt">y =</span> predy.rand)) <span class="op">+</span></span>
-<span id="cb427-7"><a href="mixtos.html#cb427-7"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> long.pedicelo, <span class="dt">y =</span> predy.fixed), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb427-8"><a href="mixtos.html#cb427-8"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Longitud del pedicelo&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Numero de flores&quot;</span>) <span class="op">+</span></span>
-<span id="cb427-9"><a href="mixtos.html#cb427-9"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="mixtos.html#cb359-1"></a>newdata<span class="op">$</span>predy.fixed &lt;-<span class="st"> </span><span class="kw">predict</span>(m5, <span class="dt">newdata =</span> newdata, <span class="dt">re.form =</span> <span class="ot">NA</span>)</span>
+<span id="cb359-2"><a href="mixtos.html#cb359-2"></a>newdata<span class="op">$</span>predy.rand &lt;-<span class="st"> </span><span class="kw">predict</span>(m5, <span class="dt">newdata =</span> newdata, <span class="dt">re.form =</span> <span class="ot">NULL</span>)</span>
+<span id="cb359-3"><a href="mixtos.html#cb359-3"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> plantas, <span class="kw">aes</span>(<span class="dt">x =</span> long.pedicelo, <span class="dt">y =</span> nflores, <span class="dt">col =</span> id)) <span class="op">+</span></span>
+<span id="cb359-4"><a href="mixtos.html#cb359-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb359-5"><a href="mixtos.html#cb359-5"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Modelo de intercepto y pendiente aleatorios&quot;</span>) <span class="op">+</span></span>
+<span id="cb359-6"><a href="mixtos.html#cb359-6"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> long.pedicelo, <span class="dt">y =</span> predy.rand)) <span class="op">+</span></span>
+<span id="cb359-7"><a href="mixtos.html#cb359-7"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> long.pedicelo, <span class="dt">y =</span> predy.fixed), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb359-8"><a href="mixtos.html#cb359-8"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Longitud del pedicelo&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Numero de flores&quot;</span>) <span class="op">+</span></span>
+<span id="cb359-9"><a href="mixtos.html#cb359-9"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/mixtos-4.png" width="672" /></p>
 </div>
 <div id="un-caso-especial" class="section level2 hasAnchor">
 <h2><span class="header-section-number">4.4</span> Un caso especial<a href="mixtos.html#un-caso-especial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="mixtos.html#cb428-1"></a><span class="kw">library</span>(data.table)</span>
-<span id="cb428-2"><a href="mixtos.html#cb428-2"></a><span class="kw">library</span>(nlme)</span>
-<span id="cb428-3"><a href="mixtos.html#cb428-3"></a>url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/hauselin/rtutorialsite/master/data/simpsonsParadox.csv&quot;</span></span>
-<span id="cb428-4"><a href="mixtos.html#cb428-4"></a>df &lt;-<span class="st"> </span><span class="kw">fread</span>(url)</span>
-<span id="cb428-5"><a href="mixtos.html#cb428-5"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="mixtos.html#cb360-1"></a><span class="kw">library</span>(data.table)</span>
+<span id="cb360-2"><a href="mixtos.html#cb360-2"></a><span class="kw">library</span>(nlme)</span>
+<span id="cb360-3"><a href="mixtos.html#cb360-3"></a>url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/hauselin/rtutorialsite/master/data/simpsonsParadox.csv&quot;</span></span>
+<span id="cb360-4"><a href="mixtos.html#cb360-4"></a>df &lt;-<span class="st"> </span><span class="kw">fread</span>(url)</span>
+<span id="cb360-5"><a href="mixtos.html#cb360-5"></a><span class="kw">head</span>(df)</span></code></pre></div>
 <pre><code>##          iq  grades class
 ## 1:  94.5128 67.9295     a
 ## 2:  95.4359 82.5449     a
@@ -582,17 +563,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4:  98.1026 83.3141     a
 ## 5:  96.5641 99.0833     a
 ## 6: 101.5897 89.8526     a</code></pre>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="mixtos.html#cb430-1"></a><span class="kw">plot</span>(df<span class="op">$</span>grades, df<span class="op">$</span>iq)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="mixtos.html#cb362-1"></a><span class="kw">plot</span>(df<span class="op">$</span>grades, df<span class="op">$</span>iq)</span></code></pre></div>
 <p><img src="_main_files/figure-html/simpson-1.png" width="672" /></p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="mixtos.html#cb431-1"></a>model.class &lt;-<span class="st"> </span><span class="kw">lme</span>(iq <span class="op">~</span><span class="st"> </span>grades, <span class="dt">random =</span> <span class="op">~</span><span class="dv">1</span><span class="op">|</span>class, <span class="dt">data =</span> df)</span>
-<span id="cb431-2"><a href="mixtos.html#cb431-2"></a>predy.fixed &lt;-<span class="st"> </span><span class="kw">predict</span>(model.class, <span class="dt">level =</span> <span class="dv">0</span>)</span>
-<span id="cb431-3"><a href="mixtos.html#cb431-3"></a> </span>
-<span id="cb431-4"><a href="mixtos.html#cb431-4"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(grades, iq, <span class="dt">col =</span> class)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">2.5</span>) <span class="op">+</span></span>
-<span id="cb431-5"><a href="mixtos.html#cb431-5"></a><span class="kw">ggtitle</span>(<span class="st">&quot;Paradoja de Simpson&quot;</span>) <span class="op">+</span></span>
-<span id="cb431-6"><a href="mixtos.html#cb431-6"></a><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb431-7"><a href="mixtos.html#cb431-7"></a><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> df<span class="op">$</span>grades, <span class="dt">y =</span> predy.fixed), <span class="kw">aes</span>(x, y), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb431-8"><a href="mixtos.html#cb431-8"></a><span class="kw">theme_bw</span>()</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="mixtos.html#cb363-1"></a>model.class &lt;-<span class="st"> </span><span class="kw">lme</span>(iq <span class="op">~</span><span class="st"> </span>grades, <span class="dt">random =</span> <span class="op">~</span><span class="dv">1</span><span class="op">|</span>class, <span class="dt">data =</span> df)</span>
+<span id="cb363-2"><a href="mixtos.html#cb363-2"></a>predy.fixed &lt;-<span class="st"> </span><span class="kw">predict</span>(model.class, <span class="dt">level =</span> <span class="dv">0</span>)</span>
+<span id="cb363-3"><a href="mixtos.html#cb363-3"></a> </span>
+<span id="cb363-4"><a href="mixtos.html#cb363-4"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(grades, iq, <span class="dt">col =</span> class)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">2.5</span>) <span class="op">+</span></span>
+<span id="cb363-5"><a href="mixtos.html#cb363-5"></a><span class="kw">ggtitle</span>(<span class="st">&quot;Paradoja de Simpson&quot;</span>) <span class="op">+</span></span>
+<span id="cb363-6"><a href="mixtos.html#cb363-6"></a><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb363-7"><a href="mixtos.html#cb363-7"></a><span class="kw">geom_line</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> df<span class="op">$</span>grades, <span class="dt">y =</span> predy.fixed), <span class="kw">aes</span>(x, y), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb363-8"><a href="mixtos.html#cb363-8"></a><span class="kw">theme_bw</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/simpson-2.png" width="672" /></p>
 </div>
 <div id="modelos-lineales-generalizados-mixtos" class="section level2 hasAnchor">
@@ -600,20 +580,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Palacio et al. (2014) estudiaron la selección natural mediada por aves frugívoras sobre rasgos de los frutos de <em>Celtis tala</em> (<code>frutos Celtis 2013.txt</code>), incluyendo el diametro (<code>diam</code>), peso (<code>peso</code>), concentración de azúcares (<code>az</code>), peso de pulpa (<code>pulpa</code>), peso de semilla (<code>sem</code>) y relación peso de pulpa/peso de semilla (<code>pulpa.sem</code>). Para esto se midieron 4-10 frutos por árbol en 24 árboles y 4 parches de bosque.</p>
 <div id="diseño-anidado" class="section level4 hasAnchor">
 <h4><span class="header-section-number">4.5.0.1</span> Diseño anidado<a href="mixtos.html#diseño-anidado" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="mixtos.html#cb433-1"></a><span class="kw">library</span>(glmmTMB)</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="mixtos.html#cb364-1"></a><span class="kw">library</span>(glmmTMB)</span></code></pre></div>
 <pre><code>## Warning: package &#39;glmmTMB&#39; was built under R version 4.0.3</code></pre>
-<pre><code>## 
-## Attaching package: &#39;glmmTMB&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:VGAM&#39;:
-## 
-##     betabinomial</code></pre>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="mixtos.html#cb437-1"></a><span class="kw">library</span>(lme4)</span>
-<span id="cb437-2"><a href="mixtos.html#cb437-2"></a><span class="kw">library</span>(MuMIn)</span>
-<span id="cb437-3"><a href="mixtos.html#cb437-3"></a><span class="kw">library</span>(sjPlot)</span></code></pre></div>
-<pre><code>## Learn more about sjPlot with &#39;browseVignettes(&quot;sjPlot&quot;)&#39;.</code></pre>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="mixtos.html#cb439-1"></a><span class="kw">library</span>(equatiomatic)</span>
-<span id="cb439-2"><a href="mixtos.html#cb439-2"></a>celtis &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;frutos Celtis 2013.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb439-3"><a href="mixtos.html#cb439-3"></a><span class="kw">table</span>(celtis<span class="op">$</span>planta)</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="mixtos.html#cb366-1"></a><span class="kw">library</span>(lme4)</span>
+<span id="cb366-2"><a href="mixtos.html#cb366-2"></a><span class="kw">library</span>(MuMIn)</span>
+<span id="cb366-3"><a href="mixtos.html#cb366-3"></a><span class="kw">library</span>(sjPlot)</span>
+<span id="cb366-4"><a href="mixtos.html#cb366-4"></a><span class="kw">library</span>(equatiomatic)</span>
+<span id="cb366-5"><a href="mixtos.html#cb366-5"></a>celtis &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;frutos Celtis 2013.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb366-6"><a href="mixtos.html#cb366-6"></a><span class="kw">table</span>(celtis<span class="op">$</span>planta)</span></code></pre></div>
 <pre><code>## 
 ##  D1-145  D1-146  D1-147  D1-148   P1-10   P1-11   P1-12   P1-13    P1-2 P1-5(1) 
 ##      26      23      19      16      29      30      30      14      27      27 
@@ -621,7 +595,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##      30      28      13      30      27      28      30      31      30      30 
 ##    P3-1    P3-2    P3-6    P3-7 
 ##       9      30      30      30</code></pre>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="mixtos.html#cb441-1"></a><span class="kw">table</span>(celtis<span class="op">$</span>planta, celtis<span class="op">$</span>parche) <span class="co"># Es un diseño anidado?</span></span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="mixtos.html#cb368-1"></a><span class="kw">table</span>(celtis<span class="op">$</span>planta, celtis<span class="op">$</span>parche) <span class="co"># Es un diseño anidado?</span></span></code></pre></div>
 <pre><code>##          
 ##           D1 P1 P2 P3
 ##   D1-145  26  0  0  0
@@ -648,21 +622,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   P3-2     0  0  0 30
 ##   P3-6     0  0  0 30
 ##   P3-7     0  0  0 30</code></pre>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="mixtos.html#cb443-1"></a>lmm.m0 &lt;-<span class="st"> </span><span class="kw">lm</span>(sem <span class="op">~</span><span class="st"> </span>diam, <span class="dt">data =</span> celtis)</span>
-<span id="cb443-2"><a href="mixtos.html#cb443-2"></a>lmm.m1 &lt;-<span class="st"> </span><span class="kw">glmmTMB</span>(sem <span class="op">~</span><span class="st"> </span>diam <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>planta), <span class="dt">family =</span> gaussian, <span class="dt">data =</span> celtis)</span>
-<span id="cb443-3"><a href="mixtos.html#cb443-3"></a>lmm.m2 &lt;-<span class="st"> </span><span class="kw">glmmTMB</span>(sem <span class="op">~</span><span class="st"> </span>diam <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>parche<span class="op">/</span>planta), <span class="dt">family =</span> gaussian, <span class="dt">data =</span> celtis)</span>
-<span id="cb443-4"><a href="mixtos.html#cb443-4"></a></span>
-<span id="cb443-5"><a href="mixtos.html#cb443-5"></a><span class="co"># Comparación de modelos</span></span>
-<span id="cb443-6"><a href="mixtos.html#cb443-6"></a><span class="kw">AIC</span>(lmm.m0, lmm.m1, lmm.m2)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="mixtos.html#cb370-1"></a>lmm.m0 &lt;-<span class="st"> </span><span class="kw">lm</span>(sem <span class="op">~</span><span class="st"> </span>diam, <span class="dt">data =</span> celtis)</span>
+<span id="cb370-2"><a href="mixtos.html#cb370-2"></a>lmm.m1 &lt;-<span class="st"> </span><span class="kw">glmmTMB</span>(sem <span class="op">~</span><span class="st"> </span>diam <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>planta), <span class="dt">family =</span> gaussian, <span class="dt">data =</span> celtis)</span>
+<span id="cb370-3"><a href="mixtos.html#cb370-3"></a>lmm.m2 &lt;-<span class="st"> </span><span class="kw">glmmTMB</span>(sem <span class="op">~</span><span class="st"> </span>diam <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>parche<span class="op">/</span>planta), <span class="dt">family =</span> gaussian, <span class="dt">data =</span> celtis)</span>
+<span id="cb370-4"><a href="mixtos.html#cb370-4"></a></span>
+<span id="cb370-5"><a href="mixtos.html#cb370-5"></a><span class="co"># Comparación de modelos</span></span>
+<span id="cb370-6"><a href="mixtos.html#cb370-6"></a><span class="kw">AIC</span>(lmm.m0, lmm.m1, lmm.m2)</span></code></pre></div>
 <pre><code>##        df       AIC
 ## lmm.m0  3 -3832.245
 ## lmm.m1  4 -4215.268
 ## lmm.m2  5 -4214.188</code></pre>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="mixtos.html#cb445-1"></a><span class="kw">r.squaredGLMM</span>(lmm.m1)</span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="mixtos.html#cb372-1"></a><span class="kw">r.squaredGLMM</span>(lmm.m1)</span></code></pre></div>
 <pre><code>## Warning: &#39;r.squaredGLMM&#39; now calculates a revised statistic. See the help page.</code></pre>
 <pre><code>##            R2m       R2c
 ## [1,] 0.3126432 0.6709598</code></pre>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="mixtos.html#cb448-1"></a><span class="kw">summary</span>(lmm.m1)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="mixtos.html#cb375-1"></a><span class="kw">summary</span>(lmm.m1)</span></code></pre></div>
 <pre><code>##  Family: gaussian  ( identity )
 ## Formula:          sem ~ diam + (1 | planta)
 ## Data: celtis
@@ -686,40 +660,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## diam         0.0080182  0.0004735  16.935  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="mixtos.html#cb450-1"></a><span class="co"># Gráfico</span></span>
-<span id="cb450-2"><a href="mixtos.html#cb450-2"></a>diam.new &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(celtis<span class="op">$</span>diam, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="kw">max</span>(celtis<span class="op">$</span>diam, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dt">length =</span> <span class="dv">5</span>)</span>
-<span id="cb450-3"><a href="mixtos.html#cb450-3"></a>newdata &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(diam.new, celtis<span class="op">$</span>planta, <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb450-4"><a href="mixtos.html#cb450-4"></a><span class="kw">colnames</span>(newdata) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;diam&quot;</span>, <span class="st">&quot;planta&quot;</span>)</span>
-<span id="cb450-5"><a href="mixtos.html#cb450-5"></a>newdata<span class="op">$</span>parche &lt;-<span class="st"> </span><span class="kw">substr</span>(newdata<span class="op">$</span>planta, <span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb450-6"><a href="mixtos.html#cb450-6"></a></span>
-<span id="cb450-7"><a href="mixtos.html#cb450-7"></a>newdata<span class="op">$</span>predy.fixed &lt;-<span class="st"> </span><span class="kw">predict</span>(lmm.m2, <span class="dt">newdata =</span> newdata, <span class="dt">re.form =</span> <span class="ot">NA</span>) <span class="co"># poblacional</span></span>
-<span id="cb450-8"><a href="mixtos.html#cb450-8"></a>newdata<span class="op">$</span>predy.rand1 &lt;-<span class="st"> </span><span class="kw">predict</span>(lmm.m2, <span class="dt">newdata =</span> newdata, <span class="dt">re.form =</span> <span class="ot">NULL</span>) <span class="co"># planta</span></span>
-<span id="cb450-9"><a href="mixtos.html#cb450-9"></a>rand2 &lt;-<span class="st"> </span><span class="kw">ranef</span>(lmm.m2)<span class="op">$</span>cond<span class="op">$</span>parche</span>
-<span id="cb450-10"><a href="mixtos.html#cb450-10"></a>rand2.parche &lt;-<span class="st"> </span>rand2[<span class="kw">match</span>(newdata<span class="op">$</span>parche, <span class="kw">rownames</span>(rand2)), <span class="dv">1</span>]</span>
-<span id="cb450-11"><a href="mixtos.html#cb450-11"></a>a &lt;-<span class="st"> </span><span class="kw">fixef</span>(lmm.m2)<span class="op">$</span>cond[<span class="dv">1</span>]</span>
-<span id="cb450-12"><a href="mixtos.html#cb450-12"></a>b &lt;-<span class="st"> </span><span class="kw">fixef</span>(lmm.m2)<span class="op">$</span>cond[<span class="dv">2</span>]</span>
-<span id="cb450-13"><a href="mixtos.html#cb450-13"></a>newdata<span class="op">$</span>predy.rand2 &lt;-<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b<span class="op">*</span>newdata<span class="op">$</span>diam <span class="op">+</span><span class="st"> </span>rand2.parche</span>
-<span id="cb450-14"><a href="mixtos.html#cb450-14"></a></span>
-<span id="cb450-15"><a href="mixtos.html#cb450-15"></a><span class="co"># Efecto planta</span></span>
-<span id="cb450-16"><a href="mixtos.html#cb450-16"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> celtis, <span class="kw">aes</span>(<span class="dt">x =</span> diam, <span class="dt">y =</span> sem, <span class="dt">col =</span> planta)) <span class="op">+</span></span>
-<span id="cb450-17"><a href="mixtos.html#cb450-17"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb450-18"><a href="mixtos.html#cb450-18"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Modelo con factores aleatorios anidados&quot;</span>) <span class="op">+</span></span>
-<span id="cb450-19"><a href="mixtos.html#cb450-19"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> diam, <span class="dt">y =</span> predy.rand1)) <span class="op">+</span></span>
-<span id="cb450-20"><a href="mixtos.html#cb450-20"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> diam, <span class="dt">y =</span> predy.fixed), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb450-21"><a href="mixtos.html#cb450-21"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Diametro del fruto (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Masa de semilla (g)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="mixtos.html#cb377-1"></a><span class="co"># Gráfico</span></span>
+<span id="cb377-2"><a href="mixtos.html#cb377-2"></a>diam.new &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(celtis<span class="op">$</span>diam, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="kw">max</span>(celtis<span class="op">$</span>diam, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dt">length =</span> <span class="dv">5</span>)</span>
+<span id="cb377-3"><a href="mixtos.html#cb377-3"></a>newdata &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(diam.new, celtis<span class="op">$</span>planta, <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb377-4"><a href="mixtos.html#cb377-4"></a><span class="kw">colnames</span>(newdata) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;diam&quot;</span>, <span class="st">&quot;planta&quot;</span>)</span>
+<span id="cb377-5"><a href="mixtos.html#cb377-5"></a>newdata<span class="op">$</span>parche &lt;-<span class="st"> </span><span class="kw">substr</span>(newdata<span class="op">$</span>planta, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb377-6"><a href="mixtos.html#cb377-6"></a></span>
+<span id="cb377-7"><a href="mixtos.html#cb377-7"></a>newdata<span class="op">$</span>predy.fixed &lt;-<span class="st"> </span><span class="kw">predict</span>(lmm.m2, <span class="dt">newdata =</span> newdata, <span class="dt">re.form =</span> <span class="ot">NA</span>) <span class="co"># poblacional</span></span>
+<span id="cb377-8"><a href="mixtos.html#cb377-8"></a>newdata<span class="op">$</span>predy.rand1 &lt;-<span class="st"> </span><span class="kw">predict</span>(lmm.m2, <span class="dt">newdata =</span> newdata, <span class="dt">re.form =</span> <span class="ot">NULL</span>) <span class="co"># planta</span></span>
+<span id="cb377-9"><a href="mixtos.html#cb377-9"></a>rand2 &lt;-<span class="st"> </span><span class="kw">ranef</span>(lmm.m2)<span class="op">$</span>cond<span class="op">$</span>parche</span>
+<span id="cb377-10"><a href="mixtos.html#cb377-10"></a>rand2.parche &lt;-<span class="st"> </span>rand2[<span class="kw">match</span>(newdata<span class="op">$</span>parche, <span class="kw">rownames</span>(rand2)), <span class="dv">1</span>]</span>
+<span id="cb377-11"><a href="mixtos.html#cb377-11"></a>a &lt;-<span class="st"> </span><span class="kw">fixef</span>(lmm.m2)<span class="op">$</span>cond[<span class="dv">1</span>]</span>
+<span id="cb377-12"><a href="mixtos.html#cb377-12"></a>b &lt;-<span class="st"> </span><span class="kw">fixef</span>(lmm.m2)<span class="op">$</span>cond[<span class="dv">2</span>]</span>
+<span id="cb377-13"><a href="mixtos.html#cb377-13"></a>newdata<span class="op">$</span>predy.rand2 &lt;-<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b<span class="op">*</span>newdata<span class="op">$</span>diam <span class="op">+</span><span class="st"> </span>rand2.parche</span>
+<span id="cb377-14"><a href="mixtos.html#cb377-14"></a></span>
+<span id="cb377-15"><a href="mixtos.html#cb377-15"></a><span class="co"># Efecto planta</span></span>
+<span id="cb377-16"><a href="mixtos.html#cb377-16"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> celtis, <span class="kw">aes</span>(<span class="dt">x =</span> diam, <span class="dt">y =</span> sem, <span class="dt">col =</span> planta)) <span class="op">+</span></span>
+<span id="cb377-17"><a href="mixtos.html#cb377-17"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb377-18"><a href="mixtos.html#cb377-18"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Modelo con factores aleatorios anidados&quot;</span>) <span class="op">+</span></span>
+<span id="cb377-19"><a href="mixtos.html#cb377-19"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> diam, <span class="dt">y =</span> predy.rand1)) <span class="op">+</span></span>
+<span id="cb377-20"><a href="mixtos.html#cb377-20"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> diam, <span class="dt">y =</span> predy.fixed), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb377-21"><a href="mixtos.html#cb377-21"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Diametro del fruto (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Masa de semilla (g)&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
 <p><img src="_main_files/figure-html/glmm-1.png" width="672" /></p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="mixtos.html#cb452-1"></a><span class="co"># Efecto parche</span></span>
-<span id="cb452-2"><a href="mixtos.html#cb452-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> celtis, <span class="kw">aes</span>(<span class="dt">x =</span> diam, <span class="dt">y =</span> sem, <span class="dt">col =</span> parche)) <span class="op">+</span></span>
-<span id="cb452-3"><a href="mixtos.html#cb452-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb452-4"><a href="mixtos.html#cb452-4"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Modelo con factores aleatorios anidados&quot;</span>) <span class="op">+</span></span>
-<span id="cb452-5"><a href="mixtos.html#cb452-5"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> diam, <span class="dt">y =</span> predy.rand2, <span class="dt">col =</span> parche)) <span class="op">+</span></span>
-<span id="cb452-6"><a href="mixtos.html#cb452-6"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> diam, <span class="dt">y =</span> predy.fixed), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb452-7"><a href="mixtos.html#cb452-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Diametro del fruto (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Masa de semilla (g)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="mixtos.html#cb379-1"></a><span class="co"># Efecto parche</span></span>
+<span id="cb379-2"><a href="mixtos.html#cb379-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> celtis, <span class="kw">aes</span>(<span class="dt">x =</span> diam, <span class="dt">y =</span> sem, <span class="dt">col =</span> parche)) <span class="op">+</span></span>
+<span id="cb379-3"><a href="mixtos.html#cb379-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb379-4"><a href="mixtos.html#cb379-4"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Modelo con factores aleatorios anidados&quot;</span>) <span class="op">+</span></span>
+<span id="cb379-5"><a href="mixtos.html#cb379-5"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> diam, <span class="dt">y =</span> predy.rand2, <span class="dt">col =</span> parche)) <span class="op">+</span></span>
+<span id="cb379-6"><a href="mixtos.html#cb379-6"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> newdata, <span class="kw">aes</span>(<span class="dt">x =</span> diam, <span class="dt">y =</span> predy.fixed), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb379-7"><a href="mixtos.html#cb379-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Diametro del fruto (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Masa de semilla (g)&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
 <p><img src="_main_files/figure-html/glmm-2.png" width="672" /></p>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="mixtos.html#cb454-1"></a><span class="co"># Tabla resumen</span></span>
-<span id="cb454-2"><a href="mixtos.html#cb454-2"></a><span class="kw">tab_model</span>(lmm.m2)</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="mixtos.html#cb381-1"></a><span class="co"># Tabla resumen</span></span>
+<span id="cb381-2"><a href="mixtos.html#cb381-2"></a><span class="kw">tab_model</span>(lmm.m2)</span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -829,13 +803,10 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="mixtos.html#cb455-1"></a><span class="co"># Ecuaciones del modelo</span></span>
-<span id="cb455-2"><a href="mixtos.html#cb455-2"></a>lmm.m1 &lt;-<span class="st"> </span><span class="kw">lmer</span>(sem <span class="op">~</span><span class="st"> </span>diam <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>planta), <span class="dt">data =</span> celtis)</span>
-<span id="cb455-3"><a href="mixtos.html#cb455-3"></a>lmm.m2 &lt;-<span class="st"> </span><span class="kw">lmer</span>(sem <span class="op">~</span><span class="st"> </span>diam <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>parche<span class="op">/</span>planta), <span class="dt">data =</span> celtis)</span>
-<span id="cb455-4"><a href="mixtos.html#cb455-4"></a><span class="kw">extract_eq</span>(lmm.m1)</span></code></pre></div>
-<pre><code>## Registered S3 method overwritten by &#39;broom.mixed&#39;:
-##   method      from 
-##   tidy.gamlss broom</code></pre>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="mixtos.html#cb382-1"></a><span class="co"># Ecuaciones del modelo</span></span>
+<span id="cb382-2"><a href="mixtos.html#cb382-2"></a>lmm.m1 &lt;-<span class="st"> </span><span class="kw">lmer</span>(sem <span class="op">~</span><span class="st"> </span>diam <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>planta), <span class="dt">data =</span> celtis)</span>
+<span id="cb382-3"><a href="mixtos.html#cb382-3"></a>lmm.m2 &lt;-<span class="st"> </span><span class="kw">lmer</span>(sem <span class="op">~</span><span class="st"> </span>diam <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>parche<span class="op">/</span>planta), <span class="dt">data =</span> celtis)</span>
+<span id="cb382-4"><a href="mixtos.html#cb382-4"></a><span class="kw">extract_eq</span>(lmm.m1)</span></code></pre></div>
 <p><span class="math display">\[
 \begin{aligned}
   \operatorname{sem}_{i}  &amp;\sim N \left(\alpha_{j[i]} + \beta_{1}(\operatorname{diam}), \sigma^2 \right) \\
@@ -843,7 +814,7 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
     \text{, for planta j = 1,} \dots \text{,J}
 \end{aligned}
 \]</span></p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="mixtos.html#cb457-1"></a><span class="kw">extract_eq</span>(lmm.m2)</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="mixtos.html#cb383-1"></a><span class="kw">extract_eq</span>(lmm.m2)</span></code></pre></div>
 <p><span class="math display">\[
 \begin{aligned}
   \operatorname{sem}_{i}  &amp;\sim N \left(\alpha_{j[i],k[i]} + \beta_{1}(\operatorname{diam}), \sigma^2 \right) \\
@@ -856,13 +827,13 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </div>
 <div id="diseño-cruzado" class="section level4 hasAnchor">
 <h4><span class="header-section-number">4.5.0.2</span> Diseño cruzado<a href="mixtos.html#diseño-cruzado" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="mixtos.html#cb458-1"></a><span class="kw">data</span>(Penicillin)</span>
-<span id="cb458-2"><a href="mixtos.html#cb458-2"></a><span class="kw">str</span>(Penicillin)</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="mixtos.html#cb384-1"></a><span class="kw">data</span>(Penicillin)</span>
+<span id="cb384-2"><a href="mixtos.html#cb384-2"></a><span class="kw">str</span>(Penicillin)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    144 obs. of  3 variables:
 ##  $ diameter: num  27 23 26 23 23 21 27 23 26 23 ...
 ##  $ plate   : Factor w/ 24 levels &quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,..: 1 1 1 1 1 1 2 2 2 2 ...
 ##  $ sample  : Factor w/ 6 levels &quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,..: 1 2 3 4 5 6 1 2 3 4 ...</code></pre>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="mixtos.html#cb460-1"></a><span class="kw">summary</span>(Penicillin)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="mixtos.html#cb386-1"></a><span class="kw">summary</span>(Penicillin)</span></code></pre></div>
 <pre><code>##     diameter         plate     sample
 ##  Min.   :18.00   a      :  6   A:24  
 ##  1st Qu.:22.00   b      :  6   B:24  
@@ -871,7 +842,7 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ##  3rd Qu.:24.00   e      :  6   E:24  
 ##  Max.   :27.00   f      :  6   F:24  
 ##                  (Other):108</code></pre>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="mixtos.html#cb462-1"></a><span class="kw">table</span>(Penicillin<span class="op">$</span>plate, Penicillin<span class="op">$</span>sample) <span class="co"># Es un diseño cruzado?</span></span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="mixtos.html#cb388-1"></a><span class="kw">table</span>(Penicillin<span class="op">$</span>plate, Penicillin<span class="op">$</span>sample) <span class="co"># Es un diseño cruzado?</span></span></code></pre></div>
 <pre><code>##    
 ##     A B C D E F
 ##   a 1 1 1 1 1 1
@@ -898,8 +869,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ##   v 1 1 1 1 1 1
 ##   w 1 1 1 1 1 1
 ##   x 1 1 1 1 1 1</code></pre>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="mixtos.html#cb464-1"></a>lmm.pen &lt;-<span class="st"> </span><span class="kw">lmer</span>(diameter <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>plate) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>sample), <span class="dt">data =</span> Penicillin)</span>
-<span id="cb464-2"><a href="mixtos.html#cb464-2"></a><span class="kw">summary</span>(lmm.pen)</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="mixtos.html#cb390-1"></a>lmm.pen &lt;-<span class="st"> </span><span class="kw">lmer</span>(diameter <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>plate) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>sample), <span class="dt">data =</span> Penicillin)</span>
+<span id="cb390-2"><a href="mixtos.html#cb390-2"></a><span class="kw">summary</span>(lmm.pen)</span></code></pre></div>
 <pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
 ## lmerModLmerTest]
 ## Formula: diameter ~ 1 + (1 | plate) + (1 | sample)
@@ -923,8 +894,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ## (Intercept)  22.9722     0.8086  5.4866   28.41 3.62e-07 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="mixtos.html#cb466-1"></a><span class="co"># Tabla resumen</span></span>
-<span id="cb466-2"><a href="mixtos.html#cb466-2"></a><span class="kw">tab_model</span>(lmm.pen)</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="mixtos.html#cb392-1"></a><span class="co"># Tabla resumen</span></span>
+<span id="cb392-2"><a href="mixtos.html#cb392-2"></a><span class="kw">tab_model</span>(lmm.pen)</span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -1027,8 +998,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="mixtos.html#cb467-1"></a><span class="co"># Gráfico de efectos aleatorios</span></span>
-<span id="cb467-2"><a href="mixtos.html#cb467-2"></a><span class="kw">plot_model</span>(lmm.pen, <span class="dt">type =</span> <span class="st">&quot;re&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="mixtos.html#cb393-1"></a><span class="co"># Gráfico de efectos aleatorios</span></span>
+<span id="cb393-2"><a href="mixtos.html#cb393-2"></a><span class="kw">plot_model</span>(lmm.pen, <span class="dt">type =</span> <span class="st">&quot;re&quot;</span>)</span></code></pre></div>
 <pre><code>## [[1]]</code></pre>
 <p><img src="_main_files/figure-html/cruzado-1.png" width="672" /></p>
 <pre><code>## 
@@ -1039,18 +1010,18 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 <div id="modelos-mixtos-con-estructura-espacial" class="section level2 hasAnchor">
 <h2><span class="header-section-number">4.6</span> Modelos mixtos con estructura espacial<a href="mixtos.html#modelos-mixtos-con-estructura-espacial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Palacio et al. (2017) estudiaron el consumo de frutos por aves en <span class="math inline">\(Psychotria carthagenensis\)</span> en un bosque secundario pedemontano de las Yungas (<code>Psychotria_El_Corte_2012.txt</code>). Se quiere analizar si el peso del fruto (<code>x.peso</code>) se relaciona con el número de infrutescencias (<code>n.infrut</code>).</p>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="mixtos.html#cb470-1"></a><span class="kw">library</span>(glmmTMB)</span>
-<span id="cb470-2"><a href="mixtos.html#cb470-2"></a>psycho &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Psychotria_El_Corte_2012.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb470-3"><a href="mixtos.html#cb470-3"></a><span class="kw">hist</span>(psycho<span class="op">$</span>x.diam, <span class="dt">xlab =</span> <span class="st">&quot;Diámetro promedio del fruto&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="mixtos.html#cb396-1"></a><span class="kw">library</span>(glmmTMB)</span>
+<span id="cb396-2"><a href="mixtos.html#cb396-2"></a>psycho &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Psychotria_El_Corte_2012.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb396-3"><a href="mixtos.html#cb396-3"></a><span class="kw">hist</span>(psycho<span class="op">$</span>x.diam, <span class="dt">xlab =</span> <span class="st">&quot;Diámetro promedio del fruto&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/glmm%20espacial-1.png" width="672" /></p>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="mixtos.html#cb471-1"></a><span class="kw">plot</span>(psycho<span class="op">$</span>x, psycho<span class="op">$</span>y, <span class="dt">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="mixtos.html#cb397-1"></a><span class="kw">plot</span>(psycho<span class="op">$</span>x, psycho<span class="op">$</span>y, <span class="dt">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/glmm%20espacial-2.png" width="672" /></p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="mixtos.html#cb472-1"></a>psycho<span class="op">$</span>pos &lt;-<span class="st"> </span><span class="kw">numFactor</span>(psycho<span class="op">$</span>x, psycho<span class="op">$</span>y)</span>
-<span id="cb472-2"><a href="mixtos.html#cb472-2"></a>psycho<span class="op">$</span>group &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">nrow</span>(psycho)))</span>
-<span id="cb472-3"><a href="mixtos.html#cb472-3"></a>lm.no_espacial &lt;-<span class="st"> </span><span class="kw">lm</span>(x.diam <span class="op">~</span><span class="st"> </span>n.infrut, <span class="dt">data =</span> psycho)</span>
-<span id="cb472-4"><a href="mixtos.html#cb472-4"></a></span>
-<span id="cb472-5"><a href="mixtos.html#cb472-5"></a>glmm.espacial &lt;-<span class="st"> </span><span class="kw">glmmTMB</span>(x.diam <span class="op">~</span><span class="st"> </span>n.infrut <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(pos <span class="op">+</span><span class="st"> </span><span class="dv">0</span><span class="op">|</span>group), <span class="dt">family =</span> gaussian, <span class="dt">data =</span> psycho)</span>
-<span id="cb472-6"><a href="mixtos.html#cb472-6"></a><span class="kw">summary</span>(glmm.espacial)</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="mixtos.html#cb398-1"></a>psycho<span class="op">$</span>pos &lt;-<span class="st"> </span><span class="kw">numFactor</span>(psycho<span class="op">$</span>x, psycho<span class="op">$</span>y)</span>
+<span id="cb398-2"><a href="mixtos.html#cb398-2"></a>psycho<span class="op">$</span>group &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">nrow</span>(psycho)))</span>
+<span id="cb398-3"><a href="mixtos.html#cb398-3"></a>lm.no_espacial &lt;-<span class="st"> </span><span class="kw">lm</span>(x.diam <span class="op">~</span><span class="st"> </span>n.infrut, <span class="dt">data =</span> psycho)</span>
+<span id="cb398-4"><a href="mixtos.html#cb398-4"></a></span>
+<span id="cb398-5"><a href="mixtos.html#cb398-5"></a>glmm.espacial &lt;-<span class="st"> </span><span class="kw">glmmTMB</span>(x.diam <span class="op">~</span><span class="st"> </span>n.infrut <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(pos <span class="op">+</span><span class="st"> </span><span class="dv">0</span><span class="op">|</span>group), <span class="dt">family =</span> gaussian, <span class="dt">data =</span> psycho)</span>
+<span id="cb398-6"><a href="mixtos.html#cb398-6"></a><span class="kw">summary</span>(glmm.espacial)</span></code></pre></div>
 <pre><code>##  Family: gaussian  ( identity )
 ## Formula:          x.diam ~ n.infrut + exp(pos + 0 | group)
 ## Data: psycho
@@ -1515,7 +1486,7 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ## n.infrut    0.005973   0.005773   1.035    0.301    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="mixtos.html#cb474-1"></a><span class="kw">AIC</span>(lm.no_espacial, glmm.espacial)</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="mixtos.html#cb400-1"></a><span class="kw">AIC</span>(lm.no_espacial, glmm.espacial)</span></code></pre></div>
 <pre><code>##                df      AIC
 ## lm.no_espacial  3 204.1418
 ## glmm.espacial   5 171.8000</code></pre>
@@ -1523,26 +1494,17 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 <div id="modelos-mixtos-con-filogenia" class="section level2 hasAnchor">
 <h2><span class="header-section-number">4.7</span> Modelos mixtos con filogenia<a href="mixtos.html#modelos-mixtos-con-filogenia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Lislevand &amp; Thomas (2006) estudiaron la evolución del tamaño del huevo en aves playeras (<code>data(shorebirds)</code>). En particular, nos interesa analizar la relación entre la masa del huevo (<code>Egg.mass</code>) y la masa corporal de la hembra (<code>F.Mass</code>).</p>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="mixtos.html#cb476-1"></a><span class="kw">library</span>(caper)</span></code></pre></div>
-<pre><code>## Loading required package: ape</code></pre>
-<pre><code>## 
-## Attaching package: &#39;ape&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:Hmisc&#39;:
-## 
-##     zoom</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;caper&#39;:
-##   method    from 
-##   nobs.pgls MuMIn</code></pre>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="mixtos.html#cb481-1"></a><span class="kw">data</span>(shorebird)</span>
-<span id="cb481-2"><a href="mixtos.html#cb481-2"></a><span class="kw">plot</span>(shorebird.tree)</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="mixtos.html#cb402-1"></a><span class="kw">library</span>(caper)</span>
+<span id="cb402-2"><a href="mixtos.html#cb402-2"></a><span class="kw">data</span>(shorebird)</span>
+<span id="cb402-3"><a href="mixtos.html#cb402-3"></a><span class="kw">plot</span>(shorebird.tree)</span></code></pre></div>
 <p><img src="_main_files/figure-html/filo%20glmm-1.png" width="672" /></p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="mixtos.html#cb482-1"></a>shorebird &lt;-<span class="st"> </span><span class="kw">comparative.data</span>(<span class="dt">phy =</span> shorebird.tree, <span class="dt">data =</span> shorebird.data, <span class="dt">names.col =</span> Species, <span class="dt">vcv =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb482-2"><a href="mixtos.html#cb482-2"></a><span class="kw">hist</span>(shorebird.data<span class="op">$</span>Egg.Mass)</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="mixtos.html#cb403-1"></a>shorebird &lt;-<span class="st"> </span><span class="kw">comparative.data</span>(<span class="dt">phy =</span> shorebird.tree, <span class="dt">data =</span> shorebird.data, <span class="dt">names.col =</span> Species, <span class="dt">vcv =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb403-2"><a href="mixtos.html#cb403-2"></a><span class="kw">hist</span>(shorebird.data<span class="op">$</span>Egg.Mass)</span></code></pre></div>
 <p><img src="_main_files/figure-html/filo%20glmm-2.png" width="672" /></p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="mixtos.html#cb483-1"></a><span class="kw">plot</span>(shorebird.data<span class="op">$</span>F.Mass, shorebird.data<span class="op">$</span>Egg.Mass)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="mixtos.html#cb404-1"></a><span class="kw">plot</span>(shorebird.data<span class="op">$</span>F.Mass, shorebird.data<span class="op">$</span>Egg.Mass)</span></code></pre></div>
 <p><img src="_main_files/figure-html/filo%20glmm-3.png" width="672" /></p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="mixtos.html#cb484-1"></a>normal.phyloglmm &lt;-<span class="st"> </span><span class="kw">pgls</span>(<span class="kw">log</span>(Egg.Mass) <span class="op">~</span><span class="st"> </span>F.Mass, <span class="dt">data =</span> shorebird)</span>
-<span id="cb484-2"><a href="mixtos.html#cb484-2"></a><span class="kw">summary</span>(normal.phyloglmm)</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="mixtos.html#cb405-1"></a>normal.phyloglmm &lt;-<span class="st"> </span><span class="kw">pgls</span>(<span class="kw">log</span>(Egg.Mass) <span class="op">~</span><span class="st"> </span>F.Mass, <span class="dt">data =</span> shorebird)</span>
+<span id="cb405-2"><a href="mixtos.html#cb405-2"></a><span class="kw">summary</span>(normal.phyloglmm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## pgls(formula = log(Egg.Mass) ~ F.Mass, data = shorebird)
@@ -1567,8 +1529,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ## Residual standard error: 0.06234 on 69 degrees of freedom
 ## Multiple R-squared: 0.4621,  Adjusted R-squared: 0.4543 
 ## F-statistic: 59.28 on 1 and 69 DF,  p-value: 7.095e-11</code></pre>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="mixtos.html#cb486-1"></a>normal.glm &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">log</span>(Egg.Mass) <span class="op">~</span><span class="st"> </span>F.Mass, <span class="dt">data =</span> shorebird.data)</span>
-<span id="cb486-2"><a href="mixtos.html#cb486-2"></a><span class="kw">summary</span>(normal.glm)</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="mixtos.html#cb407-1"></a>normal.glm &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">log</span>(Egg.Mass) <span class="op">~</span><span class="st"> </span>F.Mass, <span class="dt">data =</span> shorebird.data)</span>
+<span id="cb407-2"><a href="mixtos.html#cb407-2"></a><span class="kw">summary</span>(normal.glm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = log(Egg.Mass) ~ F.Mass, data = shorebird.data)
@@ -1591,22 +1553,18 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ## AIC: 62.754
 ## 
 ## Number of Fisher Scoring iterations: 2</code></pre>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="mixtos.html#cb488-1"></a><span class="kw">AIC</span>(normal.phyloglmm, normal.glm)</span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="mixtos.html#cb409-1"></a><span class="kw">AIC</span>(normal.phyloglmm, normal.glm)</span></code></pre></div>
 <pre><code>##                  df      AIC
 ## normal.phyloglmm  2 20.61397
 ## normal.glm        3 62.75396</code></pre>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="mixtos.html#cb490-1"></a><span class="kw">library</span>(phylolm)</span></code></pre></div>
-<pre><code>## Registered S3 methods overwritten by &#39;phylolm&#39;:
-##   method         from 
-##   logLik.phylolm MuMIn
-##   nobs.phylolm   MuMIn</code></pre>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="mixtos.html#cb492-1"></a>shorebird.data<span class="op">$</span>Egg.Mass.binary &lt;-<span class="st"> </span><span class="kw">ifelse</span>(shorebird.data<span class="op">$</span>Egg.Mass <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb492-2"><a href="mixtos.html#cb492-2"></a><span class="kw">plot</span>(shorebird.data<span class="op">$</span>F.Mass, shorebird.data<span class="op">$</span>Egg.Mass.binary)</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="mixtos.html#cb411-1"></a><span class="kw">library</span>(phylolm)</span>
+<span id="cb411-2"><a href="mixtos.html#cb411-2"></a>shorebird.data<span class="op">$</span>Egg.Mass.binary &lt;-<span class="st"> </span><span class="kw">ifelse</span>(shorebird.data<span class="op">$</span>Egg.Mass <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb411-3"><a href="mixtos.html#cb411-3"></a><span class="kw">plot</span>(shorebird.data<span class="op">$</span>F.Mass, shorebird.data<span class="op">$</span>Egg.Mass.binary)</span></code></pre></div>
 <p><img src="_main_files/figure-html/filo%20glmm-4.png" width="672" /></p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="mixtos.html#cb493-1"></a>binomial.glm &lt;-<span class="st"> </span><span class="kw">phyloglm</span>(Egg.Mass.binary <span class="op">~</span><span class="st"> </span>F.Mass, <span class="dt">phy =</span> shorebird.tree, <span class="dt">data =</span> shorebird.data, <span class="dt">method =</span> <span class="st">&quot;logistic_MPLE&quot;</span>, <span class="dt">boot =</span> <span class="dv">100</span>, <span class="dt">btol =</span> <span class="dv">30</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="mixtos.html#cb412-1"></a>binomial.glm &lt;-<span class="st"> </span><span class="kw">phyloglm</span>(Egg.Mass.binary <span class="op">~</span><span class="st"> </span>F.Mass, <span class="dt">phy =</span> shorebird.tree, <span class="dt">data =</span> shorebird.data, <span class="dt">method =</span> <span class="st">&quot;logistic_MPLE&quot;</span>, <span class="dt">boot =</span> <span class="dv">100</span>, <span class="dt">btol =</span> <span class="dv">30</span>)</span></code></pre></div>
 <pre><code>## Warning in phyloglm(Egg.Mass.binary ~ F.Mass, phy = shorebird.tree, data = shorebird.data, : the boundary of the linear predictor has been reached during the optimization procedure.
 ## You can increase this bound by increasing &#39;btol&#39;.</code></pre>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="mixtos.html#cb495-1"></a><span class="kw">summary</span>(binomial.glm)</span></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="mixtos.html#cb414-1"></a><span class="kw">summary</span>(binomial.glm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## phyloglm(formula = Egg.Mass.binary ~ F.Mass, data = shorebird.data, 
@@ -1639,62 +1597,52 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 <div id="modelos-aditivos-generalizados-mixtos" class="section level2 hasAnchor">
 <h2><span class="header-section-number">4.8</span> Modelos aditivos generalizados mixtos<a href="mixtos.html#modelos-aditivos-generalizados-mixtos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Gillibrand et al. (2007) analizaron la bioluminiscencia pelágica (<code>Sources</code>) a lo largo de un gradiente de profundidad (<code>SampleDepth</code>) en el NE del Océano Atlántico (<code>ISIT.txt</code>).</p>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="mixtos.html#cb497-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb497-2"><a href="mixtos.html#cb497-2"></a><span class="kw">library</span>(mgcv)</span>
-<span id="cb497-3"><a href="mixtos.html#cb497-3"></a><span class="kw">library</span>(itsadug)</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="mixtos.html#cb416-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb416-2"><a href="mixtos.html#cb416-2"></a><span class="kw">library</span>(mgcv)</span>
+<span id="cb416-3"><a href="mixtos.html#cb416-3"></a><span class="kw">library</span>(itsadug)</span></code></pre></div>
 <pre><code>## Warning: package &#39;itsadug&#39; was built under R version 4.0.3</code></pre>
-<pre><code>## Loading required package: plotfunctions</code></pre>
 <pre><code>## Warning: package &#39;plotfunctions&#39; was built under R version 4.0.3</code></pre>
-<pre><code>## 
-## Attaching package: &#39;plotfunctions&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:psych&#39;:
-## 
-##     alpha</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     alpha</code></pre>
-<pre><code>## Loaded package itsadug 2.4 (see &#39;help(&quot;itsadug&quot;)&#39; ).</code></pre>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="mixtos.html#cb505-1"></a>biolum &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;ISIT.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb505-2"><a href="mixtos.html#cb505-2"></a>biolum<span class="op">$</span>Station &lt;-<span class="st"> </span><span class="kw">as.factor</span>(biolum<span class="op">$</span>Station)</span>
-<span id="cb505-3"><a href="mixtos.html#cb505-3"></a>biolum<span class="op">$</span>Year &lt;-<span class="st"> </span><span class="kw">as.factor</span>(biolum<span class="op">$</span>Year)</span>
-<span id="cb505-4"><a href="mixtos.html#cb505-4"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> biolum, <span class="kw">aes</span>(<span class="dt">x =</span> SampleDepth, <span class="dt">y =</span> Sources)) <span class="op">+</span></span>
-<span id="cb505-5"><a href="mixtos.html#cb505-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Station) <span class="op">+</span></span>
-<span id="cb505-6"><a href="mixtos.html#cb505-6"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="mixtos.html#cb419-1"></a>biolum &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;ISIT.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb419-2"><a href="mixtos.html#cb419-2"></a>biolum<span class="op">$</span>Station &lt;-<span class="st"> </span><span class="kw">as.factor</span>(biolum<span class="op">$</span>Station)</span>
+<span id="cb419-3"><a href="mixtos.html#cb419-3"></a>biolum<span class="op">$</span>Year &lt;-<span class="st"> </span><span class="kw">as.factor</span>(biolum<span class="op">$</span>Year)</span>
+<span id="cb419-4"><a href="mixtos.html#cb419-4"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> biolum, <span class="kw">aes</span>(<span class="dt">x =</span> SampleDepth, <span class="dt">y =</span> Sources)) <span class="op">+</span></span>
+<span id="cb419-5"><a href="mixtos.html#cb419-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Station) <span class="op">+</span></span>
+<span id="cb419-6"><a href="mixtos.html#cb419-6"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/explo-1.png" width="672" /></p>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="mixtos.html#cb506-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> biolum, <span class="kw">aes</span>(<span class="dt">x =</span> SampleDepth, <span class="dt">y =</span> Sources)) <span class="op">+</span></span>
-<span id="cb506-2"><a href="mixtos.html#cb506-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Year) <span class="op">+</span></span>
-<span id="cb506-3"><a href="mixtos.html#cb506-3"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="mixtos.html#cb420-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> biolum, <span class="kw">aes</span>(<span class="dt">x =</span> SampleDepth, <span class="dt">y =</span> Sources)) <span class="op">+</span></span>
+<span id="cb420-2"><a href="mixtos.html#cb420-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Year) <span class="op">+</span></span>
+<span id="cb420-3"><a href="mixtos.html#cb420-3"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/explo-2.png" width="672" /></p>
 <div id="ajuste-de-modelos" class="section level3 hasAnchor">
 <h3><span class="header-section-number">4.8.1</span> Ajuste de modelos<a href="mixtos.html#ajuste-de-modelos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="mixtos.html#cb507-1"></a><span class="co"># Sin efectos aleatorios</span></span>
-<span id="cb507-2"><a href="mixtos.html#cb507-2"></a>gam0 &lt;-<span class="st"> </span><span class="kw">gam</span>(Sources <span class="op">~</span><span class="st"> </span>Year <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(SampleDepth) <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(SampleDepth, <span class="dt">by =</span> Year), <span class="dt">family =</span> gaussian, <span class="dt">data =</span> biolum)</span>
-<span id="cb507-3"><a href="mixtos.html#cb507-3"></a><span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb507-4"><a href="mixtos.html#cb507-4"></a><span class="kw">plot</span>(gam0)</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="mixtos.html#cb421-1"></a><span class="co"># Sin efectos aleatorios</span></span>
+<span id="cb421-2"><a href="mixtos.html#cb421-2"></a>gam0 &lt;-<span class="st"> </span><span class="kw">gam</span>(Sources <span class="op">~</span><span class="st"> </span>Year <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(SampleDepth) <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(SampleDepth, <span class="dt">by =</span> Year), <span class="dt">family =</span> gaussian, <span class="dt">data =</span> biolum)</span>
+<span id="cb421-3"><a href="mixtos.html#cb421-3"></a><span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb421-4"><a href="mixtos.html#cb421-4"></a><span class="kw">plot</span>(gam0)</span></code></pre></div>
 <p><img src="_main_files/figure-html/gamms-1.png" width="672" /></p>
-<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="mixtos.html#cb508-1"></a><span class="kw">layout</span>(<span class="dv">1</span>)</span>
-<span id="cb508-2"><a href="mixtos.html#cb508-2"></a></span>
-<span id="cb508-3"><a href="mixtos.html#cb508-3"></a><span class="co"># Intercepto aleatorio</span></span>
-<span id="cb508-4"><a href="mixtos.html#cb508-4"></a>gamm1 &lt;-<span class="st"> </span><span class="kw">gam</span>(Sources <span class="op">~</span><span class="st"> </span>Year <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(SampleDepth) <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(Station, <span class="dt">bs =</span> <span class="st">&quot;re&quot;</span>), <span class="dt">family =</span> gaussian, <span class="dt">data =</span> biolum)</span>
-<span id="cb508-5"><a href="mixtos.html#cb508-5"></a></span>
-<span id="cb508-6"><a href="mixtos.html#cb508-6"></a><span class="co"># Intercepto + pendiente aleatorios</span></span>
-<span id="cb508-7"><a href="mixtos.html#cb508-7"></a>gamm2 &lt;-<span class="st"> </span><span class="kw">gam</span>(Sources <span class="op">~</span><span class="st"> </span>Year <span class="op">+</span><span class="st">  </span><span class="kw">s</span>(SampleDepth) <span class="op">+</span></span>
-<span id="cb508-8"><a href="mixtos.html#cb508-8"></a><span class="st">               </span><span class="kw">s</span>(Station, <span class="dt">bs =</span> <span class="st">&quot;re&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Intercepto aleatorio</span></span>
-<span id="cb508-9"><a href="mixtos.html#cb508-9"></a><span class="st">               </span><span class="kw">s</span>(SampleDepth, Station, <span class="dt">bs =</span> <span class="st">&quot;re&quot;</span>), <span class="co"># Pendiente aleatoria</span></span>
-<span id="cb508-10"><a href="mixtos.html#cb508-10"></a>             <span class="dt">family =</span> gaussian, <span class="dt">data =</span> biolum)</span>
-<span id="cb508-11"><a href="mixtos.html#cb508-11"></a></span>
-<span id="cb508-12"><a href="mixtos.html#cb508-12"></a><span class="co"># Intercepto + &quot;smooth&quot; aleatorios</span></span>
-<span id="cb508-13"><a href="mixtos.html#cb508-13"></a>gamm3 &lt;-<span class="st"> </span><span class="kw">gam</span>(Sources <span class="op">~</span><span class="st"> </span>Year <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(SampleDepth, Station, <span class="dt">bs =</span> <span class="st">&quot;fs&quot;</span>, <span class="dt">m =</span> <span class="dv">1</span>, <span class="dt">k =</span> <span class="dv">5</span>), <span class="co"># Smooth aleatorio</span></span>
-<span id="cb508-14"><a href="mixtos.html#cb508-14"></a>             <span class="dt">family =</span> gaussian, <span class="dt">data =</span> biolum)</span>
-<span id="cb508-15"><a href="mixtos.html#cb508-15"></a></span>
-<span id="cb508-16"><a href="mixtos.html#cb508-16"></a><span class="co"># Comparación de estructuras de efectos aleatorios</span></span>
-<span id="cb508-17"><a href="mixtos.html#cb508-17"></a><span class="kw">AIC</span>(gam0, gamm1, gamm2, gamm3)</span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="mixtos.html#cb422-1"></a><span class="kw">layout</span>(<span class="dv">1</span>)</span>
+<span id="cb422-2"><a href="mixtos.html#cb422-2"></a></span>
+<span id="cb422-3"><a href="mixtos.html#cb422-3"></a><span class="co"># Intercepto aleatorio</span></span>
+<span id="cb422-4"><a href="mixtos.html#cb422-4"></a>gamm1 &lt;-<span class="st"> </span><span class="kw">gam</span>(Sources <span class="op">~</span><span class="st"> </span>Year <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(SampleDepth) <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(Station, <span class="dt">bs =</span> <span class="st">&quot;re&quot;</span>), <span class="dt">family =</span> gaussian, <span class="dt">data =</span> biolum)</span>
+<span id="cb422-5"><a href="mixtos.html#cb422-5"></a></span>
+<span id="cb422-6"><a href="mixtos.html#cb422-6"></a><span class="co"># Intercepto + pendiente aleatorios</span></span>
+<span id="cb422-7"><a href="mixtos.html#cb422-7"></a>gamm2 &lt;-<span class="st"> </span><span class="kw">gam</span>(Sources <span class="op">~</span><span class="st"> </span>Year <span class="op">+</span><span class="st">  </span><span class="kw">s</span>(SampleDepth) <span class="op">+</span></span>
+<span id="cb422-8"><a href="mixtos.html#cb422-8"></a><span class="st">               </span><span class="kw">s</span>(Station, <span class="dt">bs =</span> <span class="st">&quot;re&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Intercepto aleatorio</span></span>
+<span id="cb422-9"><a href="mixtos.html#cb422-9"></a><span class="st">               </span><span class="kw">s</span>(SampleDepth, Station, <span class="dt">bs =</span> <span class="st">&quot;re&quot;</span>), <span class="co"># Pendiente aleatoria</span></span>
+<span id="cb422-10"><a href="mixtos.html#cb422-10"></a>             <span class="dt">family =</span> gaussian, <span class="dt">data =</span> biolum)</span>
+<span id="cb422-11"><a href="mixtos.html#cb422-11"></a></span>
+<span id="cb422-12"><a href="mixtos.html#cb422-12"></a><span class="co"># Intercepto + &quot;smooth&quot; aleatorios</span></span>
+<span id="cb422-13"><a href="mixtos.html#cb422-13"></a>gamm3 &lt;-<span class="st"> </span><span class="kw">gam</span>(Sources <span class="op">~</span><span class="st"> </span>Year <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(SampleDepth, Station, <span class="dt">bs =</span> <span class="st">&quot;fs&quot;</span>, <span class="dt">m =</span> <span class="dv">1</span>, <span class="dt">k =</span> <span class="dv">5</span>), <span class="co"># Smooth aleatorio</span></span>
+<span id="cb422-14"><a href="mixtos.html#cb422-14"></a>             <span class="dt">family =</span> gaussian, <span class="dt">data =</span> biolum)</span>
+<span id="cb422-15"><a href="mixtos.html#cb422-15"></a></span>
+<span id="cb422-16"><a href="mixtos.html#cb422-16"></a><span class="co"># Comparación de estructuras de efectos aleatorios</span></span>
+<span id="cb422-17"><a href="mixtos.html#cb422-17"></a><span class="kw">AIC</span>(gam0, gamm1, gamm2, gamm3)</span></code></pre></div>
 <pre><code>##             df      AIC
 ## gam0  17.64724 5289.443
 ## gamm1 27.86427 5084.019
 ## gamm2 42.97891 4914.160
 ## gamm3 85.79929 4453.383</code></pre>
-<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="mixtos.html#cb510-1"></a><span class="kw">summary</span>(gamm2)</span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="mixtos.html#cb424-1"></a><span class="kw">summary</span>(gamm2)</span></code></pre></div>
 <pre><code>## 
 ## Family: gaussian 
 ## Link function: identity 
@@ -1721,15 +1669,15 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ## Rank: 47/49
 ## R-sq.(adj) =  0.796   Deviance explained = 80.6%
 ## GCV = 29.692  Scale est. = 28.112    n = 789</code></pre>
-<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="mixtos.html#cb512-1"></a><span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb512-2"><a href="mixtos.html#cb512-2"></a><span class="kw">check_resid</span>(gamm2, <span class="dt">split_pred =</span> <span class="st">&quot;Station&quot;</span>, <span class="dt">select =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">ask =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="mixtos.html#cb426-1"></a><span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb426-2"><a href="mixtos.html#cb426-2"></a><span class="kw">check_resid</span>(gamm2, <span class="dt">split_pred =</span> <span class="st">&quot;Station&quot;</span>, <span class="dt">select =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">ask =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/gamms-2.png" width="672" /></p>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="mixtos.html#cb513-1"></a><span class="kw">layout</span>(<span class="dv">1</span>)</span>
-<span id="cb513-2"><a href="mixtos.html#cb513-2"></a><span class="kw">acf_resid</span>(gamm2, <span class="dt">split_pred =</span> <span class="st">&quot;Station&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="mixtos.html#cb427-1"></a><span class="kw">layout</span>(<span class="dv">1</span>)</span>
+<span id="cb427-2"><a href="mixtos.html#cb427-2"></a><span class="kw">acf_resid</span>(gamm2, <span class="dt">split_pred =</span> <span class="st">&quot;Station&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/gamms-3.png" width="672" /></p>
-<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="mixtos.html#cb514-1"></a><span class="kw">gamtabs</span>(gamm2, <span class="dt">type =</span> <span class="st">&quot;HTML&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="mixtos.html#cb428-1"></a><span class="kw">gamtabs</span>(gamm2, <span class="dt">type =</span> <span class="st">&quot;HTML&quot;</span>)</span></code></pre></div>
 <pre><code>## &lt;!-- html table generated in R 4.0.2 by xtable 1.8-4 package --&gt;
-## &lt;!-- Tue May 03 19:26:17 2022 --&gt;
+## &lt;!-- Wed May 04 23:10:05 2022 --&gt;
 ## &lt;table border=1&gt;
 ## &lt;caption align=&quot;bottom&quot;&gt;   &lt;/caption&gt;
 ##   &lt;tr&gt; &lt;td&gt; A. parametric coefficients &lt;/td&gt; &lt;td align=&quot;right&quot;&gt; Estimate &lt;/td&gt; &lt;td align=&quot;right&quot;&gt; Std. Error &lt;/td&gt; &lt;td align=&quot;right&quot;&gt; t-value &lt;/td&gt; &lt;td align=&quot;right&quot;&gt; p-value &lt;/td&gt; &lt;/tr&gt;
@@ -1744,8 +1692,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </div>
 <div id="gráficos" class="section level3 hasAnchor">
 <h3><span class="header-section-number">4.8.2</span> Gráficos<a href="mixtos.html#gráficos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="mixtos.html#cb516-1"></a><span class="co"># Efectos fijos</span></span>
-<span id="cb516-2"><a href="mixtos.html#cb516-2"></a><span class="kw">plot_smooth</span>(gamm2, <span class="dt">view =</span> <span class="st">&quot;SampleDepth&quot;</span>, <span class="dt">plot_all =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">rm.ranef =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="mixtos.html#cb430-1"></a><span class="co"># Efectos fijos</span></span>
+<span id="cb430-2"><a href="mixtos.html#cb430-2"></a><span class="kw">plot_smooth</span>(gamm2, <span class="dt">view =</span> <span class="st">&quot;SampleDepth&quot;</span>, <span class="dt">plot_all =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">rm.ranef =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## Summary:
 ##  * Year : factor; set to the value(s): 2001, 2002. 
 ##  * SampleDepth : numeric predictor; with 30 values ranging from 501.000000 to 4866.000000. 
@@ -1753,7 +1701,7 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ##  * NOTE : The following random effects columns are canceled: s(Station),s(SampleDepth,Station)
 ## </code></pre>
 <p><img src="_main_files/figure-html/graficos%20gamms-1.png" width="672" /></p>
-<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="mixtos.html#cb518-1"></a><span class="kw">plot_parametric</span>(gamm2, <span class="dt">pred =</span> <span class="kw">list</span>(<span class="dt">Year =</span> <span class="kw">c</span>(<span class="st">&quot;2001&quot;</span>, <span class="st">&quot;2002&quot;</span>)), <span class="dt">rm.ranef =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="mixtos.html#cb432-1"></a><span class="kw">plot_parametric</span>(gamm2, <span class="dt">pred =</span> <span class="kw">list</span>(<span class="dt">Year =</span> <span class="kw">c</span>(<span class="st">&quot;2001&quot;</span>, <span class="st">&quot;2002&quot;</span>)), <span class="dt">rm.ranef =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## Summary:
 ##  * Year : factor; set to the value(s): 2001, 2002. 
 ##  * SampleDepth : numeric predictor; set to the value(s): 1969.5. 
@@ -1761,15 +1709,15 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ##  * NOTE : The following random effects columns are canceled: s(Station),s(SampleDepth,Station)
 ## </code></pre>
 <p><img src="_main_files/figure-html/graficos%20gamms-2.png" width="672" /></p>
-<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="mixtos.html#cb520-1"></a><span class="co"># Efectos aleatorios</span></span>
-<span id="cb520-2"><a href="mixtos.html#cb520-2"></a><span class="kw">plot_smooth</span>(gamm2, <span class="dt">view =</span> <span class="st">&quot;SampleDepth&quot;</span>, <span class="dt">cond =</span> <span class="kw">list</span>(<span class="dt">Year =</span> <span class="st">&quot;2001&quot;</span>, <span class="dt">Station =</span> <span class="st">&quot;3&quot;</span>), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">50</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="mixtos.html#cb434-1"></a><span class="co"># Efectos aleatorios</span></span>
+<span id="cb434-2"><a href="mixtos.html#cb434-2"></a><span class="kw">plot_smooth</span>(gamm2, <span class="dt">view =</span> <span class="st">&quot;SampleDepth&quot;</span>, <span class="dt">cond =</span> <span class="kw">list</span>(<span class="dt">Year =</span> <span class="st">&quot;2001&quot;</span>, <span class="dt">Station =</span> <span class="st">&quot;3&quot;</span>), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">50</span>))</span></code></pre></div>
 <pre><code>## Summary:
 ##  * Year : factor; set to the value(s): 2001. 
 ##  * SampleDepth : numeric predictor; with 30 values ranging from 501.000000 to 4866.000000. 
 ##  * Station : factor; set to the value(s): 3. (Might be canceled as random effect, check below.) 
 ##  * NOTE : The following random effects columns are canceled: s(Station),s(SampleDepth,Station)
 ## </code></pre>
-<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="mixtos.html#cb522-1"></a><span class="kw">plot_smooth</span>(gamm1, <span class="dt">view =</span> <span class="st">&quot;SampleDepth&quot;</span>, <span class="dt">cond =</span> <span class="kw">list</span>(<span class="dt">Year =</span> <span class="st">&quot;2001&quot;</span>, <span class="dt">Station =</span> <span class="st">&quot;16&quot;</span>), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>) <span class="co"># Agregar estación 16</span></span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="mixtos.html#cb436-1"></a><span class="kw">plot_smooth</span>(gamm1, <span class="dt">view =</span> <span class="st">&quot;SampleDepth&quot;</span>, <span class="dt">cond =</span> <span class="kw">list</span>(<span class="dt">Year =</span> <span class="st">&quot;2001&quot;</span>, <span class="dt">Station =</span> <span class="st">&quot;16&quot;</span>), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>) <span class="co"># Agregar estación 16</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/graficos%20gamms-3.png" width="672" /></p>
 <pre><code>## Summary:
 ##  * Year : factor; set to the value(s): 2001. 
@@ -1781,9 +1729,9 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 <div id="autocorrelación-temporal" class="section level3 hasAnchor">
 <h3><span class="header-section-number">4.8.3</span> Autocorrelación temporal<a href="mixtos.html#autocorrelación-temporal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Aluja et al. (2012) estudiaron los factores que determinan la dinámica poblacional de especies de moscas de la fruta (Tephritidae) durante 11 años en Veracruz, México (<code>Aluja_et_al_Tephritidae.txt</code>). Las variables utilizadas son el (log) número de capturas diarias (<code>FTD</code>) y el sesgo sexual de captura (<code>SBC</code>) de distintas especies del género <em>Anastrepha</em> y los índices de oscilación del Atlántico Norte (<code>NAOI</code>) y Sur (<code>SOI</code>).</p>
-<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="mixtos.html#cb524-1"></a><span class="kw">library</span>(visreg)</span>
-<span id="cb524-2"><a href="mixtos.html#cb524-2"></a>moscas &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Aluja_et_al_Tephritidae.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb524-3"><a href="mixtos.html#cb524-3"></a><span class="kw">str</span>(moscas)</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="mixtos.html#cb438-1"></a><span class="kw">library</span>(visreg)</span>
+<span id="cb438-2"><a href="mixtos.html#cb438-2"></a>moscas &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Aluja_et_al_Tephritidae.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb438-3"><a href="mixtos.html#cb438-3"></a><span class="kw">str</span>(moscas)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    132 obs. of  13 variables:
 ##  $ Date            : chr  &quot;January_1994&quot; &quot;February_1994&quot; &quot;March_1994&quot; &quot;April_1994&quot; ...
 ##  $ FTD_A_ludens    : num  0.1075 0.1637 0 0.4464 0.0222 ...
@@ -1798,11 +1746,11 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ##  $ MAT.JC          : num  15.1 17.1 17.6 20.8 22.8 ...
 ##  $ SOI             : num  -0.5 -0.1 -2.2 -2.9 -1.7 -1.5 -2.9 -3 -3 -2.6 ...
 ##  $ NAOI            : num  1 0.5 1.3 1.1 -0.6 1.5 1.3 0.4 -1.3 -1 ...</code></pre>
-<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="mixtos.html#cb526-1"></a>moscas<span class="op">$</span>t &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(moscas)</span>
-<span id="cb526-2"><a href="mixtos.html#cb526-2"></a><span class="kw">plot</span>(moscas<span class="op">$</span>t, moscas<span class="op">$</span>FTD_A_ludens)</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="mixtos.html#cb440-1"></a>moscas<span class="op">$</span>t &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(moscas)</span>
+<span id="cb440-2"><a href="mixtos.html#cb440-2"></a><span class="kw">plot</span>(moscas<span class="op">$</span>t, moscas<span class="op">$</span>FTD_A_ludens)</span></code></pre></div>
 <p><img src="_main_files/figure-html/arima-1.png" width="672" /></p>
-<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="mixtos.html#cb527-1"></a>gam1 &lt;-<span class="st"> </span><span class="kw">gam</span>(FTD_A_ludens <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(t, <span class="dt">k =</span> <span class="dv">60</span>), <span class="dt">family =</span> gaussian, <span class="dt">data =</span> moscas)</span>
-<span id="cb527-2"><a href="mixtos.html#cb527-2"></a><span class="kw">summary</span>(gam1)</span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="mixtos.html#cb441-1"></a>gam1 &lt;-<span class="st"> </span><span class="kw">gam</span>(FTD_A_ludens <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(t, <span class="dt">k =</span> <span class="dv">60</span>), <span class="dt">family =</span> gaussian, <span class="dt">data =</span> moscas)</span>
+<span id="cb441-2"><a href="mixtos.html#cb441-2"></a><span class="kw">summary</span>(gam1)</span></code></pre></div>
 <pre><code>## 
 ## Family: gaussian 
 ## Link function: identity 
@@ -1824,7 +1772,7 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ## 
 ## R-sq.(adj) =  0.556   Deviance explained = 68.4%
 ## GCV = 0.1027  Scale est. = 0.072604  n = 132</code></pre>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="mixtos.html#cb529-1"></a><span class="kw">gam.check</span>(gam1)</span></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="mixtos.html#cb443-1"></a><span class="kw">gam.check</span>(gam1)</span></code></pre></div>
 <p><img src="_main_files/figure-html/arima-2.png" width="672" /></p>
 <pre><code>## 
 ## Method: GCV   Optimizer: magic
@@ -1838,12 +1786,12 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ## 
 ##        k&#39;  edf k-index p-value
 ## s(t) 59.0 37.7    1.34       1</code></pre>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="mixtos.html#cb531-1"></a><span class="kw">visreg</span>(<span class="dt">fit =</span> gam1, <span class="dt">xvar =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="mixtos.html#cb445-1"></a><span class="kw">visreg</span>(<span class="dt">fit =</span> gam1, <span class="dt">xvar =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/arima-3.png" width="672" /></p>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="mixtos.html#cb532-1"></a><span class="kw">acf</span>(<span class="kw">resid</span>(gam1))</span></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="mixtos.html#cb446-1"></a><span class="kw">acf</span>(<span class="kw">resid</span>(gam1))</span></code></pre></div>
 <p><img src="_main_files/figure-html/arima-4.png" width="672" /></p>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="mixtos.html#cb533-1"></a>gamm.ar1 &lt;-<span class="st"> </span><span class="kw">gamm</span>(FTD_A_ludens <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(t, <span class="dt">k =</span> <span class="dv">60</span>), <span class="dt">family =</span> gaussian, <span class="dt">correlation =</span> <span class="kw">corAR1</span>(<span class="dt">form =</span> <span class="op">~</span><span class="st"> </span>t), <span class="dt">data =</span> moscas)</span>
-<span id="cb533-2"><a href="mixtos.html#cb533-2"></a><span class="kw">summary</span>(gamm.ar1<span class="op">$</span>gam)</span></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="mixtos.html#cb447-1"></a>gamm.ar1 &lt;-<span class="st"> </span><span class="kw">gamm</span>(FTD_A_ludens <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(t, <span class="dt">k =</span> <span class="dv">60</span>), <span class="dt">family =</span> gaussian, <span class="dt">correlation =</span> <span class="kw">corAR1</span>(<span class="dt">form =</span> <span class="op">~</span><span class="st"> </span>t), <span class="dt">data =</span> moscas)</span>
+<span id="cb447-2"><a href="mixtos.html#cb447-2"></a><span class="kw">summary</span>(gamm.ar1<span class="op">$</span>gam)</span></code></pre></div>
 <pre><code>## 
 ## Family: gaussian 
 ## Link function: identity 
@@ -1863,9 +1811,9 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ## 
 ## R-sq.(adj) =  -0.00687   
 ##   Scale est. = 0.16172   n = 132</code></pre>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="mixtos.html#cb535-1"></a><span class="kw">plot</span>(gamm.ar1<span class="op">$</span>gam)</span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="mixtos.html#cb449-1"></a><span class="kw">plot</span>(gamm.ar1<span class="op">$</span>gam)</span></code></pre></div>
 <p><img src="_main_files/figure-html/arima-5.png" width="672" /></p>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="mixtos.html#cb536-1"></a><span class="kw">AIC</span>(gam1, gamm.ar1<span class="op">$</span>lme)</span></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="mixtos.html#cb450-1"></a><span class="kw">AIC</span>(gam1, gamm.ar1<span class="op">$</span>lme)</span></code></pre></div>
 <pre><code>##                    df       AIC
 ## gam1         39.68512  61.98908
 ## gamm.ar1$lme  5.00000 109.58570</code></pre>
