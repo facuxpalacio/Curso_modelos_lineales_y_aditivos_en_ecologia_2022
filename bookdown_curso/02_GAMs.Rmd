@@ -117,6 +117,7 @@ library(lattice)
 library(ggplot2)
 library(mgcv)
 library(gratia)
+library(gam)
 
 biolum <- read.table("C:/RD/ISIT.txt", header = TRUE)
 str(biolum)
