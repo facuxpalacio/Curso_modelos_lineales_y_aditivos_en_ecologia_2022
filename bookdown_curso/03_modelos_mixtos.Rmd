@@ -309,7 +309,6 @@ layout(matrix(1:2, 1, 2))
 check_resid(gamm2, split_pred = "Station", select = 1:2, ask = FALSE)
 layout(1)
 acf_resid(gamm2, split_pred = "Station")
-gamtabs(gamm2, type = "HTML")
 ```
 
 ### Gráficos 
@@ -349,6 +348,7 @@ AIC(gam1, gamm.ar1$lme)
 Las siguientes variables corresponden a de datos de actividad fotosintética bajo dos concentraciones de nutrientes aplicados a las mismas 10 plantas (la planta 1 se encuentra primera en ambos vectores, la planta 2 se encuentra segunda y así sucesivamente):
 
 fotosint_N1 <- c(1.42, 1.4, 1.44, 1.44, 1.42, 1.46, 1.49, 1.5, 1.42, 1.48)
+
 fotosint_N2 <- c(1.38, 1.36, 1.47, 1.39, 1.43, 1.41, 1.43, 1.45, 1.36, 1.46)
 
 - En base al diseño experimental, identifique posibles efectos fijos y aleatorios. Justifique.
