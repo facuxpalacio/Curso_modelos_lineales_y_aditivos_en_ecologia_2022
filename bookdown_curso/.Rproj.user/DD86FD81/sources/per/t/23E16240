@@ -3,7 +3,7 @@
     "path": "C:/Users/54221/Dropbox/GitHub/Curso_modelos_lineales_y_aditivos_en_ecologia_2022/bookdown_curso/03_modelos_mixtos.Rmd",
     "project_path": "03_modelos_mixtos.Rmd",
     "type": "r_markdown",
-    "hash": "1618998223",
+    "hash": "3799768660",
     "contents": "",
     "dirty": false,
     "created": 1651155919239.0,
@@ -11,14 +11,14 @@
     "relative_order": 4,
     "properties": {
         "cursorPosition": "350,0",
-        "scrollLine": "346"
+        "scrollLine": "343"
     },
     "folds": "",
-    "lastKnownWriteTime": 1651859148,
+    "lastKnownWriteTime": 1651859557,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1651859149368,
+    "last_content_update": 1651859557,
     "read_only": false,
     "read_only_alternatives": []
 }

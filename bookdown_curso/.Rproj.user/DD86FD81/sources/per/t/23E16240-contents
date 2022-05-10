@@ -263,7 +263,7 @@ summary(binomial.glm)
 
 ## Modelos aditivos generalizados mixtos
 Gillibrand et al. (2007) analizaron la bioluminiscencia pelágica (`Sources`) a lo largo de un gradiente de profundidad (`SampleDepth`) en el NE del Océano Atlántico (`ISIT.txt`).
-```{r explo}
+```{r explo, suppressWarnings()}
 library(ggplot2)
 library(mgcv)
 library(itsadug)
